@@ -1,0 +1,30 @@
+services:
+
+  api:
+    # Override the CMD from the Dockerfile so Node starts
+    # with its inspector enabled. nodemon (already a
+    # devDependency) restarts on file changes and re-attaches
+    # the inspector each time.
+    command: >
+      npx nodemon
+      --inspect=0.0.0.0:9229
+      server.js
+
+    ports:
+      # 9229 = Node's debug protocol port. Your editor
+      # connects here, not to 5000 (that's still the API).
+      - "9229:9229"
+
+    volumes:
+      # Mount your local source into the container so edits
+      # on your machine are picked up without rebuilding the
+      # image.
+      - .:/app
+      # Anonymous volume so the container's own
+      # node_modules (built for Linux) isn't shadowed by
+      # your host's node_modules (which may be built for a
+      # different OS, e.g. Windows).
+      - /app/node_modules
+
+    environment:
+      NODE_ENV: development

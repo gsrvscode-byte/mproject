@@ -1,0 +1,73 @@
+services:
+
+  mysql:
+    image: mysql:8.0
+    container_name: ecommerce-mysql
+
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: ecommerce
+
+    ports:
+      - "3306:3306"
+
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./database/schema.sql:/docker-entrypoint-initdb.d/schema.sql:ro
+
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "mysqladmin",
+          "ping",
+          "-h",
+          "localhost",
+          "-uroot",
+          "-proot"
+        ]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+
+  mailhog:
+    image: mailhog/mailhog:latest
+    container_name: ecommerce-mailhog
+
+    ports:
+      - "1025:1025"
+      - "8025:8025"
+
+
+  api:
+    build: .
+    container_name: ecommerce-api
+
+    ports:
+      - "5000:5000"
+
+    environment:
+      PORT: 5000
+
+      DB_HOST: mysql
+      DB_PORT: 3306
+
+      DB_USER: root
+      DB_PASSWORD: root
+      DB_NAME: ecommerce
+
+      JWT_SECRET: mysecretkey
+
+      MAIL_HOST: mailhog
+      MAIL_PORT: 1025
+
+    depends_on:
+      mysql:
+        condition: service_healthy
+      mailhog:
+        condition: service_started
+
+
+volumes:
+  mysql_data:
