@@ -38,7 +38,7 @@ app.get("/health", (req, res) => {
     });
 });
 
-app.get("/health2", (req, res) => {
+app.get("/healthh", (req, res) => {
     res.json({
         success: true,
         message: "E-Commerce API Running"
