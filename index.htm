@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Gopal Rajput | Node.js Full Stack Developer</title>
+
+<style>
+  :root {
+    --primary: #0d5c63;
+    --dark: #18212b;
+    --text: #384454;
+    --muted: #6b7280;
+    --border: #d8dee4;
+    --soft: #f3f7f7;
+    --white: #ffffff;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    background: #eeeeee;
+  }
+
+  body {
+    background: #eeeeee;
+    color: var(--text);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12.5px;
+    line-height: 1.42;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    margin: 20px auto;
+    padding: 13mm 14mm;
+    background: var(--white);
+  }
+
+  /* ================= HEADER ================= */
+
+  header {
+    border-bottom: 2px solid var(--primary);
+    padding-bottom: 11px;
+    margin-bottom: 13px;
+  }
+
+  .name {
+    font-size: 29px;
+    font-weight: 700;
+    color: var(--dark);
+    letter-spacing: -0.4px;
+  }
+
+  .role {
+    margin-top: 3px;
+    color: var(--primary);
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+  }
+
+  .contact {
+    margin-top: 8px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 0;
+    color: var(--text);
+    font-size: 11.5px;
+  }
+
+  .contact span {
+    white-space: nowrap;
+  }
+
+  .contact span:not(:last-child)::after {
+    content: " | ";
+    color: #a5adb7;
+    margin: 0 7px;
+  }
+
+  /* ================= SECTIONS ================= */
+
+  section {
+    margin-bottom: 13px;
+  }
+
+  .section-title {
+    color: var(--primary);
+    font-size: 12.5px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 4px;
+    margin-bottom: 7px;
+  }
+
+  /* ================= SUMMARY ================= */
+
+  .summary {
+    font-size: 12.4px;
+    line-height: 1.52;
+    color: var(--text);
+  }
+
+  /* ================= SKILLS ================= */
+
+  .skills {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5px 22px;
+  }
+
+  .skill {
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    gap: 6px;
+    align-items: start;
+  }
+
+  .skill-name {
+    color: var(--dark);
+    font-weight: 700;
+  }
+
+  .skill-value {
+    color: var(--text);
+  }
+
+  /* ================= EXPERIENCE ================= */
+
+  .experience-item {
+    margin-bottom: 10px;
+  }
+
+  .experience-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    align-items: baseline;
+  }
+
+  .job-title {
+    color: var(--dark);
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  .date {
+    color: var(--muted);
+    font-size: 11.5px;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  .company {
+    color: var(--primary);
+    font-weight: 700;
+    font-size: 12px;
+    margin-top: 1px;
+    margin-bottom: 4px;
+  }
+
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  li {
+    position: relative;
+    padding-left: 12px;
+    margin-bottom: 3px;
+  }
+
+  li::before {
+    content: "▪";
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--primary);
+    font-size: 10px;
+  }
+
+  /* ================= PROJECTS ================= */
+
+  .project {
+    background: var(--soft);
+    border-left: 3px solid var(--primary);
+    padding: 7px 10px;
+    margin-bottom: 7px;
+    break-inside: avoid;
+  }
+
+  .project-title {
+    color: var(--dark);
+    font-weight: 700;
+    font-size: 12.7px;
+    margin-bottom: 3px;
+  }
+
+  .project-tech {
+    color: var(--primary);
+    font-size: 10.8px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+
+  /* ================= TWO COLUMN ================= */
+
+  .two-column {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .item-title {
+    color: var(--dark);
+    font-weight: 700;
+    font-size: 12.3px;
+  }
+
+  .item-sub {
+    color: var(--text);
+    font-size: 11.5px;
+  }
+
+  .item-date {
+    color: var(--muted);
+    font-size: 11px;
+  }
+
+  /* ================= FOOTER ================= */
+
+  .footer-note {
+    color: var(--muted);
+    font-size: 9.8px;
+    margin-top: 8px;
+  }
+
+  /* ================= PRINT ================= */
+
+  @page {
+    size: A4;
+    margin: 0;
+  }
+
+  @media print {
+
+    html,
+    body {
+      background: white;
+    }
+
+    body {
+      font-size: 11.8px;
+    }
+
+    .page {
+      width: 210mm;
+      min-height: 297mm;
+      margin: 0;
+      padding: 11mm 13mm;
+    }
+
+    section {
+      margin-bottom: 10px;
+    }
+
+    .project {
+      break-inside: avoid;
+    }
+
+    .experience-item {
+      break-inside: avoid;
+    }
+
+    header {
+      break-after: avoid;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+  }
+
+  /* ================= MOBILE ================= */
+
+  @media screen and (max-width: 850px) {
+
+    html,
+    body {
+      background: white;
+    }
+
+    .page {
+      width: 100%;
+      min-height: auto;
+      margin: 0;
+      padding: 25px 20px;
+    }
+
+    .skills,
+    .two-column {
+      grid-template-columns: 1fr;
+    }
+
+    .skill {
+      grid-template-columns: 105px 1fr;
+    }
+
+    .experience-header {
+      flex-direction: column;
+      gap: 1px;
+    }
+
+    .date {
+      white-space: normal;
+    }
+  }
+</style>
+</head>
+
+<body>
+
+<div class="page">
+
+  <!-- ========================================================= -->
+  <!-- HEADER -->
+  <!-- ========================================================= -->
+
+  <header>
+
+    <div class="name">
+      Gopal Rajput
+    </div>
+
+    <div class="role">
+      Node.js Full Stack Developer | Backend Developer
+    </div>
+
+    <div class="contact">
+
+      <span>[Email]</span>
+
+      <span>[Phone Number]</span>
+
+      <span>[City, Country]</span>
+
+      <span>
+        <a href="[LinkedIn URL]">LinkedIn</a>
+      </span>
+
+      <span>
+        <a href="[GitHub URL]">GitHub</a>
+      </span>
+
+    </div>
+
+  </header>
+
+
+  <!-- ========================================================= -->
+  <!-- PROFESSIONAL SUMMARY -->
+  <!-- ========================================================= -->
+
+  <section>
+
+    <div class="section-title">
+      Professional Summary
+    </div>
+
+    <p class="summary">
+
+      Backend-focused Node.js Full Stack Developer with 3+ years of experience
+      developing and maintaining business-critical applications using Node.js,
+      Express.js, MongoDB and MySQL. Experienced in building REST APIs,
+      insurer-specific business rule engines, authentication systems and
+      third-party integrations using REST, XML and SOAP. Hands-on experience
+      with Docker, Docker Compose, Jenkins CI/CD, AWS services, Redis,
+      RabbitMQ and Nginx. Experienced in React and Angular application
+      integration and recently worked on AI-powered policy document processing
+      using Node.js, OpenAI APIs, Python and FastAPI.
+
+    </p>
+
+  </section>
+
+
+  <!-- ========================================================= -->
+  <!-- TECHNICAL SKILLS -->
+  <!-- ========================================================= -->
+
+  <section>
+
+    <div class="section-title">
+      Core Technical Skills
+    </div>
+
+    <div class="skills">
+
+      <div class="skill">
+        <div class="skill-name">Backend</div>
+        <div class="skill-value">
+          Node.js, Express.js, JavaScript, REST APIs, Async/Await,
+          Promises, Middleware, Axios, Formidable, Error Handling
+        </div>
+      </div>
+
+      <div class="skill">
+        <div class="skill-name">Databases</div>
+        <div class="skill-value">
+          MongoDB, Mongoose, MySQL, SQL, CRUD, Aggregation,
+          Indexing, Joins, Parameterized Queries, Connection Pooling
+        </div>
+      </div>
+
+      <div class="skill">
+        <div class="skill-name">Authentication</div>
+        <div class="skill-value">
+          JWT, Sessions, Cookies, bcrypt/bcryptjs,
+          Authentication Middleware, Protected APIs
+        </div>
+      </div>
+
+      <div class="skill">
+        <div class="skill-name">Messaging</div>
+        <div class="skill-value">
+          Redis, RabbitMQ, SMTP, Background Workers,
+          Producer/Consumer Architecture, Queue Processing
+        </div>
+      </div>
+
+      <div class="skill">
+        <div class="skill-name">DevOps / CI/CD</div>
+        <div class="skill-value">
+          Docker, Docker Compose, Jenkins, CI/CD, Git,
+          GitHub, Nginx, Docker Networking, Healthchecks
+        </div>
+      </div>
+
+      <div class="skill">
+        <div class="skill-name">Cloud</div>
+        <div class="skill-value">
+          AWS EC2, AWS S3, AWS Lambda, AWS SDK,
+          LocalStack, Terraform
+        </div>
+      </div>
+
+      <div class="skill">
+        <div class="skill-name">Frontend</div>
+        <div class="skill-value">
+          React, React Hooks, React Router, Vite, Angular,
+          Angular Forms, HTML, CSS, Bootstrap, Tailwind CSS, jQuery
+        </div>
+      </div>
+
+      <div class="skill">
+        <div class="skill-name">Testing</div>
+        <div class="skill-value">
+          Jest, Postman, cURL, Swagger/OpenAPI,
+          Selenium Basics
+        </div>
+      </div>
+
+      <div class="skill">
+        <div class="skill-name">AI / Documents</div>
+        <div class="skill-value">
+          OpenAI API, Prompt Engineering, AI PDF Processing,
+          Structured JSON Extraction, Python, FastAPI, Uvicorn
+        </div>
+      </div>
+
+      <div class="skill">
+        <div class="skill-name">Integrations</div>
+        <div class="skill-value">
+          Third-Party APIs, REST, XML, SOAP,
+          JSON Processing, File Upload APIs
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ========================================================= -->
+  <!-- PROFESSIONAL EXPERIENCE -->
+  <!-- ========================================================= -->
+
+  <section>
+
+    <div class="section-title">
+      Professional Experience
+    </div>
+
+    <div class="experience-item">
+
+      <div class="experience-header">
+
+        <div class="job-title">
+          Node.js Full Stack Developer
+        </div>
+
+        <div class="date">
+          May 2024 – Present
+        </div>
+
+      </div>
+
+      <div class="company">
+        Policyboss (LANDMARK INSURANCE BROKERS PRIVATE LIMITED) · [Mumbai]
+      </div>
+
+      <ul>
+
+        <li>
+          Developed and maintained Node.js and Express.js REST APIs
+          supporting Health, Travel, Motor and Two-Wheeler insurance
+          application workflows.
+        </li>
+
+        <li>
+          Implemented insurer-specific business rules covering
+          age-based eligibility, relationship validation, medical
+          declarations and hospitalization/medication checks.
+        </li>
+
+        <li>
+          Built proposal processing, portability and EMI management
+          APIs supporting Monthly, Quarterly and Half-Yearly schedules.
+        </li>
+
+        <li>
+          Integrated third-party insurer and ERP systems using REST,
+          XML and SOAP APIs with structured response parsing and
+          centralized error handling.
+        </li>
+
+        <li>
+          Designed and optimized MongoDB data access using aggregation
+          pipelines, indexing and query filtering for proposal and
+          transaction-related data.
+        </li>
+
+        <li>
+          Developed secure APIs using JWT authentication,
+          sessions, cookies, bcrypt and protected authentication
+          middleware.
+        </li>
+
+        <li>
+          Integrated backend APIs with React and Angular applications,
+          maintaining consistent API contracts and data flow.
+        </li>
+
+        <li>
+          Containerized backend applications using Docker and Docker
+          Compose and worked with Nginx for service routing.
+        </li>
+
+      </ul>
+
+    </div>
+
+  </section>
+
+
+  <!-- ========================================================= -->
+  <!-- KEY PROJECTS -->
+  <!-- ========================================================= -->
+
+  <section>
+
+    <div class="section-title">
+      Key Projects
+    </div>
+
+
+    <!-- PROJECT 1 -->
+
+    <div class="project">
+
+      <div class="project-title">
+        Insurance Management Platform — Health, Travel, Motor & Two-Wheeler
+      </div>
+
+      <div class="project-tech">
+        Node.js · Express.js · MongoDB · MySQL · REST · XML · SOAP · Redis · Docker
+      </div>
+
+      <ul>
+
+        <li>
+          Developed backend workflows for insurance quotation,
+          proposal processing and policy-related operations across
+          multiple insurance products.
+        </li>
+
+        <li>
+          Implemented insurer-specific validation rules for age,
+          relationship, medical conditions and eligibility.
+        </li>
+
+        <li>
+          Built portability and EMI APIs connected to proposal records
+          and insurer-specific business workflows.
+        </li>
+
+        <li>
+          Integrated external insurer and ERP systems through REST,
+          XML and SOAP interfaces with robust third-party error handling.
+        </li>
+
+        <li>
+          Used MongoDB aggregation and indexing to support reporting
+          and efficient querying of proposal and transaction data.
+        </li>
+
+      </ul>
+
+    </div>
+
+
+    <!-- PROJECT 2 -->
+
+    <div class="project">
+
+      <div class="project-title">
+        AI-Powered Policy PDF Parser
+      </div>
+
+      <div class="project-tech">
+        Node.js · OpenAI API · Python · FastAPI · Formidable · Docker · JSON
+      </div>
+
+      <ul>
+
+        <li>
+          Built Node.js APIs for uploading and processing policy PDF
+          documents using multipart file handling.
+        </li>
+
+        <li>
+          Designed structured extraction schemas and prompts for
+          Health, Motor and Two-Wheeler policy documents.
+        </li>
+
+        <li>
+          Integrated AI-based document processing to extract structured
+          customer, policy, vehicle, coverage, nominee, discount and
+          partner information.
+        </li>
+
+        <li>
+          Connected Node.js services with a Python/FastAPI processing
+          service and exchanged structured JSON data.
+        </li>
+
+        <li>
+          Implemented filesystem and document-processing error handling
+          for reliable processing workflows.
+        </li>
+
+      </ul>
+
+    </div>
+
+
+    <!-- PROJECT 3 -->
+
+    <div class="project">
+
+      <div class="project-title">
+        Dockerized Jenkins CI/CD Pipeline
+      </div>
+
+      <div class="project-tech">
+        Jenkins · Docker · Docker Compose · Git/GitHub · Node.js · MySQL · Jest · MailHog
+      </div>
+
+      <ul>
+
+        <li>
+          Implemented hands-on Jenkins CI/CD pipelines for a Dockerized
+          Node.js application.
+        </li>
+
+        <li>
+          Automated source checkout, test dependency startup,
+          Docker image building and automated Jest test execution.
+        </li>
+
+        <li>
+          Configured Docker Compose services including Node.js,
+          MySQL and MailHog for repeatable testing environments.
+        </li>
+
+        <li>
+          Added MySQL health checks and dependency readiness validation
+          before running application tests.
+        </li>
+
+        <li>
+          Worked with Docker container lifecycle, networking,
+          environment configuration and CI pipeline troubleshooting.
+        </li>
+
+      </ul>
+
+    </div>
+
+
+    <!-- PROJECT 4 -->
+
+    <div class="project">
+
+      <div class="project-title">
+        Payment & EMI System
+      </div>
+
+      <div class="project-tech">
+        Node.js · Express.js · MongoDB · Razorpay · REST APIs
+      </div>
+
+      <ul>
+
+        <li>
+          Integrated Razorpay payment workflows and developed supporting
+          payment APIs.
+        </li>
+
+        <li>
+          Developed EMI creation and validation APIs supporting
+          Monthly, Quarterly and Half-Yearly schedules.
+        </li>
+
+        <li>
+          Used MongoDB aggregation and indexes for efficient EMI and
+          payment-related reporting and lookup operations.
+        </li>
+
+      </ul>
+
+    </div>
+
+
+    <!-- PROJECT 5 -->
+
+    <div class="project">
+
+      <div class="project-title">
+        RabbitMQ Email Notification System
+      </div>
+
+      <div class="project-tech">
+        Node.js · RabbitMQ · Redis · SMTP · Docker
+      </div>
+
+      <ul>
+
+        <li>
+          Designed asynchronous email processing using RabbitMQ
+          producer/consumer architecture.
+        </li>
+
+        <li>
+          Built background workers and email queues to decouple
+          notification processing from API requests.
+        </li>
+
+        <li>
+          Implemented connection retry and error-handling logic
+          and Dockerized messaging services for local environments.
+        </li>
+
+      </ul>
+
+    </div>
+
+  </section>
+
+
+  <!-- ========================================================= -->
+  <!-- DEVOPS & CLOUD -->
+  <!-- ========================================================= -->
+
+  <section>
+
+    <div class="section-title">
+      DevOps & Cloud
+    </div>
+
+    <ul>
+
+      <li>
+        Hands-on experience building and managing Docker and Docker
+        Compose environments for Node.js, MySQL, MongoDB, Redis,
+        RabbitMQ, Nginx and Jenkins.
+      </li>
+
+      <li>
+        Implemented Jenkins CI/CD pipelines covering source checkout,
+        Docker image builds, dependency startup, automated testing,
+        deployment and post-build cleanup.
+      </li>
+
+      <li>
+        Worked with Docker networking, port mappings, environment
+        variables, container health checks and container troubleshooting.
+      </li>
+
+      <li>
+        Hands-on experience with AWS EC2 and S3 and working exposure
+        to AWS Lambda and AWS SDK integrations.
+      </li>
+
+      <li>
+        Used LocalStack to simulate AWS services locally and worked
+        with Terraform for infrastructure configuration.
+      </li>
+
+      <li>
+        Used Nginx for local service routing and reverse-proxy
+        configuration.
+      </li>
+
+    </ul>
+
+  </section>
+
+
+  <!-- ========================================================= -->
+  <!-- ADDITIONAL EXPERIENCE -->
+  <!-- ========================================================= -->
+
+  <section>
+
+    <div class="section-title">
+      Additional Technical Experience
+    </div>
+
+    <ul>
+
+      <li>
+        API debugging and development using Postman, cURL and
+        Swagger/OpenAPI.
+      </li>
+
+      <li>
+        Automated backend testing using Jest, including API and
+        integration-oriented test workflows.
+      </li>
+
+      <li>
+        Git/GitHub workflows including branching, commits, merges,
+        pull operations and CI pipeline integration.
+      </li>
+
+      <li>
+        Practical experience debugging Node.js, Docker, MySQL,
+        MongoDB, networking and environment configuration issues.
+      </li>
+
+    </ul>
+
+  </section>
+
+
+  <!-- ========================================================= -->
+  <!-- EDUCATION + CERTIFICATIONS -->
+  <!-- ========================================================= -->
+
+  <section>
+
+    <div class="two-column">
+
+      <div>
+
+        <div class="section-title">
+          Education
+        </div>
+
+        <div class="item-title">
+          [Degree Name]
+        </div>
+
+        <div class="item-sub">
+          [University / Institution Name]
+        </div>
+
+        <div class="item-date">
+          [Start Year] – [End Year]
+        </div>
+
+      </div>
+
+
+      <div>
+
+        <div class="section-title">
+          Certifications
+        </div>
+
+        <div class="item-title">
+          [Certification Name]
+        </div>
+
+        <div class="item-sub">
+          [Issuing Organization]
+        </div>
+
+        <div class="item-date">
+          [Year]
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ========================================================= -->
+  <!-- FOOTER -->
+  <!-- ========================================================= -->
+
+  <div class="footer-note">
+    References available upon request.
+  </div>
+
+</div>
+
+</body>
+</html>
