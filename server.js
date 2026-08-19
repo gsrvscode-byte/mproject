@@ -44,6 +44,12 @@ app.get("/healthh", (req, res) => {
         message: "E-Commerce API Running"
     });
 });
+app.get("/healthh_new", (req, res) => {
+    res.json({
+        success: true,
+        message: "E-Commerce API Running"
+    });
+});
 
 app.use("/api/auth", authRoutes);
 app.use("/api/products", productRoutes);
