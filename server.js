@@ -13,7 +13,32 @@ const app = express();
 
 app.use(express.json());
 
+// Stamps every response with the container hostname that
+// handled it — useful for confirming nginx is actually
+// spreading traffic across scaled api replicas.
+app.use((req, res, next) => {
+
+    res.set("X-Served-By", process.env.HOSTNAME || "unknown");
+
+    next();
+
+});
+
 app.get("/", (req, res) => {
+    res.json({
+        success: true,
+        message: "E-Commerce API Running"
+    });
+});
+
+app.get("/health", (req, res) => {
+    res.json({
+        success: true,
+        message: "E-Commerce API Running"
+    });
+});
+
+app.get("/health2", (req, res) => {
     res.json({
         success: true,
         message: "E-Commerce API Running"

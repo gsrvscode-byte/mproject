@@ -12,8 +12,14 @@ services:
 
     ports:
       # 9229 = Node's debug protocol port. Your editor
-      # connects here, not to 5000 (that's still the API).
+      # connects here.
       - "9229:9229"
+      # api no longer publishes 5000 in the base compose file
+      # (nginx is the public entrypoint now). While debugging
+      # a single instance, it's convenient to also hit it
+      # directly, bypassing nginx, so you're not debugging
+      # through a proxy hop.
+      - "5000:5000"
 
     volumes:
       # Mount your local source into the container so edits

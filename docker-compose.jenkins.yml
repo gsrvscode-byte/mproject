@@ -1,0 +1,42 @@
+services:
+
+  jenkins:
+    build:
+      context: ./jenkins
+
+    container_name: jenkins
+
+    environment:
+      JAVA_OPTS: "-Dhudson.plugins.git.GitSCM.ALLOW_LOCAL_CHECKOUT=true"
+
+    ports:
+      - "8080:8080"
+      - "50000:50000"
+
+    volumes:
+
+      # Jenkins data:
+      # jobs, configuration, plugins, credentials, etc.
+      - jenkins_home:/var/jenkins_home
+
+      # Allow Jenkins to control the HOST Docker daemon.
+      # This allows docker build / docker compose commands
+      # from inside Jenkins to control the host Docker.
+      - /var/run/docker.sock:/var/run/docker.sock
+
+      # Mount the current WSL project directory into Jenkins
+      # at the same absolute path.
+      #
+      # IMPORTANT:
+      # Start docker compose from the project directory.
+      #
+      # Example:
+      # /mnt/d/2025/2026/Feb/02Feb/backend/horizon11/project/mproject
+      #
+      - ${PWD}:${PWD}
+
+    restart: unless-stopped
+
+
+volumes:
+  jenkins_home:

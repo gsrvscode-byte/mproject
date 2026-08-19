@@ -127,6 +127,15 @@ exports.login = async (req, res) => {
         } = req.body;
 
 
+        // TEMP DIAGNOSTIC — remove after debugging.
+        // Confirms exactly what this container received.
+        console.log(
+            "[login] host:", process.env.HOSTNAME,
+            "| body:", req.body,
+            "| content-type:", req.headers["content-type"]
+        );
+
+
         if (!email || !password) {
 
             return res.status(400).json({
