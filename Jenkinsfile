@@ -1,186 +1,69 @@
-pipeline {
+stage('Start Test Dependencies') {
+    steps {
+        sh '''
+            set -e
 
-    agent any
+            echo "=========================================="
+            echo "STARTING TEST DEPENDENCIES"
+            echo "=========================================="
 
-    options {
-        timestamps()
-    }
+            docker compose down --remove-orphans || true
 
-    stages {
+            docker compose up -d mysql mailhog
 
-        stage('Checkout') {
-            steps {
-                checkout scm
-            }
-        }
+            echo ""
+            echo "Docker Compose status:"
+            docker compose ps
 
-        stage('Start Test Dependencies') {
-            steps {
-                sh '''
-                    set -e
+            echo ""
+            echo "Waiting for MySQL..."
 
-                    echo "=========================================="
-                    echo "STARTING TEST DEPENDENCIES"
-                    echo "=========================================="
+            MYSQL_CONTAINER=$(docker compose ps -q mysql)
 
-                    docker compose up -d mysql mailhog
+            if [ -z "$MYSQL_CONTAINER" ]; then
+                echo "ERROR: MySQL container was not created."
+                docker compose ps
+                exit 1
+            fi
 
-                    echo ""
-                    echo "Docker Compose status:"
-                    docker compose ps
+            echo "MySQL container: $MYSQL_CONTAINER"
 
-                    echo ""
-                    echo "Waiting for MySQL..."
+            for i in $(seq 1 30); do
 
-                    MYSQL_CONTAINER=$(docker compose ps -q mysql)
+                STATUS=$(docker inspect \
+                    -f '{{.State.Health.Status}}' \
+                    "$MYSQL_CONTAINER" 2>/dev/null || echo "starting")
 
-                    if [ -z "$MYSQL_CONTAINER" ]; then
-                        echo "ERROR: MySQL container was not created."
-                        docker compose ps
-                        exit 1
-                    fi
+                echo "Attempt $i/30 - MySQL health: $STATUS"
 
-                    echo "MySQL container ID: $MYSQL_CONTAINER"
+                if [ "$STATUS" = "healthy" ]; then
+                    echo "MySQL is healthy."
+                    break
+                fi
 
-                    for i in $(seq 1 30); do
+                if [ "$STATUS" = "unhealthy" ]; then
+                    echo "ERROR: MySQL is unhealthy."
+                    docker compose logs mysql --tail 100
+                    exit 1
+                fi
 
-                        STATUS=$(docker inspect \
-                            -f '{{.State.Health.Status}}' \
-                            "$MYSQL_CONTAINER" 2>/dev/null || echo "starting")
+                sleep 2
+            done
 
-                        echo "Attempt $i/30 - MySQL health: $STATUS"
+            STATUS=$(docker inspect \
+                -f '{{.State.Health.Status}}' \
+                "$MYSQL_CONTAINER")
 
-                        if [ "$STATUS" = "healthy" ]; then
-                            echo "MySQL is healthy."
-                            break
-                        fi
+            if [ "$STATUS" != "healthy" ]; then
+                echo "ERROR: MySQL did not become healthy."
+                docker compose logs mysql --tail 100
+                exit 1
+            fi
 
-                        if [ "$STATUS" = "unhealthy" ]; then
-                            echo "ERROR: MySQL is unhealthy."
-
-                            echo ""
-                            echo "========== MYSQL LOGS =========="
-
-                            docker compose logs mysql --tail 100
-
-                            exit 1
-                        fi
-
-                        sleep 2
-                    done
-
-                    STATUS=$(docker inspect \
-                        -f '{{.State.Health.Status}}' \
-                        "$MYSQL_CONTAINER")
-
-                    if [ "$STATUS" != "healthy" ]; then
-
-                        echo ""
-                        echo "ERROR: MySQL did not become healthy in time."
-
-                        echo ""
-                        echo "========== MYSQL LOGS =========="
-
-                        docker compose logs mysql --tail 100
-
-                        exit 1
-                    fi
-
-                    echo ""
-                    echo "=========================================="
-                    echo "MYSQL IS HEALTHY"
-                    echo "MAILHOG IS RUNNING"
-                    echo "=========================================="
-                '''
-            }
-        }
-
-        stage('Build API Image') {
-            steps {
-                sh '''
-                    set -e
-
-                    echo "=========================================="
-                    echo "BUILDING API IMAGE"
-                    echo "=========================================="
-
-                    docker compose build api
-
-                    echo ""
-                    echo "API image build completed."
-                '''
-            }
-        }
-
-        stage('Run Tests') {
-            steps {
-                sh '''
-                    set -e
-
-                    echo "=========================================="
-                    echo "RUNNING TESTS"
-                    echo "=========================================="
-
-                    docker compose run --rm api npm test -- --runInBand
-
-                    echo ""
-                    echo "Tests completed successfully."
-                '''
-            }
-        }
-
-        stage('Deploy') {
-            steps {
-                sh '''
-                    set -e
-
-                    echo "=========================================="
-                    echo "DEPLOYING APPLICATION"
-                    echo "=========================================="
-
-                    docker compose up -d --build api nginx
-
-                    echo ""
-                    echo "=========================================="
-                    echo "APPLICATION STATUS"
-                    echo "=========================================="
-
-                    docker compose ps
-
-                    echo ""
-                    echo "Deployment completed successfully."
-                '''
-            }
-        }
-    }
-
-    post {
-
-        success {
             echo ""
             echo "=========================================="
-            echo "BUILD SUCCESSFUL"
+            echo "MYSQL IS HEALTHY"
             echo "=========================================="
-            echo "Application deployed successfully."
-        }
-
-        failure {
-            echo ""
-            echo "=========================================="
-            echo "BUILD FAILED"
-            echo "=========================================="
-            echo "Check the failed stage logs above."
-        }
-
-        always {
-            sh '''
-                echo ""
-                echo "=========================================="
-                echo "FINAL DOCKER STATUS"
-                echo "=========================================="
-
-                docker compose ps || true
-            '''
-        }
+        '''
     }
 }
