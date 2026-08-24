@@ -1,0 +1,1085 @@
+INTERVIEW QUESTIONS WITH ANSWERS — HINGLISH VERSION (IN-DEPTH)
+(Gopal Rajput ke resume ke saare topics cover)
+====================================================================
+
+
+1. JAVASCRIPT / ES6+
+--------------------
+1. var, let aur const mein kya difference hai?
+   var function-scoped hota hai aur hoist ho jata hai (re-declare aur
+   update dono ho sakta hai). let block-scoped hota hai, update ho
+   sakta hai lekin same scope mein re-declare nahi. const bhi
+   block-scoped hai lekin ek baar assign hone ke baad reassign nahi
+   ho sakta.
+
+2. JavaScript mein event loop kya hota hai?
+   Event loop wo mechanism hai jisse JS single thread par bhi async
+   kaam handle kar leta hai. Sync code call stack pe chalta hai, async
+   kaam (timers, I/O, promises) queue mein jate hain, aur jab stack
+   khali hota hai to event loop unhe stack pe le aata hai.
+
+3. Closure kya hota hai, example ke saath samjhao.
+   Closure ek aisa function hota hai jo apne outer function ki
+   variables ko "yaad" rakhta hai, chahe outer function complete ho
+   chuka ho. Example: counter() function jo ek increment() function
+   return karta hai jisme private count variable ka access hamesha
+   bana rehta hai.
+
+4. Hoisting kya hai?
+   JS compile time pe variable aur function declarations ko unke
+   scope ke top pe move kar deta hai. var declarations hoist hoke
+   undefined se initialize hote hain, jabki let/const hoist to hote
+   hain lekin "temporal dead zone" mein rehte hain jab tak unki line
+   execute na ho.
+
+5. == aur === mein kya difference hai?
+   == type coercion karke values compare karta hai. === value aur
+   type dono compare karta hai bina coercion ke. === use karna hamesha
+   safe rehta hai.
+
+6. Promises, Callbacks aur Async/Await mein difference samjhao.
+   Callback ek function hai jo async task complete hone ke baad chalta
+   hai (zyada nesting se "callback hell" ban jata hai). Promise ek
+   future value represent karta hai jisme .then()/.catch() se chaining
+   hoti hai. Async/await promises ke upar syntactic sugar hai jisse
+   async code sync jaisa dikhta/likha jata hai.
+
+7. call, apply aur bind mein kya difference hai?
+   call() function ko turant invoke karta hai, "this" aur arguments
+   ek-ek karke deta hai. apply() same kaam karta hai lekin arguments
+   array ke form mein deta hai. bind() ek naya function return karta
+   hai jisme "this" fix hota hai, lekin turant call nahi hota.
+
+8. Arrow functions kya hote hain aur ye "this" ko kaise handle karte hain?
+   Arrow function ek short syntax hai jiska apna "this" nahi hota —
+   ye apne surrounding (lexical) scope se "this" inherit karta hai, jo
+   callbacks/class methods ke andar kaafi useful hota hai.
+
+9. Synchronous aur asynchronous code mein kya difference hai?
+   Synchronous code line by line chalta hai, har operation complete
+   hone tak block karta hai. Asynchronous code long-running operations
+   (I/O, timers, network calls) ko background mein chalne deta hai,
+   bina main thread ko block kiye.
+
+10. map, filter aur reduce mein kya difference hai?
+    map() har element ko transform karke same length ka naya array
+    deta hai. filter() sirf condition pass karne wale elements ka naya
+    array deta hai. reduce() saare elements ko ek single value mein
+    accumulate karta hai.
+
+11. Promise.all, Promise.race, Promise.allSettled kya hain?
+    Promise.all() tab resolve hota hai jab saare promises resolve ho
+    jaayen (agar koi ek reject ho gaya to poora reject). Promise.race()
+    jo bhi promise pehle settle ho, wahi result deta hai.
+    Promise.allSettled() saare promises ke settle hone ka wait karta
+    hai aur har ek ka outcome (fulfilled ya rejected) return karta hai.
+
+12. Debouncing aur throttling samjhao.
+    Debouncing kisi function ka execution tab tak delay karta hai jab
+    tak events mein pause na ho (jaise user typing rok de tab 300ms
+    baad chale). Throttling function ko fixed interval mein sirf ek
+    baar chalne deta hai, chahe events kitni baar bhi fire ho.
+
+13. Destructuring aur spread/rest operator kya hain?
+    Destructuring ek line mein array/object se values nikal ke
+    variables mein daal deta hai. Spread (...) array/object ko
+    individual elements mein expand karta hai; rest (...) bache hue
+    arguments/properties ko ek array/object mein collect karta hai.
+
+14. JavaScript mein prototypal inheritance samjhao.
+    JS mein objects apne prototype object se properties/methods
+    inherit karte hain. Har object ka ek internal [[Prototype]] link
+    hota hai, aur property lookup us prototype chain ko upar tak
+    dhoondhta hai jab tak mile ya null tak pahunche.
+
+15. null aur undefined mein kya difference hai?
+    undefined ka matlab variable declare to hua hai lekin value assign
+    nahi hui. null ek explicit assignment hai jo developer khud "koi
+    value nahi" set karne ke liye deta hai.
+
+
+2. NODE.JS
+----------
+1. Node.js kya hai aur browser JavaScript se kaise alag hai?
+   Node.js ek JavaScript runtime hai jo Chrome ke V8 engine par bana
+   hai aur JS ko browser ke bahar, server pe chalata hai. Browser JS
+   ke uljat, Node ko file system, OS aur networking APIs ka access
+   milta hai, lekin DOM nahi hota.
+
+2. Node.js ka event-driven, non-blocking I/O model samjhao.
+   Node ek single main thread ke saath event loop use karta hai; I/O
+   operations (file, network, DB) OS/libuv thread pool ko delegate ho
+   jate hain aur unke complete hone par callbacks event loop pe chalte
+   hain, is wajah se main thread kabhi I/O ke wait mein block nahi
+   hota.
+
+3. process.nextTick() aur setImmediate() mein kya difference hai?
+   process.nextTick() current operation ke turant baad, event loop ke
+   aage badhne se pehle chalta hai — iski priority zyada hai.
+   setImmediate() next event loop iteration ki "check" phase mein
+   chalta hai.
+
+4. Node.js single thread se multiple requests kaise handle karta hai?
+   Non-blocking async I/O ke through — jab ek request DB call ya file
+   read ka wait kar rahi hoti hai, tab Node dusre requests pick karke
+   process karta hai, aur pehli request ko uska I/O callback aane par
+   resume karta hai.
+
+5. Streams kya hote hain Node.js mein? Readable/writable/duplex samjhao.
+   Streams data ko chunks mein process karte hain, poora memory mein
+   load kiye bina. Readable stream data emit karta hai (jaise file
+   read), writable stream data accept karta hai (jaise file write/HTTP
+   response), duplex stream dono hota hai (jaise TCP socket), aur
+   transform stream data ko pass hote waqt modify karta hai.
+
+6. cluster module ka purpose kya hai?
+   Ye Node.js app ko multiple worker processes (ek per CPU core) spawn
+   karne deta hai jo same server port share karte hain, jisse
+   multi-core machine par throughput improve hota hai, kyunki ek Node
+   process akela sirf ek core use karta hai.
+
+7. Uncaught exceptions aur unhandled promise rejections kaise handle karte ho?
+   process.on('uncaughtException') aur
+   process.on('unhandledRejection') listen karke log aur graceful
+   shutdown karte hain, lekin asli solution proper try/catch aur
+   inputs validate karna hai taaki production mein ye events kam se
+   kam fire ho.
+
+8. Node.js ke context mein middleware kya hota hai?
+   Middleware wo functions hain jo request-response cycle mein chalte
+   hain, jinke paas req, res, aur next() ka access hota hai. Ye
+   logging, auth, validation aur error handling jaise cross-cutting
+   concerns route handler tak pahunchne se pehle handle karte hain.
+
+9. require() aur import mein kya difference hai?
+   require() CommonJS hai, synchronous hota hai aur runtime pe resolve
+   hota hai. import ES Modules syntax hai, static ho sakta hai
+   (hoisted, compile time pe analyze hota hai) aur tree-shaking
+   support karta hai; Node mein use karne ke liye "type": "module" ya
+   .mjs chahiye.
+
+10. Node.js app mein environment variables kaise manage karte ho?
+    Local development mein .env file aur dotenv package se
+    process.env mein load karte hain, aur production mein real
+    secrets hosting platform ke environment/secret manager se set
+    karte hain — .env ko kabhi git mein commit nahi karte.
+
+11. package.json aur package-lock.json ka purpose kya hai?
+    package.json project metadata, dependencies aur scripts declare
+    karta hai. package-lock.json exact installed versions
+    (sub-dependencies sameit) lock karta hai taaki install har machine
+    pe reproducible rahe.
+
+12. Node.js application mein memory leaks kaise handle karte ho?
+    Heap usage ko time ke saath monitor karte hain, --inspect aur
+    Chrome DevTools ya clinic.js jaise tools se heap snapshots lete
+    hain, growing closures/event listeners/global caches dhoondhte
+    hain jo kabhi clear nahi hote, aur unused references/listeners
+    remove karke fix karte hain.
+
+13. child_process aur worker_threads samjhao.
+    child_process Node ko separate OS processes spawn karne deta hai
+    (jaise shell command ya dusra program chalana) jinme shared memory
+    nahi hoti. worker_threads same process ke andar JS ko parallel
+    threads mein chalane dete hain, CPU-heavy tasks ke liye useful hai
+    bina event loop block kiye.
+
+
+3. EXPRESS.JS / REST APIs
+--------------------------
+1. Express.js mein middleware kya hai aur next() kaise kaam karta hai?
+   Middleware functions har request ke liye sequence mein chalte
+   hain; next() control ko chain ke agle middleware/route handler ko
+   pass karta hai. Agar next() call nahi hua to request hang ho jati
+   hai.
+
+2. Express mein global errors kaise handle karte ho?
+   Ek error-handling middleware define karke jisme four parameters
+   (err, req, res, next) hote hain, jo saare routes ke baad place hota
+   hai, aur kahin se bhi next(err) call karke errors ko usme funnel
+   karte hain.
+
+3. PUT, PATCH aur POST mein difference samjhao.
+   POST naya resource create karta hai. PUT poora resource diye gaye
+   data se replace karta hai (idempotent). PATCH resource ko sirf
+   diye gaye fields se partially update karta hai.
+
+4. REST kya hai aur iske constraints kya hain?
+   REST ek architectural style hai APIs ke liye jo stateless
+   communication, uniform interface, resource-based URLs aur standard
+   HTTP methods use karne pe based hai. Constraints: statelessness,
+   cacheability, client-server separation, uniform interface.
+
+5. REST API ko version kaise karte ho?
+   Common approaches: URL versioning (/api/v1/...), header versioning
+   (Accept: application/vnd.api.v1+json), ya query param versioning.
+   URL versioning simplicity ki wajah se sabse common hai.
+
+6. API mein pagination, filtering aur sorting kaise implement karte ho?
+   Pagination limit/offset ya page/pageSize query params se (ya bade
+   data ke liye cursor-based). Filtering query params se jo DB
+   conditions mein map hote hain. Sorting sort query param se jo
+   ORDER BY / sort() clause mein map hota hai.
+
+7. CORS kya hai aur Express mein kaise handle karte ho?
+   CORS ek browser security mechanism hai jo cross-origin requests ko
+   restrict karta hai. Express mein cors middleware use karke
+   Access-Control-Allow-Origin aur related headers allowed domains ke
+   liye set karte hain.
+
+8. Incoming request data ko kaise validate karte ho?
+   Validation libraries (Joi, express-validator, zod) middleware level
+   pe use karke required fields, types aur formats check karte hain,
+   business logic tak pahunchne se pehle.
+
+9. Bade Express.js project ko kaise structure karte ho (MVC, routers, controllers)?
+   Routes, controllers (business logic), models (DB schemas),
+   middleware, aur services/utils mein separate karte hain — har layer
+   ko focused rakhte hain taaki routes thin rahein aur logic testable
+   ho isolation mein.
+
+10. Rate limiting kya hai aur kaise implement karoge?
+    Rate limiting cap lagata hai ki ek client time window mein kitne
+    requests kar sakta hai, abuse rokne ke liye. express-rate-limit
+    jaisa middleware use karte hain, jo often Redis se backed hota hai
+    multiple server instances ke across distributed limits ke liye.
+
+11. File uploads (multipart/form-data) Express mein kaise handle karte ho?
+    multer ya formidable jaisa middleware use karke multipart/
+    form-data parse karte hain, files temporarily store ya directly
+    storage (jaise S3) pe stream karte hain, phir file metadata DB
+    mein save karte hain.
+
+12. REST aur SOAP APIs mein difference.
+    REST lightweight hai, HTTP verbs aur typically JSON use karta hai,
+    resource-oriented hai. SOAP ek strict protocol hai jo XML
+    envelopes use karta hai formal contract (WSDL) ke saath, often
+    enterprise/legacy systems mein use hota hai jinhe strict standards
+    chahiye.
+
+13. Idempotent API endpoint kaise design karoge?
+    Ensure karte hain ki repeated identical requests same result dein
+    bina side effects ke — jaise PUT use karna full updates ke liye,
+    ya POST requests (jaise payment APIs) mein idempotency keys use
+    karna duplicate submissions detect/ignore karne ke liye.
+
+14. Node.js service mein XML request/response parsing kaise handle karte ho?
+    xml2js ya fast-xml-parser jaisi libraries use karke XML ko JS
+    objects mein convert karte hain aur vice versa, phir fields ko
+    apne internal data model mein map karte hain SOAP/XML-based
+    external system se call karne se pehle/baad.
+
+
+4. MONGODB / MONGOOSE
+----------------------
+1. SQL aur NoSQL databases mein kya difference hai?
+   SQL databases relational hote hain, fixed schema ke saath, tables
+   foreign keys se linked, structured data aur complex joins ke liye
+   accha. NoSQL databases (jaise MongoDB) schema-flexible hote hain,
+   documents/key-values store karte hain, aur bade, evolving datasets
+   ke liye horizontally scale karna aasan hota hai.
+
+2. MongoDB mein aggregation pipeline kya hai? Ek example stage sequence do.
+   Ye stages ki ek sequence hai jo documents ko step by step
+   transform karti hai, jaise $match (filter) -> $group (aggregate) ->
+   $sort -> $project (output fields shape karna) -> $limit.
+
+3. MongoDB mein indexing kaise kaam karti hai aur ye important kyun hai?
+   Indexes data structures (B-trees) hain jo MongoDB ko poori
+   collection scan kiye bina documents dhoondhne dete hain, jisse
+   queries, sorts aur lookups kaafi fast ho jate hain, extra storage
+   aur thodi slower writes ke cost pe.
+
+4. Embedding aur referencing documents mein kya difference hai?
+   Embedding related data ko ek document ke andar nest karta hai (fast
+   reads, tightly-coupled, rarely-changing data ke liye). Referencing
+   ek ID store karta hai jo dusre document ko point karti hai (large
+   ya frequently changing related data ke liye, SQL foreign key jaisa).
+
+5. find() aur aggregate() mein kya difference hai?
+   find() simple query/filter match karne wale documents retrieve
+   karta hai. aggregate() multi-stage pipeline chalata hai complex
+   transformations ke liye jaise grouping, collections join karna
+   ($lookup), aur computed fields.
+
+6. MongoDB mein transactions kaise kaam karte hain?
+   MongoDB multi-document ACID transactions support karta hai (v4.0+
+   se) startSession()/startTransaction() use karke, jisse ek group of
+   operations atomically commit ya abort ho sakte hain, SQL
+   transactions jaisa.
+
+7. Compound index kya hai? Kab use karoge?
+   Ye multiple fields pe together index hota hai, useful hai jab
+   queries regularly ek se zyada field pe filter ya sort karti hain —
+   index mein field ka order most common query pattern ke match hona
+   chahiye.
+
+8. Mongoose schemas, models aur validation samjhao.
+   Schema documents ka shape aur rules define karta hai (types,
+   required fields, defaults). Model schema ka compiled version hai
+   jo documents create/query karne ke liye use hota hai. Validation
+   save/update ke waqt automatically schema rules ke basis pe chalti
+   hai.
+
+9. MongoDB mein schema versioning/migrations kaise handle karte ho?
+   Migration scripts likh ke (often migrate-mongo jaise tools se) jo
+   existing documents ko naye shape mein transform karte hain, aur
+   schemas defensively design karke (optional fields, default values)
+   taaki purane document versions rollout ke waqt tolerate ho sakein.
+
+10. MongoDB mein sharding aur replication kya hai?
+    Sharding data ko multiple servers ke across split karta hai large
+    datasets ko horizontally scale karne ke liye. Replication data ki
+    multiple copies (replica sets) rakhta hai high availability aur
+    failover ke liye.
+
+11. Slow MongoDB query ko kaise optimize karoge?
+    explain() use karke query plan dekhte hain, query/sort fields ke
+    hisaab se proper indexes add karte hain, projection se unnecessary
+    fields avoid karte hain, aur agar collection scan avoid nahi ho
+    sakta to schema/aggregation restructure karte hain.
+
+
+5. MYSQL / POSTGRESQL / SQL
+-----------------------------
+1. INNER JOIN, LEFT JOIN, RIGHT JOIN aur FULL JOIN mein difference.
+   INNER JOIN sirf dono tables mein matching rows return karta hai.
+   LEFT JOIN left table ki saari rows plus right table ke matches
+   return karta hai (na mile to null). RIGHT JOIN opposite hai. FULL
+   JOIN dono tables ki saari rows return karta hai, jahan possible ho
+   wahan matched.
+
+2. Normalization kya hai? 1NF, 2NF, 3NF samjhao.
+   Normalization data ko organize karta hai redundancy kam karne ke
+   liye. 1NF mein columns ki values atomic honi chahiye, repeating
+   groups nahi. 2NF mein 1NF plus composite key ke part pe partial
+   dependency nahi honi chahiye. 3NF mein 2NF plus non-key columns ki
+   dusre non-key columns pe transitive dependency nahi honi chahiye.
+
+3. Index kya hai aur ye query performance kaise improve karta hai?
+   Index ek ya zyada columns pe ek lookup structure hai jo database ko
+   pura table scan kiye bina rows dhoondhne deta hai, ek book ke index
+   jaisa — jo SELECT/WHERE/JOIN performance kaafi badha deta hai.
+
+4. Primary key aur unique key mein kya difference hai?
+   Primary key har row ko uniquely identify karta hai, null nahi ho
+   sakta, aur table mein sirf ek hi ho sakta hai. Unique key bhi
+   uniqueness enforce karta hai lekin ek null value allow karta hai
+   (zyada DBs mein) aur table mein multiple ho sakte hain.
+
+5. ACID properties kya hain?
+   Atomicity (all-or-nothing execution), Consistency (DB valid states
+   ke beech move karta hai), Isolation (concurrent transactions ek
+   dusre ko interfere nahi karte), Durability (committed data crashes
+   ke baad bhi bacha rehta hai).
+
+6. WHERE aur HAVING mein kya difference hai?
+   WHERE grouping/aggregation se pehle rows filter karta hai. HAVING
+   GROUP BY ke baad groups ko filter karta hai, typically aggregate
+   functions jaise COUNT() ya SUM() ke saath use hota hai.
+
+7. Transaction kya hai? COMMIT aur ROLLBACK samjhao.
+   Transaction SQL statements ka ek group hai jo ek single unit ki
+   tarah execute hota hai. COMMIT saare changes permanently save karta
+   hai; ROLLBACK agar kuch galat ho jaaye to transaction ke saare
+   changes undo kar deta hai.
+
+8. DELETE, TRUNCATE aur DROP mein difference.
+   DELETE rows remove karta hai (WHERE se filter ho sakta hai, logged
+   hota hai, rollback ho sakta hai). TRUNCATE saari rows quickly
+   remove karta hai bina individual deletes log kiye. DROP puri table
+   structure hi uske data ke saath remove kar deta hai.
+
+9. Stored procedure aur trigger mein kya difference hai?
+   Stored procedure ek reusable, explicitly call kiya jaane wala SQL
+   logic ka block hai. Trigger kisi event (INSERT/UPDATE/DELETE) pe
+   automatically fire hota hai table pe, bina directly call kiye.
+
+10. MySQL aur PostgreSQL mein kya difference hai?
+    MySQL generally simple hai aur read-heavy applications ke liye
+    bahut fast hai; PostgreSQL zyada feature-rich hai (advanced data
+    types, better standards compliance, complex queries aur JSON ka
+    strong support) aur often complex/analytical workloads ke liye
+    preferred hota hai.
+
+11. EXPLAIN use karke slow SQL query kaise optimize karoge?
+    EXPLAIN (ya EXPLAIN ANALYZE) run karke query plan dekhte hain —
+    full table scans, missing indexes, ya inefficient joins check
+    karte hain, phir proper indexes add karte hain ya query rewrite
+    karte hain scanned rows kam karne ke liye.
+
+
+6. AUTHENTICATION & SECURITY (JWT, bcrypt, Sessions)
+------------------------------------------------------
+1. JWT-based authentication end-to-end kaise kaam karta hai?
+   Login pe server credentials verify karta hai aur ek signed JWT
+   issue karta hai jisme user info/claims hoti hai. Client ise store
+   karta hai (memory ya secure cookie mein) aur har request ke
+   Authorization header mein bhejta hai; server signature verify karke
+   authenticate karta hai bina DB lookup ke session state ke liye.
+
+2. Session-based aur token-based authentication mein difference.
+   Session-based auth session state server-side store karta hai
+   (memory/DB mein) session ID cookie ke saath; server ko har request
+   pe usse lookup karna padta hai. Token-based auth (JWT) stateless
+   hota hai — poori info signed token mein hi hoti hai, isliye
+   server-side session store ki zarurat nahi.
+
+3. bcrypt use karke passwords securely kaise store karte ho?
+   bcrypt password ko store karne se pehle ek built-in random salt aur
+   configurable cost factor ke saath hash karta hai — plaintext
+   passwords kabhi store nahi karte. Login pe bcrypt.compare() se
+   entered password ko stored hash ke against check karte hain.
+
+4. Authentication aur authorization mein kya difference hai?
+   Authentication verify karta hai ki user kaun hai (login/identity).
+   Authorization decide karta hai ki wo authenticated user kya karne
+   ki permission rakhta hai (permissions/roles).
+
+5. Role-based access control (RBAC) kaise implement karte ho?
+   Har user ko ek ya zyada roles assign karte hain, har role ke liye
+   allowed permissions store karte hain, aur middleware mein user ke
+   role ko required permissions ke against check karte hain kisi
+   route/action ko access dene se pehle.
+
+6. Refresh token kya hai aur ye kyun chahiye?
+   Refresh token ek long-lived token hai jo naya short-lived access
+   token lene ke liye use hota hai bina user ko dobara login kiye. Ye
+   access tokens ke exposure window ko limit karta hai jabki session
+   usable bana rehta hai.
+
+7. XSS, CSRF aur SQL Injection se APIs ko kaise protect karte ho?
+   XSS: user input ko sanitize/escape karte hain jo HTML mein render
+   hota hai aur CSP headers use karte hain. CSRF: CSRF tokens aur
+   SameSite cookies use karte hain. SQL Injection: string-concatenated
+   SQL ki jagah parameterized queries/ORMs use karte hain.
+
+8. HTTP-only aur Secure cookies ka purpose kya hai?
+   HttpOnly JavaScript ko cookie access karne se rokta hai (XSS-based
+   token theft se bachata hai). Secure ensure karta hai ki cookie sirf
+   HTTPS pe bheja jaaye, transit mein intercept hone se bachata hai.
+
+9. Token expiry aur revocation kaise handle karte ho?
+   Access tokens pe short expiry rakhte hain aur refresh tokens use
+   karte hain renewal ke liye. Revocation ke liye, ek denylist/
+   blacklist (often Redis mein) invalidated tokens ki maintain karte
+   hain, ya itni short expiry rakhte hain ki revocation zyada zarurat
+   hi na pade.
+
+10. Express mein middleware-based route protection kya hota hai?
+    Ek authentication middleware valid token/session check karta hai
+    route handler tak request pahunchne se pehle, aur unauthorized
+    requests reject (401/403) kar deta hai — is se auth logic
+    centralized rehta hai har route mein repeat karne ki jagah.
+
+
+7. REDIS
+--------
+1. Redis kya hai aur iske common use cases kya hain?
+   Redis ek in-memory key-value data store hai jo caching, session
+   storage, rate limiting, real-time leaderboards aur message broker
+   (pub/sub) ke liye use hota hai, iski bahut low latency ke liye
+   valued hai.
+
+2. Redis aur traditional database mein kya difference hai?
+   Redis data memory mein store karta hai (bahut fast, lekin RAM se
+   limited hota hai aur default mein less durable) versus traditional
+   databases jo disk pe persist karte hain aur complex relational
+   queries support karte hain. Redis typically primary DB ke saath
+   use hota hai, uski replacement ki tarah nahi.
+
+3. Node.js app mein Redis se caching kaise implement karte ho?
+   Request pe pehle Redis mein key check karte hain; agar mil jaaye
+   (cache hit) to directly return kar dete hain; nahi mile (cache
+   miss) to DB se fetch karke result Redis mein TTL ke saath store
+   karte hain, phir return karte hain.
+
+4. Cache invalidation kya hai aur kaise handle karte ho?
+   Cache invalidation stale cached data ko remove/update karna hai jab
+   underlying data change ho — jab bhi source data modify hota hai
+   tab Redis key delete/update karke ya short TTLs use karke handle
+   karte hain.
+
+5. Redis data structures (strings, hashes, lists, sets, sorted sets) samjhao.
+   Strings simple values store karti hain; hashes field-value pairs
+   store karte hain (object jaisa); lists ordered collections hain
+   (queues ki tarah use hoti hain); sets unique unordered values store
+   karte hain; sorted sets har member ko ek score dete hain ranking ke
+   liye (jaise leaderboards).
+
+6. Redis persistence (RDB vs AOF) kaise handle karta hai?
+   RDB periodic point-in-time snapshots leta hai dataset ke disk pe.
+   AOF har write operation log karta hai aur restart pe replay karta
+   hai better durability ke liye. Redis dono use kar sakta hai saath
+   mein bhi.
+
+7. Redis mein TTL kya hai aur kaise set karte ho?
+   TTL (time-to-live) ek expiry time hai key pe jiske baad Redis
+   automatically usse delete kar deta hai. EXPIRE key seconds se, ya
+   directly SET key value EX seconds se set karte hain.
+
+8. Rate limiting ya session storage ke liye Redis kaise use karoge?
+   Rate limiting: per user/IP ek counter key increment karte hain TTL
+   window ke saath (jaise INCR + EXPIRE) aur limit hit hone pe
+   requests reject karte hain. Session storage: session data Redis
+   hash mein session ID key ke saath store karte hain, TTL session
+   expiry ke match mein.
+
+
+8. RABBITMQ / MESSAGE QUEUES
+------------------------------
+1. RabbitMQ kya hai aur message queue kyun use karte hain?
+   RabbitMQ ek message broker hai jo services ko asynchronously
+   communicate karne deta hai messages ko queues mein bhej ke. Ye
+   producers ko consumers se decouple karta hai, reliability improve
+   karta hai, aur traffic spikes ko smooth karta hai consumers ko apni
+   speed pe process karne deke.
+
+2. Producer-consumer architecture samjhao.
+   Producer messages ko queue/exchange mein publish karta hai; ek ya
+   zyada consumers queue pe listen karke messages ko independently
+   process karte hain, isliye producers ko pata nahi hona chahiye ki
+   messages kaun aur kaise handle karta hai.
+
+3. Message queues aur pub/sub systems mein kya difference hai?
+   Queue mein har message typically ek hi consumer process karta hai
+   (work distribution). Pub/sub mein message topic ke saare
+   subscribers ko broadcast hota hai — RabbitMQ dono support karta hai
+   different exchange types se.
+
+4. RabbitMQ mein exchanges, queues aur bindings kya hain?
+   Exchange producers se messages receive karta hai aur unhe rules ke
+   basis pe queues mein route karta hai. Queue messages ko store karta
+   hai jab tak consume na ho. Binding wo rule hai jo exchange ko queue
+   se connect karta hai (jaise routing key se).
+
+5. Failed message processing (dead-letter queues, retries) kaise handle karte ho?
+   Ek dead-letter exchange/queue configure karte hain taaki failed ya
+   rejected messages wahan route ho jaayen, poore lose hone ki jagah,
+   aur retry logic implement karte hain limited attempts aur backoff
+   ke saath, phir DLQ mein bhejte hain manual inspection ke liye.
+
+6. RabbitMQ aur Kafka mein kya difference hai?
+   RabbitMQ ek traditional message broker hai jo complex routing aur
+   lower-throughput task queues ke liye accha hai. Kafka ek
+   distributed log hai jo very high-throughput event streaming aur
+   long-term message retention/replay ke liye bana hai.
+
+7. Message delivery guarantees (at-least-once, exactly-once) kaise ensure karte ho?
+   Acknowledgments (ack/nack) use karte hain taaki message queue se
+   tab hi remove ho jab successfully process ho jaaye (at-least-once),
+   aur consumers ko idempotent design karte hain taaki duplicate
+   message reprocess hone pe galat side effects na ho (effectively
+   exactly-once).
+
+8. API request cycle se email/notification sending ko kaise decouple karoge?
+   API handler mein synchronously email bhejne ki jagah, ek "send
+   email" message queue mein publish karte hain aur ek alag background
+   worker/consumer isse process karta hai, isliye API SMTP ka wait
+   kiye bina jaldi respond kar deta hai.
+
+
+9. DOCKER & DOCKER COMPOSE
+-----------------------------
+1. Docker image aur container mein kya difference hai?
+   Image ek read-only, packaged blueprint hai (code + dependencies +
+   OS layer). Container us image ka running instance hai, jiska apna
+   writable layer, isolated process aur network namespace hota hai.
+
+2. Dockerfile kya hai aur usme common instructions kya hote hain?
+   Dockerfile ek script hai jo define karta hai image kaise build
+   hogi. Common instructions: FROM (base image), WORKDIR, COPY, RUN
+   (build-time commands), EXPOSE (port), CMD/ENTRYPOINT (runtime
+   command).
+
+3. Docker Compose ka purpose kya hai?
+   Docker Compose multi-container applications (jaise app + DB +
+   Redis) ko ek saath define aur run karne deta hai ek single YAML
+   file use karke, unke beech networking aur startup order handle
+   karta hai.
+
+4. Docker mein environment variables aur secrets kaise handle karte ho?
+   Non-sensitive config docker-compose.yml ya --env-file mein
+   environment variables se pass karte hain; secrets ke liye Docker
+   secrets, secret manager, ya CI/CD injected environment variables
+   use karte hain — secrets kabhi image mein bake nahi karte.
+
+5. Docker volumes kya hote hain aur ye kyun chahiye?
+   Volumes persistent storage hote hain jo container mein mount hote
+   hain, isliye data container restart/removal ke baad bhi bacha
+   rehta hai — databases, uploaded files, aur aise kisi bhi data ke
+   liye use hote hain jo container recreate hone pe lose nahi hona
+   chahiye.
+
+6. Docker networking samjhao — containers kaise communicate karte hain.
+   Same Docker network pe containers ek dusre ko service/container
+   name se reach kar sakte hain (Docker ka internal DNS), jabki
+   port-mapping (-p) container ka port host machine ko external
+   access ke liye expose karta hai.
+
+7. Multi-stage Docker build kya hai aur kyun use karte hain?
+   Isme ek Dockerfile mein multiple FROM stages hote hain — jaise app
+   ko "builder" stage mein dev tools ke saath build karna, phir sirf
+   final artifacts ko ek slim runtime image mein copy karna — jisse
+   final image size aur attack surface kam hota hai.
+
+8. Containerized service ke liye health checks kaise implement karte ho?
+   Dockerfile mein HEALTHCHECK instruction add karte hain (ya Compose
+   mein healthcheck block) jo periodically ek command/HTTP check
+   chalata hai (jaise ek endpoint curl karna) taaki Docker/
+   orchestrators ko pata chale container actually ready aur healthy
+   hai ya nahi.
+
+9. CMD aur ENTRYPOINT mein kya difference hai Dockerfile mein?
+   ENTRYPOINT fixed executable define karta hai jo hamesha chalta hai.
+   CMD default arguments deta hai (jo "docker run" pe override ho
+   sakte hain). Often dono saath use hote hain: ENTRYPOINT command set
+   karta hai, CMD default args set karta hai.
+
+10. Docker image size kaise kam karte ho?
+    Slim/alpine base images use karte hain, multi-stage builds karte
+    hain, RUN commands combine karte hain layers kam karne ke liye,
+    cache/temp files usi layer mein clean up karte hain jahan create
+    hui thi, aur .dockerignore file use karte hain unnecessary files
+    exclude karne ke liye.
+
+
+10. CI/CD & JENKINS
+---------------------
+1. CI/CD kya hai aur ye kyun important hai?
+   CI (Continuous Integration) har code change pe automatically
+   build/test karta hai issues jaldi pakadne ke liye. CD (Continuous
+   Delivery/Deployment) us code ko staging/production tak automatically
+   release karta hai, jisse manual errors kam hote hain aur delivery
+   fast hoti hai.
+
+2. Typical Jenkins pipeline ke stages samjhao.
+   Common stages: code checkout, dependencies install, build, tests
+   run karna (unit/integration), Docker image build, registry mein
+   push, aur target environment mein deploy — har stage agle ko gate
+   karta hai.
+
+3. Automated tests (Jest) ko CI pipeline mein kaise integrate karte ho?
+   Ek pipeline stage add karte hain jo "npm test" (Jest) chalata hai,
+   agar koi test fail ho to build fail kar deta hai, aur optionally
+   coverage/test reports ko build artifacts ki tarah publish karta
+   hai.
+
+4. Jenkinsfile kya hai?
+   Jenkinsfile ek text file hai (usually Groovy, declarative ya
+   scripted syntax) jo repo mein check-in hoti hai aur poori CI/CD
+   pipeline ko code ki tarah define karti hai, isliye ye application
+   ke saath version-controlled rehti hai.
+
+5. Jenkins pipelines mein secrets/credentials kaise handle karte ho?
+   Secrets Jenkins ke built-in Credentials store (ya external vault)
+   mein store karte hain aur pipeline mein "withCredentials" se
+   reference karte hain, isliye wo kabhi Jenkinsfile ya logs mein
+   hardcode nahi hote.
+
+6. Tests se pehle dependency health checks (jaise MySQL readiness) kaise setup karte ho?
+   Docker Compose mein MySQL service pe healthcheck add karte hain
+   (jaise mysqladmin ping command) aur test service ko MySQL pe
+   "depends_on" configure karte hain "condition: service_healthy" ke
+   saath, taaki tests sirf DB ready hone ke baad start ho.
+
+7. Continuous integration, continuous delivery aur continuous deployment mein difference.
+   CI: har commit pe auto build/test. Continuous Delivery: code
+   automatically release ke liye ready ho jata hai lekin production
+   mein deployment ek manual trigger hota hai. Continuous Deployment:
+   har passing change automatically production mein deploy ho jata hai
+   bina manual step ke.
+
+
+11. NGINX
+---------
+1. Reverse proxy kya hai aur Nginx isके liye kyun use karte hain?
+   Reverse proxy backend servers ke aage baithta hai, client requests
+   unhe forward karta hai. Nginx isliye use hota hai kyunki ye fast
+   hai, kaafi concurrent connections efficiently handle karta hai, aur
+   load balancing, SSL termination aur caching jaise features add
+   karta hai.
+
+2. Nginx load balancing kaise handle karta hai?
+   Nginx incoming requests ko multiple backend instances mein
+   distribute karta hai algorithms use karke jaise round-robin,
+   least-connections, ya IP-hash, "upstream" block mein define hote
+   hain.
+
+3. Forward proxy aur reverse proxy mein kya difference hai?
+   Forward proxy clients ke aage baithta hai, unhe external servers se
+   hide/represent karta hai (jaise corporate proxy). Reverse proxy
+   servers ke aage baithta hai, unhe external clients se hide/
+   represent karta hai.
+
+4. Multiple backend services ke liye Nginx traffic route kaise karoge?
+   Alag "location" blocks (ya server blocks domain/path ke basis pe)
+   define karte hain jo proxy_pass alag upstream services ko URL path
+   ya subdomain ke basis pe karte hain.
+
+5. Nginx mein SSL/HTTPS termination kaise enable karte ho?
+   Server block ko 443 pe listen karne ke liye configure karte hain
+   ssl enable ke saath, SSL certificate aur private key paths dete
+   hain (jaise Let's Encrypt se), aur Nginx HTTPS traffic decrypt
+   karke plain HTTP backend services ko forward karta hai.
+
+
+12. AWS / CLOUD (EC2, S3, Lambda, GCP, DigitalOcean, Terraform)
+-------------------------------------------------------------------
+1. EC2 aur Lambda mein kya difference hai?
+   EC2 ek virtual machine hai jo aap khud manage karte hain (hamesha
+   running, uptime ke liye billed). Lambda serverless hai — bas ek
+   function deploy karte hain, AWS infrastructure manage karta hai,
+   aur sirf actual execution time ke liye bill hota hai.
+
+2. S3 mein files ko securely kaise store aur access karte ho?
+   IAM roles/policies use karte hain access restrict karne ke liye,
+   buckets default mein private rakhte hain, temporary access ke liye
+   signed URLs use karte hain, encryption-at-rest enable karte hain,
+   aur public bucket policies se bachte hain jab tak explicitly
+   zaruri na ho.
+
+3. IAM kya hai aur AWS mein ye kyun important hai?
+   IAM (Identity and Access Management) control karta hai ki
+   kaun/kya AWS resources access kar sakta hai aur kya actions perform
+   kar sakta hai, least privilege ke principle ke basis pe account
+   secure rakhne ke liye.
+
+4. AWS Lambda ke saath serverless computing ke basics samjhao.
+   Ek function likhte hain, Lambda pe deploy karte hain, aur ye
+   triggers (API Gateway request, S3 event, queue message) ke response
+   mein chalta hai bina aapko servers provision/manage kiye, per
+   request automatically scale hota hai.
+
+5. LocalStack kya hai aur development mein isse kyun use karoge?
+   LocalStack AWS services (S3, Lambda, SQS, etc.) ko locally emulate
+   karta hai, jisse developers AWS-integrated code build aur test kar
+   sakte hain bina real cloud costs ya live AWS credentials ki
+   zarurat ke.
+
+6. Terraform kya hai aur infrastructure-as-code kaise help karta hai?
+   Terraform cloud infrastructure (servers, networks, databases) ko
+   code ki tarah config files mein define karne deta hai, jo
+   version-controlled, reviewed aur consistently/repeatably apply ho
+   sakti hai manual console clicks ki jagah.
+
+7. AWS, GCP aur DigitalOcean mein high-level difference.
+   AWS sabse bada aur feature-complete cloud provider hai. GCP
+   data/AI tooling aur Kubernetes mein strong hai. DigitalOcean simpler
+   aur affordable hai, smaller apps/startups ke liye jinhe kam
+   complexity chahiye.
+
+8. Scalable aur fault-tolerant cloud architecture kaise design karoge?
+   Load balancers use karte hain multiple instances/availability
+   zones ke across, auto-scaling groups, stateless application
+   servers, managed/replicated databases, caching layers, aur health
+   checks automatic failover ke saath.
+
+
+13. REACT.JS / FRONTEND
+--------------------------
+1. Virtual DOM kya hai aur React ise kaise use karta hai?
+   Virtual DOM real DOM ka ek in-memory representation hai. React
+   pehle is virtual copy ko update karta hai, previous version se
+   diff karta hai, aur real DOM mein sirf minimal necessary changes
+   apply karta hai, jisse performance improve hoti hai.
+
+2. Functional aur class components mein kya difference hai?
+   Functional components plain JS functions hote hain jo JSX return
+   karte hain aur state/lifecycle ke liye hooks use karte hain. Class
+   components React.Component extend karte hain, "this.state" aur
+   lifecycle methods use karte hain. Hooks wale functional components
+   ab modern standard hain.
+
+3. useState aur useEffect hooks samjhao.
+   useState functional component mein local state add karta hai aur
+   value plus setter return karta hai. useEffect side effects (data
+   fetching, subscriptions) render ke baad chalata hai, aur dependency
+   array ke basis pe cleanup ya re-run ho sakta hai.
+
+4. Props aur state mein kya difference hai?
+   Props parent se child component ko pass ki gayi read-only data hai.
+   State component ke andar internally manage hone wali data hai jo
+   time ke saath change ho sakti hai aur re-renders trigger karti hai.
+
+5. React Router client-side routing kaise handle karta hai?
+   Ye browser mein URL changes ko intercept karta hai aur current path
+   ke basis pe different components render karta hai, bina full page
+   reload ke, History API use karke.
+
+6. Prop drilling kya hai aur ise kaise avoid karte ho (Context API)?
+   Prop drilling wo hai jab props kaafi intermediate components se
+   pass hote hain jinhe unki zarurat nahi hoti, sirf ek deeply nested
+   child tak pahunchne ke liye. Context API ise avoid karta hai data
+   ko component tree ke across directly share karke bina har level pe
+   manual prop passing ke.
+
+7. Controlled aur uncontrolled components mein difference.
+   Controlled component ki form value React state se driven hoti hai
+   (value + onChange). Uncontrolled component apni state internally
+   DOM mein manage karta hai, jab zarurat ho tab ref se access hota
+   hai.
+
+8. React app mein performance kaise optimize karte ho (memoization, lazy loading)?
+   React.memo/useMemo/useCallback use karte hain unnecessary
+   re-renders/recalculations avoid karne ke liye, React.lazy aur
+   Suspense se code-split karte hain components on-demand load karne
+   ke liye, aur long lists ko virtualize karte hain.
+
+9. React aur Angular mein kya difference hai?
+   React ek lightweight UI library hai jo components aur view layer pe
+   focus karti hai, dusri libraries ke saath pair hoti hai zarurat ke
+   hisaab se. Angular ek full-fledged framework hai built-in routing,
+   forms, DI aur stricter structure ke saath, TypeScript default mein
+   use karta hai.
+
+10. HTML5 semantic tags aur CSS3 flexbox/grid responsive UIs banane mein kaise help karte hain?
+    Semantic tags (header, nav, main, section) accessibility aur SEO
+    improve karte hain content ka meaning describe karke.
+    Flexbox/Grid powerful, responsive layout systems dete hain jo
+    complex float/positioning hacks ke bina alag screen sizes ke saath
+    adapt ho jate hain.
+
+
+14. TESTING (Jest, Postman, Swagger)
+---------------------------------------
+1. Unit testing aur integration testing mein kya difference hai?
+   Unit testing ek single function/module ko isolation mein verify
+   karta hai (dependencies mock karke). Integration testing verify
+   karta hai ki multiple modules/components (jaise API + DB) saath
+   mein sahi kaam kar rahe hain.
+
+2. Jest mein external API calls kaise mock karte ho?
+   jest.mock() use karte hain ek module (jaise axios) ko mock
+   implementation se replace karne ke liye jo controlled fake
+   responses return karta hai, isliye tests real network calls pe
+   depend nahi karte.
+
+3. Swagger/OpenAPI documentation ka purpose kya hai?
+   Ye ek standardized, machine-readable specification deta hai API ke
+   endpoints, request/response formats aur auth requirements ka —
+   auto-generated docs, client SDKs aur Swagger UI se easy testing
+   enable karta hai.
+
+4. Postman se protected/authenticated API routes kaise test karte ho?
+   Pehle login endpoint hit karke token lete hain, phir usse Bearer
+   token ki tarah Authorization header mein attach karte hain (often
+   ek Postman environment variable ke through) baad ki protected
+   routes ki requests ke liye.
+
+5. Test coverage kya hai aur ise kaise measure karte ho?
+   Test coverage measure karta hai kitna percentage code (lines,
+   branches, functions) test suite se execute hota hai. Jest ka
+   built-in coverage tool (Istanbul ke through) ek report generate
+   karta hai jisme covered vs uncovered code dikhta hai.
+
+6. Testing mein Arrange-Act-Assert pattern samjhao.
+   Arrange: test data/mocks set up karna. Act: function/code under
+   test execute karna. Assert: actual output ko expected result se
+   verify karna. Ye structure tests ko clear aur consistent rakhta
+   hai.
+
+
+15. THIRD-PARTY INTEGRATIONS (XML, SOAP, Razorpay, ERP)
+------------------------------------------------------------
+1. Node.js service mein XML kaise parse aur generate karte ho?
+   xml2js (XML se JS object) ya xmlbuilder/fast-xml-parser (JS object
+   se XML) jaisi libraries use karte hain formats ke beech convert
+   karne ke liye jab SOAP/XML-based systems se communicate karte hain.
+
+2. SOAP API consume karne aur REST API consume karne mein key differences kya hain?
+   SOAP ko strict XML envelopes chahiye jo WSDL contract se define
+   hote hain, security/transactions ke built-in standards hote hain,
+   aur zyada verbose hota hai. REST simpler hai, typically JSON-based,
+   aur zyada flexible hai lekin kam built-in standards ke saath.
+
+3. Payment gateway integration (jaise Razorpay) securely kaise handle karte ho?
+   Client pe secret key kabhi expose nahi karte; orders server-side
+   create karte hain, callback ke baad payment signatures server-side
+   verify karte hain, aur hamesha webhook se payment status confirm
+   karte hain, sirf client pe trust karne ki jagah.
+
+4. Payment callbacks ke liye webhook verification kaise handle karte ho?
+   Webhook ka signature (shared secret use karke) raw payload ke
+   against verify karte hain trust karne se pehle, taaki ensure ho
+   request actually payment provider se aayi hai aur spoof nahi hui.
+
+5. Flaky third-party insurer API ke liye retry logic kaise design karoge?
+   Exponential backoff ke saath retries implement karte hain aur ek
+   max attempt limit, retryable errors (timeouts, 5xx) ko
+   non-retryable (4xx validation errors) se differentiate karte hain,
+   aur repeated failures ke baad log/alert karte hain.
+
+6. External ERP systems ke structured error responses kaise handle karte ho?
+   External system ke error format ko ek standardized internal error
+   shape mein parse karte hain, known error codes ko meaningful
+   messages mein map karte hain, aur debugging ke liye raw response
+   log karte hain jabki caller ko ek clean error return karte hain.
+
+
+16. AI / OPENAI API / FASTAPI (Policy PDF Parser project)
+----------------------------------------------------------------
+1. Unstructured text se structured JSON extract karne ke liye prompt kaise design karte ho?
+   Exact JSON schema/fields clearly specify karte hain jo expected
+   hain, sample output format dete hain, model ko instruct karte hain
+   sirf JSON return karne ke liye (koi extra text nahi), aur source
+   text/document content ko context ki tarah provide karte hain.
+
+2. AI-generated malformed JSON output ko kaise validate aur handle karte ho?
+   JSON.parse() ko try/catch mein wrap karte hain, parsed object ko
+   expected schema ke against validate karte hain (jaise zod/Joi se),
+   aur agar validation fail ho to ek fallback implement karte hain
+   (prompt retry ya manual review ke liye flag).
+
+3. FastAPI kya hai aur ise Node.js backend ke saath kyun pair karte hain?
+   FastAPI ek modern Python web framework hai, AI/ML workloads ke liye
+   well-suited hai kyunki zyada AI/data libraries Python-based hoti
+   hain. Isse Node.js ke saath pair karne se Node service main API/
+   business logic handle karti hai jabki FastAPI AI-specific processing
+   ek microservice ki tarah handle karta hai.
+
+4. Bade file/PDF uploads (streaming, multipart) efficiently kaise handle karte ho?
+   Streaming multipart parsers (jaise formidable/multer) use karte
+   hain jo poori file memory mein buffer karne ki jagah directly
+   disk/storage pe likhte hain, aur reasonable file size limits set
+   karte hain.
+
+5. LLM se data extraction karte waqt hallucination risk kaise kam karte ho?
+   Prompt ko tightly constrain karte hain sirf diye gaye text se
+   extract karne ke liye (general knowledge se nahi), missing fields
+   ke liye explicit "not found" values maangte hain guesses ki jagah,
+   aur extracted values ko expected formats/ranges ke against
+   validate karte hain.
+
+6. Node.js service aur Python/FastAPI microservice ke beech communication kaise secure karte ho?
+   Internal network isolation (private VPC/Docker network) use karte
+   hain taaki service publicly exposed na ho, service-to-service auth
+   ke liye API key/shared secret add karte hain, aur network boundary
+   cross karne pe HTTPS use karte hain.
+
+
+17. SYSTEM DESIGN (Insurance/ERP domain experience ke basis pe)
+------------------------------------------------------------------
+1. Insurance platform ke liye proposal-to-policy workflow kaise design karoge?
+   Ise ek state machine ki tarah model karte hain: Draft -> Proposal
+   Submitted -> Underwriting/Validation -> Payment -> Policy Issued,
+   har transition validate aur log hota hai, aur background jobs/
+   webhooks har stage pe downstream systems ko notify karte hain.
+
+2. EMI/payment scheduling system kaise design karoge?
+   EMI schedule ko individual installment records ki tarah store
+   karte hain due dates aur amounts ke saath ek policy se linked, ek
+   scheduler/cron ya queue use karte hain reminders/auto-debits
+   trigger karne ke liye, aur har payment ka status accurately track
+   karne ke liye independently record karte hain.
+
+3. Multiple insurers jinke API formats alag hain, unke saath integrate karne wala system kaise design karoge?
+   Ek adapter layer banate hain — har insurer ke liye ek adapter jo
+   unka specific REST/XML/SOAP format ek common internal data model
+   mein translate karta hai, isliye baaki system sirf ek unified
+   format ke saath deal karta hai.
+
+4. Node.js + MongoDB backend ko high traffic ke liye kaise scale karoge?
+   Stateless Node instances ko horizontally scale karte hain ek load
+   balancer ke peeche, hot data ke liye caching (Redis) add karte hain,
+   large collections ke liye MongoDB indexing/sharding use karte hain,
+   aur slow/async work (emails, reports) ko background queues mein
+   offload karte hain.
+
+5. Scale pe async notification system (email/SMS) kaise design karoge?
+   Notification events ko synchronously bhejne ki jagah message queue
+   (RabbitMQ) mein publish karte hain, dedicated worker services
+   consume karke email/SMS providers se bhejte hain, retries aur
+   dead-letter handling ke saath failures ke liye.
+
+6. Microservices ke across data consistency kaise ensure karte ho?
+   Patterns jaise Saga pattern use karte hain distributed transactions
+   ke liye, idempotent operations use karte hain retries safely handle
+   karne ke liye, aur event-driven updates (queue ke through) use
+   karte hain taaki services eventually consistent state mein converge
+   ho jaayen, ek single distributed transaction pe rely karne ki
+   jagah.
+
+
+18. GIT / GITHUB / WORKFLOW
+-------------------------------
+1. git merge aur git rebase mein kya difference hai?
+   Merge do branches ko combine karta hai ek naya merge commit banake,
+   poori history preserve hoti hai. Rebase aapke commits ko dusri
+   branch ke upar replay karta hai, ek linear history banata hai bina
+   merge commit ke (lekin commit history rewrite hoti hai).
+
+2. Pull request kya hai aur code reviews aapke workflow mein kaise fit hote hain?
+   Pull request ek branch se dusri branch mein changes merge karne ka
+   proposal deta hai, teammates ko diff review, comment, changes
+   request aur approve karne deta hai merge hone se pehle.
+
+3. Merge conflicts kaise resolve karte ho?
+   Git conflicting sections ko affected files mein mark kar deta hai;
+   aap manually edit karke correct code rakhte hain, conflict markers
+   remove karte hain, phir stage aur commit karte hain (ya rebase
+   continue karte hain) finish karne ke liye.
+
+4. git cherry-pick kis liye use hota hai?
+   Ye ek specific commit ko ek branch se dusri branch pe apply karta
+   hai, useful hai jab sirf ek fix chahiye poori source branch merge
+   kiye bina.
+
+5. Branching strategies (Git Flow, trunk-based development) samjhao.
+   Git Flow long-lived branches use karta hai (develop, feature,
+   release, hotfix) structured releases ke liye. Trunk-based
+   development sabko frequently ek single main branch pe commit karne
+   deta hai short-lived feature branches ke saath, continuous
+   integration/deployment ko favor karta hai.
+
+
+19. GENERAL / BEHAVIORAL (HR ROUND)
+---------------------------------------
+1. Apna resume/experience walk through karo.
+   Ek brief, structured summary chronological order mein do: current
+   role aur Policyboss mein key responsibilities, previous role
+   Virtual SCM mein, core tech stack, aur 1-2 standout projects — 2
+   minute se kam rakho aur us role se connect karo jisme apply kar
+   rahe ho.
+
+2. Production mein koi challenging bug jo debug kiya, uske baare mein batao.
+   Answer ko structure karo: kya break hua, root cause kaise identify
+   kiya (logs, reproduce karna, failing component isolate karna), kya
+   fix apply kiya, aur baad mein kya change kiya recurrence prevent
+   karne ke liye (jaise better logging, tests, monitoring).
+
+3. Multiple insurer integrations ek saath handle karte waqt tasks ko kaise prioritize karte ho?
+   Business impact/deadline ke basis pe prioritize karna explain karo,
+   bade integrations ko chhoti testable pieces mein todna, timelines
+   clearly communicate karna, aur blockers ko jaldi flag karna, late
+   nahi.
+
+4. Koi waqt jab naya technology jaldi seekhna pada, uske baare mein batao.
+   Ek real example lo (jaise AI PDF parser project ke liye FastAPI/
+   OpenAI integration), batao kaise approach kiya learning ko (docs,
+   chota proof-of-concept, iterate karna), aur outcome kya raha.
+
+5. Teammate ya reviewer se code approach pe disagreement ho to kaise handle karte ho?
+   Pehle unki reasoning sunna emphasize karo, apni approach ko
+   concrete trade-offs (performance, maintainability) se back karo, aur
+   compromise karne ya data/testing ke basis pe defer karne ke liye
+   willing rehna jab "right" answer obvious na ho.
+
+6. Change kyun dhoondh rahe ho / next role mein kya chahte ho?
+   Growth-oriented reasons pe focus karo — bade scale systems pe kaam
+   karna chahte ho, broader tech exposure, ya zyada ownership —
+   current employer ke baare mein negative comments ki jagah.
+
+7. Agle 2-3 saal mein khud ko kahan dekhte ho?
+   Backend/system-design expertise deepen karne ke baare mein baat
+   karo, potentially senior/lead engineering role ki taraf move karna,
+   aur aise products banate rehna jinka real business impact ho.
+
+8. Sabse zyada proud kis project pe ho aur kyun?
+   Ek pick karo (jaise AI-Powered Policy PDF Parser) aur explain karo
+   ki usne kaunsa problem solve kiya, aapka specific contribution kya
+   tha, technical challenge kaisa overcome kiya, aur measurable
+   impact/result kya raha.
+
+====================================================================
+File khatam.
