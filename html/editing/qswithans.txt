@@ -1,0 +1,1004 @@
+INTERVIEW QUESTIONS WITH ANSWERS — ALL TOPICS
+(based on Gopal Rajput's resume)
+====================================================================
+
+
+1. JAVASCRIPT / ES6+
+--------------------
+1. Difference between var, let and const?
+   var is function-scoped and hoisted (can be re-declared/updated). let
+   is block-scoped and can be updated but not re-declared in the same
+   scope. const is block-scoped and cannot be reassigned after
+   declaration.
+
+2. What is the event loop in JavaScript?
+   It's the mechanism that lets JS handle async operations on a single
+   thread. Call stack runs sync code; async callbacks (timers,
+   I/O, promises) go to queues (macrotask/microtask), and the event
+   loop pushes them onto the stack once it's empty.
+
+3. Explain closures with an example.
+   A closure is a function that "remembers" variables from its outer
+   scope even after that outer function has finished executing.
+   Example: a counter() function returning an inner increment()
+   function that keeps access to a private count variable.
+
+4. What is hoisting?
+   JS moves variable and function declarations to the top of their
+   scope during compilation. var declarations are hoisted and
+   initialized as undefined; let/const are hoisted but stay in a
+   "temporal dead zone" until their line executes.
+
+5. Difference between == and ===?
+   == compares values after type coercion; === compares both value
+   and type without coercion. === is safer and preferred in practice.
+
+6. Explain Promises vs Callbacks vs Async/Await.
+   Callbacks are functions passed to run after an async task completes
+   (can lead to "callback hell"). Promises represent a future value
+   with .then()/.catch() chaining, avoiding deep nesting. Async/await
+   is syntactic sugar over promises, letting async code read like
+   synchronous code.
+
+7. What is the difference between call, apply and bind?
+   call() invokes a function immediately with a given "this" and
+   arguments listed individually. apply() does the same but takes
+   arguments as an array. bind() returns a new function with "this"
+   permanently set, without invoking it immediately.
+
+8. What are arrow functions and how do they handle "this"?
+   Arrow functions are a shorter function syntax that does not have
+   their own "this" — they inherit "this" from the enclosing lexical
+   scope, which is useful inside callbacks/class methods.
+
+9. Explain the difference between synchronous and asynchronous code.
+   Synchronous code runs line by line, blocking until each operation
+   finishes. Asynchronous code lets long-running operations (I/O,
+   timers, network calls) run in the background without blocking
+   the main thread.
+
+10. What is the difference between map, filter and reduce?
+    map() transforms each array element and returns a new array of the
+    same length. filter() returns a new array with only elements that
+    pass a condition. reduce() accumulates array elements into a
+    single value.
+
+11. What are Promise.all, Promise.race, Promise.allSettled?
+    Promise.all() resolves when all promises resolve (rejects if any
+    one rejects). Promise.race() resolves/rejects as soon as the first
+    promise settles. Promise.allSettled() waits for all promises to
+    settle and returns each one's outcome (fulfilled or rejected).
+
+12. Explain debouncing and throttling.
+    Debouncing delays execution of a function until after a pause in
+    events (e.g., wait 300ms after the user stops typing). Throttling
+    limits a function to run at most once every fixed interval,
+    regardless of how many times the event fires.
+
+13. What is destructuring and spread/rest operator?
+    Destructuring extracts values from arrays/objects into variables
+    in one line. Spread (...) expands an array/object into individual
+    elements; rest (...) collects remaining arguments/properties into
+    one array/object.
+
+14. Explain prototypal inheritance in JavaScript.
+    Objects in JS inherit properties/methods from a prototype object.
+    Every object has an internal [[Prototype]] link, and property
+    lookups walk up this prototype chain until found or reaching null.
+
+15. What is the difference between null and undefined?
+    undefined means a variable has been declared but not assigned a
+    value. null is an explicit assignment representing "no value" set
+    intentionally by the developer.
+
+
+2. NODE.JS
+----------
+1. What is Node.js and how is it different from browser JavaScript?
+   Node.js is a JavaScript runtime built on Chrome's V8 engine that
+   runs JS outside the browser, on a server. Unlike browser JS, it
+   has access to the file system, OS, and networking APIs, but no DOM.
+
+2. Explain the Node.js event-driven, non-blocking I/O model.
+   Node uses a single main thread with an event loop; I/O operations
+   (file, network, DB) are delegated to the OS/libuv thread pool and
+   their callbacks run on the event loop once complete, so the main
+   thread is never blocked waiting on I/O.
+
+3. What is the difference between process.nextTick() and setImmediate()?
+   process.nextTick() queues a callback to run immediately after the
+   current operation, before the event loop continues — it has higher
+   priority. setImmediate() queues a callback to run in the "check"
+   phase of the next event loop iteration.
+
+4. How does Node.js handle multiple requests with a single thread?
+   Through non-blocking async I/O — while one request waits on a DB
+   call or file read, Node picks up and processes other requests, and
+   resumes the first once its I/O callback fires.
+
+5. What are streams in Node.js? Explain readable/writable/duplex streams.
+   Streams process data in chunks instead of loading it all into
+   memory. Readable streams emit data (e.g., file read), writable
+   streams accept data (e.g., file write/HTTP response), duplex
+   streams are both readable and writable (e.g., TCP sockets), and
+   transform streams modify data as it passes through.
+
+6. What is the purpose of the cluster module?
+   It lets a Node.js app spawn multiple worker processes (one per CPU
+   core) that share the same server port, improving throughput on
+   multi-core machines since a single Node process only uses one core.
+
+7. How do you handle uncaught exceptions and unhandled promise rejections?
+   Listen for process.on('uncaughtException') and
+   process.on('unhandledRejection') to log and gracefully shut down,
+   but the real fix is proper try/catch around async code and
+   validating inputs so these events rarely fire in production.
+
+8. Explain middleware in the context of Node.js.
+   Middleware are functions that run in the request-response cycle
+   with access to req, res, and next(). They handle cross-cutting
+   concerns like logging, auth, validation, and error handling before
+   the request reaches the route handler.
+
+9. What is the difference between require() and import?
+   require() is CommonJS, synchronous, and resolved at runtime.
+   import is ES Modules syntax, can be static (hoisted, analyzed at
+   compile time) and supports tree-shaking; Node needs "type": "module"
+   or .mjs to use ESM natively.
+
+10. How do you manage environment variables in a Node.js app?
+    Using a .env file with a package like dotenv to load variables
+    into process.env during local development, and setting real
+    secrets via the hosting platform's environment/secret manager in
+    production — never committing .env to git.
+
+11. What is the purpose of package.json and package-lock.json?
+    package.json declares project metadata, dependencies, and scripts.
+    package-lock.json locks exact installed versions (including
+    sub-dependencies) so installs are reproducible across machines.
+
+12. How do you handle memory leaks in a Node.js application?
+    Monitor heap usage over time, use tools like --inspect and Chrome
+    DevTools or clinic.js to take heap snapshots, look for growing
+    closures/event listeners/global caches that never get cleared,
+    and fix by removing unused references and listeners.
+
+13. Explain child_process and worker_threads.
+    child_process lets Node spawn separate OS processes (e.g., to run
+    a shell command or another program) with no shared memory.
+    worker_threads let you run JS in parallel threads within the same
+    process, useful for CPU-heavy tasks without blocking the event loop.
+
+
+3. EXPRESS.JS / REST APIs
+--------------------------
+1. What is middleware in Express.js and how does next() work?
+   Middleware functions run in sequence for each request; next()
+   passes control to the next middleware/route handler in the chain.
+   If next() isn't called, the request hangs.
+
+2. How do you handle errors globally in Express?
+   By defining an error-handling middleware with four parameters
+   (err, req, res, next) placed after all routes, and calling
+   next(err) from anywhere in the app to funnel errors into it.
+
+3. Explain the difference between PUT, PATCH and POST.
+   POST creates a new resource. PUT replaces an entire resource with
+   the given data (idempotent). PATCH partially updates a resource
+   with only the given fields.
+
+4. What is REST and what are its constraints?
+   REST is an architectural style for APIs based on stateless
+   communication, a uniform interface, resource-based URLs, and use of
+   standard HTTP methods. Constraints include statelessness,
+   cacheability, client-server separation, and a uniform interface.
+
+5. How do you version a REST API?
+   Common approaches: URL versioning (/api/v1/...), header versioning
+   (Accept: application/vnd.api.v1+json), or query param versioning.
+   URL versioning is most common for simplicity.
+
+6. How do you implement pagination, filtering and sorting in an API?
+   Pagination via limit/offset or page/pageSize query params (or
+   cursor-based for large datasets). Filtering via query params mapped
+   to DB conditions. Sorting via a sort query param mapped to an
+   ORDER BY / sort() clause.
+
+7. What is CORS and how do you handle it in Express?
+   CORS is a browser security mechanism restricting cross-origin
+   requests. In Express, it's handled using the cors middleware to
+   set Access-Control-Allow-Origin and related headers for allowed
+   domains.
+
+8. How do you validate incoming request data?
+   Using validation libraries (Joi, express-validator, zod) at the
+   middleware level to check required fields, types, and formats
+   before the request reaches business logic.
+
+9. How do you structure a large Express.js project (MVC, routers, controllers)?
+   Separate into routes, controllers (business logic), models (DB
+   schemas), middleware, and services/utils — keeping each layer
+   focused so routes stay thin and logic is testable in isolation.
+
+10. What is rate limiting and how would you implement it?
+    Rate limiting caps how many requests a client can make in a time
+    window, to prevent abuse. Implemented using middleware like
+    express-rate-limit, often backed by Redis for distributed limits
+    across multiple server instances.
+
+11. How do you handle file uploads in Express (e.g., multipart/form-data)?
+    Using middleware like multer or formidable to parse
+    multipart/form-data, store files temporarily or stream them
+    directly to storage (e.g., S3), then save file metadata to the DB.
+
+12. Difference between REST and SOAP APIs.
+    REST is lightweight, uses HTTP verbs and typically JSON, and is
+    resource-oriented. SOAP is a stricter protocol using XML envelopes
+    with a formal contract (WSDL), often used in enterprise/legacy
+    systems requiring strict standards.
+
+13. How would you design an idempotent API endpoint?
+    Ensure repeated identical requests produce the same result without
+    side effects — e.g., use PUT for full updates, use idempotency
+    keys for POST requests (like payment APIs) to detect and ignore
+    duplicate submissions.
+
+14. How do you handle XML request/response parsing in a Node.js service?
+    Using libraries like xml2js or fast-xml-parser to convert XML to
+    JS objects and vice versa, then mapping fields to your internal
+    data model before/after calling the SOAP/XML-based external system.
+
+
+4. MONGODB / MONGOOSE
+----------------------
+1. Difference between SQL and NoSQL databases.
+   SQL databases are relational, with fixed schemas and tables linked
+   by foreign keys, good for structured data and complex joins. NoSQL
+   databases (like MongoDB) are schema-flexible, store
+   documents/key-values, and scale horizontally more easily for
+   large, evolving datasets.
+
+2. What is an aggregation pipeline in MongoDB? Give an example stage sequence.
+   A sequence of stages that transform documents step by step, e.g.
+   $match (filter) -> $group (aggregate) -> $sort -> $project (shape
+   output fields) -> $limit.
+
+3. How does indexing work in MongoDB and why is it important?
+   Indexes are data structures (B-trees) that let MongoDB find
+   documents without scanning the whole collection, drastically
+   speeding up queries, sorts, and lookups at the cost of extra
+   storage and slower writes.
+
+4. Explain the difference between embedding and referencing documents.
+   Embedding nests related data inside a single document (fast reads,
+   used for tightly-coupled, rarely-changing data). Referencing stores
+   an ID pointing to another document (used for large or frequently
+   changing related data, similar to a foreign key).
+
+5. What is the difference between find() and aggregate()?
+   find() retrieves documents matching a simple query/filter.
+   aggregate() runs a multi-stage pipeline for complex transformations
+   like grouping, joining collections ($lookup), and computed fields.
+
+6. How do transactions work in MongoDB?
+   MongoDB supports multi-document ACID transactions (from v4.0+)
+   using startSession()/startTransaction(), letting you commit or
+   abort a group of operations atomically, similar to SQL transactions.
+
+7. What is a compound index? When would you use one?
+   An index on multiple fields together, useful when queries filter
+   or sort by more than one field regularly — the field order in the
+   index should match the most common query pattern.
+
+8. Explain Mongoose schemas, models and validation.
+   A schema defines the shape and rules for documents (types, required
+   fields, defaults). A model is a compiled version of the schema used
+   to create/query documents. Validation runs automatically on
+   save/update based on schema rules.
+
+9. How do you handle schema versioning/migrations in MongoDB?
+   By writing migration scripts (often with tools like migrate-mongo)
+   that transform existing documents to a new shape, and by designing
+   schemas defensively (optional fields, default values) to tolerate
+   older document versions during rollout.
+
+10. What is sharding and replication in MongoDB?
+    Sharding splits data across multiple servers to scale horizontally
+    for large datasets. Replication keeps multiple copies of data
+    (replica sets) for high availability and failover.
+
+11. How do you optimize a slow MongoDB query?
+    Use explain() to see the query plan, add proper indexes matching
+    query/sort fields, avoid unnecessary fields with projection, and
+    restructure the schema/aggregation if a collection scan is
+    unavoidable.
+
+
+5. MYSQL / POSTGRESQL / SQL
+-----------------------------
+1. Difference between INNER JOIN, LEFT JOIN, RIGHT JOIN and FULL JOIN.
+   INNER JOIN returns only matching rows in both tables. LEFT JOIN
+   returns all rows from the left table plus matches from the right
+   (nulls if none). RIGHT JOIN is the reverse. FULL JOIN returns all
+   rows from both, matched where possible.
+
+2. What is normalization? Explain 1NF, 2NF, 3NF.
+   Normalization organizes data to reduce redundancy. 1NF requires
+   atomic column values with no repeating groups. 2NF requires 1NF
+   plus no partial dependency on part of a composite key. 3NF requires
+   2NF plus no transitive dependency (non-key columns depending on
+   other non-key columns).
+
+3. What is an index and how does it improve query performance?
+   An index is a lookup structure on one or more columns that lets the
+   database find rows without scanning the full table, similar to a
+   book's index — greatly speeding up SELECT/WHERE/JOIN performance.
+
+4. Difference between primary key and unique key.
+   A primary key uniquely identifies each row, cannot be null, and a
+   table can have only one. A unique key also enforces uniqueness but
+   allows one null value (in most DBs) and a table can have multiple.
+
+5. What are ACID properties?
+   Atomicity (all-or-nothing execution), Consistency (DB moves between
+   valid states), Isolation (concurrent transactions don't interfere),
+   Durability (committed data survives crashes).
+
+6. Explain the difference between WHERE and HAVING.
+   WHERE filters rows before grouping/aggregation. HAVING filters
+   groups after a GROUP BY, typically used with aggregate functions
+   like COUNT() or SUM().
+
+7. What is a transaction? Explain COMMIT and ROLLBACK.
+   A transaction is a group of SQL statements executed as a single
+   unit. COMMIT saves all changes permanently; ROLLBACK undoes all
+   changes made in the transaction if something goes wrong.
+
+8. Difference between DELETE, TRUNCATE and DROP.
+   DELETE removes rows (can be filtered with WHERE, logged, can be
+   rolled back). TRUNCATE removes all rows quickly without logging
+   individual deletes. DROP removes the entire table structure along
+   with its data.
+
+9. What is a stored procedure vs a trigger?
+   A stored procedure is a reusable, explicitly-called block of SQL
+   logic. A trigger automatically fires in response to an event
+   (INSERT/UPDATE/DELETE) on a table, without being called directly.
+
+10. Difference between MySQL and PostgreSQL.
+    MySQL is generally simpler and very fast for read-heavy
+    applications; PostgreSQL is more feature-rich (advanced data
+    types, better standards compliance, stronger support for complex
+    queries and JSON) and is often preferred for complex/analytical
+    workloads.
+
+11. How would you optimize a slow SQL query using EXPLAIN?
+    Run EXPLAIN (or EXPLAIN ANALYZE) to see the query plan — check for
+    full table scans, missing indexes, or inefficient joins, then add
+    appropriate indexes or rewrite the query to reduce scanned rows.
+
+
+6. AUTHENTICATION & SECURITY (JWT, bcrypt, Sessions)
+------------------------------------------------------
+1. How does JWT-based authentication work end-to-end?
+   On login, the server verifies credentials and issues a signed JWT
+   containing user info/claims. The client stores it (e.g., in memory
+   or a secure cookie) and sends it in the Authorization header on
+   each request; the server verifies the signature to authenticate
+   without a DB lookup for session state.
+
+2. Difference between session-based and token-based authentication.
+   Session-based auth stores session state server-side (in memory/DB)
+   with a session ID cookie; the server must look it up each request.
+   Token-based auth (JWT) is stateless — all needed info is in the
+   signed token itself, so no server-side session store is needed.
+
+3. How do you securely store passwords using bcrypt?
+   bcrypt hashes the password with a built-in random salt and a
+   configurable cost factor before storing it — never store plaintext
+   passwords. On login, bcrypt.compare() checks the entered password
+   against the stored hash.
+
+4. What is the difference between authentication and authorization?
+   Authentication verifies who the user is (login/identity).
+   Authorization determines what that authenticated user is allowed to
+   do (permissions/roles).
+
+5. How do you implement role-based access control (RBAC)?
+   Assign each user one or more roles, store allowed permissions per
+   role, and check the user's role against required permissions in
+   middleware before allowing access to a route/action.
+
+6. What is a refresh token and why is it needed?
+   A refresh token is a long-lived token used to obtain a new short-
+   lived access token without forcing the user to log in again. It
+   limits the exposure window of access tokens while keeping the
+   session usable.
+
+7. How do you protect APIs from XSS, CSRF and SQL Injection?
+   XSS: sanitize/escape user input rendered in HTML and use CSP
+   headers. CSRF: use CSRF tokens and SameSite cookies. SQL Injection:
+   use parameterized queries/ORMs instead of string-concatenated SQL.
+
+8. What is the purpose of HTTP-only and Secure cookies?
+   HttpOnly prevents JavaScript from accessing the cookie (mitigating
+   XSS-based token theft). Secure ensures the cookie is only sent over
+   HTTPS, protecting it from being intercepted in transit.
+
+9. How do you handle token expiry and revocation?
+   Set a short expiry on access tokens and use refresh tokens for
+   renewal. For revocation, maintain a denylist/blacklist (often in
+   Redis) of invalidated tokens, or use short expiries so revocation
+   isn't often needed.
+
+10. What is middleware-based route protection in Express?
+    An authentication middleware checks for a valid token/session
+    before the request reaches the route handler, and rejects
+    (401/403) unauthorized requests — keeping auth logic centralized
+    instead of repeated in every route.
+
+
+7. REDIS
+--------
+1. What is Redis and what are its common use cases?
+   Redis is an in-memory key-value data store used for caching,
+   session storage, rate limiting, real-time leaderboards, and as a
+   message broker (pub/sub), valued for its very low latency.
+
+2. Difference between Redis and a traditional database.
+   Redis stores data in memory (much faster, but limited by RAM and
+   less durable by default) versus traditional databases which
+   persist to disk and support complex relational queries. Redis is
+   typically used alongside a primary DB, not as a full replacement.
+
+3. How do you implement caching using Redis in a Node.js app?
+   On a request, check Redis first for the cached key; if present
+   (cache hit), return it directly; if not (cache miss), fetch from
+   the DB, store the result in Redis with a TTL, then return it.
+
+4. What is cache invalidation and how do you handle it?
+   Cache invalidation is removing/updating stale cached data when the
+   underlying data changes — done by deleting/updating the Redis key
+   whenever the source data is modified, or by using short TTLs.
+
+5. Explain Redis data structures (strings, hashes, lists, sets, sorted sets).
+   Strings store simple values; hashes store field-value pairs (like
+   an object); lists are ordered collections (used as queues); sets
+   store unique unordered values; sorted sets add a score to each
+   member for ranking (e.g., leaderboards).
+
+6. How does Redis handle persistence (RDB vs AOF)?
+   RDB takes periodic point-in-time snapshots of the dataset to disk.
+   AOF logs every write operation and replays it on restart for
+   better durability. Redis can use either or both together.
+
+7. What is TTL in Redis and how do you set it?
+   TTL (time-to-live) is an expiry time on a key after which Redis
+   automatically deletes it. Set with EXPIRE key seconds, or directly
+   with SET key value EX seconds.
+
+8. How would you use Redis for rate limiting or session storage?
+   Rate limiting: increment a counter key per user/IP with a TTL
+   window (e.g., INCR + EXPIRE) and reject requests once the limit is
+   hit. Session storage: store session data as a Redis hash keyed by
+   session ID, with a TTL matching session expiry.
+
+
+8. RABBITMQ / MESSAGE QUEUES
+------------------------------
+1. What is RabbitMQ and why use a message queue?
+   RabbitMQ is a message broker that lets services communicate
+   asynchronously by sending messages to queues. It decouples
+   producers from consumers, improves reliability, and smooths out
+   traffic spikes by letting consumers process at their own pace.
+
+2. Explain producer-consumer architecture.
+   A producer publishes messages to a queue/exchange; one or more
+   consumers listen on the queue and process messages independently,
+   so producers don't need to know who or how messages are handled.
+
+3. Difference between message queues and pub/sub systems.
+   In a queue, each message is typically consumed by one consumer
+   (work distribution). In pub/sub, a message is broadcast to all
+   subscribers of a topic — RabbitMQ supports both via different
+   exchange types.
+
+4. What are exchanges, queues and bindings in RabbitMQ?
+   An exchange receives messages from producers and routes them to
+   queues based on rules. A queue stores messages until consumed. A
+   binding is the rule connecting an exchange to a queue (e.g., by
+   routing key).
+
+5. How do you handle failed message processing (dead-letter queues, retries)?
+   Configure a dead-letter exchange/queue so failed or rejected
+   messages are routed there instead of being lost, and implement
+   retry logic with limited attempts and backoff before sending a
+   message to the DLQ for manual inspection.
+
+6. Difference between RabbitMQ and Kafka.
+   RabbitMQ is a traditional message broker good for complex routing
+   and lower-throughput task queues. Kafka is a distributed log built
+   for very high-throughput event streaming and long-term message
+   retention/replay.
+
+7. How do you ensure message delivery guarantees (at-least-once, exactly-once)?
+   Use acknowledgments (ack/nack) so a message is only removed from
+   the queue after successful processing (at-least-once), and design
+   consumers to be idempotent so reprocessing a duplicate message
+   doesn't cause incorrect side effects (effectively exactly-once).
+
+8. How would you decouple email/notification sending from an API request cycle?
+   Instead of sending the email synchronously in the API handler,
+   publish a "send email" message to a queue and let a separate
+   background worker/consumer process it, so the API responds quickly
+   without waiting on SMTP.
+
+
+9. DOCKER & DOCKER COMPOSE
+-----------------------------
+1. What is the difference between a Docker image and a container?
+   An image is a read-only, packaged blueprint (code + dependencies +
+   OS layer). A container is a running instance of that image, with
+   its own writable layer, isolated process, and network namespace.
+
+2. What is a Dockerfile and what are common instructions used in it?
+   A Dockerfile is a script defining how to build an image. Common
+   instructions: FROM (base image), WORKDIR, COPY, RUN (build-time
+   commands), EXPOSE (port), CMD/ENTRYPOINT (runtime command).
+
+3. What is the purpose of Docker Compose?
+   Docker Compose lets you define and run multi-container
+   applications (e.g., app + DB + Redis) together using a single
+   YAML file, handling networking and startup order between them.
+
+4. How do you handle environment variables and secrets in Docker?
+   Pass non-sensitive config via environment variables in
+   docker-compose.yml or --env-file; for secrets, use Docker secrets,
+   a secret manager, or CI/CD injected environment variables — never
+   bake secrets into the image.
+
+5. What are Docker volumes and why are they needed?
+   Volumes are persistent storage mounted into a container, so data
+   survives container restarts/removal — used for databases, uploaded
+   files, and anything that shouldn't be lost when a container is
+   recreated.
+
+6. Explain Docker networking and how containers communicate.
+   Containers on the same Docker network can reach each other by
+   service/container name (Docker's internal DNS), while
+   port-mapping (-p) exposes a container's port to the host machine
+   for external access.
+
+7. What is a multi-stage Docker build and why use it?
+   It uses multiple FROM stages in one Dockerfile — e.g., build the
+   app in a "builder" stage with dev tools, then copy only the final
+   artifacts into a slim runtime image — reducing final image size
+   and attack surface.
+
+8. How do you implement health checks for a containerized service?
+   Add a HEALTHCHECK instruction in the Dockerfile (or a healthcheck
+   block in Compose) that periodically runs a command/HTTP check
+   (e.g., curl an endpoint) so Docker/orchestrators know if the
+   container is actually ready and healthy.
+
+9. Difference between CMD and ENTRYPOINT in a Dockerfile.
+   ENTRYPOINT defines the fixed executable that always runs. CMD
+   provides default arguments (which can be overridden at
+   "docker run"). Often used together: ENTRYPOINT sets the command,
+   CMD sets default args.
+
+10. How do you reduce Docker image size?
+    Use slim/alpine base images, multi-stage builds, combine RUN
+    commands to reduce layers, clean up cache/temp files in the same
+    layer they're created, and use a .dockerignore file to exclude
+    unnecessary files.
+
+
+10. CI/CD & JENKINS
+---------------------
+1. What is CI/CD and why is it important?
+   CI (Continuous Integration) automatically builds/tests code on
+   every change to catch issues early. CD (Continuous
+   Delivery/Deployment) automates releasing that code to staging/
+   production, reducing manual errors and speeding up delivery.
+
+2. Explain the stages of a typical Jenkins pipeline.
+   Common stages: checkout code, install dependencies, build,
+   run tests (unit/integration), build Docker image, push to registry,
+   and deploy to the target environment — each stage gating the next.
+
+3. How do you integrate automated tests (Jest) into a CI pipeline?
+   Add a pipeline stage that runs "npm test" (Jest), fails the build
+   if any test fails, and optionally publishes coverage/test reports
+   as build artifacts.
+
+4. What is a Jenkinsfile?
+   A Jenkinsfile is a text file (usually Groovy, declarative or
+   scripted syntax) checked into the repo that defines the entire
+   CI/CD pipeline as code, so it's version-controlled alongside the
+   application.
+
+5. How do you handle secrets/credentials in Jenkins pipelines?
+   Store secrets in Jenkins' built-in Credentials store (or an
+   external vault) and reference them in the pipeline via
+   "withCredentials," so they're never hardcoded in the Jenkinsfile or
+   logs.
+
+6. How do you set up dependency health checks before running tests (e.g., MySQL readiness)?
+   In Docker Compose, add a healthcheck to the MySQL service (e.g., a
+   mysqladmin ping command) and configure the test service to
+   "depends_on" MySQL with "condition: service_healthy," so tests only
+   start once the DB is actually ready.
+
+7. Difference between continuous integration, continuous delivery and continuous deployment.
+   CI: auto build/test on every commit. Continuous Delivery: code is
+   automatically prepared for release but deployment to production is
+   a manual trigger. Continuous Deployment: every passing change is
+   automatically deployed to production with no manual step.
+
+
+11. NGINX
+---------
+1. What is a reverse proxy and why use Nginx for it?
+   A reverse proxy sits in front of backend servers, forwarding client
+   requests to them. Nginx is used for this because it's fast,
+   handles many concurrent connections efficiently, and adds
+   features like load balancing, SSL termination, and caching.
+
+2. How does Nginx handle load balancing?
+   Nginx distributes incoming requests across multiple backend
+   instances using algorithms like round-robin, least-connections, or
+   IP-hash, defined in an "upstream" block.
+
+3. What is the difference between forward proxy and reverse proxy?
+   A forward proxy sits in front of clients, hiding/representing them
+   to external servers (e.g., a corporate proxy). A reverse proxy sits
+   in front of servers, hiding/representing them to external clients.
+
+4. How would you configure Nginx to route traffic to multiple backend services?
+   Define separate "location" blocks (or server blocks by domain/path)
+   that proxy_pass to different upstream services based on URL path or
+   subdomain.
+
+5. How do you enable SSL/HTTPS termination in Nginx?
+   Configure the server block to listen on 443 with ssl enabled,
+   provide the SSL certificate and private key paths (e.g., from
+   Let's Encrypt), and Nginx decrypts HTTPS traffic before forwarding
+   plain HTTP to backend services.
+
+
+12. AWS / CLOUD (EC2, S3, Lambda, GCP, DigitalOcean, Terraform)
+-------------------------------------------------------------------
+1. What is the difference between EC2 and Lambda?
+   EC2 is a virtual machine you manage yourself (always running,
+   billed for uptime). Lambda is serverless — you deploy just a
+   function, AWS manages the infrastructure, and you're billed only
+   for actual execution time.
+
+2. How do you securely store and access files in S3?
+   Use IAM roles/policies to restrict access, keep buckets private by
+   default, use signed URLs for temporary access, enable
+   encryption-at-rest, and avoid public bucket policies unless
+   explicitly required.
+
+3. What is IAM and why is it important in AWS?
+   IAM (Identity and Access Management) controls who/what can access
+   AWS resources and what actions they can perform, following the
+   principle of least privilege to keep the account secure.
+
+4. Explain the basics of serverless computing with AWS Lambda.
+   You write a function, deploy it to Lambda, and it runs in response
+   to triggers (API Gateway request, S3 event, queue message) without
+   you provisioning or managing servers, scaling automatically per
+   request.
+
+5. What is LocalStack and why would you use it in development?
+   LocalStack emulates AWS services (S3, Lambda, SQS, etc.) locally,
+   letting developers build and test AWS-integrated code without
+   incurring real cloud costs or needing live AWS credentials.
+
+6. What is Terraform and how does infrastructure-as-code help?
+   Terraform lets you define cloud infrastructure (servers, networks,
+   databases) as code in config files, which can be version-controlled,
+   reviewed, and applied consistently/repeatably instead of manual
+   console clicks.
+
+7. Difference between AWS, GCP and DigitalOcean at a high level.
+   AWS is the largest and most feature-complete cloud provider. GCP is
+   strong in data/AI tooling and Kubernetes. DigitalOcean is simpler
+   and more affordable, aimed at smaller apps/startups needing less
+   complexity.
+
+8. How do you design a scalable and fault-tolerant cloud architecture?
+   Use load balancers across multiple instances/availability zones,
+   auto-scaling groups, stateless application servers, managed/
+   replicated databases, caching layers, and health checks with
+   automatic failover.
+
+
+13. REACT.JS / FRONTEND
+--------------------------
+1. What is the Virtual DOM and how does React use it?
+   The Virtual DOM is an in-memory representation of the real DOM.
+   React updates this virtual copy first, diffs it against the
+   previous version, and applies only the minimal necessary changes to
+   the real DOM, improving performance.
+
+2. Difference between functional and class components.
+   Functional components are plain JS functions returning JSX and use
+   hooks for state/lifecycle. Class components extend React.Component,
+   use "this.state" and lifecycle methods. Functional components with
+   hooks are the modern standard.
+
+3. Explain useState and useEffect hooks.
+   useState adds local state to a functional component and returns a
+   value plus a setter. useEffect runs side effects (data fetching,
+   subscriptions) after render, and can clean up or re-run based on a
+   dependency array.
+
+4. What is the difference between props and state?
+   Props are read-only data passed from a parent to a child component.
+   State is data managed internally within a component that can
+   change over time and trigger re-renders.
+
+5. How does React Router handle client-side routing?
+   It intercepts URL changes in the browser and renders different
+   components based on the current path, without a full page reload,
+   using the History API under the hood.
+
+6. What is prop drilling and how do you avoid it (Context API)?
+   Prop drilling is passing props through many intermediate components
+   that don't need them, just to reach a deeply nested child. The
+   Context API avoids this by letting you share data directly across
+   the component tree without manual prop passing at every level.
+
+7. Difference between controlled and uncontrolled components.
+   A controlled component's form value is driven by React state (via
+   value + onChange). An uncontrolled component manages its own state
+   internally in the DOM, accessed via a ref when needed.
+
+8. How do you optimize performance in a React app (memoization, lazy loading)?
+   Use React.memo/useMemo/useCallback to avoid unnecessary
+   re-renders/recalculations, code-split with React.lazy and
+   Suspense to load components on demand, and virtualize long lists.
+
+9. What is the difference between React and Angular?
+   React is a lightweight UI library focused on components and the
+   view layer, paired with other libraries as needed. Angular is a
+   full-fledged framework with built-in routing, forms, DI, and
+   stricter structure using TypeScript by default.
+
+10. How do HTML5 semantic tags and CSS3 flexbox/grid help build responsive UIs?
+    Semantic tags (header, nav, main, section) improve accessibility
+    and SEO by describing content meaning. Flexbox/Grid provide
+    powerful, responsive layout systems that adapt to different screen
+    sizes without complex float/positioning hacks.
+
+
+14. TESTING (Jest, Postman, Swagger)
+---------------------------------------
+1. What is unit testing vs integration testing?
+   Unit testing verifies a single function/module in isolation
+   (mocking dependencies). Integration testing verifies that multiple
+   modules/components (e.g., API + DB) work correctly together.
+
+2. How do you mock external API calls in Jest?
+   Use jest.mock() to replace a module (like axios) with a mock
+   implementation that returns controlled fake responses, so tests
+   don't depend on real network calls.
+
+3. What is the purpose of Swagger/OpenAPI documentation?
+   It provides a standardized, machine-readable specification of an
+   API's endpoints, request/response formats, and auth requirements —
+   enabling auto-generated docs, client SDKs, and easy testing via
+   Swagger UI.
+
+4. How do you test protected/authenticated API routes using Postman?
+   First hit the login endpoint to get a token, then attach it as a
+   Bearer token in the Authorization header (often via a Postman
+   environment variable) for subsequent requests to protected routes.
+
+5. What is test coverage and how do you measure it?
+   Test coverage measures what percentage of code (lines, branches,
+   functions) is executed by your test suite. Tools like Jest's
+   built-in coverage (via Istanbul) generate a report showing covered
+   vs uncovered code.
+
+6. Explain the Arrange-Act-Assert pattern in testing.
+   Arrange: set up test data/mocks. Act: execute the function/code
+   under test. Assert: verify the actual output matches the expected
+   result. This structure keeps tests clear and consistent.
+
+
+15. THIRD-PARTY INTEGRATIONS (XML, SOAP, Razorpay, ERP)
+------------------------------------------------------------
+1. How do you parse and generate XML in a Node.js service?
+   Use libraries like xml2js (XML to JS object) or xmlbuilder/
+   fast-xml-parser (JS object to XML) to convert between formats when
+   communicating with SOAP/XML-based systems.
+
+2. What are the key differences between consuming a SOAP API vs a REST API?
+   SOAP requires strict XML envelopes defined by a WSDL contract, with
+   built-in standards for security/transactions, and is more verbose.
+   REST is simpler, typically JSON-based, and more flexible but with
+   fewer built-in standards.
+
+3. How do you handle payment gateway integration (e.g., Razorpay) securely?
+   Never expose the secret key on the client; create orders server-
+   side, verify payment signatures server-side after callback, and
+   always confirm payment status via a webhook rather than trusting
+   the client alone.
+
+4. How do you handle webhook verification for payment callbacks?
+   Verify the webhook's signature (using the shared secret) against
+   the raw payload before trusting it, to ensure the request actually
+   came from the payment provider and wasn't spoofed.
+
+5. How would you design retry logic for a flaky third-party insurer API?
+   Implement retries with exponential backoff and a max attempt limit,
+   distinguish retryable errors (timeouts, 5xx) from non-retryable
+   ones (4xx validation errors), and log/alert after repeated failures.
+
+6. How do you handle structured error responses from external ERP systems?
+   Parse the external system's error format into a standardized
+   internal error shape, map known error codes to meaningful messages,
+   and log the raw response for debugging while returning a clean
+   error to the caller.
+
+
+16. AI / OPENAI API / FASTAPI (Policy PDF Parser project)
+----------------------------------------------------------------
+1. How do you design a prompt to extract structured JSON from unstructured text?
+   Clearly specify the exact JSON schema/fields expected, give a
+   sample output format, instruct the model to return only JSON (no
+   extra text), and provide the source text/document content as
+   context.
+
+2. How do you validate and handle malformed AI-generated JSON output?
+   Wrap JSON.parse() in a try/catch, validate the parsed object
+   against an expected schema (e.g., with zod/Joi), and implement a
+   fallback (retry the prompt or flag for manual review) if
+   validation fails.
+
+3. What is FastAPI and why pair it with a Node.js backend?
+   FastAPI is a modern Python web framework, well-suited for AI/ML
+   workloads since most AI/data libraries are Python-based. Pairing it
+   with Node.js lets the Node service handle the main API/business
+   logic while FastAPI handles AI-specific processing as a
+   microservice.
+
+4. How do you handle large file/PDF uploads efficiently (streaming, multipart)?
+   Use streaming multipart parsers (like formidable/multer) that write
+   directly to disk/storage instead of buffering the whole file in
+   memory, and set reasonable file size limits.
+
+5. How would you reduce hallucination risk when extracting data with an LLM?
+   Constrain the prompt tightly to only extract from given text (not
+   general knowledge), request explicit "not found" values instead of
+   guesses for missing fields, and validate extracted values against
+   expected formats/ranges.
+
+6. How do you secure communication between a Node.js service and a Python/FastAPI microservice?
+   Use internal network isolation (private VPC/Docker network) so the
+   service isn't publicly exposed, add an API key/shared secret for
+   service-to-service auth, and use HTTPS if crossing network
+   boundaries.
+
+
+17. SYSTEM DESIGN (based on Insurance/ERP domain experience)
+------------------------------------------------------------------
+1. How would you design a proposal-to-policy workflow for an insurance platform?
+   Model it as a state machine: Draft -> Proposal Submitted ->
+   Underwriting/Validation -> Payment -> Policy Issued, with each
+   transition validated and logged, and background jobs/webhooks
+   notifying downstream systems at each stage.
+
+2. How would you design an EMI/payment scheduling system?
+   Store an EMI schedule as individual installment records with due
+   dates and amounts linked to a policy, use a scheduler/cron or queue
+   to trigger reminders/auto-debits, and record each payment's status
+   independently for accurate tracking.
+
+3. How would you design a system to integrate with multiple insurers with different API formats?
+   Build an adapter layer — one adapter per insurer that translates
+   their specific REST/XML/SOAP format into a common internal data
+   model, so the rest of the system only deals with one unified
+   format.
+
+4. How would you scale a Node.js + MongoDB backend for high traffic?
+   Horizontally scale stateless Node instances behind a load balancer,
+   add caching (Redis) for hot data, use MongoDB indexing/sharding for
+   large collections, and offload slow/async work (emails, reports) to
+   background queues.
+
+5. How would you design an async notification system (email/SMS) at scale?
+   Publish notification events to a message queue (RabbitMQ) instead
+   of sending synchronously, have dedicated worker services consume
+   and send via email/SMS providers, with retries and dead-letter
+   handling for failures.
+
+6. How do you ensure data consistency across microservices?
+   Use patterns like the Saga pattern for distributed transactions,
+   idempotent operations to safely handle retries, and event-driven
+   updates (via a queue) so services eventually converge to a
+   consistent state rather than relying on a single distributed
+   transaction.
+
+
+18. GIT / GITHUB / WORKFLOW
+-------------------------------
+1. Difference between git merge and git rebase.
+   Merge combines two branches by creating a new merge commit,
+   preserving full history. Rebase replays your commits on top of
+   another branch, creating a linear history without a merge commit
+   (but rewrites commit history).
+
+2. What is a pull request and how do code reviews fit into your workflow?
+   A pull request proposes merging changes from one branch into
+   another, allowing teammates to review the diff, comment, request
+   changes, and approve before the code is merged.
+
+3. How do you resolve merge conflicts?
+   Git marks conflicting sections in the affected files; you manually
+   edit them to keep the correct code, remove the conflict markers,
+   then stage and commit (or continue the rebase) to finish.
+
+4. What is git cherry-pick used for?
+   It applies a specific commit from one branch onto another branch,
+   useful for pulling in a single fix without merging the entire
+   source branch.
+
+5. Explain branching strategies (Git Flow, trunk-based development).
+   Git Flow uses long-lived branches (develop, feature, release,
+   hotfix) for structured releases. Trunk-based development keeps
+   everyone committing frequently to a single main branch with short-
+   lived feature branches, favoring continuous integration/deployment.
+
+
+19. GENERAL / BEHAVIORAL (HR ROUND)
+---------------------------------------
+1. Walk me through your resume/experience.
+   Give a brief, structured summary in chronological order: current
+   role and key responsibilities at Policyboss, previous role at
+   Virtual SCM, core tech stack, and 1-2 standout projects — keep it
+   under 2 minutes and tie it back to the role you're applying for.
+
+2. Describe a challenging bug you debugged in production. How did you solve it?
+   Structure the answer as: what broke, how you identified the root
+   cause (logs, reproducing it, isolating the failing component), the
+   fix you applied, and what you changed afterward to prevent
+   recurrence (e.g., better logging, tests, monitoring).
+
+3. How do you prioritize tasks when handling multiple insurer integrations at once?
+   Explain prioritizing by business impact/deadline, breaking large
+   integrations into smaller testable pieces, communicating timelines
+   clearly, and flagging blockers early rather than late.
+
+4. Tell me about a time you had to learn a new technology quickly.
+   Pick a real example (e.g., FastAPI/OpenAI integration for the AI
+   PDF parser project), explain how you approached learning it
+   (docs, small proof-of-concept, iterating), and the outcome.
+
+5. How do you handle disagreements with a teammate or reviewer on code approach?
+   Emphasize listening to their reasoning first, backing your own
+   approach with concrete trade-offs (performance, maintainability),
+   and being willing to compromise or defer to data/testing when the
+   "right" answer isn't obvious.
+
+6. Why are you looking for a change / what are you looking for in your next role?
+   Focus on growth-oriented reasons — wanting to work on larger scale
+   systems, broader tech exposure, or more ownership — rather than
+   negative comments about your current employer.
+
+7. Where do you see yourself in the next 2-3 years?
+   Talk about deepening backend/system-design expertise, potentially
+   moving toward a senior/lead engineering role, and continuing to
+   build products that have real business impact.
+
+8. Describe a project you are most proud of and why.
+   Pick one (e.g., the AI-Powered Policy PDF Parser) and explain the
+   problem it solved, your specific contribution, the technical
+   challenge you overcame, and the measurable impact/result.
+
+====================================================================
+End of file.
