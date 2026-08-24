@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gopal Rajput | Node.js Full Stack Developer</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script>
+tailwind.config = {
+  theme: { extend: {
+    fontFamily: { sans: ['Inter','system-ui','sans-serif'] },
+    colors: {
+      primary:'#6b21a8','primary-dark':'#581c87','primary-light':'#7e22ce',
+      dark:'#18212b',muted:'#6b7280',border:'#e5e7eb',soft:'#faf5ff'
+    }
+  }}
+}
+</script>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{font-family:Inter,system-ui,sans-serif;background:#f3f4f6}
+.resume{width:210mm;max-width:100%;margin:24px auto;background:#fff}
+.section{break-inside:avoid;page-break-inside:avoid}
+.project{break-inside:avoid;page-break-inside:avoid}
+h1,h2,h3,p,ul{break-inside:avoid}
+ul{margin-top:0;margin-bottom:0}
+@media print{
+  @page{size:A4 portrait;margin:0}
+  html,body{width:210mm;background:#fff!important}
+  body{padding:0!important;margin:0!important}
+  .resume{width:210mm;max-width:none;margin:0!important;box-shadow:none!important;border-radius:0!important}
+  .no-print{display:none!important}
+  .page-break{break-before:page;page-break-before:always}
+  .section,.project{break-inside:avoid;page-break-inside:avoid}
+  a{color:inherit;text-decoration:none}
+}
+@media screen{
+  .resume{box-shadow:0 8px 30px rgba(0,0,0,.12);border-radius:8px;overflow:hidden}
+}
+</style>
+
+<style id="pdf-layout-fix">
+@media print {
+  @page { size: A4; margin: 8mm 9mm; }
+  html, body {
+    width: 210mm;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #fff !important;
+  }
+  body {
+    display: block !important;
+    min-height: 0 !important;
+  }
+  .page {
+    width: auto !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    overflow: visible !important;
+  }
+  .page > div {
+    padding-top: 5mm !important;
+    padding-bottom: 3mm !important;
+  }
+  header {
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+  section {
+    break-inside: auto !important;
+    page-break-inside: auto !important;
+    margin-top: 0 !important;
+  }
+  h2 {
+    break-after: avoid !important;
+    page-break-after: avoid !important;
+  }
+  h3, p, li {
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+  ul { margin-top: 0 !important; margin-bottom: 0 !important; }
+  .no-print { display: none !important; }
+}
+</style>
+
+<style id="pdf-color-fix">
+@media print {
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+  header.bg-gradient-to-r {
+    background: linear-gradient(to right, #6b21a8, #7e22ce) !important;
+    color: #ffffff !important;
+  }
+  .bg-soft {
+    background-color: #faf5ff !important;
+  }
+  .text-primary {
+    color: #6b21a8 !important;
+  }
+  .border-primary {
+    border-color: #6b21a8 !important;
+  }
+  .text-purple-200 {
+    color: #e9d5ff !important;
+  }
+  .text-purple-100 {
+    color: #f3e8ff !important;
+  }
+}
+</style>
+</head>
+<body>
+<div class="resume">
+
+<header class="bg-gradient-to-r from-primary to-primary-light text-white px-10 py-7">
+  <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+    <div>
+      <h1 class="text-4xl font-bold tracking-tight">Gopal Rajput</h1>
+      <p class="text-purple-200 text-lg mt-1 font-medium">Node.js Full Stack Developer | Backend Developer</p>
+    </div>
+    <div class="text-sm space-y-1 text-purple-100">
+      <div>✉ gopal.rajput@example.com</div>
+      <div>☎ +91 98765 43210</div>
+      <div>⌖ Mumbai, Maharashtra, India</div>
+    </div>
+  </div>
+  <div class="flex gap-4 mt-4 text-sm">
+    <a href="https://linkedin.com/in/gopalrajput">LinkedIn</a>
+    <a href="https://github.com/gopalrajput">GitHub</a>
+    <a href="https://gopalrajput.dev">Portfolio</a>
+  </div>
+</header>
+
+<main class="px-10 py-7">
+
+<section class="section mb-6">
+<h2 class="text-sm font-bold text-primary uppercase tracking-wider mb-2 border-b border-border pb-1.5">Professional Summary</h2>
+<p class="text-gray-700 leading-relaxed text-[12.5px]">
+Backend-focused Node.js Full Stack Developer with 3+ years of experience developing and maintaining business-critical applications using Node.js, Express.js, MongoDB and MySQL. Experienced in building REST APIs, insurer-specific business rule engines, authentication systems and third-party integrations using REST, XML and SOAP. Hands-on experience with Docker, Docker Compose, Jenkins CI/CD, AWS services, Redis, RabbitMQ and Nginx. Experienced in React and Angular application integration and recently worked on AI-powered policy document processing using Node.js, OpenAI APIs, Python and FastAPI.
+</p>
+</section>
+
+<section class="section mb-6">
+<h2 class="text-sm font-bold text-primary uppercase tracking-wider mb-3 border-b border-border pb-1.5">Core Technical Skills</h2>
+<div class="grid grid-cols-2 gap-x-6 gap-y-2.5 text-[12px]">
+<div class="grid grid-cols-[95px_1fr] gap-x-2"><b>Backend</b><span>Node.js, Express.js, JavaScript, REST APIs, Async/Await, Promises, Middleware, Axios, Formidable, Error Handling</span></div>
+<div class="grid grid-cols-[95px_1fr] gap-x-2"><b>Databases</b><span>MongoDB, Mongoose, MySQL, SQL, CRUD, Aggregation, Indexing, Joins, Parameterized Queries, Connection Pooling</span></div>
+<div class="grid grid-cols-[95px_1fr] gap-x-2"><b>Authentication</b><span>JWT, Sessions, Cookies, bcrypt/bcryptjs, Authentication Middleware, Protected APIs</span></div>
+<div class="grid grid-cols-[95px_1fr] gap-x-2"><b>Messaging</b><span>Redis, RabbitMQ, SMTP, Background Workers, Producer/Consumer Architecture, Queue Processing</span></div>
+<div class="grid grid-cols-[95px_1fr] gap-x-2"><b>DevOps / CI/CD</b><span>Docker, Docker Compose, Jenkins, CI/CD, Git, GitHub, Nginx, Docker Networking, Healthchecks</span></div>
+<div class="grid grid-cols-[95px_1fr] gap-x-2"><b>Cloud</b><span>AWS EC2, AWS S3, AWS Lambda, AWS SDK, LocalStack, Terraform</span></div>
+<div class="grid grid-cols-[95px_1fr] gap-x-2"><b>Frontend</b><span>React, React Hooks, React Router, Vite, Angular, Angular Forms, HTML, CSS, Bootstrap, Tailwind CSS, jQuery</span></div>
+<div class="grid grid-cols-[95px_1fr] gap-x-2"><b>Testing</b><span>Jest, Postman, cURL, Swagger/OpenAPI, Selenium Basics</span></div>
+<div class="grid grid-cols-[95px_1fr] gap-x-2"><b>AI / Documents</b><span>OpenAI API, Prompt Engineering, AI PDF Processing, Structured JSON Extraction, Python, FastAPI, Uvicorn</span></div>
+<div class="grid grid-cols-[95px_1fr] gap-x-2"><b>Integrations</b><span>Third-Party APIs, REST, XML, SOAP, JSON Processing, File Upload APIs</span></div>
+</div>
+</section>
+
+<section class="section mb-6">
+<h2 class="text-sm font-bold text-primary uppercase tracking-wider mb-3 border-b border-border pb-1.5">Professional Experience</h2>
+<div>
+<div class="flex justify-between items-baseline mb-1">
+<h3 class="text-base font-bold text-dark">Node.js Full Stack Developer</h3>
+<span class="text-muted text-[11px] font-semibold whitespace-nowrap">May 2024 – Present</span>
+</div>
+<p class="text-primary font-semibold text-[12px] mb-2">Policyboss (LANDMARK INSURANCE BROKERS PRIVATE LIMITED) · Mumbai</p>
+<ul class="space-y-1 text-[12px] text-gray-700 list-disc ml-4">
+<li>Developed and maintained Node.js and Express.js REST APIs supporting Health, Travel, Motor and Two-Wheeler insurance application workflows.</li>
+<li>Implemented insurer-specific business rules covering age-based eligibility, relationship validation, medical declarations and hospitalization/medication checks.</li>
+<li>Built proposal processing, portability and EMI management APIs supporting Monthly, Quarterly and Half-Yearly schedules.</li>
+<li>Integrated third-party insurer and ERP systems using REST, XML and SOAP APIs with structured response parsing and centralized error handling.</li>
+<li>Designed and optimized MongoDB data access using aggregation pipelines, indexing and query filtering for proposal and transaction-related data.</li>
+<li>Developed secure APIs using JWT authentication, sessions, cookies, bcrypt and protected authentication middleware.</li>
+<li>Integrated backend APIs with React and Angular applications, maintaining consistent API contracts and data flow.</li>
+<li>Containerized backend applications using Docker and Docker Compose and worked with Nginx for service routing.</li>
+</ul>
+</div>
+</section>
+
+<section class="section mb-6">
+<h2 class="text-sm font-bold text-primary uppercase tracking-wider mb-3 border-b border-border pb-1.5">Key Projects</h2>
+<div class="space-y-3.5">
+
+<div class="project bg-soft border-l-4 border-primary p-3 rounded-r">
+<h3 class="font-bold text-dark text-[12.5px] mb-1">Insurance Management Platform — Health, Travel, Motor & Two-Wheeler</h3>
+<p class="text-primary text-[10.5px] font-semibold mb-1.5">Node.js · Express.js · MongoDB · MySQL · REST · XML · SOAP · Redis · Docker</p>
+<ul class="list-disc ml-4 space-y-1 text-[12px] text-gray-700">
+<li>Developed backend workflows for insurance quotation, proposal processing and policy-related operations across multiple insurance products.</li>
+<li>Implemented insurer-specific validation rules for age, relationship, medical conditions and eligibility.</li>
+<li>Built portability and EMI APIs connected to proposal records and insurer-specific business workflows.</li>
+<li>Integrated external insurer and ERP systems through REST, XML and SOAP interfaces with robust third-party error handling.</li>
+<li>Used MongoDB aggregation and indexing to support reporting and efficient querying of proposal and transaction data.</li>
+</ul>
+</div>
+
+<div class="project bg-soft border-l-4 border-primary p-3 rounded-r">
+<h3 class="font-bold text-dark text-[12.5px] mb-1">AI-Powered Policy PDF Parser</h3>
+<p class="text-primary text-[10.5px] font-semibold mb-1.5">Node.js · OpenAI API · Python · FastAPI · Formidable · Docker · JSON</p>
+<ul class="list-disc ml-4 space-y-1 text-[12px] text-gray-700">
+<li>Built Node.js APIs for uploading and processing policy PDF documents using multipart file handling.</li>
+<li>Designed structured extraction schemas and prompts for Health, Motor and Two-Wheeler policy documents.</li>
+<li>Integrated AI-based document processing to extract structured customer, policy, vehicle, coverage, nominee, discount and partner information.</li>
+<li>Connected Node.js services with a Python/FastAPI processing service and exchanged structured JSON data.</li>
+<li>Implemented filesystem and document-processing error handling for reliable processing workflows.</li>
+</ul>
+</div>
+
+<div class="project bg-soft border-l-4 border-primary p-3 rounded-r">
+<h3 class="font-bold text-dark text-[12.5px] mb-1">Dockerized Jenkins CI/CD Pipeline</h3>
+<p class="text-primary text-[10.5px] font-semibold mb-1.5">Jenkins · Docker · Docker Compose · Git/GitHub · Node.js · MySQL · Jest · MailHog</p>
+<ul class="list-disc ml-4 space-y-1 text-[12px] text-gray-700">
+<li>Implemented hands-on Jenkins CI/CD pipelines for a Dockerized Node.js application.</li>
+<li>Automated source checkout, test dependency startup, Docker image building and automated Jest test execution.</li>
+<li>Configured Docker Compose services including Node.js, MySQL and MailHog for repeatable testing environments.</li>
+<li>Added MySQL health checks and dependency readiness validation before running application tests.</li>
+<li>Worked with Docker container lifecycle, networking, environment configuration and CI pipeline troubleshooting.</li>
+</ul>
+</div>
+
+<div class="project bg-soft border-l-4 border-primary p-3 rounded-r">
+<h3 class="font-bold text-dark text-[12.5px] mb-1">Payment & EMI System</h3>
+<p class="text-primary text-[10.5px] font-semibold mb-1.5">Node.js · Express.js · MongoDB · Razorpay · REST APIs</p>
+<ul class="list-disc ml-4 space-y-1 text-[12px] text-gray-700">
+<li>Integrated Razorpay payment workflows and developed supporting payment APIs.</li>
+<li>Developed EMI creation and validation APIs supporting Monthly, Quarterly and Half-Yearly schedules.</li>
+<li>Used MongoDB aggregation and indexes for efficient EMI and payment-related reporting and lookup operations.</li>
+</ul>
+</div>
+
+<div class="project bg-soft border-l-4 border-primary p-3 rounded-r">
+<h3 class="font-bold text-dark text-[12.5px] mb-1">RabbitMQ Email Notification System</h3>
+<p class="text-primary text-[10.5px] font-semibold mb-1.5">Node.js · RabbitMQ · Redis · SMTP · Docker</p>
+<ul class="list-disc ml-4 space-y-1 text-[12px] text-gray-700">
+<li>Designed asynchronous email processing using RabbitMQ producer/consumer architecture.</li>
+<li>Built background workers and email queues to decouple notification processing from API requests.</li>
+<li>Implemented connection retry and error-handling logic and Dockerized messaging services for local environments.</li>
+</ul>
+</div>
+
+</div>
+</section>
+
+<section class="section mb-6">
+<h2 class="text-sm font-bold text-primary uppercase tracking-wider mb-2 border-b border-border pb-1.5">DevOps & Cloud</h2>
+<ul class="list-disc ml-4 space-y-1 text-[12px] text-gray-700">
+<li>Hands-on experience building and managing Docker and Docker Compose environments for Node.js, MySQL, MongoDB, Redis, RabbitMQ, Nginx and Jenkins.</li>
+<li>Implemented Jenkins CI/CD pipelines covering source checkout, Docker image builds, dependency startup, automated testing, deployment and post-build cleanup.</li>
+<li>Worked with Docker networking, port mappings, environment variables, container health checks and container troubleshooting.</li>
+<li>Hands-on experience with AWS EC2 and S3 and working exposure to AWS Lambda and AWS SDK integrations.</li>
+<li>Used LocalStack to simulate AWS services locally and worked with Terraform for infrastructure configuration.</li>
+<li>Used Nginx for local service routing and reverse-proxy configuration.</li>
+</ul>
+</section>
+
+<section class="section mb-6">
+<h2 class="text-sm font-bold text-primary uppercase tracking-wider mb-2 border-b border-border pb-1.5">Additional Technical Experience</h2>
+<ul class="list-disc ml-4 space-y-1 text-[12px] text-gray-700">
+<li>API debugging and development using Postman, cURL and Swagger/OpenAPI.</li>
+<li>Automated backend testing using Jest, including API and integration-oriented test workflows.</li>
+<li>Git/GitHub workflows including branching, commits, merges, pull operations and CI pipeline integration.</li>
+<li>Practical experience debugging Node.js, Docker, MySQL, MongoDB, networking and environment configuration issues.</li>
+</ul>
+</section>
+
+<section class="section mb-5">
+<div class="grid grid-cols-2 gap-6">
+<div>
+<h2 class="text-sm font-bold text-primary uppercase tracking-wider mb-2 border-b border-border pb-1.5">Education</h2>
+<h3 class="font-bold text-dark text-[12.5px]">Bachelor of Technology in Computer Science</h3>
+<p class="text-gray-700 text-[12px]">University of Mumbai</p>
+<p class="text-muted text-[11px]">2019 – 2023</p>
+</div>
+<div>
+<h2 class="text-sm font-bold text-primary uppercase tracking-wider mb-2 border-b border-border pb-1.5">Certifications</h2>
+<h3 class="font-bold text-dark text-[12.5px]">AWS Certified Developer – Associate</h3>
+<p class="text-gray-700 text-[12px]">Amazon Web Services · 2024</p>
+<h3 class="font-bold text-dark text-[12.5px] mt-2">MongoDB Certified Developer</h3>
+<p class="text-gray-700 text-[12px]">MongoDB University · 2023</p>
+</div>
+</div>
+</section>
+
+<div class="text-muted text-[10px] pt-3 border-t border-border">
+References available upon request.
+</div>
+
+</main>
+</div>
+
+<div class="no-print fixed bottom-6 right-6">
+<button onclick="window.print()" class="bg-primary hover:bg-primary-dark text-white px-6 py-3 rounded-lg shadow-lg font-semibold">
+Print / Save as PDF
+</button>
+</div>
+</body>
+</html>

@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gopal Rajput | Node.js Full Stack Developer Resume</title>
+
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f2f2f2;
+    color: #222;
+    line-height: 1.42;
+  }
+
+  .resume {
+    width: 210mm;
+    min-height: 297mm;
+    margin: 20px auto;
+    padding: 15mm 16mm;
+    background: #fff;
+  }
+
+  h1, h2, h3, p, ul { margin-top: 0; }
+  h1 { margin-bottom: 4px; font-size: 28px; }
+  h2 {
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: .7px;
+    border-bottom: 1.5px solid #222;
+    padding-bottom: 4px;
+    margin: 17px 0 8px;
+  }
+  h3 { font-size: 13px; margin-bottom: 2px; }
+  p, li { font-size: 10.5px; }
+  ul { padding-left: 18px; margin-bottom: 0; }
+  li { margin-bottom: 3px; }
+
+  .header {
+    border-bottom: 2px solid #222;
+    padding-bottom: 9px;
+  }
+
+  .role {
+    font-size: 13px;
+    font-weight: bold;
+    margin-bottom: 6px;
+  }
+
+  .contact {
+    font-size: 9.8px;
+    margin-bottom: 4px;
+  }
+
+  .contact a {
+    color: #222;
+    text-decoration: none;
+  }
+
+  .summary {
+    font-size: 10.7px;
+    margin-bottom: 0;
+  }
+
+  .skills {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px 22px;
+  }
+
+  .skill-row {
+    font-size: 10px;
+  }
+
+  .skill-row strong {
+    display: inline-block;
+    min-width: 88px;
+  }
+
+  .job-header,
+  .project-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    align-items: baseline;
+  }
+
+  .company {
+    font-size: 10.5px;
+    font-weight: bold;
+  }
+
+  .date {
+    font-size: 9.8px;
+    white-space: nowrap;
+  }
+
+  .project {
+    margin-bottom: 9px;
+  }
+
+  .project-tech {
+    font-size: 9.5px;
+    font-weight: bold;
+    margin-bottom: 3px;
+  }
+
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+  }
+
+  .small p { margin-bottom: 3px; }
+
+  .print-button {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    padding: 10px 16px;
+    border: 0;
+    border-radius: 5px;
+    background: #222;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  @media print {
+    @page {
+      size: A4;
+      margin: 9mm;
+    }
+
+    body {
+      background: #fff;
+    }
+
+    .resume {
+      width: auto;
+      min-height: auto;
+      margin: 0;
+      padding: 0;
+    }
+
+    .print-button {
+      display: none;
+    }
+
+    h2 {
+      break-after: avoid;
+      page-break-after: avoid;
+    }
+
+    .job, .project, .education, .certification {
+      break-inside: avoid;
+      page-break-inside: avoid;
+    }
+
+    a {
+      color: #222;
+      text-decoration: none;
+    }
+  }
+
+  @media screen and (max-width: 850px) {
+    .resume {
+      width: 100%;
+      min-height: auto;
+      margin: 0;
+      padding: 24px;
+    }
+
+    .skills,
+    .two-col {
+      grid-template-columns: 1fr;
+    }
+
+    .job-header,
+    .project-header {
+      display: block;
+    }
+
+    .date {
+      display: block;
+      margin-top: 2px;
+    }
+  }
+</style>
+</head>
+
+<body>
+
+<div class="resume">
+
+  <header class="header">
+    <h1>Gopal Rajput</h1>
+    <div class="role">Node.js Full Stack Developer | Backend Developer</div>
+
+    <div class="contact">
+      Mumbai, Maharashtra, India |
+      +91 98765 43210 |
+      gopal.rajput@example.com
+    </div>
+
+    <div class="contact">
+      LinkedIn: linkedin.com/in/gopalrajput |
+      GitHub: github.com/gopalrajput |
+      Portfolio: gopalrajput.dev
+    </div>
+  </header>
+
+  <section>
+    <h2>Professional Summary</h2>
+    <p class="summary">
+      Node.js Full Stack Developer with 3+ years of experience building and maintaining
+      backend and full-stack applications using Node.js, Express.js, JavaScript, MongoDB
+      and MySQL. Strong experience in REST API development, authentication, third-party
+      integrations, business-rule implementation, database optimization and production
+      debugging. Hands-on with Docker, Docker Compose, Jenkins CI/CD, Nginx, AWS EC2,
+      AWS S3, Redis, RabbitMQ and Git/GitHub. Experience integrating React and Angular
+      frontends with Node.js APIs. Also worked on AI-powered policy document processing
+      using OpenAI APIs, Python and FastAPI.
+    </p>
+  </section>
+
+  <section>
+    <h2>Technical Skills</h2>
+
+    <div class="skills">
+      <div class="skill-row"><strong>Backend:</strong> Node.js, Express.js, JavaScript, REST APIs, Async/Await, Promises, Middleware, Axios</div>
+      <div class="skill-row"><strong>Databases:</strong> MongoDB, Mongoose, MySQL, SQL, CRUD, Aggregation, Indexing, Joins, Parameterized Queries, Connection Pooling</div>
+
+      <div class="skill-row"><strong>Security:</strong> JWT, Sessions, Cookies, bcrypt, Authentication Middleware, Protected APIs</div>
+      <div class="skill-row"><strong>Messaging:</strong> Redis, RabbitMQ, Producer/Consumer, Background Workers, Queues, SMTP</div>
+
+      <div class="skill-row"><strong>DevOps:</strong> Docker, Docker Compose, Jenkins, CI/CD, Git, GitHub, Nginx, Health Checks, Docker Networking</div>
+      <div class="skill-row"><strong>Cloud:</strong> AWS EC2, AWS S3, AWS Lambda, AWS SDK, LocalStack, Terraform</div>
+
+      <div class="skill-row"><strong>Frontend:</strong> React, React Hooks, React Router, Vite, Angular, Angular Forms, HTML, CSS, Bootstrap, Tailwind CSS, jQuery</div>
+      <div class="skill-row"><strong>Testing:</strong> Jest, Postman, cURL, Swagger/OpenAPI, Selenium Basics</div>
+
+      <div class="skill-row"><strong>AI / Documents:</strong> OpenAI API, Prompt Engineering, AI PDF Processing, Structured JSON Extraction, Python, FastAPI, Uvicorn</div>
+      <div class="skill-row"><strong>Integrations:</strong> REST, XML, SOAP, JSON, Third-Party APIs, File Upload APIs, Razorpay</div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Professional Experience</h2>
+
+    <div class="job">
+      <div class="job-header">
+        <h3>Node.js Full Stack Developer</h3>
+        <div class="date">May 2024 – Present</div>
+      </div>
+
+      <div class="company">
+        Policyboss (LANDMARK INSURANCE BROKERS PRIVATE LIMITED), Mumbai
+      </div>
+
+      <ul>
+        <li>Develop and maintain Node.js and Express.js REST APIs supporting Health, Travel, Motor and Two-Wheeler insurance application workflows.</li>
+        <li>Implement insurer-specific business rules covering age-based eligibility, relationship validation, medical declarations, hospitalization checks and medication requirements.</li>
+        <li>Develop proposal processing, portability, policy and EMI management APIs with Monthly, Quarterly and Half-Yearly payment schedules.</li>
+        <li>Integrate third-party insurer and ERP systems through REST, XML and SOAP APIs, including request transformation, response parsing and error handling.</li>
+        <li>Design and optimize MongoDB queries using aggregation pipelines, indexes, filtering and sorting for proposal and transaction data.</li>
+        <li>Develop authenticated and protected APIs using JWT, sessions, cookies, bcrypt and authentication middleware.</li>
+        <li>Integrate Node.js backend APIs with React and Angular applications while maintaining consistent API contracts and data flow.</li>
+        <li>Containerize Node.js applications using Docker and Docker Compose and configure Nginx for service routing and reverse proxy requirements.</li>
+        <li>Debug application, database, Docker, networking and environment-related issues using logs, Postman, cURL and local development tools.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2>Key Projects</h2>
+
+    <div class="project">
+      <div class="project-header">
+        <h3>Insurance Management Platform – Health, Travel, Motor & Two-Wheeler</h3>
+      </div>
+      <div class="project-tech">Node.js, Express.js, MongoDB, MySQL, REST, XML, SOAP, Redis, Docker</div>
+      <ul>
+        <li>Developed backend workflows for insurance quotation, proposal processing, portability, EMI and policy-related operations across multiple insurance products.</li>
+        <li>Implemented insurer-specific validation for age, relationship, medical conditions, eligibility and product-specific business rules.</li>
+        <li>Integrated external insurer and ERP systems through REST, XML and SOAP interfaces with structured request/response processing.</li>
+        <li>Used MongoDB aggregation, indexing and query filtering for efficient proposal, transaction and reporting operations.</li>
+      </ul>
+    </div>
+
+    <div class="project">
+      <h3>AI-Powered Policy PDF Parser</h3>
+      <div class="project-tech">Node.js, OpenAI API, Python, FastAPI, Formidable, Docker, JSON</div>
+      <ul>
+        <li>Built Node.js APIs for multipart PDF upload and policy document processing.</li>
+        <li>Designed structured extraction schemas and prompts for Health, Motor and Two-Wheeler policy documents.</li>
+        <li>Extracted structured customer, policy, vehicle, coverage, nominee, discount and partner information from policy documents.</li>
+        <li>Connected Node.js services with Python/FastAPI processing services using structured JSON communication.</li>
+        <li>Implemented file-system and document-processing error handling for reliable document workflows.</li>
+      </ul>
+    </div>
+
+    <div class="project">
+      <h3>Dockerized Jenkins CI/CD Pipeline</h3>
+      <div class="project-tech">Jenkins, Docker, Docker Compose, Git/GitHub, Node.js, MySQL, Jest, MailHog</div>
+      <ul>
+        <li>Built a hands-on Jenkins CI/CD pipeline for a Dockerized Node.js application.</li>
+        <li>Automated source checkout, dependency/service startup, Docker image building and Jest test execution.</li>
+        <li>Configured Docker Compose services for Node.js, MySQL and MailHog to create repeatable local testing environments.</li>
+        <li>Configured MySQL health checks and dependency readiness validation before application tests.</li>
+        <li>Troubleshot Jenkins, Docker networking, ports, container lifecycle, environment variables and build failures.</li>
+      </ul>
+    </div>
+
+    <div class="project">
+      <h3>Payment & EMI Management System</h3>
+      <div class="project-tech">Node.js, Express.js, MongoDB, Razorpay, REST APIs</div>
+      <ul>
+        <li>Integrated Razorpay payment workflows and developed supporting payment APIs.</li>
+        <li>Developed EMI creation and validation APIs supporting Monthly, Quarterly and Half-Yearly schedules.</li>
+        <li>Used MongoDB aggregation and indexes for EMI and payment-related lookup and reporting operations.</li>
+      </ul>
+    </div>
+
+    <div class="project">
+      <h3>RabbitMQ Email Notification System</h3>
+      <div class="project-tech">Node.js, RabbitMQ, Redis, SMTP, Docker</div>
+      <ul>
+        <li>Implemented asynchronous email processing using RabbitMQ producer/consumer architecture.</li>
+        <li>Built background workers and queues to decouple email notification processing from API requests.</li>
+        <li>Implemented connection retry and error-handling logic and Dockerized messaging services for local development.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2>DevOps & Cloud Experience</h2>
+    <ul>
+      <li>Hands-on with Docker and Docker Compose environments for Node.js, MySQL, MongoDB, Redis, RabbitMQ, Nginx and Jenkins.</li>
+      <li>Worked with Jenkins CI/CD pipelines covering source checkout, Docker image builds, dependency startup, automated testing and deployment workflows.</li>
+      <li>Worked with Docker networking, port mappings, environment variables, volumes, container health checks and container troubleshooting.</li>
+      <li>Hands-on experience with AWS EC2 and S3, with working exposure to AWS Lambda and AWS SDK integrations.</li>
+      <li>Used LocalStack to simulate AWS services locally and worked with Terraform for infrastructure configuration.</li>
+      <li>Used Nginx for reverse proxy and local service routing.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Additional Technical Experience</h2>
+    <ul>
+      <li>API development and debugging using Postman, cURL and Swagger/OpenAPI.</li>
+      <li>Backend testing using Jest, including API and integration-oriented test workflows.</li>
+      <li>Git/GitHub workflows including branching, commits, merges, pull operations and CI pipeline integration.</li>
+      <li>Practical debugging of Node.js, MongoDB, MySQL, Docker, networking, ports and environment configuration issues.</li>
+    </ul>
+  </section>
+
+  <section class="two-col">
+    <div class="education">
+      <h2>Education</h2>
+      <h3>Bachelor of Technology in Computer Science</h3>
+      <p>University of Mumbai</p>
+      <p>2019 – 2023</p>
+    </div>
+
+    <div class="certification">
+      <h2>Certifications</h2>
+      <h3>AWS Certified Developer – Associate</h3>
+      <p>Amazon Web Services | 2024</p>
+      <h3>MongoDB Certified Developer</h3>
+      <p>MongoDB University | 2023</p>
+    </div>
+  </section>
+
+</div>
+
+<button class="print-button" onclick="window.print()">Print / Save as PDF</button>
+
+</body>
+</html>
