@@ -1,0 +1,116 @@
+PROJECT DESCRIPTIONS — FOR INDEED / NAUKRI PROFILE
+Node.js Full Stack Developer | Gopal Rajput
+====================================================================
+(Copy-paste each block into the "Projects" section on Indeed / Naukri /
+LinkedIn. Each has a Title, Duration placeholder, Tech Stack line, and
+a description written in first person for portal "Projects" fields.)
+
+
+PROJECT 1
+---------
+Title: Insurance Management Platform — Health, Travel, Motor & Two-Wheeler
+Duration: May 2024 – Present
+Tech Stack: Node.js, Express.js, MongoDB, MySQL, REST, XML, SOAP, Redis, Docker
+
+Description:
+Built and maintain backend workflows for an insurance platform covering
+Health, Travel, Motor and Two-Wheeler products. Developed APIs for
+quotation, proposal processing, portability, EMI and policy management.
+Implemented insurer-specific business rules for age-based eligibility,
+relationship validation, medical declarations and hospitalization
+checks. Integrated multiple external insurer and ERP systems through
+REST, XML and SOAP interfaces with structured request/response
+handling and error management. Optimized MongoDB using aggregation
+pipelines, indexing and query filtering to improve proposal and
+reporting performance.
+
+
+PROJECT 2
+---------
+Title: AI-Powered Policy PDF Parser
+Duration: 2024 – Present
+Tech Stack: Node.js, OpenAI API, Python, FastAPI, Formidable, Docker, JSON
+
+Description:
+Designed and built an AI-powered document processing service that
+automatically extracts structured data from insurance policy PDFs.
+Developed Node.js APIs for multipart PDF upload and orchestration, and
+designed extraction schemas and prompts for Health, Motor and
+Two-Wheeler policy documents using the OpenAI API. Extracted structured
+customer, policy, vehicle, coverage, nominee, discount and partner
+information into clean JSON. Connected the Node.js layer to a
+Python/FastAPI microservice for AI processing, using structured JSON
+communication between services.
+
+
+PROJECT 3
+---------
+Title: Transport ERP Web Application
+Duration: 2022 – 2024
+Tech Stack: Node.js, Express.js, React.js, HTML5, CSS3, REST APIs, Redis, Docker, AWS
+
+Description:
+Developed a Transport ERP application for managing and coordinating
+material movement and transportation workflows. Built backend REST
+APIs using Node.js and Express.js and integrated them with a React.js,
+HTML5 and CSS3 frontend. Implemented CRUD services for operational
+data and built UI screens for managing day-to-day transport workflows,
+factoring in demand, price, availability, quality and delivery
+schedules. Used Redis caching to speed up frequently accessed lookup
+data, containerized the application with Docker, and worked with
+AWS-based environments for deployment and troubleshooting.
+
+
+PROJECT 4
+---------
+Title: Dockerized Jenkins CI/CD Pipeline
+Duration: 2023
+Tech Stack: Jenkins, Docker, Docker Compose, Git/GitHub, Node.js, MySQL, Jest, MailHog
+
+Description:
+Built an end-to-end Jenkins CI/CD pipeline for a Dockerized Node.js
+application to automate testing and deployment. Automated source
+checkout, dependency startup, Docker image builds and Jest test
+execution as part of the pipeline. Configured Docker Compose services
+including Node.js, MySQL and MailHog to create repeatable, isolated
+testing environments, with MySQL health checks and dependency-readiness
+validation before tests were triggered.
+
+
+PROJECT 5
+---------
+Title: Payment & EMI Management System
+Duration: 2023 – 2024
+Tech Stack: Node.js, Express.js, MongoDB, Razorpay, REST APIs
+
+Description:
+Built a payment and EMI management module integrated with Razorpay for
+processing insurance premium payments. Developed EMI creation and
+validation APIs supporting Monthly, Quarterly and Half-Yearly payment
+schedules. Used MongoDB aggregation and indexing to power fast EMI and
+payment lookup, tracking and reporting operations.
+
+====================================================================
+
+
+INDEED PROFILE TIPS (Indeed-specific, in addition to Naukri tips)
+--------------------------------------------------------------------
+- Indeed's "Resume" and "Work Experience" sections are searched by
+  recruiters using exact keyword match, same as Naukri — make sure
+  Node.js, React.js, MongoDB, Docker, AWS, REST API, JWT, Redis,
+  RabbitMQ all appear as plain text somewhere in your profile, not
+  just inside a skills widget.
+- Fill "Job Title" on Indeed exactly as "Node.js Full Stack Developer"
+  or "Node.js Developer" — Indeed's search matches job title text
+  heavily.
+- Turn on "Open to work" / visibility to employers in Indeed settings.
+- Upload the same resume file you use elsewhere (consistency helps
+  when a recruiter cross-checks LinkedIn/Naukri/Indeed).
+- Set expected salary range on Indeed — profiles with salary filled in
+  get shown in more recruiter searches than blank ones.
+- Answer Indeed's optional "assessment" tests (Node.js, JavaScript,
+  SQL) if prompted — a passed assessment badge on your profile
+  increases recruiter click-through significantly.
+
+====================================================================
+End of file.

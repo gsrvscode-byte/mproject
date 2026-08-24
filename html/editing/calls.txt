@@ -1,0 +1,141 @@
+JOB SEARCH CONTENT PACK — GET MORE INTERVIEW CALLS
+Node.js Full Stack Developer | Gopal Rajput
+====================================================================
+
+
+1. NAUKRI / LINKEDIN HEADLINE (use exactly this style)
+---------------------------------------------------------
+Node.js Full Stack Developer | 4+ Yrs | MERN, REST APIs, MongoDB, Docker,
+AWS | Insurance Tech & ERP Systems | Open to New Opportunities
+
+Tip: Naukri and LinkedIn search recruiters mostly by exact keyword match
+on the headline — so pack it with the tech stack you want to be found for.
+
+
+2. NAUKRI PROFILE — "KEY SKILLS" SECTION (add ALL of these as tags)
+------------------------------------------------------------------------
+Node.js, Express.js, JavaScript, React.js, MongoDB, MySQL, PostgreSQL,
+REST API, XML, SOAP, JWT, Redis, RabbitMQ, Docker, Docker Compose,
+Jenkins, CI/CD, Nginx, AWS, GCP, Git, GitHub, Postman, Jest, Razorpay,
+Mongoose, Microservices, System Design, Insurance Domain, ERP
+
+Tip: Naukri's recruiter search filters candidates by these exact skill
+tags — missing a tag means you don't show up in that recruiter's search,
+even if you know the skill.
+
+
+3. PROFILE SUMMARY (paste into Naukri/LinkedIn "About" section)
+--------------------------------------------------------------------
+Node.js Full Stack Developer with 4+ years of experience building
+scalable REST APIs and backend systems using Node.js, Express.js,
+MongoDB and MySQL. Currently building insurance-tech workflows at
+Policyboss covering proposal processing, policy management, EMI
+scheduling and third-party insurer integrations via REST, XML and SOAP.
+Hands-on with Docker, Jenkins CI/CD, Redis, RabbitMQ, Nginx and AWS.
+Experienced in building AI-powered document processing services using
+OpenAI APIs and FastAPI. Looking for backend/full-stack roles where I
+can own systems end-to-end.
+
+
+4. WHY RECRUITERS AREN'T CALLING — CHECKLIST
+--------------------------------------------------
+[ ] Naukri profile updated in last 15 days (Naukri boosts "recently
+    active" profiles in recruiter search — update it weekly even with
+    a small edit)
+[ ] Resume headline matches the job title you're applying for
+    (e.g. change to "Backend Developer" when applying to backend-only roles)
+[ ] Current CTC, expected CTC and notice period filled in accurately
+[ ] Preferred location includes remote/hybrid if you're open to it
+[ ] Resume file name is professional: Gopal_Rajput_NodeJS_Resume.pdf
+    (not "resume_final2.pdf")
+[ ] Applied within first 24-48 hrs of job posting (early applicants get
+    seen first — recruiters often stop reviewing after the first 50-100)
+[ ] Profile photo added (adds credibility, especially on LinkedIn)
+[ ] Portfolio/GitHub link is public and pinned repos are relevant
+
+
+5. FOLLOW-UP MESSAGE TEMPLATE (after applying, send to recruiter on
+   LinkedIn/Naukri chat)
+--------------------------------------------------------------------
+Hi [Name],
+
+I recently applied for the [Job Title] role at [Company]. I have 4+
+years of experience as a Node.js Full Stack Developer, currently
+building REST APIs and backend systems for insurance workflows at
+Policyboss — including Docker, MongoDB, Redis and AWS. I believe my
+background is a strong fit for this role and would love to connect for
+a quick conversation.
+
+Thanks,
+Gopal Rajput
++91 9146628679
+
+
+6. COLD OUTREACH MESSAGE (when no job is posted, but you want to
+   reach a recruiter/hiring manager directly)
+--------------------------------------------------------------------
+Hi [Name],
+
+I'm a Node.js Full Stack Developer with 4+ years of experience in REST
+API development, MongoDB, Docker and AWS, currently working on
+insurance-tech systems at Policyboss. I'm exploring new opportunities
+and noticed [Company] works on [something specific about their product/
+stack]. I'd love to know if there are any backend/full-stack openings
+on your team.
+
+Happy to share my resume if useful.
+
+Best,
+Gopal Rajput
+
+
+7. COVER LETTER TEMPLATE (short version, for portals that ask for one)
+----------------------------------------------------------------------
+Dear Hiring Manager,
+
+I am writing to apply for the [Job Title] position at [Company]. With
+4+ years of experience as a Node.js Full Stack Developer, I have built
+and maintained REST APIs, backend systems and third-party integrations
+for insurance and ERP platforms using Node.js, Express.js, MongoDB,
+MySQL, Docker and AWS. At Policyboss, I work on proposal processing,
+policy management and insurer integrations via REST, XML and SOAP,
+while also building AI-powered document processing services using
+OpenAI APIs.
+
+I would welcome the opportunity to bring this experience to [Company]
+and contribute to [something specific about the role/company]. My
+resume is attached for your review.
+
+Thank you for your consideration.
+
+Sincerely,
+Gopal Rajput
+itsgopalrajput321@gmail.com | +91 9146628679
+
+
+8. HIGH-SIGNAL JOB TITLES TO SEARCH ON NAUKRI (use these, not just
+   "developer")
+----------------------------------------------------------------------
+- Node.js Developer
+- Node.js Full Stack Developer
+- Backend Developer (Node.js)
+- MERN Stack Developer
+- JavaScript Full Stack Developer
+- SDE - Backend / SDE-2 Backend
+- API Developer (Node.js)
+
+
+9. GENERAL RULES THAT INCREASE CALL RATE
+---------------------------------------------
+- Apply on the FIRST day a job is posted — visibility drops fast after that.
+- Keep resume to 1 page (2 max) — recruiters spend ~10-15 seconds per resume.
+- Match resume keywords to the exact job description before applying —
+  many portals/ATS auto-score resumes by keyword match.
+- Set Naukri profile visibility to "visible to all recruiters."
+- Respond to recruiter messages within a few hours — fast responders
+  get prioritized for the next round.
+- Keep a WhatsApp/email professional and check it daily — many recruiters
+  message instead of calling first.
+
+====================================================================
+End of file.
