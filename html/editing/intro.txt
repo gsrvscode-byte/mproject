@@ -1,0 +1,243 @@
+SELF-INTRODUCTION & PROJECT INTRO — FOR INTERVIEWS
+Gopal Rajput | Node.js Full Stack Developer
+====================================================================
+
+
+===================== ENGLISH VERSION =====================
+
+
+1. SELF INTRODUCTION (30-45 seconds, general opening)
+--------------------------------------------------------
+Hi, I'm Gopal Rajput, a Node.js Full Stack Developer with over 4 years
+of experience building and maintaining scalable web applications,
+REST APIs, and backend systems. I currently work at Policyboss, part
+of Landmark Insurance Brokers, where I develop backend workflows for
+Health, Travel, Motor, and Two-Wheeler insurance products using
+Node.js, Express.js, and MongoDB. Before this, I worked at Virtual SCM
+as a Junior Software Developer, where I built full-stack applications
+using the MERN stack.
+
+My core strengths are backend API development, database design and
+optimization in MongoDB and MySQL, and integrating third-party
+systems through REST, XML, and SOAP. I also work hands-on with Docker,
+Jenkins CI/CD, Redis, RabbitMQ, and AWS. Recently, I've been building
+an AI-powered document processing service using the OpenAI API and
+FastAPI to extract structured data from insurance policy PDFs. I'm
+looking for a role where I can take ownership of backend systems and
+contribute to solving real business problems at scale.
+
+
+2. SELF INTRODUCTION (longer, detailed version — for technical rounds)
+--------------------------------------------------------------------------
+I'm Gopal Rajput, and I've been working as a Node.js Full Stack
+Developer for a bit over 4 years now. I started my career at Virtual
+SCM Pvt. Ltd. in Pune, where I worked as a Junior Software Developer
+building full-stack web applications using Node.js, Express.js,
+React.js, MongoDB and MySQL — mainly focused on REST API development,
+responsive UI work with Bootstrap, and Git-based collaborative
+development, along with exposure to AWS, GCP and DigitalOcean.
+
+Since May 2024, I've been at Policyboss, working on their insurance
+platform covering Health, Travel, Motor and Two-Wheeler products.
+There, I build and maintain REST APIs for proposal processing,
+policy management, portability, and EMI scheduling, and I implement
+insurer-specific business rules around eligibility, medical
+declarations, and validation logic. A big part of my work is
+integrating third-party insurer and ERP systems through REST, XML and
+SOAP, so I've gotten pretty comfortable with request transformation
+and structured error handling across different API standards. I also
+work on MongoDB aggregation and indexing for performance, secure
+authentication using JWT and bcrypt, and I containerize services with
+Docker and Docker Compose, with Nginx handling reverse-proxy routing.
+
+Outside of day-to-day feature work, I've built a few things I'm proud
+of — an AI-powered PDF parser that extracts structured policy data
+using the OpenAI API and a Python/FastAPI microservice, a Jenkins
+CI/CD pipeline for a Dockerized Node.js app, and a Razorpay-based
+payment and EMI management system. I'm comfortable across the stack —
+backend, some frontend with React, DevOps basics, and now some AI
+integration work — and I'm looking to bring that experience to a team
+where I can own systems end-to-end.
+
+
+3. PROJECT INTRO — SHORT VERSION (pick 1-2 projects to lead with)
+-----------------------------------------------------------------------
+One project I'd like to highlight is an AI-Powered Policy PDF Parser
+I built at Policyboss. The problem was that insurance policy documents
+come in inconsistent PDF formats, and manually extracting data like
+customer details, coverage, and nominee information was slow and
+error-prone. I built Node.js APIs to handle PDF uploads, designed
+extraction prompts and schemas for the OpenAI API, and connected the
+Node.js layer to a Python/FastAPI microservice that returns clean,
+structured JSON. This automated a process that used to be manual and
+significantly reduced processing time.
+
+Another project I worked on is our core Insurance Management Platform,
+covering Health, Travel, Motor and Two-Wheeler products. I built
+backend workflows for quotation, proposal processing, portability, and
+EMI management, and integrated multiple external insurer systems
+through REST, XML, and SOAP — each with its own quirks in request/
+response format. I also optimized MongoDB queries using aggregation
+pipelines and indexing to keep proposal processing fast as data
+volume grew.
+
+
+4. PROJECT INTRO — DETAILED VERSION (for deep-dive technical questions)
+-----------------------------------------------------------------------
+Let me walk you through the AI-Powered Policy PDF Parser project in
+more detail. Insurance policy PDFs from different insurers vary a lot
+in layout and structure, so we needed a way to reliably pull out
+structured data — customer info, policy details, vehicle info,
+coverage, nominee, discounts, and partner data — without manual data
+entry. On the Node.js side, I built the upload API using formidable to
+handle multipart PDF uploads, added validation, and orchestrated the
+call to our Python/FastAPI service. On the AI side, I designed the
+extraction prompts and JSON schemas sent to the OpenAI API, carefully
+specifying the exact fields we needed so the output stayed structured
+and consistent across different document formats. The two services
+communicate over a clean JSON contract, and I containerized both with
+Docker so they could be deployed and scaled independently. The result
+was a fully automated document-processing pipeline that replaced what
+used to be manual data entry, cutting turnaround time significantly
+and reducing data-entry errors.
+
+For the Insurance Management Platform, the core challenge was handling
+multiple insurance products (Health, Travel, Motor, Two-Wheeler), each
+with different insurer-specific business rules — things like
+age-based eligibility, relationship validation between the policyholder
+and dependents, medical declarations, and hospitalization checks. I
+built this logic into the proposal processing pipeline so it applies
+the correct rules dynamically based on product and insurer. On the
+integration side, different insurers exposed REST, XML or SOAP
+interfaces, so I built request/response transformation layers to
+normalize everything into our internal data model, with structured
+error handling so failures from one insurer's API don't break the rest
+of the flow. On the data side, I used MongoDB aggregation pipelines and
+indexing on frequently queried fields (like policy status and customer
+ID) to keep proposal and reporting queries fast even as transaction
+volume grew.
+
+
+===================== HINGLISH VERSION =====================
+
+
+1. SELF INTRODUCTION (30-45 seconds, general opening)
+--------------------------------------------------------
+Hi, main Gopal Rajput hoon, ek Node.js Full Stack Developer, jiske
+paas 4+ saal ka experience hai scalable web applications, REST APIs
+aur backend systems banane aur maintain karne ka. Abhi main Policyboss
+mein kaam karta hoon, jo Landmark Insurance Brokers ka part hai, jahan
+main Health, Travel, Motor aur Two-Wheeler insurance products ke liye
+backend workflows Node.js, Express.js aur MongoDB use karke banata
+hoon. Isse pehle main Virtual SCM mein Junior Software Developer tha,
+jahan maine MERN stack use karke full-stack applications banayi.
+
+Meri core strengths hain backend API development, MongoDB aur MySQL
+mein database design aur optimization, aur third-party systems ko
+REST, XML aur SOAP ke through integrate karna. Main Docker, Jenkins
+CI/CD, Redis, RabbitMQ aur AWS ke saath bhi hands-on kaam karta hoon.
+Recently maine ek AI-powered document processing service banayi hai
+OpenAI API aur FastAPI use karke, jo insurance policy PDFs se
+structured data extract karti hai. Main aisa role dhoond raha hoon
+jahan main backend systems ki ownership le sakoon aur real business
+problems ko scale pe solve karne mein contribute kar sakoon.
+
+
+2. SELF INTRODUCTION (longer, detailed version — technical rounds ke liye)
+--------------------------------------------------------------------------
+Main Gopal Rajput hoon, aur mujhe Node.js Full Stack Developer ki
+tarah kaam karte hue 4 saal se thoda zyada ho gaya hai. Maine apna
+career Virtual SCM Pvt. Ltd., Pune se start kiya, jahan main Junior
+Software Developer tha aur full-stack web applications banata tha
+Node.js, Express.js, React.js, MongoDB aur MySQL use karke — mainly
+REST API development, Bootstrap ke saath responsive UI kaam, aur
+Git-based collaborative development pe focus tha, saath mein AWS, GCP
+aur DigitalOcean ka bhi exposure mila.
+
+May 2024 se main Policyboss mein hoon, unke insurance platform pe kaam
+karta hoon jo Health, Travel, Motor aur Two-Wheeler products cover
+karta hai. Wahan main proposal processing, policy management,
+portability aur EMI scheduling ke liye REST APIs banata aur maintain
+karta hoon, aur insurer-specific business rules implement karta hoon
+eligibility, medical declarations aur validation logic ke around. Mere
+kaam ka bada part third-party insurer aur ERP systems ko REST, XML aur
+SOAP ke through integrate karna hai, isliye request transformation aur
+structured error handling mein mujhe kaafi comfort mil gaya hai
+different API standards ke across. Main MongoDB aggregation aur
+indexing pe bhi kaam karta hoon performance ke liye, JWT aur bcrypt use
+karke secure authentication, aur Docker aur Docker Compose se services
+containerize karta hoon, Nginx reverse-proxy routing handle karta hai.
+
+Day-to-day feature work ke alawa, maine kuch cheezein banayi hain jinpe
+mujhe proud hai — ek AI-powered PDF parser jo OpenAI API aur ek
+Python/FastAPI microservice use karke structured policy data extract
+karta hai, ek Jenkins CI/CD pipeline ek Dockerized Node.js app ke liye,
+aur ek Razorpay-based payment aur EMI management system. Main poore
+stack mein comfortable hoon — backend, React ke saath thoda frontend,
+DevOps basics, aur ab AI integration ka bhi kaam — aur main chahta
+hoon ki ye experience ek aisi team ko doon jahan main systems ko
+end-to-end own kar sakoon.
+
+
+3. PROJECT INTRO — SHORT VERSION (1-2 projects lead karne ke liye pick karo)
+-----------------------------------------------------------------------
+Ek project jo main highlight karna chahunga wo hai AI-Powered Policy
+PDF Parser jo maine Policyboss mein banaya. Problem ye thi ki insurance
+policy documents alag-alag inconsistent PDF formats mein aate the, aur
+manually customer details, coverage aur nominee information nikalna
+slow aur error-prone tha. Maine Node.js APIs banayi PDF uploads handle
+karne ke liye, extraction prompts aur schemas design kiye OpenAI API
+ke liye, aur Node.js layer ko ek Python/FastAPI microservice se
+connect kiya jo clean, structured JSON return karta hai. Isse ek
+process automate ho gaya jo pehle manual thi, aur processing time
+kaafi kam ho gaya.
+
+Ek aur project jispe maine kaam kiya wo hai humara core Insurance
+Management Platform, jo Health, Travel, Motor aur Two-Wheeler products
+cover karta hai. Maine quotation, proposal processing, portability aur
+EMI management ke liye backend workflows banaye, aur multiple external
+insurer systems ko REST, XML aur SOAP ke through integrate kiya — har
+ek ki apni quirks thi request/response format mein. Maine MongoDB
+queries ko bhi aggregation pipelines aur indexing se optimize kiya
+taaki proposal processing fast rahe jab data volume badhe.
+
+
+4. PROJECT INTRO — DETAILED VERSION (deep-dive technical questions ke liye)
+-----------------------------------------------------------------------
+Chaliye AI-Powered Policy PDF Parser project ko thoda detail mein
+samjhata hoon. Different insurers ke insurance policy PDFs layout aur
+structure mein kaafi alag hote hain, isliye humein ek reliable tarika
+chahiye tha structured data — customer info, policy details, vehicle
+info, coverage, nominee, discounts, aur partner data — nikalne ka bina
+manual data entry ke. Node.js side pe, maine upload API banayi
+formidable use karke multipart PDF uploads handle karne ke liye,
+validation add kiya, aur Python/FastAPI service ki call orchestrate
+ki. AI side pe, maine extraction prompts aur JSON schemas design kiye
+jo OpenAI API ko bheje jate the, carefully exact fields specify karke
+jo chahiye the taaki output structured aur consistent rahe alag-alag
+document formats ke across. Dono services ek clean JSON contract pe
+communicate karti hain, aur maine dono ko Docker se containerize kiya
+taaki wo independently deploy aur scale ho sakein. Result ek fully
+automated document-processing pipeline tha jisne manual data entry
+replace kar di, turnaround time significantly kam kar diya aur
+data-entry errors reduce kiye.
+
+Insurance Management Platform ke liye, core challenge tha multiple
+insurance products (Health, Travel, Motor, Two-Wheeler) handle karna,
+har ek ke different insurer-specific business rules ke saath — jaise
+age-based eligibility, policyholder aur dependents ke beech
+relationship validation, medical declarations, aur hospitalization
+checks. Maine ye logic proposal processing pipeline mein build kiya
+taaki correct rules dynamically apply ho product aur insurer ke basis
+pe. Integration side pe, alag-alag insurers REST, XML ya SOAP
+interfaces expose karte the, isliye maine request/response
+transformation layers banayi taaki sab kuch humare internal data model
+mein normalize ho jaaye, structured error handling ke saath taaki ek
+insurer ke API ki failure baaki flow ko break na kare. Data side pe,
+maine MongoDB aggregation pipelines aur frequently queried fields
+(jaise policy status aur customer ID) pe indexing use ki taaki
+proposal aur reporting queries fast rahein transaction volume badhne
+ke baad bhi.
+
+====================================================================
+File khatam / End of file.
