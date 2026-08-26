@@ -1,0 +1,40 @@
+services:
+  api:
+    build: .
+    ports:
+      - "5000:5000"
+    env_file:
+      - .env
+    environment:
+      # Inside docker-compose, the API must reach Postgres by its
+      # service name ("postgres"), not "localhost" — each container
+      # has its own network namespace, so "localhost" from inside the
+      # api container refers to the api container itself.
+      - DATABASE_URL=postgresql://postgres:postgres@postgres:5432/docsdb
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  postgres:
+    # Official Postgres image with the pgvector extension pre-installed
+    image: pgvector/pgvector:pg16
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=docsdb
+    volumes:
+      # Mounting into docker-entrypoint-initdb.d makes Postgres run
+      # init.sql automatically the FIRST time the container starts
+      # with an empty data directory.
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  pgdata:

@@ -1,0 +1,91 @@
+// Jenkinsfile
+//
+// IMPORTANT CONCEPT: Jenkins is NOT the application server.
+// Jenkins does not run your API. Jenkins just EXECUTES COMMANDS —
+// the same commands you could type yourself in a terminal — in a
+// defined order, automatically, every time you push code:
+//
+//   Jenkins
+//     ↓ executes
+//   npm ci / npm test / docker build / docker compose up
+//     ↓
+//   The ACTUAL application runs inside Docker containers,
+//   completely independent of Jenkins.
+//
+// If you stopped Jenkins right now, the running containers it started
+// with `docker compose up -d` would keep running fine — Jenkins already
+// did its job (running the commands) and stepped out of the way.
+
+pipeline {
+    agent any
+
+    stages {
+
+        stage('Checkout') {
+            steps {
+                // Pulls the exact commit that triggered this build from
+                // GitHub into Jenkins's workspace (a folder on disk,
+                // usually something like /var/jenkins_home/workspace/<job-name>).
+                checkout scm
+            }
+        }
+
+        stage('Install Dependencies') {
+            steps {
+                // npm ci (not npm install) installs EXACTLY the versions
+                // locked in package-lock.json — reproducible, and faster,
+                // which matters for a CI server that reinstalls from
+                // scratch on every build.
+                sh 'npm ci'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                // Runs the Jest/Supertest suite from tests/employee.test.js.
+                // Note: this requires a reachable Postgres instance (see
+                // the README's Phase 8 notes on running Postgres before
+                // this stage in a real pipeline).
+                sh 'npm test'
+            }
+        }
+
+        stage('Docker Build') {
+            steps {
+                // Builds a Docker image from the Dockerfile in this repo
+                // and tags it "employee-api:latest".
+                sh 'docker build -t employee-api:latest .'
+            }
+        }
+
+        stage('Docker Compose Up') {
+            steps {
+                // Starts (or restarts) both containers in the background.
+                // -d = "detached", so this command returns immediately
+                // instead of blocking the pipeline while containers run.
+                sh 'docker compose up -d'
+            }
+        }
+
+        stage('Health Check') {
+            steps {
+                // Give the containers a moment to finish starting, then
+                // hit the /health endpoint. `-f` makes curl fail (non-zero
+                // exit code) on an HTTP error, which fails this Jenkins
+                // stage — turning a broken deploy into a red pipeline
+                // instead of a silent failure.
+                sh 'sleep 5'
+                sh 'curl -f http://localhost:5000/health'
+            }
+        }
+    }
+
+    post {
+        success {
+            echo 'Pipeline succeeded: employee-api is built, tested, and running.'
+        }
+        failure {
+            echo 'Pipeline failed — check the stage logs above for details.'
+        }
+    }
+}
