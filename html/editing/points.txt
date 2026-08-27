@@ -366,3 +366,35 @@ Say:
 * Developed **PDF processing microservices** for uploading, storing, reading, and processing policy documents, using **AWS S3** for document storage and **AWS Lambda** for serverless processing.
 * Implemented **Redis caching, Rate Limiting, PM2/Node.js Cluster, and RabbitMQ** for performance, scalability, security, and background processing.
 * Containerized applications using **Docker/Docker Compose** and configured **Nginx** as a reverse proxy/load balancer; used **Jenkins, AWS, and GCP** for deployment and infrastructure management.
+
+
+
+### Naukri Profile Summary
+
+**Node.js Full Stack Developer with 4+ years of experience** in developing scalable web applications, REST APIs, microservices, and insurance platforms using **Node.js, Express.js, JavaScript, React.js, Angular, MongoDB, and MySQL**.
+
+Experienced in **Health, Travel, and Motor/Car Insurance** applications, including **Admin and POSP modules, multi-insurer integrations, KYC, dynamic premium calculation, proposal generation, payment, EMI, add-ons, and policy issuance**.
+
+Hands-on experience with **third-party REST/XML/SOAP APIs**, **Razorpay payment integration**, insurance business rules, API validation, authentication, error handling, status tracking, and end-to-end customer-to-policy workflows.
+
+Experienced in **AI-powered policy document processing using Node.js and OpenAI APIs**, including PDF reading, data extraction, validation, and structured policy information processing. Worked with **AWS S3, AWS Lambda, PDF processing, and microservices** for document-processing workflows.
+
+Hands-on with **Redis, RabbitMQ, Rate Limiting, PM2/Node.js Cluster, Docker, Docker Compose, Nginx, Jenkins, AWS, and GCP**, with experience in application scalability, caching, load balancing, containerization, and deployment.
+
+**Key Skills:** Node.js | Express.js | React.js | Angular | JavaScript | MongoDB | MySQL | Redis | RabbitMQ | REST APIs | XML/SOAP | Razorpay | OpenAI APIs | AWS Lambda | AWS S3 | Docker | Nginx | PM2 | Jenkins | GCP | Microservices | Insurance Domain
+
+
+
+### Professional Summary
+
+Node.js Full Stack Developer with **4+ years of experience** building scalable web applications, REST APIs, and microservices using **Node.js, Express.js, JavaScript, React.js, Angular, MongoDB, and MySQL**.
+
+Experienced in developing **Health, Travel, and Motor/Car Insurance platforms**, including **Admin and POSP modules, multi-insurer integrations, KYC, premium calculation, proposal generation, payments, EMI, add-ons, and policy issuance**.
+
+Strong experience integrating **third-party REST/XML/SOAP APIs** and **Razorpay**, with expertise in insurance business rules, API validation, authentication, error handling, status tracking, and end-to-end customer-to-policy workflows.
+
+Experienced in **AI-powered policy document processing using Node.js and OpenAI APIs**, including PDF reading, data extraction, validation, and structured policy information processing. Hands-on experience with **AWS S3, AWS Lambda, PDF processing, and microservices**.
+
+Worked with **Redis, RabbitMQ, Rate Limiting, PM2/Node.js Cluster, Docker, Docker Compose, Nginx, Jenkins, AWS, and GCP** for caching, asynchronous processing, scalability, load balancing, containerization, and deployment.
+
+**Core Skills:** Node.js, Express.js, React.js, Angular, JavaScript, MongoDB, MySQL, Redis, RabbitMQ, REST APIs, XML/SOAP, Razorpay, OpenAI APIs, AWS S3, AWS Lambda, Docker, Nginx, PM2, Jenkins, GCP, Microservices, Insurance Domain.
