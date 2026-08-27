@@ -1,0 +1,113 @@
+For a **3+ years Node.js developer moving to NestJS**, these are the **50 most important NestJS interview questions** I'd prepare first.
+
+### 🔥 Top 50 NestJS Interview Questions
+
+#### Fundamentals
+
+1. What is NestJS and why would you use it?
+2. NestJS vs Express.js — what are the differences?
+3. Explain the architecture of a NestJS application.
+4. What are Modules, Controllers, and Providers?
+5. What is Dependency Injection in NestJS?
+6. How does the NestJS Dependency Injection container work?
+7. What are decorators in NestJS?
+8. Explain `@Module()`, `@Controller()`, and `@Injectable()`.
+9. What is the role of `main.ts`?
+10. What is the NestJS request lifecycle?
+
+#### Modules & Providers
+
+11. What are `imports`, `providers`, `controllers`, and `exports`?
+12. Why do we export a provider from a module?
+13. What is a global module?
+14. What is a dynamic module?
+15. What are custom providers?
+16. Explain `useClass`, `useValue`, and `useFactory`.
+17. Singleton vs Request-scoped providers?
+18. How do you share a service between modules?
+
+#### Middleware / Pipes / Guards
+
+19. What is Middleware?
+20. What is a Pipe?
+21. What is `ValidationPipe`?
+22. What is a Guard?
+23. What is `CanActivate`?
+24. What is an Interceptor?
+25. What is an Exception Filter?
+26. Explain the difference between Middleware, Guard, Pipe, Interceptor, and Filter.
+27. Explain the NestJS request lifecycle/order.
+
+**Remember:**
+
+```text
+Request
+   ↓
+Middleware
+   ↓
+Guards
+   ↓
+Interceptors
+   ↓
+Pipes
+   ↓
+Controller
+   ↓
+Service
+   ↓
+Database
+```
+
+#### DTO & Validation
+
+28. What is a DTO?
+29. DTO vs Entity — what's the difference?
+30. How do you validate DTOs using `class-validator`?
+31. What is `class-transformer`?
+32. What are `PartialType()`, `PickType()`, and `OmitType()`?
+
+#### Authentication
+
+33. How do you implement JWT authentication in NestJS?
+34. What is Passport in NestJS?
+35. What is a Passport Strategy?
+36. How does `JwtStrategy` work?
+37. Authentication vs Authorization?
+38. How do you implement Role-Based Access Control (RBAC)?
+
+#### Database
+
+39. How do you connect MongoDB with NestJS?
+40. How do you use Mongoose schemas/models in NestJS?
+41. How do you connect MySQL/PostgreSQL with NestJS?
+42. TypeORM vs Prisma vs Mongoose?
+43. How do you implement transactions?
+44. How do you handle database errors?
+
+#### Advanced / Production
+
+45. How do you implement Swagger?
+46. How do you handle file uploads?
+47. How do you implement caching with Redis?
+48. How do you integrate RabbitMQ/Kafka with NestJS?
+49. How do you test NestJS applications using Jest?
+50. How do you Dockerize and deploy a NestJS application?
+
+### ⭐ 10 questions you absolutely should know
+
+If your interview is soon, prioritize these:
+
+| #  | Question                 |
+| -- | ------------------------ |
+| 1  | NestJS vs Express        |
+| 2  | Dependency Injection     |
+| 3  | Modules / Providers      |
+| 4  | Middleware vs Guard      |
+| 5  | Guard vs Interceptor     |
+| 6  | Pipes + ValidationPipe   |
+| 7  | JWT + Passport           |
+| 8  | DTO + class-validator    |
+| 9  | Database integration     |
+| 10 | NestJS request lifecycle |
+
+**Best preparation strategy:** learn these 50 with **real code examples**, not just definitions. For your existing Express experience, interviewers are especially likely to ask you to **convert an Express API into NestJS** and explain why NestJS's architecture is better for a large application.
