@@ -111,3 +111,505 @@ If your interview is soon, prioritize these:
 | 10 | NestJS request lifecycle |
 
 **Best preparation strategy:** learn these 50 with **real code examples**, not just definitions. For your existing Express experience, interviewers are especially likely to ask you to **convert an Express API into NestJS** and explain why NestJS's architecture is better for a large application.
+
+
+========================================================
+NESTJS INTERVIEW PREP — 50 QUESTIONS (HINGLISH EXPLANATION)
+For: 3+ years Node.js dev moving to NestJS
+========================================================
+
+Note: Yeh explanations Hinglish mein hain taaki jaldi samajh aaye,
+lekin interview mein answer English mein professionally dena.
+Har jagah short code example bhi diya hai jahan zaroori tha.
+
+
+---------------------------------------------------------
+SECTION 1: FUNDAMENTALS
+---------------------------------------------------------
+
+1. What is NestJS and why would you use it?
+NestJS ek Node.js framework hai jo TypeScript pe based hai aur
+Angular jaisi architecture follow karta hai (modules, decorators,
+DI). Express ke upar bana hota hai (by default), lekin structure,
+scalability aur maintainability deta hai jo raw Express mein
+khud banana padta hai. Bade enterprise apps ke liye best hai
+kyunki opinionated hai — sabko same pattern follow karna padta hai.
+
+2. NestJS vs Express.js — differences?
+Express minimal/unopinionated hai — routing, middleware sab khud
+set karna padta hai, no built-in structure. NestJS opinionated
+hai — modules, DI, decorators, layered architecture (Controller
+-> Service -> Repository) built-in milta hai. NestJS TypeScript
+first-class support deta hai, Express mein extra setup lagta hai.
+
+3. Explain the architecture of a NestJS application.
+NestJS ek modular architecture follow karta hai:
+- Modules: app ko feature-wise divide karte hain
+- Controllers: incoming requests handle karte hain, routes define
+  karte hain
+- Providers/Services: business logic hold karte hain, DI ke
+  through inject hote hain
+- Root module (AppModule) sabko bootstrap karta hai main.ts se
+
+4. What are Modules, Controllers, and Providers?
+- Module (@Module()): ek feature ka container — controllers,
+  providers, imports/exports group karta hai
+- Controller (@Controller()): HTTP requests receive karta hai,
+  routes handle karta hai (GET/POST etc)
+- Provider (@Injectable()): services, repositories, factories —
+  jo DI ke through inject hote hain, business logic yahan hoti hai
+
+5. What is Dependency Injection in NestJS?
+DI ek design pattern hai jisme class apni dependencies khud create
+nahi karti, balki framework (Nest IoC container) unhe inject karta
+hai constructor ke through. Isse loose coupling milta hai aur
+testing easy ho jaata hai (mock inject kar sakte ho).
+
+Example:
+  @Injectable()
+  class UserService {}
+
+  @Controller('users')
+  class UserController {
+    constructor(private userService: UserService) {}
+  }
+
+6. How does the NestJS DI container work?
+Nest ek IoC (Inversion of Control) container maintain karta hai.
+Jab app start hoti hai, Nest saare @Injectable() providers ko
+scan karta hai, unke dependencies resolve karta hai (constructor
+params dekh ke), aur instances create karke container mein store
+kar deta hai. Jab bhi koi class kisi provider ko constructor mein
+maangti hai, Nest container se resolved instance de deta hai
+(by default singleton scope).
+
+7. What are decorators in NestJS?
+Decorators special functions hain jo classes, methods, properties
+pe metadata attach karte hain (@ symbol se start hote hain).
+NestJS inhe use karke framework ko batata hai ki kaunsi class
+module hai, kaunsi controller hai, kaunsa method konsa HTTP verb
+handle karega, etc. Ye TypeScript ki decorator feature pe based hai.
+
+8. Explain @Module(), @Controller(), and @Injectable().
+- @Module({ imports, controllers, providers, exports }): class ko
+  module banata hai
+- @Controller('path'): class ko controller banata hai, base route
+  define karta hai
+- @Injectable(): class ko provider banata hai jo DI container mein
+  register ho sakti hai aur kahin bhi inject ki ja sakti hai
+
+9. What is the role of main.ts?
+main.ts application ka entry point hai. Yahan NestFactory.create()
+call hota hai jo root module (AppModule) se poori app bootstrap
+karta hai, global pipes/middleware/CORS set kiye jaate hain, aur
+app.listen(port) se server start hota hai.
+
+10. What is the NestJS request lifecycle?
+Request aane pe yeh order follow hota hai:
+Middleware -> Guards -> Interceptors (pre) -> Pipes ->
+Controller Handler -> Service -> Interceptors (post) ->
+Exception Filters (agar error aaya)
+(Detailed order Section 3 mein diya hai)
+
+
+---------------------------------------------------------
+SECTION 2: MODULES & PROVIDERS
+---------------------------------------------------------
+
+11. What are imports, providers, controllers, and exports?
+- imports: dusre modules jinki functionality is module mein
+  chahiye
+- controllers: is module ke route handlers
+- providers: is module ke services/dependencies jo DI container
+  mein register hongi
+- exports: kaunse providers doosre modules use kar sakte hain
+  jo is module ko import karenge
+
+12. Why do we export a provider from a module?
+Kyunki by default har module ke providers sirf usi module ke
+andar visible hote hain (encapsulated). Agar UserService ko
+OrderModule mein use karna hai to UserModule use export karega
+aur OrderModule use import karega — tabhi DI resolve ho payega.
+
+13. What is a global module?
+@Global() decorator laga hua module — iske exported providers
+pure application mein kahin bhi bina import kiye available ho
+jaate hain. Common utilities (jaise ConfigService, DatabaseService)
+ke liye use hota hai taaki har module mein baar baar import na
+karna pade.
+
+14. What is a dynamic module?
+Aisa module jo configuration ke basis pe runtime pe apni providers
+list decide karta hai. Ye static @Module() decorator ke bajaye ek
+static method (jaise forRoot() ya register()) expose karta hai jo
+DynamicModule object return karta hai.
+
+Example: TypeOrmModule.forRoot({...}), ConfigModule.forRoot({...})
+
+15. What are custom providers?
+Providers jo normal @Injectable() class na hoke custom tarike se
+define kiye jaate hain — jaise ek value provide karna, factory
+function se instance banana, ya ek class ko doosri class ke naam
+se register karna. Flexibility deta hai jab simple class-based
+injection kaafi na ho.
+
+16. Explain useClass, useValue, and useFactory.
+- useValue: seedha ek static value/object provide karo
+  { provide: 'CONFIG', useValue: { apiKey: 'xyz' } }
+- useClass: kisi token ke liye kaunsi class use karni hai batao
+  { provide: LoggerService, useClass: CustomLogger }
+- useFactory: ek function chalao jo dynamically instance return
+  kare (async bhi ho sakta hai, dependencies inject() kar sakta
+  hai)
+  { provide: 'CONNECTION', useFactory: async () => {...} }
+
+17. Singleton vs Request-scoped providers?
+- DEFAULT (Singleton): ek hi instance poori app lifetime mein
+  create hoti hai aur sab jagah share hoti hai — best performance
+- REQUEST scope (@Injectable({ scope: Scope.REQUEST })): har
+  incoming request ke liye naya instance banta hai — useful jab
+  request-specific data (jaise current user) provider mein chahiye,
+  but performance thoda slow hota hai kyunki instance baar baar
+  banti hai
+
+18. How do you share a service between modules?
+Service ko uske module mein providers array mein register karo,
+phir usi module ke exports array mein daalo. Jis module mein use
+karna hai, wahan is module ko imports array mein add karo. Ab DI
+container automatically resolve kar dega.
+
+
+---------------------------------------------------------
+SECTION 3: MIDDLEWARE / PIPES / GUARDS / INTERCEPTORS / FILTERS
+---------------------------------------------------------
+
+19. What is Middleware?
+Ek function jo route handler se pehle chalta hai — request/response
+object ko access kar sakta hai, modify kar sakta hai, ya request
+ko reject/pass kar sakta hai (next() call karke). Express middleware
+jaisa hi hai. Use: logging, request modification, CORS.
+
+20. What is a Pipe?
+Pipe input data ko transform ya validate karta hai controller
+method call hone se just pehle. Do main use cases:
+- Transformation: string ko number mein convert karna (ParseIntPipe)
+- Validation: data ko validate karna, agar invalid to exception
+  throw karna (ValidationPipe)
+
+21. What is ValidationPipe?
+Built-in pipe jo class-validator ke decorators (@IsString(),
+@IsEmail() etc) use karke DTO ko automatically validate karta hai.
+Agar validation fail ho to automatically 400 Bad Request response
+bhej deta hai, manually check karne ki zaroorat nahi.
+
+  app.useGlobalPipes(new ValidationPipe());
+
+22. What is a Guard?
+Guard decide karta hai ki request ko route handler tak jaane diya
+jaaye ya nahi — mainly Authentication/Authorization ke liye use
+hota hai. Ye Interceptors aur Pipes se PEHLE chalta hai. true/false
+return karta hai (ya Promise/Observable).
+
+23. What is CanActivate?
+Ye interface hai jo har Guard implement karta hai. Isme ek
+canActivate(context: ExecutionContext) method hota hai jo
+boolean (ya Promise<boolean>/Observable<boolean>) return karta hai
+— true matlab request allow, false matlab 403 Forbidden.
+
+24. What is an Interceptor?
+Interceptor request se pehle aur response jaane se pehle dono
+jagah code chala sakta hai (AOP style — Aspect Oriented
+Programming). Use cases: response transform karna, logging,
+caching, timeout add karna, exception mapping.
+
+  intercept(context, next) {
+    return next.handle().pipe(map(data => ({ data })));
+  }
+
+25. What is an Exception Filter?
+Ye unhandled exceptions ko catch karta hai aur ek consistent,
+customized error response client ko bhejta hai. @Catch() decorator
+se specific exception type handle kar sakte ho.
+
+  @Catch(HttpException)
+  class CustomFilter implements ExceptionFilter { ... }
+
+26. Difference between Middleware, Guard, Pipe, Interceptor, Filter?
+- Middleware: sabse pehle chalta hai, raw req/res access, route
+  context nahi pata hota
+- Guard: authentication/authorization check karta hai, route
+  handler ko block/allow karta hai
+- Pipe: data validate/transform karta hai controller method call
+  hone se pehle
+- Interceptor: request ke pehle aur response ke baad dono jagah
+  logic chala sakta hai (logging, response mapping, caching)
+- Exception Filter: errors ko catch karke proper response format
+  mein bhejta hai
+
+27. Request lifecycle / order (IMPORTANT — yaad rakhna):
+
+  Request
+    |
+  Middleware
+    |
+  Guards
+    |
+  Interceptors (before handler / pre-controller)
+    |
+  Pipes
+    |
+  Controller (route handler)
+    |
+  Service (business logic)
+    |
+  Database
+    |
+  Interceptors (after handler / post-controller, response modify)
+    |
+  Exception Filters (agar kahin bhi error aaya to yahan catch hota)
+    |
+  Response
+
+Interview tip: Yeh order bolte waqt explain karo "kyun" —
+Guard pehle isliye chalta hai kyunki agar user authorized nahi hai
+to aage ka processing (pipes, controller logic) waste nahi karna.
+
+
+---------------------------------------------------------
+SECTION 4: DTO & VALIDATION
+---------------------------------------------------------
+
+28. What is a DTO?
+DTO (Data Transfer Object) ek plain class/object hai jo define
+karta hai ki client se data kis shape mein aayega (request body/
+query/params). Ye TypeScript type-safety aur class-validator ke
+saath validation dono ke liye use hota hai.
+
+  class CreateUserDto {
+    @IsString() name: string;
+    @IsEmail() email: string;
+  }
+
+29. DTO vs Entity — difference?
+- DTO: data transfer ke liye — client se aane wale ya jaane wale
+  data ka shape define karta hai, validation rules hoti hain
+- Entity: database table/collection ka structure represent karti
+  hai (TypeORM/Mongoose decorators ke saath), persistence layer se
+  related hai
+Dono alag rakhna best practice hai taaki API contract aur DB
+schema independently change ho sakein.
+
+30. How do you validate DTOs using class-validator?
+DTO class ke properties pe decorators lagao (@IsString(),
+@IsNotEmpty(), @IsEmail(), @MinLength() etc), phir globally
+ValidationPipe enable karo main.ts mein. Nest automatically
+incoming request body ko DTO class instance mein convert karke
+validate kar dega.
+
+31. What is class-transformer?
+Ye library plain JavaScript objects ko class instances mein
+convert karti hai (aur vice versa) — @Type(), @Expose(),
+@Exclude() decorators deti hai. NestJS isse use karta hai request
+body ko DTO class instance banane ke liye (taaki class-validator
+kaam kar sake), aur response se sensitive fields hide karne ke
+liye (jaise password @Exclude() karke).
+
+32. What are PartialType(), PickType(), and OmitType()?
+Ye mapped-types utility functions hain jo existing DTO se naya
+DTO banate hain bina duplicate code likhe:
+- PartialType(CreateUserDto): saari properties optional bana deta
+  hai (update DTO ke liye perfect)
+- PickType(CreateUserDto, ['name']): sirf specific fields select
+  karta hai
+- OmitType(CreateUserDto, ['password']): specific fields exclude
+  karta hai
+
+
+---------------------------------------------------------
+SECTION 5: AUTHENTICATION
+---------------------------------------------------------
+
+33. How do you implement JWT authentication in NestJS?
+Steps:
+1. @nestjs/jwt aur @nestjs/passport install karo
+2. Login route pe user credentials verify karo, JwtService.sign()
+   se token generate karo
+3. JwtStrategy banao jo har request ke token ko validate kare
+4. JwtAuthGuard banao (AuthGuard('jwt')) protected routes pe lagao
+
+34. What is Passport in NestJS?
+Passport ek popular Node.js authentication middleware library hai
+jo multiple strategies support karta hai (JWT, Local, OAuth,
+Google etc). @nestjs/passport iska NestJS wrapper hai jo isse
+Guards ke through integrate karta hai.
+
+35. What is a Passport Strategy?
+Strategy ek class hai jo define karti hai ki authentication kaise
+hogi — jaise LocalStrategy (username/password check), JwtStrategy
+(token verify), GoogleStrategy (OAuth). Har strategy PassportStrategy
+class extend karti hai aur validate() method implement karti hai.
+
+36. How does JwtStrategy work?
+JwtStrategy incoming request se token extract karti hai (usually
+Authorization header se "Bearer <token>"), secret key se verify
+karti hai, aur agar valid hai to decoded payload ko validate()
+method mein pass karti hai. Wahan se return kiya gaya object
+request.user mein attach ho jaata hai controller ke liye.
+
+37. Authentication vs Authorization?
+- Authentication: "Tum kaun ho?" — user ki identity verify karna
+  (login, token check)
+- Authorization: "Tumhe yeh karne ki permission hai?" — verified
+  user ke access rights check karna (roles, permissions)
+
+38. How do you implement RBAC (Role-Based Access Control)?
+1. User entity mein role field rakho (admin, user, etc)
+2. Custom decorator banao: @Roles('admin')
+3. RolesGuard banao jo Reflector se required roles read kare aur
+   request.user.role se match kare
+4. Guard ko route/controller pe apply karo
+
+  @Roles('admin')
+  @UseGuards(RolesGuard)
+  @Delete(':id')
+  remove() {}
+
+
+---------------------------------------------------------
+SECTION 6: DATABASE
+---------------------------------------------------------
+
+39. How do you connect MongoDB with NestJS?
+@nestjs/mongoose package use karke:
+  MongooseModule.forRoot('mongodb://localhost/dbname')
+root module mein import karo. Feature modules mein
+MongooseModule.forFeature([{ name: 'User', schema: UserSchema }])
+use karo.
+
+40. How do you use Mongoose schemas/models in NestJS?
+@Schema() decorator se class-based schema define karo,
+@Prop() se fields define karo, SchemaFactory.createForClass() se
+schema generate karo. Service mein @InjectModel('User') se Model
+inject karke CRUD operations karo.
+
+41. How do you connect MySQL/PostgreSQL with NestJS?
+@nestjs/typeorm (ya Prisma) use karke:
+  TypeOrmModule.forRoot({ type: 'postgres', host, port,
+  username, password, database, entities, synchronize })
+root module mein setup karo. Entities define karo @Entity()
+decorator ke saath, feature modules mein
+TypeOrmModule.forFeature([User]) use karo.
+
+42. TypeORM vs Prisma vs Mongoose?
+- TypeORM: SQL databases ke liye ORM, decorator-based entities,
+  NestJS ke saath deeply integrated, Active Record aur Data
+  Mapper dono patterns support karta hai
+- Prisma: modern type-safe ORM, apna schema file (schema.prisma)
+  hota hai, auto-generated type-safe client, better DX aur
+  migrations, lekin NestJS-specific decorators nahi
+- Mongoose: MongoDB (NoSQL) ke liye ODM, schema-based document
+  modeling
+
+43. How do you implement transactions?
+TypeORM mein QueryRunner ya DataSource.transaction() use karke:
+  await this.dataSource.transaction(async (manager) => {
+    await manager.save(entity1);
+    await manager.save(entity2);
+  });
+Agar beech mein error aaye to sab operations automatically
+rollback ho jaate hain (atomicity maintain hoti hai).
+
+44. How do you handle database errors?
+Exception Filters use karke — jaise QueryFailedError ko catch
+karna aur usko proper HTTP exception (ConflictException,
+BadRequestException) mein convert karna. Try-catch service layer
+mein bhi laga sakte ho specific error codes check karne ke liye
+(jaise duplicate key error 11000 in MongoDB).
+
+
+---------------------------------------------------------
+SECTION 7: ADVANCED / PRODUCTION
+---------------------------------------------------------
+
+45. How do you implement Swagger?
+@nestjs/swagger package install karo. main.ts mein
+DocumentBuilder se config banao, SwaggerModule.createDocument()
+aur SwaggerModule.setup('api', app, document) call karo. DTOs pe
+@ApiProperty() decorators add karo taaki documentation auto-generate
+ho.
+
+46. How do you handle file uploads?
+@nestjs/platform-express ka FileInterceptor use karo:
+  @Post('upload')
+  @UseInterceptors(FileInterceptor('file'))
+  uploadFile(@UploadedFile() file: Express.Multer.File) {}
+Multer configuration se storage (disk/memory), file size limits,
+file type filters set kar sakte ho.
+
+47. How do you implement caching with Redis?
+@nestjs/cache-manager aur cache-manager-redis-store use karke:
+  CacheModule.register({ store: redisStore, host, port })
+CacheInterceptor apply karo routes pe automatic caching ke liye,
+ya CacheManager inject karke manually get/set karo.
+
+48. How do you integrate RabbitMQ/Kafka with NestJS?
+@nestjs/microservices package use karke:
+  app.connectMicroservice({ transport: Transport.RMQ,
+  options: { urls, queue } })
+@MessagePattern() ya @EventPattern() decorators se message
+handlers define karte ho consumer side pe, aur ClientProxy se
+messages emit/send karte ho producer side pe.
+
+49. How do you test NestJS applications using Jest?
+NestJS Jest ke saath built-in aata hai:
+- Unit tests: Test.createTestingModule() se isolated module banao,
+  dependencies mock karo (useValue/jest.fn())
+- E2E tests: supertest ke saath poori app ka HTTP endpoint test
+  karo (app.getHttpServer())
+Command: npm run test (unit), npm run test:e2e (e2e)
+
+50. How do you Dockerize and deploy a NestJS application?
+Multi-stage Dockerfile banao:
+1. Build stage: node image, npm install, npm run build
+2. Production stage: sirf dist/ + node_modules (production deps)
+   copy karo, halka image banega
+docker-compose.yml se app + database (Postgres/Mongo/Redis)
+services define karo. Deploy karne ke liye AWS ECS, Render,
+Railway, ya Kubernetes use ho sakta hai. Env variables ke liye
+.env + ConfigModule use karo.
+
+
+---------------------------------------------------------
+TOP 10 — AGAR INTERVIEW BAHUT JALDI HAI
+---------------------------------------------------------
+1. NestJS vs Express
+2. Dependency Injection
+3. Modules / Providers
+4. Middleware vs Guard
+5. Guard vs Interceptor
+6. Pipes + ValidationPipe
+7. JWT + Passport
+8. DTO + class-validator
+9. Database integration (TypeORM/Mongoose)
+10. NestJS request lifecycle
+
+
+---------------------------------------------------------
+BEST PREPARATION STRATEGY
+---------------------------------------------------------
+- Sirf definitions mat ratto — har concept ke liye khud CODE
+  likh ke practice karo (chota CRUD module bana lo: User module
+  with Controller + Service + DTO + Guard).
+- Tumhara Express background hai, isliye interviewer bahut chance
+  hai ye pooche: "Convert this simple Express API into NestJS"
+  aur "Why is NestJS architecture better for large apps?"
+  Iska answer taiyar rakho: separation of concerns, DI se
+  testability, modularity se scalability, built-in patterns se
+  team consistency (bade team mein sabka code same style follow
+  karta hai).
+- Request lifecycle diagram (Middleware -> Guard -> Interceptor
+  -> Pipe -> Controller) zaroor whiteboard pe explain karne ki
+  practice karo — bahut common follow-up hota hai "why this order".
+
+Good luck for the interview!
+========================================================
