@@ -346,3 +346,23 @@ Say:
 * Developed **AI-powered policy document processing** using **Node.js and OpenAI APIs** to extract, validate, and process structured information from insurance policy documents.
 * Implemented **Redis caching, Rate Limiting, PM2/Node.js Cluster, and RabbitMQ** for performance, scalability, security, and background processing.
 * Containerized applications using **Docker/Docker Compose** and configured **Nginx** as a reverse proxy/load balancer; worked with **Jenkins, AWS, and GCP** for deployment.
+
+
+
+
+### Insurance Platform – Full Stack Development & Integration
+
+**Tech Stack:** **Node.js, Express.js, JavaScript, React.js, Angular, MongoDB, MySQL, Redis, RabbitMQ, Docker, Docker Compose, Nginx, PM2, Jenkins, AWS Lambda, AWS S3, GCP, Razorpay, REST/XML/SOAP APIs, OpenAI APIs, Microservices, PDF Processing**
+
+* Developed **end-to-end Health, Travel & Motor/Car Insurance applications** using **Node.js, Express.js, React.js, and Angular**, covering customer, proposal, payment, and policy workflows.
+* Developed **Admin & POSP modules** for managing customers, proposals, policies, payments, insurers, products, plans, add-ons, and business workflows.
+* Implemented **multi-insurer integrations**, handling insurer-specific APIs, business rules, validations, premium calculations, proposal creation, and policy issuance.
+* Built dynamic **customer/member forms and validations** based on product and insurer requirements, including age, relationship, medical, vehicle, travel, zone, plan, and coverage details.
+* Integrated **third-party REST/XML/SOAP APIs** for KYC, premium calculation, proposal generation, policy issuance, and other insurer services.
+* Implemented **dynamic premium, add-on, EMI, and insurance business rules** across Health, Travel, and Motor products.
+* Integrated **Razorpay** for order creation, payment verification, callbacks, success/failure handling, and transaction tracking.
+* Built complete **KYC → Premium → Proposal → Payment/EMI → Policy** workflows with status tracking, redirection, error handling, and retry mechanisms.
+* Developed **AI-powered policy document processing** using **Node.js and OpenAI APIs** to extract, validate, and process structured information from insurance policy documents.
+* Developed **PDF processing microservices** for uploading, storing, reading, and processing policy documents, using **AWS S3** for document storage and **AWS Lambda** for serverless processing.
+* Implemented **Redis caching, Rate Limiting, PM2/Node.js Cluster, and RabbitMQ** for performance, scalability, security, and background processing.
+* Containerized applications using **Docker/Docker Compose** and configured **Nginx** as a reverse proxy/load balancer; used **Jenkins, AWS, and GCP** for deployment and infrastructure management.
