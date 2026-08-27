@@ -1,0 +1,348 @@
+### KYC, Payment, Premium & Policy Integration
+
+* Integrated and consumed **third-party APIs** for KYC verification, customer validation, premium calculation, proposal creation, payment processing, and policy issuance.
+* Implemented **query-based premium calculation**, passing customer, trip, plan, zone, member, age, and coverage details to third-party insurer APIs and handling the calculated premium response.
+* Developed dynamic **KYC verification workflows** by integrating external KYC APIs and managing verification success, failure, pending, and retry scenarios.
+* Built end-to-end **customer form workflows**, handling initial customer information, member details, travel details, plan selection, add-ons, KYC, premium calculation, proposal creation, and policy issuance.
+* Managed **form data persistence and state transitions** across multiple stages to ensure previously entered customer information was retained and correctly passed to subsequent APIs.
+* Implemented dynamic validations and conditional form fields based on **customer age, relationship, travel details, medical information, plan, zone, and insurer-specific business rules**.
+* Developed APIs to fetch and update **customer, proposal, KYC, premium, payment, and policy information** throughout the insurance journey.
+* Integrated **Razorpay Payment Gateway** for order creation, payment initiation, payment verification, callbacks, success/failure handling, and payment status tracking.
+* Implemented **Monthly, Quarterly, and Half-Yearly EMI** payment options with EMI calculation, validation, and transaction status management.
+* Developed dynamic **add-on/additional cover management**, including cover selection, premium recalculation, validation, and integration with proposal and payment workflows.
+* Built dynamic redirection and workflow handling across **Form → KYC → Premium → Proposal → Payment/EMI → Policy Issuance** stages.
+* Implemented comprehensive **API response handling and error management** for third-party services, including timeout, failure, invalid response, pending, and retry scenarios.
+* Applied insurance-specific business rules for **premium calculation, plan validation, zone validation, age/member eligibility, coverage limits, and policy issuance**.
+* Designed and developed **REST APIs using Node.js and Express.js**, integrating MongoDB/MySQL for customer, proposal, transaction, EMI, and policy data management.
+* Ensured consistency between **frontend form data, backend validations, third-party API requests, premium responses, payment transactions, and final policy issuance**.
+
+
+
+### Health & Travel Insurance – KYC, Premium, Payment & Policy Integration
+
+* Developed **end-to-end Health and Travel Insurance workflows**, covering customer information, member details, plan selection, premium calculation, KYC, proposal generation, payment, and policy issuance.
+* Integrated **third-party insurer APIs** for KYC verification, premium calculation, proposal creation, payment processing, and policy issuance.
+* Implemented **query-based premium calculation** by sending customer, member, age, plan, zone, coverage, travel, and other policy-specific parameters to insurer APIs and processing the returned premium.
+* Developed dynamic **customer and member forms**, handling initial information capture and maintaining form data across KYC, premium, proposal, payment, and policy issuance stages.
+* Implemented **Health Insurance business rules**, including member/age-based eligibility, relationship validation, medical information, portability-related validations, plan selection, coverage, and premium rules.
+* Implemented **Travel Insurance business rules**, including traveller age, destination/zone validation, trip duration, travel dates, plan eligibility, member details, and coverage-based premium calculation.
+* Integrated and managed **third-party KYC APIs**, including request/response handling, verification status tracking, validation, failure, pending, and retry scenarios.
+* Integrated **Razorpay Payment Gateway** for order creation, payment initiation, payment verification, callbacks, success/failure handling, transaction tracking, and post-payment redirection.
+* Developed **EMI payment functionality** for applicable insurance products, supporting **Monthly, Quarterly, and Half-Yearly** payment frequencies with EMI calculation and validation.
+* Developed dynamic **add-on/additional cover management** for insurance plans, including selection, validation, premium recalculation, and integration with proposal and payment workflows.
+* Built dynamic workflow and redirection logic across **Customer Form → KYC → Premium Calculation → Proposal → Payment/EMI → Policy Issuance**.
+* Implemented comprehensive backend validations for **customer, member, KYC, premium, proposal, payment, EMI, and policy data**.
+* Handled third-party API errors including **invalid requests, failed responses, timeout, pending transactions, callback failures, and retry scenarios**.
+* Designed and developed **RESTful APIs using Node.js and Express.js** with **MongoDB/MySQL** for managing customer, proposal, premium, payment, EMI, and policy transactions.
+* Ensured data consistency and validation across **frontend forms, backend APIs, third-party insurer APIs, Razorpay transactions, and final policy issuance**.
+
+
+
+
+For an interview, don't just read the resume points. Explain it as an **end-to-end insurance journey** and then give examples from **Health and Travel**.
+
+### Simple way to explain your project
+
+You can say:
+
+> **"I have worked on Health and Travel Insurance applications where I was mainly involved in developing the complete customer-to-policy journey using Node.js, Express.js, MongoDB/MySQL, and third-party APIs."**
+
+Then explain the flow:
+
+**Customer Form → Premium → KYC → Proposal → Razorpay → Policy**
+
+### 1. Customer fills the form
+
+> "Initially, the customer enters their basic information such as name, DOB, contact details, member details, travel details in case of Travel Insurance, and health-related information for Health Insurance."
+
+For example:
+
+**Travel:**
+
+* Traveller details
+* DOB/age
+* Destination
+* Travel dates
+* Trip type
+* Plan
+* Zone
+* Add-ons
+
+**Health:**
+
+* Proposer details
+* Member details
+* DOB/age
+* Relationship
+* Medical information
+* Previous policy/portability details
+* Sum insured
+* Plan
+
+---
+
+### 2. Premium calculation
+
+Then explain the important part:
+
+> "Once the required information is filled, our backend validates the data and prepares a request according to the insurer's API requirements. We call the third-party premium API with parameters such as age, members, plan, zone, coverage, travel dates, and other product-specific information. The insurer returns the premium, and we display or use that premium for the next stage."
+
+You can give an example:
+
+> "For Travel Insurance, if the customer selects a particular zone, plan, travel duration, and traveller age, these values are sent to the insurer API and the premium is calculated based on those parameters."
+
+---
+
+### 3. KYC integration
+
+Then:
+
+> "After the customer information is validated, we integrate third-party KYC APIs. We send the required customer information to the KYC service and handle different responses such as successful verification, failed verification, pending status, and retry."
+
+This is a good point to mention that **you didn't just call the API—you handled the complete response flow.**
+
+---
+
+### 4. Proposal generation
+
+> "After premium and KYC are successfully completed, we prepare the proposal request using the customer and policy information collected from the previous stages. We call the insurer's proposal API and store the proposal details and status in our database."
+
+---
+
+### 5. Razorpay payment
+
+For Razorpay, explain it technically:
+
+> "For payment, I integrated Razorpay. From the backend, we create a Razorpay order with the required amount. The frontend uses the order details to initiate the payment. After payment, we handle the Razorpay response and verify the payment on the backend. We maintain statuses such as success, failed, pending, and retry."
+
+You can mention:
+
+**Razorpay flow:**
+
+`Create Order → Payment → Callback/Response → Verify Payment → Update DB → Policy Issuance`
+
+---
+
+### 6. Policy issuance
+
+Finally:
+
+> "Once payment is successfully verified, we trigger the policy issuance process through the insurer API. We receive the policy details/document and update the proposal and policy status in our database."
+
+So your complete explanation becomes:
+
+```text
+Customer Form
+      ↓
+Backend Validation
+      ↓
+Premium API
+      ↓
+KYC API
+      ↓
+Proposal API
+      ↓
+Razorpay Payment
+      ↓
+Payment Verification
+      ↓
+Policy Issuance API
+      ↓
+Policy Generated
+```
+
+### If interviewer asks: "What exactly was your responsibility?"
+
+Say:
+
+> **"My responsibility was mainly on the backend side. I developed REST APIs using Node.js and Express.js, implemented business validations, integrated third-party insurer and KYC APIs, handled premium calculation requests and responses, implemented Razorpay payment flows, managed EMI and add-on logic, maintained transaction and proposal statuses in MongoDB/MySQL, and handled the complete workflow from initial customer information to final policy issuance."**
+
+### Strong 1-minute answer
+
+> "I worked on Health and Travel Insurance products. My work was mainly around the complete insurance purchase journey. The customer initially fills in their personal, member, travel, or health-related information. We validate this information on the backend and based on the selected plan, age, members, zone, coverage, travel duration, and other business rules, we prepare a request for the third-party insurer premium API. After receiving the premium, we proceed with KYC verification using a third-party KYC API. Once KYC is successful, we generate the proposal. For payment, I integrated Razorpay, including order creation, payment verification, callbacks, success/failure and pending scenarios. After successful payment verification, the policy issuance API is triggered and the policy details are stored in our system. I also worked on EMI options, add-on covers, validations, status tracking, and error handling throughout this complete workflow."
+
+
+### Health & Travel Insurance – KYC, Premium, Payment & Policy Integration
+
+#### Technical Architecture & Infrastructure
+
+* Developed scalable backend services using **Node.js, Express.js, MongoDB, MySQL, Redis, Docker, and Nginx**.
+* Implemented **Redis caching** for frequently accessed data, session management, and performance optimization.
+* Configured **Rate Limiting** and request throttling to protect APIs from abuse and excessive traffic.
+* Utilized **Node.js Cluster Mode (PM2/Cluster)** to leverage multi-core CPU processing and improve application throughput.
+* Containerized applications using **Docker** for consistent development, testing, and deployment environments.
+* Configured **Nginx as a Reverse Proxy and Load Balancer** to distribute traffic across multiple application instances and improve availability.
+* Implemented centralized logging, error handling, and monitoring for production-grade API management.
+
+#### Insurance Workflow Development
+
+* Developed **end-to-end Health and Travel Insurance workflows**, covering customer information, member details, plan selection, premium calculation, KYC, proposal generation, payment, and policy issuance.
+* Integrated **third-party insurer APIs** for KYC verification, premium calculation, proposal creation, payment processing, and policy issuance.
+* Implemented **query-based premium calculation** by sending customer, member, age, plan, zone, coverage, travel, and other policy-specific parameters to insurer APIs and processing the returned premium.
+* Developed dynamic **customer and member forms**, handling initial information capture and maintaining form data across KYC, premium, proposal, payment, and policy issuance stages.
+* Implemented **Health Insurance business rules**, including member/age eligibility, relationship validation, medical information handling, portability validations, plan selection, coverage rules, and premium calculations.
+* Implemented **Travel Insurance business rules**, including traveller age validation, destination/zone validation, trip duration checks, travel date validations, plan eligibility, and coverage-based premium calculations.
+* Integrated and managed **third-party KYC APIs**, including request/response handling, verification status tracking, validation, failure, pending, and retry scenarios.
+* Integrated **Razorpay Payment Gateway** for order creation, payment initiation, payment verification, callback handling, transaction tracking, and post-payment redirection.
+* Developed **EMI payment functionality** supporting Monthly, Quarterly, and Half-Yearly payment frequencies with EMI calculation, validation, and payment schedule management.
+* Developed dynamic **add-on and additional cover management**, including add-on selection, premium recalculation, validation, and integration with proposal and payment workflows.
+* Built dynamic workflow and redirection logic across **Customer Form → KYC → Premium Calculation → Proposal → Payment/EMI → Policy Issuance**.
+* Implemented comprehensive backend validations for **customer, member, KYC, premium, proposal, payment, EMI, and policy data**.
+* Handled third-party API errors including invalid requests, failed responses, timeouts, pending transactions, callback failures, and retry scenarios.
+* Designed and developed **RESTful APIs** using Node.js and Express.js for customer, proposal, premium, payment, EMI, and policy transaction management.
+* Ensured data consistency and validation across **frontend forms, backend services, third-party insurer APIs, Razorpay transactions, and final policy issuance workflows**.
+
+
+
+### Health & Travel Insurance – Backend Development & Integration
+
+* Developed **end-to-end Health & Travel Insurance workflows** using **Node.js, Express.js, MongoDB, and MySQL**, from customer form filling to final policy issuance.
+* Integrated **third-party insurer and KYC APIs** for customer verification, premium calculation, proposal generation, and policy issuance.
+* Implemented **dynamic premium calculation** based on age, members, plan, zone, coverage, travel dates, trip duration, and product-specific business rules.
+* Developed **Health & Travel insurance validations** including age/member eligibility, relationship, medical details, portability, zone, plan, coverage, and travel-date validations.
+* Integrated **Razorpay** for order creation, payment initiation, verification, callbacks, success/failure handling, and transaction status tracking.
+* Implemented **Monthly, Quarterly & Half-Yearly EMI** options with EMI calculation, validation, and payment tracking.
+* Developed **add-on/additional cover functionality** with dynamic premium recalculation and integration into proposal/payment workflows.
+* Built dynamic **KYC → Premium → Proposal → Payment/EMI → Policy** workflows with status-based redirection and retry handling.
+* Used **Redis** for caching and temporary data management, and implemented **API rate limiting** for performance and security.
+* Used **Node.js Cluster/PM2** for multi-process application scaling and improved backend performance.
+* Containerized applications using **Docker** and configured **Nginx as a reverse proxy/load balancer** for distributing traffic across Node.js instances.
+* Implemented robust **API validation, error handling, timeout, pending, callback, and retry mechanisms** across third-party integrations.
+
+
+
+
+
+### Health & Travel Insurance – Backend Development & Integration
+
+**Tech Stack:** **Node.js, Express.js, MongoDB, MySQL, Redis, Docker, Nginx, PM2/Node.js Cluster, Razorpay, REST APIs, Third-Party APIs, Rate Limiting**
+
+* Developed **end-to-end Health & Travel Insurance workflows**, from customer form filling and validation to **premium calculation, KYC, proposal, payment, and policy issuance**.
+* Used **Redis** for caching and temporary data management and implemented **API Rate Limiting** for performance and security.
+* Used **PM2/Node.js Cluster** for multi-process scaling and improved backend availability and performance.
+* Integrated **Razorpay** for order creation, payment initiation, payment verification, callbacks, success/failure handling, and transaction tracking.
+* Implemented **Monthly, Quarterly & Half-Yearly EMI** options with EMI calculation, validation, and payment tracking.
+* Built **KYC → Premium → Proposal → Payment/EMI → Policy** workflows with status-based redirection, error handling, and retry mechanisms.
+* Integrated **third-party insurer & KYC APIs** for customer verification, premium calculation, proposal generation, and policy issuance.
+* Implemented **dynamic premium calculation** based on age, members, plan, zone, coverage, travel dates, trip duration, and insurance business rules.
+* Developed **Health & Travel validations** covering age/member eligibility, relationships, medical details, portability, zones, plans, coverage, and travel dates.
+* Developed **add-on/additional cover functionality** with dynamic premium recalculation and integration into proposal and payment workflows.
+* Containerized applications using **Docker** and configured **Nginx** as a reverse proxy and load balancer for distributing traffic across Node.js instances.
+
+
+
+
+### Health & Travel Insurance – Backend Development & Integration
+
+**Tech Stack:** **Node.js, Express.js, MongoDB, MySQL, Redis, Docker, Nginx, PM2 / Node.js Cluster, Razorpay, REST APIs, Third-Party APIs, Rate Limiting**
+
+* Developed **end-to-end Health & Travel Insurance workflows**, from customer form filling and validation to **premium calculation, KYC, proposal, payment, and policy issuance**.
+* Implemented **Redis caching** and temporary data management, along with **API Rate Limiting** for improved performance, scalability, and security.
+* Used **PM2 / Node.js Cluster** for multi-process application scaling and improved backend availability and performance.
+* Integrated **Razorpay** for order creation, payment initiation, payment verification, callbacks, success/failure handling, and transaction tracking.
+* Implemented **Monthly, Quarterly & Half-Yearly EMI** options with EMI calculation, validation, and payment tracking.
+* Built **KYC → Premium → Proposal → Payment/EMI → Policy** workflows with status-based redirection, error handling, and retry mechanisms.
+* Integrated **third-party insurer and KYC APIs** for customer verification, premium calculation, proposal generation, and policy issuance.
+* Implemented **dynamic premium calculation** based on age, members, plan, zone, coverage, travel dates, trip duration, and insurance business rules.
+* Developed **Health & Travel validations** covering age/member eligibility, relationships, medical details, portability, zones, plans, coverage, and travel dates.
+* Developed **add-on/additional cover functionality** with dynamic premium recalculation and integration into proposal and payment workflows.
+* Containerized applications using **Docker** and configured **Nginx** as a reverse proxy and load balancer to distribute traffic across multiple Node.js instances.
+
+
+
+### Health & Travel Insurance – Backend Development & Integration
+
+**Tech Stack:** **Node.js, Express.js, JavaScript, React.js, MongoDB, MySQL, Redis, RabbitMQ, Docker, Docker Compose, Nginx, PM2 / Node.js Cluster, Jenkins, AWS, GCP, Razorpay, REST/XML/SOAP APIs, OpenAI APIs, Rate Limiting**
+
+* Developed **end-to-end Health & Travel Insurance workflows**, from customer form filling and validation to **premium calculation, KYC, proposal, payment, and policy issuance**.
+* Integrated **third-party insurer and KYC APIs** using **REST/XML/SOAP**, handling customer verification, premium calculation, proposal generation, policy issuance, and API response processing.
+* Implemented **dynamic premium calculation and insurance business rules** based on age, members, plan, zone, coverage, medical details, travel dates, trip duration, eligibility, and portability.
+* Integrated **Razorpay** for order creation, payment initiation, payment verification, callbacks, success/failure handling, and transaction tracking.
+* Implemented **Monthly, Quarterly & Half-Yearly EMI** options with EMI calculation, validation, and payment tracking.
+* Built **KYC → Premium → Proposal → Payment/EMI → Policy** workflows with status-based redirection, validation, error handling, and retry mechanisms.
+* Developed **add-on/additional cover functionality** with dynamic premium recalculation and integration into proposal and payment workflows.
+* Developed and maintained **policy-document processing services** to read and extract structured information from insurance policy documents.
+* Worked on **AI-powered policy document processing** using **OpenAI APIs, Python, and FastAPI** for extracting and processing policy information from uploaded documents.
+* Implemented backend **validation, authentication, error handling, timeout, callback, and retry mechanisms** across insurance and third-party integrations.
+* Implemented **Redis caching** and temporary data management, along with **API Rate Limiting** for improved performance, scalability, and security.
+* Used **PM2 / Node.js Cluster** for multi-process application scaling and improved backend availability and performance.
+* Containerized applications using **Docker / Docker Compose** and configured **Nginx** as a reverse proxy and load balancer across Node.js instances.
+* Used **RabbitMQ** for asynchronous/background processing where required and **Jenkins** for application build and deployment workflows.
+* Designed and developed **RESTful APIs** using Node.js and Express.js with **MongoDB/MySQL** for customer, proposal, premium, payment, EMI, policy, and document-processing data.
+
+
+
+
+### Health & Travel Insurance – Backend Development & Integration
+
+**Tech Stack:** **Node.js, Express.js, JavaScript, React.js, MongoDB, MySQL, Redis, RabbitMQ, Docker, Docker Compose, Nginx, PM2 / Node.js Cluster, Jenkins, AWS, GCP, Razorpay, REST/XML/SOAP APIs, OpenAI APIs, Python, FastAPI, Rate Limiting**
+
+#### Insurance Workflow & Integrations
+
+* Developed **end-to-end Health & Travel Insurance workflows**, from customer form filling and validation to **premium calculation, KYC, proposal, payment, and policy issuance**.
+* Developed dynamic **customer/member forms and validations** covering age, relationships, medical details, portability, plan, zone, coverage, travel dates, trip duration, and eligibility.
+* Implemented **dynamic premium calculation and insurance business rules** based on customer, member, plan, zone, coverage, travel, and product-specific parameters.
+* Integrated **third-party insurer and KYC APIs** using **REST/XML/SOAP**, handling customer verification, premium calculation, proposal generation, policy issuance, and API responses.
+* Built **KYC → Premium → Proposal → Payment/EMI → Policy** workflows with status-based redirection, validation, error handling, and retry mechanisms.
+* Integrated **Razorpay** for order creation, payment initiation, payment verification, callbacks, success/failure handling, and transaction tracking.
+* Implemented **Monthly, Quarterly & Half-Yearly EMI** options with EMI calculation, validation, and payment tracking.
+* Developed **add-on/additional cover functionality** with dynamic premium recalculation and integration into proposal and payment workflows.
+
+#### Policy Document & AI Processing
+
+* Developed and maintained **policy-document processing services** to read, process, and extract structured information from insurance policy documents.
+* Worked on **AI-powered policy document processing** using **OpenAI APIs, Python, and FastAPI** for extracting and processing policy information from uploaded documents.
+
+#### Backend, Performance & Scalability
+
+* Designed and developed **RESTful APIs** using **Node.js and Express.js** with **MongoDB/MySQL** for customer, proposal, premium, payment, EMI, policy, and document-processing data.
+* Implemented backend **authentication, validation, error handling, timeout, callback, and retry mechanisms** across insurance and third-party integrations.
+* Implemented **Redis caching** and temporary data management to improve API performance and reduce repeated data/API processing.
+* Implemented **API Rate Limiting** to control request traffic and improve API security and reliability.
+* Used **PM2 / Node.js Cluster** for multi-process application scaling and improved backend availability and performance.
+* Used **RabbitMQ** for asynchronous/background processing of applicable tasks and workflows.
+
+#### DevOps & Deployment
+
+* Containerized applications using **Docker and Docker Compose** for consistent development and deployment environments.
+* Configured **Nginx** as a reverse proxy and load balancer to distribute traffic across multiple Node.js instances.
+* Used **Jenkins** for automated application build and deployment workflows.
+* Worked with **AWS and GCP** environments for application deployment and infrastructure management.
+
+
+
+### Health & Travel Insurance – Full Stack Development & Integration
+
+**Tech Stack:** **Node.js, Express.js, JavaScript, React.js, Angular, MongoDB, MySQL, Redis, RabbitMQ, Docker, Nginx, PM2, Jenkins, AWS, GCP, Razorpay, REST/XML/SOAP APIs, OpenAI APIs, Python, FastAPI**
+
+* Developed **end-to-end Health & Travel Insurance applications** using **Node.js, Express.js, React.js, and Angular**, from customer form filling to policy issuance.
+* Built dynamic **customer/member forms and validations** based on project requirements, covering age, relationship, medical details, travel dates, zones, plans, coverage, and eligibility.
+* Integrated **third-party insurer and KYC APIs** using **REST/XML/SOAP** for KYC, premium calculation, proposal generation, and policy issuance.
+* Implemented **dynamic premium calculation, add-ons, and insurance business rules** based on customer, member, plan, zone, coverage, and travel details.
+* Integrated **Razorpay** for order creation, payment verification, callbacks, success/failure handling, and transaction tracking.
+* Implemented **Monthly, Quarterly & Half-Yearly EMI** functionality with calculation, validation, and payment tracking.
+* Developed complete **KYC → Premium → Proposal → Payment/EMI → Policy** workflows with status handling, redirection, error handling, and retry mechanisms.
+* Developed **AI-powered policy document processing** using **OpenAI APIs, Python, and FastAPI** to extract and process structured information from insurance documents.
+* Implemented **Redis caching, API Rate Limiting, PM2/Node.js Cluster, and RabbitMQ** for performance, scalability, security, and background processing.
+* Containerized applications using **Docker/Docker Compose** and configured **Nginx** as a reverse proxy and load balancer.
+* Used **Jenkins, AWS, and GCP** for application build, deployment, and infrastructure management.
+
+
+
+
+
+### Insurance Platform – Full Stack Development & Integration
+
+**Tech Stack:** **Node.js, Express.js, JavaScript, React.js, Angular, MongoDB, MySQL, Redis, RabbitMQ, Docker, Nginx, PM2, Jenkins, AWS, GCP, Razorpay, REST/XML/SOAP APIs, OpenAI APIs, Python, FastAPI**
+
+* Developed **end-to-end Health, Travel & Motor/Car Insurance applications** using **Node.js, Express.js, React.js, and Angular**, covering customer, proposal, payment, and policy workflows.
+* Developed **Admin & POSP modules** for managing customers, proposals, policies, payments, insurers, products, plans, add-ons, and business workflows.
+* Implemented **multi-insurer integrations**, handling insurer-specific APIs, business rules, validations, premium calculation, proposal creation, and policy issuance.
+* Built dynamic **customer/member forms and validations** based on product and insurer requirements, including age, relationship, medical, vehicle, travel, zone, plan, and coverage details.
+* Integrated **third-party REST/XML/SOAP APIs** for KYC, premium calculation, proposal generation, policy issuance, and other insurer services.
+* Implemented **dynamic premium, add-on, EMI, and insurance business rules** across Health, Travel, and Motor products.
+* Integrated **Razorpay** for order creation, payment verification, callbacks, success/failure handling, and transaction tracking.
+* Built complete **KYC → Premium → Proposal → Payment/EMI → Policy** workflows with status tracking, redirection, error handling, and retry mechanisms.
+* Developed **AI-powered policy document processing** using **Node.js and OpenAI APIs** to extract, validate, and process structured information from insurance policy documents.
+* Implemented **Redis caching, Rate Limiting, PM2/Node.js Cluster, and RabbitMQ** for performance, scalability, security, and background processing.
+* Containerized applications using **Docker/Docker Compose** and configured **Nginx** as a reverse proxy/load balancer; worked with **Jenkins, AWS, and GCP** for deployment.
