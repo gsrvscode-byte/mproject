@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gopal Rajput | Node.js Full Stack Developer Resume</title>
+
+<style>
+  :root{
+    --navy:#1a2b6b;
+    --text:#222222;
+    --rule:#1a2b6b;
+    --paper:#ffffff;
+  }
+
+  *{ box-sizing:border-box; }
+
+  html,body{ margin:0; padding:0; }
+
+  body{
+    font-family: Arial, Calibri, Helvetica, sans-serif;
+    background:#eceae4;
+    color:var(--text);
+    line-height:1.45;
+  }
+
+  .resume{
+    width:210mm;
+    margin:12px auto;
+    padding:14mm 16mm;
+    background:var(--paper);
+    box-shadow:0 1px 3px rgba(0,0,0,.08), 0 8px 24px rgba(0,0,0,.05);
+  }
+
+  /* HEADER */
+  .header{
+    text-align:center;
+    border-bottom:2px solid var(--rule);
+    padding-bottom:10px;
+    margin-bottom:10px;
+  }
+
+  h1{
+    margin:0 0 4px;
+    font-size:22px;
+    letter-spacing:.5px;
+    color:var(--navy);
+    font-weight:700;
+  }
+
+  .role{
+    margin:0 0 6px;
+    font-size:12.5px;
+    color:#222;
+    font-weight:400;
+  }
+
+  .contact{
+    font-size:11px;
+    color:var(--navy);
+  }
+
+  .contact span + span::before{
+    content:"|";
+    color:#888;
+    margin:0 8px;
+  }
+
+  /* SECTIONS */
+  h2{
+    font-size:12.5px;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:.5px;
+    color:var(--navy);
+    border-bottom:1.4px solid var(--rule);
+    padding-bottom:3px;
+    margin:14px 0 6px;
+  }
+
+  p, li{
+    font-size:10.6px;
+    color:var(--text);
+    margin:0 0 4px;
+  }
+
+  .summary{ text-align:justify; }
+
+  ul{ margin:2px 0 0; padding-left:16px; }
+  li{ margin-bottom:2px; }
+
+  strong{ color:#000; }
+
+  /* SKILLS - single column, label + value like reference */
+  .skill-line{ margin-bottom:4px; }
+  .skill-line strong{ color:var(--navy); }
+
+  /* EXPERIENCE */
+  .job{ margin-bottom:8px; }
+  .job-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    gap:10px;
+  }
+  .job-title{ font-size:11.5px; font-weight:700; color:#000; }
+  .job-date{ font-size:10px; color:#444; white-space:nowrap; }
+  .job-company{ font-size:10.6px; font-style:italic; color:var(--navy); margin:1px 0 3px; }
+
+  /* PROJECTS */
+  .project{ margin-bottom:8px; }
+  .project-title{ font-size:11.5px; font-weight:700; color:#000; margin-bottom:1px; }
+  .project-tech{ font-size:10px; color:#444; font-style:italic; margin-bottom:3px; }
+
+  /* TWO COL FOOTER */
+  .two-col{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+  }
+
+  .print-button{
+    position:fixed;
+    right:24px;
+    bottom:24px;
+    padding:9px 15px;
+    border:0;
+    border-radius:5px;
+    background:var(--navy);
+    color:#fff;
+    font-family:Arial, sans-serif;
+    font-size:13px;
+    font-weight:600;
+    cursor:pointer;
+  }
+
+  @media print{
+    @page{ size:A4; margin:8mm; }
+    html,body{ margin:0; padding:0; background:#fff; }
+    .resume{ width:auto; margin:0; padding:0; box-shadow:none; }
+    .print-button{ display:none; }
+    h2{ break-after:avoid; page-break-after:avoid; }
+    .job, .project{ break-inside:avoid; page-break-inside:avoid; }
+  }
+
+  @media screen and (max-width:850px){
+    body{ background:#fff; }
+    .resume{ width:100%; padding:22px; box-shadow:none; }
+    .two-col{ grid-template-columns:1fr; }
+    .job-header{ display:block; }
+    .job-date{ display:block; margin-top:2px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="resume">
+
+  <!-- HEADER -->
+  <div class="header">
+    <h1>GOPAL RAJPUT</h1>
+    <div class="role">Node.js Full Stack Developer | MERN | REST APIs | Backend Systems</div>
+    <div class="contact">
+      <span>Pune / Mumbai, Maharashtra</span>
+      <span>+91 9146628679</span>
+      <span>itsgopalrajput321@gmail.com</span>
+      <span>linkedin.com/in/gopalrajput</span>
+      <span>github.com/gopalrajput</span>
+    </div>
+  </div>
+
+  <!-- SUMMARY -->
+  <h2>Professional Summary</h2>
+  <p class="summary">
+    Node.js Full Stack Developer with <strong>4+ years</strong> of professional experience building and
+    maintaining scalable web applications, REST APIs and backend systems using Node.js, Express.js,
+    JavaScript, React.js, MongoDB and MySQL. Experienced in insurance technology, ERP applications,
+    third-party REST/XML/SOAP integrations, authentication, payment workflows, database optimization
+    and production debugging. Hands-on with Docker, Docker Compose, Jenkins, Nginx, AWS, GCP, Redis
+    and RabbitMQ. Experienced in developing AI-powered policy-document processing services using
+    OpenAI APIs, Python and FastAPI.
+  </p>
+
+  <!-- SKILLS -->
+  <h2>Core Technical Skills</h2>
+  <p class="skill-line"><strong>Backend:</strong> Node.js, Express.js, JavaScript ES6+, REST APIs, Async/Await, Promises, Middleware, Axios</p>
+  <p class="skill-line"><strong>Frontend:</strong> React.js, React Hooks, React Router, Vite, Angular, HTML5, CSS3, Bootstrap, Tailwind CSS, jQuery</p>
+  <p class="skill-line"><strong>Databases:</strong> MongoDB, Mongoose, MySQL, PostgreSQL, SQL, CRUD, Aggregation, Indexing, Joins, Query Optimization</p>
+  <p class="skill-line"><strong>Security:</strong> JWT, Sessions, Cookies, bcrypt, Authentication Middleware, Role-Based Access, Protected APIs</p>
+  <p class="skill-line"><strong>Messaging:</strong> Redis, RabbitMQ, Producer/Consumer Architecture, Background Workers, Job Queues, SMTP</p>
+  <p class="skill-line"><strong>DevOps:</strong> Docker, Docker Compose, Jenkins, CI/CD, Git, GitHub, Nginx, Health Checks, Container Networking</p>
+  <p class="skill-line"><strong>Cloud:</strong> AWS EC2, AWS S3, AWS Lambda, AWS SDK, DigitalOcean, LocalStack, GCP</p>
+  <p class="skill-line"><strong>Testing:</strong> Jest, Postman, cURL, Swagger/OpenAPI</p>
+  <p class="skill-line"><strong>AI:</strong> OpenAI API, Prompt Engineering, AI PDF Processing, Structured JSON Extraction</p>
+  <p class="skill-line"><strong>Other:</strong> XML, SOAP, JSON, Third-Party APIs, File Upload APIs, Razorpay, Linux, Shell Scripting</p>
+
+  <!-- EXPERIENCE -->
+  <h2>Professional Experience</h2>
+
+  <div class="job">
+    <div class="job-header">
+      <div class="job-title">Node.js Full Stack Developer</div>
+      <div class="job-date">May 2024 – Present</div>
+    </div>
+    <div class="job-company">Policyboss (Landmark Insurance Brokers Pvt. Ltd.), Mumbai</div>
+    <ul>
+      <li>Developed <strong>end-to-end Health, Travel &amp; Motor/Car Insurance applications</strong> using <strong>Node.js, Express.js, React.js and Angular</strong>, covering customer, proposal, payment and policy workflows.</li>
+      <li>Developed <strong>Admin &amp; POSP modules</strong> for managing customers, proposals, policies, payments, insurers, products, plans, add-ons and business workflows.</li>
+      <li>Implemented <strong>multi-insurer integrations</strong>, handling insurer-specific APIs, business rules, validations, premium calculations, proposal creation and policy issuance.</li>
+      <li>Built dynamic customer/member forms and validations based on product and insurer requirements, including age, relationship, medical, vehicle, travel, zone, plan and coverage details.</li>
+      <li>Integrated <strong>third-party REST/XML/SOAP APIs</strong> for KYC, premium calculation, proposal generation, policy issuance and other insurer services.</li>
+      <li>Implemented dynamic premium, add-on, EMI and insurance business rules across Health, Travel and Motor products.</li>
+      <li>Integrated <strong>Razorpay</strong> for order creation, payment verification, callbacks, success/failure handling and transaction tracking.</li>
+      <li>Built complete <strong>KYC → Premium → Proposal → Payment/EMI → Policy</strong> workflows with status tracking, redirection, error handling and retry mechanisms.</li>
+      <li>Developed <strong>AI-powered policy document processing</strong> using Node.js and OpenAI APIs to extract, validate and process structured information from insurance policy documents.</li>
+      <li>Developed <strong>PDF processing microservices</strong> for uploading, storing, reading and processing policy documents, using <strong>AWS S3</strong> for document storage and <strong>AWS Lambda</strong> for serverless processing.</li>
+      <li>Implemented <strong>Redis caching, rate limiting, PM2/Node.js cluster and RabbitMQ</strong> for performance, scalability, security and background processing.</li>
+      <li>Containerized applications using <strong>Docker/Docker Compose</strong> and configured <strong>Nginx</strong> as a reverse proxy/load balancer; used <strong>Jenkins, AWS and GCP</strong> for deployment and infrastructure management.</li>
+    </ul>
+  </div>
+
+  <div class="job">
+    <div class="job-header">
+      <div class="job-title">Jr. Software Developer</div>
+      <div class="job-date">March 2022 – April 2024</div>
+    </div>
+    <div class="job-company">Virtual SCM Pvt. Ltd., Pune</div>
+    <ul>
+      <li>Developed and maintained full-stack web applications using <strong>Node.js, Express.js, React.js, JavaScript, MongoDB and MySQL</strong>.</li>
+      <li>Built and integrated <strong>RESTful APIs</strong> using GET, POST, PUT and DELETE HTTP methods.</li>
+      <li>Developed responsive and reusable user interfaces using <strong>React.js, HTML5, CSS3 and Bootstrap</strong>.</li>
+      <li>Worked on backend API development, request/response handling, validation and frontend-backend integration.</li>
+      <li>Used <strong>Git and GitHub</strong> for source-code management, version control and collaborative development.</li>
+      <li>Worked with <strong>AWS, DigitalOcean</strong> cloud environments and Linux-based development environments.</li>
+      <li>Worked with <strong>PostgreSQL, MongoDB and MySQL</strong> for database development, querying and application data management.</li>
+      <li>Used Linux and shell commands for application development, server-side troubleshooting and environment management.</li>
+    </ul>
+  </div>
+
+  <!-- PROJECTS -->
+  <h2>Key Projects</h2>
+
+  <div class="project">
+    <div class="project-title">Insurance Management Platform — Health, Travel, Motor &amp; Two-Wheeler</div>
+    <div class="project-tech">Node.js · Express.js · MongoDB · MySQL · REST · XML · SOAP · Redis · Docker</div>
+    <ul>
+      <li>Developed backend workflows for quotation, proposal processing, portability, EMI and policy operations across multiple insurance products.</li>
+      <li>Implemented insurer-specific validation logic for age, relationship, medical conditions and eligibility rules.</li>
+      <li>Integrated external insurer and ERP systems through REST, XML and SOAP interfaces with structured request and response processing.</li>
+      <li>Applied MongoDB aggregation, indexing and query filtering for proposal and reporting operations.</li>
+    </ul>
+  </div>
+
+  <div class="project">
+    <div class="project-title">AI-Powered Policy PDF Parser</div>
+    <div class="project-tech">Node.js · OpenAI API · Python · FastAPI · Formidable · Docker · JSON</div>
+    <ul>
+      <li>Built Node.js APIs for multipart PDF upload and automated policy-document processing.</li>
+      <li>Designed structured extraction schemas and prompts for Health, Motor and Two-Wheeler policy documents.</li>
+      <li>Extracted structured customer, policy, vehicle, coverage, nominee, discount and partner data.</li>
+      <li>Connected Node.js services with Python/FastAPI processing services using structured JSON communication.</li>
+    </ul>
+  </div>
+
+  <div class="project">
+    <div class="project-title">Transport ERP Web Application</div>
+    <div class="project-tech">Node.js · Express.js · React.js · REST APIs · Web APIs · AWS</div>
+    <ul>
+      <li>Developed a Transport ERP web application for managing and coordinating material movement and transportation workflows.</li>
+      <li>Built backend APIs using <strong>Node.js and Express.js</strong> and integrated them with the React.js frontend.</li>
+      <li>Developed RESTful services for creating, updating, retrieving and deleting application data.</li>
+      <li>Built React.js interfaces for managing operational information and application workflows.</li>
+      <li>Implemented workflows supporting material movement while considering demand, price, availability, quality and delivery schedules.</li>
+      <li>Worked with AWS-based application environments and supported deployment and troubleshooting activities.</li>
+    </ul>
+  </div>
+
+  <!-- DEVOPS -->
+  <h2>DevOps &amp; Cloud Experience</h2>
+  <ul>
+    <li>Hands-on with Docker and Docker Compose environments for Node.js, MySQL, MongoDB, Redis, RabbitMQ, Nginx and Jenkins.</li>
+    <li>Built Jenkins CI/CD pipelines covering source checkout, Docker image builds, automated testing and deployment workflows.</li>
+    <li>Worked with Docker networking, port mappings, environment variables, volumes, container health checks and troubleshooting.</li>
+    <li>Hands-on with AWS EC2 and S3, with working exposure to AWS Lambda and AWS SDK integrations.</li>
+    <li>Used LocalStack to simulate AWS services locally and Terraform for infrastructure-as-code configuration.</li>
+    <li>Used Nginx for reverse-proxy and local service routing.</li>
+  </ul>
+
+  <!-- ADDITIONAL -->
+  <h2>Additional Technical Experience</h2>
+  <ul>
+    <li>API development and debugging using Postman, cURL and Swagger/OpenAPI.</li>
+    <li>Backend testing using Jest, including API and integration-oriented test workflows.</li>
+    <li>Git/GitHub workflows including branching, commits, merges, pull requests and CI pipeline integration.</li>
+    <li>Practical debugging across Node.js, MongoDB, MySQL, Docker, networking and environment configuration.</li>
+  </ul>
+
+  <!-- EDUCATION + LANGUAGES -->
+  <h2>Education</h2>
+  <div class="two-col">
+    <div>
+      <p><strong>Master of Computer Applications (MCA)</strong><br>Abhinav Education Society's Institute of Management and Research</p>
+      <p><strong>Bachelor of Science in Computer Science</strong><br>Late Pandharinath Patil Institute of Management Studies, Aurangabad</p>
+    </div>
+    <div>
+      <p><strong>Languages:</strong> English, Hindi, Marathi</p>
+      <p><strong>Achievement:</strong> Participated in a state-level Cricket Championship held at Pune University in 2022.</p>
+    </div>
+  </div>
+
+</div>
+
+<button class="print-button" onclick="window.print()">Print / Save as PDF</button>
+
+</body>
+</html>
