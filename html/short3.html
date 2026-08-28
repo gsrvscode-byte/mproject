@@ -7,265 +7,271 @@
 <title>Gopal Rajput | Node.js Full Stack Developer</title>
 
 <style>
-  :root{
-    --navy:#1a2b6b;
-    --text:#222;
-    --paper:#fff;
-    --rule:#1a2b6b;
+  :root {
+    --navy: #1a2b6b;
+    --text: #222;
+    --paper: #fff;
+    --rule: #1a2b6b;
   }
 
-  *{box-sizing:border-box}
-
-  html,body{
-    margin:0;
-    padding:0;
+  * {
+    box-sizing: border-box;
   }
 
-  body{
-    font-family:Arial,Calibri,Helvetica,sans-serif;
-    background:#eceae4;
-    color:var(--text);
-    line-height:1.4;
+  html,
+  body {
+    margin: 0;
+    padding: 0;
   }
 
-  .resume{
-    width:210mm;
-    margin:12px auto;
-    padding:13mm 15mm;
-    background:var(--paper);
-    box-shadow:0 1px 3px rgba(0,0,0,.08),
-               0 8px 24px rgba(0,0,0,.05);
+  body {
+    font-family: Arial, Calibri, Helvetica, sans-serif;
+    background: #eceae4;
+    color: var(--text);
+    line-height: 1.4;
+  }
+
+  .resume {
+    width: 210mm;
+    margin: 12px auto;
+    padding: 13mm 15mm;
+    background: var(--paper);
+    box-shadow:
+      0 1px 3px rgba(0, 0, 0, .08),
+      0 8px 24px rgba(0, 0, 0, .05);
   }
 
   /* HEADER */
 
-  .header{
-    text-align:center;
-    border-bottom:2px solid var(--rule);
-    padding-bottom:8px;
-    margin-bottom:8px;
+  .header {
+    text-align: center;
+    border-bottom: 2px solid var(--rule);
+    padding-bottom: 8px;
+    margin-bottom: 8px;
   }
 
-  h1{
-    margin:0 0 3px;
-    font-size:22px;
-    letter-spacing:.5px;
-    color:var(--navy);
+  h1 {
+    margin: 0 0 3px;
+    font-size: 22px;
+    letter-spacing: .5px;
+    color: var(--navy);
   }
 
-  .role{
-    font-size:12px;
-    margin-bottom:5px;
-    color:#222;
+  .role {
+    font-size: 12px;
+    margin-bottom: 5px;
+    color: #222;
   }
 
-  .contact{
-    font-size:10.5px;
-    color:var(--navy);
+  .contact {
+    font-size: 10.5px;
+    color: var(--navy);
   }
 
-  .contact span + span::before{
-    content:"|";
-    color:#888;
-    margin:0 7px;
+  .contact span + span::before {
+    content: "|";
+    color: #888;
+    margin: 0 7px;
   }
 
   /* SECTIONS */
 
-  h2{
-    font-size:12px;
-    font-weight:700;
-    text-transform:uppercase;
-    letter-spacing:.5px;
-    color:var(--navy);
-    border-bottom:1.3px solid var(--rule);
-    padding-bottom:2px;
-    margin:10px 0 5px;
+  h2 {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+    color: var(--navy);
+    border-bottom: 1.3px solid var(--rule);
+    padding-bottom: 2px;
+    margin: 10px 0 5px;
   }
 
-  p,li{
-    font-size:10px;
-    color:var(--text);
+  p,
+  li {
+    font-size: 10px;
+    color: var(--text);
   }
 
-  p{
-    margin:0 0 3px;
+  p {
+    margin: 0 0 3px;
   }
 
-  strong{
-    color:#000;
+  strong {
+    color: #000;
   }
 
-  ul{
-    margin:2px 0 0;
-    padding-left:15px;
+  ul {
+    margin: 2px 0 0;
+    padding-left: 15px;
   }
 
-  li{
-    margin-bottom:1.5px;
-    line-height:1.36;
+  li {
+    margin-bottom: 1.5px;
+    line-height: 1.36;
   }
 
   /* SUMMARY */
 
-  .summary{
-    text-align:justify;
+  .summary {
+    text-align: justify;
   }
 
   /* SKILLS */
 
-  .skill-line{
-    margin-bottom:2.5px;
+  .skill-line {
+    margin-bottom: 2.5px;
   }
 
-  .skill-line strong{
-    color:var(--navy);
+  .skill-line strong {
+    color: var(--navy);
   }
 
   /* EXPERIENCE */
 
-  .job{
-    margin-bottom:6px;
+  .job {
+    margin-bottom: 6px;
   }
 
-  .job-header{
-    display:flex;
-    justify-content:space-between;
-    align-items:baseline;
-    gap:10px;
+  .job-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 10px;
   }
 
-  .job-title{
-    font-size:11px;
-    font-weight:700;
-    color:#000;
+  .job-title {
+    font-size: 11px;
+    font-weight: 700;
+    color: #000;
   }
 
-  .job-date{
-    font-size:9.5px;
-    color:#444;
-    white-space:nowrap;
+  .job-date {
+    font-size: 9.5px;
+    color: #444;
+    white-space: nowrap;
   }
 
-  .job-company{
-    font-size:10px;
-    font-style:italic;
-    color:var(--navy);
-    margin:1px 0 2px;
+  .job-company {
+    font-size: 10px;
+    font-style: italic;
+    color: var(--navy);
+    margin: 1px 0 2px;
   }
 
   /* PROJECTS */
 
-  .project{
-    margin-bottom:6px;
+  .project {
+    margin-bottom: 6px;
   }
 
-  .project-title{
-    font-size:11px;
-    font-weight:700;
-    color:#000;
+  .project-title {
+    font-size: 11px;
+    font-weight: 700;
+    color: #000;
   }
 
-  .project-tech{
-    font-size:9.3px;
-    color:#444;
-    font-style:italic;
-    margin:1px 0 2px;
+  .project-tech {
+    font-size: 9.3px;
+    color: #444;
+    font-style: italic;
+    margin: 1px 0 2px;
   }
 
   /* EDUCATION */
 
-  .two-col{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:20px;
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
   }
 
   /* PRINT */
 
-  .print-button{
-    position:fixed;
-    right:24px;
-    bottom:24px;
-    padding:8px 14px;
-    border:0;
-    border-radius:5px;
-    background:var(--navy);
-    color:#fff;
-    font-size:12px;
-    font-weight:600;
-    cursor:pointer;
+  .print-button {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    padding: 8px 14px;
+    border: 0;
+    border-radius: 5px;
+    background: var(--navy);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
   }
 
-  @media print{
+  @media print {
 
-    @page{
-      size:A4;
-      margin:7mm;
+    @page {
+      size: A4;
+      margin: 7mm;
     }
 
-    html,body{
-      background:#fff;
-      margin:0;
-      padding:0;
+    html,
+    body {
+      background: #fff;
+      margin: 0;
+      padding: 0;
     }
 
-    .resume{
-      width:auto;
-      margin:0;
-      padding:0;
-      box-shadow:none;
+    .resume {
+      width: auto;
+      margin: 0;
+      padding: 0;
+      box-shadow: none;
     }
 
-    .print-button{
-      display:none;
+    .print-button {
+      display: none;
     }
 
-    h2{
-      break-after:avoid;
-      page-break-after:avoid;
+    h2 {
+      break-after: avoid;
+      page-break-after: avoid;
     }
 
     .job,
-    .project{
-      break-inside:avoid;
-      page-break-inside:avoid;
+    .project {
+      break-inside: avoid;
+      page-break-inside: avoid;
     }
   }
 
-  @media screen and (max-width:850px){
+  @media screen and (max-width: 850px) {
 
-    body{
-      background:#fff;
+    body {
+      background: #fff;
     }
 
-    .resume{
-      width:100%;
-      margin:0;
-      padding:20px;
-      box-shadow:none;
+    .resume {
+      width: 100%;
+      margin: 0;
+      padding: 20px;
+      box-shadow: none;
     }
 
-    .contact{
-      line-height:1.7;
+    .contact {
+      line-height: 1.7;
     }
 
-    .contact span + span::before{
-      content:"";
-      margin:0;
+    .contact span + span::before {
+      content: "";
+      margin: 0;
     }
 
-    .two-col{
-      grid-template-columns:1fr;
+    .two-col {
+      grid-template-columns: 1fr;
     }
 
-    .job-header{
-      display:block;
+    .job-header {
+      display: block;
     }
 
-    .job-date{
-      display:block;
-      margin-top:1px;
+    .job-date {
+      display: block;
+      margin-top: 1px;
     }
   }
 </style>
@@ -468,6 +474,8 @@
   <h2>Key Projects</h2>
 
 
+  <!-- INSURANCE PROJECT -->
+
   <div class="project">
 
     <div class="project-title">
@@ -494,41 +502,44 @@
 
   </div>
 
+
+  <!-- TECH JOB LISTING PROJECT -->
+
   <div class="project">
 
-  <div class="project-title">
-    Tech Job Listing Platform
+    <div class="project-title">
+      Tech Job Listing Platform
+    </div>
+
+    <div class="project-tech">
+      React.js · Node.js · Express.js · JavaScript · AWS Lambda · Amazon S3 · Docker · Nginx · REST APIs
+    </div>
+
+    <ul>
+
+      <li>
+        Developed an automated job aggregation website that
+        <strong>scrapes the latest technology jobs from multiple websites
+        and publishes updated listings daily</strong>.
+      </li>
+
+      <li>
+        Built automated <strong>Node.js/Express.js scraping services and REST APIs</strong>
+        for job data collection, processing, search, filtering and categorization.
+      </li>
+
+      <li>
+        Implemented scheduled processing using <strong>AWS Lambda</strong>,
+        with <strong>Amazon S3</strong> for scalable storage and Docker/Nginx
+        for containerized production deployment.
+      </li>
+
+    </ul>
+
   </div>
 
-  <div class="project-tech">
-    React.js · Node.js · Express.js · JavaScript · AWS Lambda · Amazon S3 · Docker · Nginx · REST APIs
-  </div>
 
-  <ul>
-
-```
-<li>
-  Developed an automated job aggregation website that
-  <strong>scrapes the latest technology jobs from multiple websites
-  and publishes updated listings daily</strong>.
-</li>
-
-<li>
-  Built automated <strong>Node.js/Express.js scraping services and REST APIs</strong>
-  for job data collection, processing, search, filtering and categorization.
-</li>
-
-<li>
-  Implemented scheduled processing using <strong>AWS Lambda</strong>,
-  with <strong>Amazon S3</strong> for scalable storage and Docker/Nginx
-  for containerized production deployment.
-</li>
-```
-
-  </ul>
-
-</div>
-
+  <!-- AI PDF PROJECT -->
 
   <div class="project">
 
@@ -556,6 +567,8 @@
 
   </div>
 
+
+  <!-- E-COMMERCE PROJECT -->
 
   <div class="project">
 
@@ -623,6 +636,8 @@
 
 </div>
 
+
+<!-- PRINT BUTTON -->
 
 <button
   class="print-button"
