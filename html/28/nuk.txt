@@ -1,0 +1,134 @@
+================================================
+NAUKRI PROFILE UPDATE - GOPAL RAJPUT
+Node.js Full Stack Developer
+================================================
+
+------------------------------------------------
+1. RESUME HEADLINE (max 250 chars)
+------------------------------------------------
+Node.js Full Stack Developer | 3.7+ Yrs | MERN | React.js | Express.js | REST/XML/SOAP APIs | MongoDB/MySQL/PostgreSQL | AWS | Docker | OpenAI API Integration
+
+------------------------------------------------
+2. PROFILE SUMMARY (Naukri "Profile Summary" field)
+------------------------------------------------
+Node.js Full Stack Developer with 3.7+ years of professional experience building scalable web applications, REST APIs and backend systems using Node.js, Express.js, JavaScript, TypeScript, React.js, Angular, MongoDB, MySQL and PostgreSQL. Experienced in insurance platforms, Transport ERP systems, third-party REST/XML/SOAP integrations, KYC, payment and EMI workflows, authentication, database optimization and production debugging.
+
+Hands-on with Docker, Docker Hub, Nginx, PM2, AWS, Redis, RabbitMQ and Sonatype Nexus Repository. Experienced in developing AI-powered document processing services using OpenAI APIs and Node.js, including building AI prompts, structured JSON schemas and validation logic to convert unstructured documents into application-ready data.
+
+Proven ability to design, build and deploy end-to-end production systems - from database schema design and API development to containerized deployment and performance optimization.
+
+------------------------------------------------
+3. KEY SKILLS (Naukri "Key Skills" field - add each as a tag)
+------------------------------------------------
+Node.js, Express.js, JavaScript, TypeScript, React.js, React Redux, React Hooks, Angular, REST API, Microservices, MongoDB, Mongoose, MySQL, PostgreSQL, SQL, Query Optimization, Docker, Docker Compose, Jenkins, CI/CD, Nginx, AWS EC2, AWS S3, AWS Lambda, GCP, JWT, Authentication, RBAC, Redis, RabbitMQ, Jest, Supertest, Postman, Swagger/OpenAPI, XML, SOAP, Razorpay Payment Gateway, OpenAI API, Python, FastAPI, AI Prompt Engineering, Git, GitHub, HTML5, CSS3, Bootstrap, Tailwind CSS
+
+------------------------------------------------
+4. EMPLOYMENT HISTORY
+------------------------------------------------
+
+--- Employer 1 (Current) ---
+Company: Policyboss (Landmark Insurance Brokers Pvt. Ltd.), Mumbai
+Designation: Node.js Full Stack Developer
+Employment Type: Full Time
+Duration: May 2024 - Present
+
+Job Profile / Description:
+Developed Health, Travel and Motor Insurance applications using Node.js, Express.js, React.js and Angular. Built end-to-end customer, quotation, proposal, KYC, payment, EMI and policy issuance workflows with insurer-specific business validations. Integrated multiple insurers and ERP systems using REST, XML and SOAP APIs, including request/response handling, validation, mapping and error management.
+
+Implemented premium calculation, add-on covers, eligibility, medical, travel, vehicle and policy business rules, along with insurer-specific proposal validation and policy issuance workflows with status-based processing and failure handling. Integrated Razorpay payment gateway for payment creation, verification, callbacks, failure handling, retries and transaction status tracking. Implemented Monthly, Quarterly and Half-Yearly EMI payment workflows including EMI calculation, validation and transaction tracking.
+
+Developed AI-powered policy PDF processing services using Node.js, OpenAI APIs, Python and FastAPI to extract structured customer, policy, vehicle and coverage data from insurance documents, designing AI prompts, structured JSON schemas and validation logic for converting unstructured documents into application-ready JSON data. Implemented document storage and serverless PDF processing using AWS S3 and AWS Lambda.
+
+Built scalable Node.js/Express.js REST APIs with reusable middleware, validation, centralized error handling and asynchronous processing. Worked with MongoDB and MySQL for schema design, aggregation queries, indexing, joins, transaction processing and database optimization. Used Docker, Docker Compose, Nginx and PM2 for containerization, reverse proxy and deployment on AWS EC2. Used Redis for caching and RabbitMQ for asynchronous background job processing. Used Jenkins, Git/GitHub and Sonatype Nexus Repository for build and deployment workflows, along with production debugging, API troubleshooting and performance optimization.
+
+--- Employer 2 ---
+Company: Virtual SCM Pvt. Ltd., Pune
+Designation: Jr. Software Developer
+Employment Type: Full Time
+Duration: Aug 2022 - Oct 2023
+
+Job Profile / Description:
+Developed and maintained a Transport ERP web application using React.js, Node.js, Express.js, PostgreSQL, HTML5 and CSS3 for transportation and logistics operations. Built modules for vehicle, driver, customer, transporter, trip, shipment and transportation management, along with E-Way Bill generation and management workflows including API integration, validation, generation, tracking and status management.
+
+Developed scalable RESTful APIs using Node.js and Express.js for ERP modules, business operations, data processing and React.js frontend integration. Implemented CRUD operations, request validation, authentication, authorization and business logic across multiple ERP modules. Designed and optimized PostgreSQL database schemas, queries, joins, relationships and indexes for application performance.
+
+Developed responsive and reusable React.js components with HTML5, CSS3 and Bootstrap for operational dashboards and management screens. Integrated third-party APIs for transportation, E-Way Bill and related business processes. Implemented search, filtering, pagination, reporting and data management features for large volumes of transport and transaction records. Used Git/GitHub, AWS, DigitalOcean and Linux-based environments for development, deployment and production troubleshooting.
+
+------------------------------------------------
+5. PROJECTS (Naukri "Projects" section - add each separately)
+------------------------------------------------
+
+--- Project 1 ---
+Project Title: AI-Powered Policy PDF Parser
+Client: Policyboss (Landmark Insurance Brokers Pvt. Ltd.)
+Role: Backend / Full Stack Developer
+Skills Used: Node.js, Express.js, OpenAI API, Python, FastAPI, AWS S3, AWS Lambda, Docker, JSON, REST APIs
+Duration: 2024 - Present
+
+Description:
+Built AI-powered REST APIs for PDF upload and automated extraction of structured customer, policy, vehicle, coverage and insurance-related information from policy documents. Integrated OpenAI APIs with Node.js services to process unstructured policy documents and convert extracted information into structured JSON responses. Developed serverless AWS Lambda microservices for document processing and integrated them with Node.js REST APIs. Designed structured AI prompts, JSON schemas and validation logic for consistent extraction of policy data. Implemented AWS S3 for PDF/document storage and AWS Lambda for serverless document-processing workflows. Developed file upload, validation, processing-status and error-handling workflows for policy documents. Containerized backend and processing services using Docker and configured communication between Node.js and FastAPI services.
+
+--- Project 2 ---
+Project Title: Tech Job Listing Platform
+Client: Personal / Self-Initiated Project
+Role: Full Stack Developer
+Skills Used: React.js, Node.js, Express.js, JavaScript, AWS Lambda, Amazon S3, Docker, Nginx, REST APIs
+Duration: 2023 - 2024
+
+Description:
+Developed an automated job aggregation website that scrapes the latest technology jobs from multiple websites and publishes updated listings daily. Built automated Node.js/Express.js scraping services and REST APIs for job data collection, processing, search, filtering, categorization and duplicate handling. Implemented automated job data processing and normalization to maintain consistent job titles, company information, locations and technology categories. Implemented scheduled processing using AWS Lambda, with Amazon S3 for scalable storage and Docker/Nginx for containerized production deployment. Developed API-driven frontend functionality using React.js for job search, filtering and listing presentation.
+
+--- Project 3 ---
+Project Title: E-Commerce REST API
+Client: Personal / Self-Initiated Project
+Role: Backend Developer
+Skills Used: Node.js, Express.js, MySQL, PostgreSQL, Redis, JWT, Docker, Docker Compose, Nginx, Jest, Supertest, REST APIs
+Duration: 2023
+
+Description:
+Developed scalable Node.js/Express.js REST APIs for user authentication, product management, inventory, cart and order-management workflows. Implemented JWT-based authentication and authorization with protected routes, middleware, password hashing and secure API access. Designed database models and implemented CRUD operations, relationships, joins, indexing and query optimization using MySQL and PostgreSQL. Implemented Redis caching for frequently accessed product and application data. Developed cart and order workflows including inventory validation, order creation, status management and transaction processing. Implemented request validation, centralized error handling and reusable Express.js middleware for maintainable APIs. Containerized application services using Docker and Docker Compose, and configured Nginx as a reverse proxy and load-balancing layer. Implemented API testing using Jest and Supertest and validated REST endpoints using Postman and cURL.
+
+------------------------------------------------
+6. EDUCATION
+------------------------------------------------
+Master of Computer Applications (MCA)
+Abhinav Education Society's Institute of Management and Research
+
+B.Sc. Computer Science
+Late Pandharinath Patil Institute of Management Studies, Aurangabad
+
+------------------------------------------------
+7. IT SKILLS TABLE (Naukri "IT Skills" section - Skill | Version | Last Used | Experience)
+------------------------------------------------
+Node.js        | -  | 2026 | 3.7 Yrs
+Express.js     | -  | 2026 | 3.7 Yrs
+React.js       | -  | 2026 | 3 Yrs
+Angular        | -  | 2026 | 1.5 Yrs
+JavaScript     | ES6+ | 2026 | 3.7 Yrs
+TypeScript     | -  | 2026 | 2 Yrs
+MongoDB        | -  | 2026 | 2.5 Yrs
+MySQL          | -  | 2026 | 2 Yrs
+PostgreSQL     | -  | 2026 | 1.5 Yrs
+Docker         | -  | 2026 | 2.5 Yrs
+AWS            | -  | 2026 | 2 Yrs
+Redis          | -  | 2026 | 1.5 Yrs
+RabbitMQ       | -  | 2026 | 1 Yr
+OpenAI API     | -  | 2026 | 1 Yr
+
+------------------------------------------------
+8. PERSONAL DETAILS (reference only)
+------------------------------------------------
+Location: Pune / Mumbai, Maharashtra
+Mobile: +91 9146628679
+Email: itsgopalrajput321@gmail.com
+LinkedIn: linkedin.com/in/gopalrajput
+GitHub: github.com/gopalrajput
+Languages Known: English, Hindi, Marathi
+Total Experience: 3 Years 7 Months
+
+================================================
+NOTE: Copy each section directly into the matching
+Naukri.com profile edit field (Resume Headline,
+Profile Summary, Key Skills, Employment, Projects,
+Education, IT Skills).
+================================================
