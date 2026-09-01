@@ -1,0 +1,143 @@
+================================================
+INDEED PROFILE UPDATE - GOPAL RAJPUT
+Node.js Full Stack Developer
+================================================
+
+------------------------------------------------
+1. JOB TITLE / HEADLINE (Indeed "Add a headline" field)
+------------------------------------------------
+Node.js Full Stack Developer
+
+------------------------------------------------
+2. DESIRED JOB TITLES (Indeed lets you add multiple)
+------------------------------------------------
+Node.js Full Stack Developer
+Backend Developer (Node.js)
+MERN Stack Developer
+Full Stack JavaScript Developer
+
+------------------------------------------------
+3. SUMMARY (Indeed "Summary" field - shorter than Naukri, keep to ~4-5 lines)
+------------------------------------------------
+Node.js Full Stack Developer with 3.7+ years of experience building scalable web applications, REST APIs and backend systems using Node.js, Express.js, React.js, Angular, MongoDB, MySQL and PostgreSQL. Skilled in third-party REST/XML/SOAP integrations, payment and EMI workflows, authentication, and database optimization. Hands-on with Docker, AWS, Redis and RabbitMQ, with recent experience building AI-powered document processing services using OpenAI APIs and Node.js.
+
+------------------------------------------------
+4. WORK EXPERIENCE (Indeed "Work Experience" section - add each job separately)
+------------------------------------------------
+
+--- Job 1 (Current) ---
+Job Title: Node.js Full Stack Developer
+Company: Policyboss (Landmark Insurance Brokers Pvt. Ltd.)
+Location: Mumbai, Maharashtra
+Start Date: May 2024
+End Date: Present (check "I currently work here")
+
+Description (use bullet points - Indeed supports them):
+• Developed Health, Travel and Motor Insurance applications using Node.js, Express.js, React.js and Angular
+• Built end-to-end customer, quotation, proposal, KYC, payment, EMI and policy issuance workflows with insurer-specific business validations
+• Integrated multiple insurers and ERP systems using REST, XML and SOAP APIs with request/response handling, validation and error management
+• Implemented premium calculation, add-on covers, and policy business rules across insurers
+• Integrated Razorpay payment gateway for payment creation, verification, callbacks, and transaction tracking
+• Built Monthly, Quarterly and Half-Yearly EMI payment workflows including calculation and status management
+• Developed AI-powered policy PDF processing services using Node.js, OpenAI APIs, Python and FastAPI to extract structured data from insurance documents
+• Designed AI prompts, JSON schemas and validation logic for converting unstructured documents into application-ready data
+• Used AWS S3 and AWS Lambda for document storage and serverless PDF processing
+• Built scalable REST APIs with reusable middleware, centralized error handling and async processing
+• Worked with MongoDB and MySQL for schema design, aggregation, indexing and optimization
+• Used Docker, Docker Compose, Nginx and PM2 for containerization and deployment on AWS EC2
+• Used Redis for caching and RabbitMQ for background job processing
+• Used Jenkins, Git/GitHub and Sonatype Nexus for build and deployment pipelines
+
+--- Job 2 ---
+Job Title: Jr. Software Developer
+Company: Virtual SCM Pvt. Ltd.
+Location: Pune, Maharashtra
+Start Date: August 2022
+End Date: October 2023
+
+Description (use bullet points):
+• Developed and maintained a Transport ERP web application using React.js, Node.js, Express.js and PostgreSQL
+• Built modules for vehicle, driver, customer, transporter, trip and shipment management
+• Built E-Way Bill generation and management workflows including API integration, validation and tracking
+• Developed scalable RESTful APIs using Node.js and Express.js for ERP modules and frontend integration
+• Implemented CRUD operations, authentication, authorization and business logic across ERP modules
+• Designed and optimized PostgreSQL database schemas, queries, joins and indexes
+• Developed responsive React.js components with HTML5, CSS3 and Bootstrap for operational dashboards
+• Integrated third-party APIs for transportation and E-Way Bill processes
+• Implemented search, filtering, pagination and reporting for large transaction datasets
+• Used Git/GitHub, AWS, DigitalOcean and Linux for development, deployment and troubleshooting
+
+------------------------------------------------
+5. EDUCATION (Indeed "Education" section)
+------------------------------------------------
+Degree: Master of Computer Applications (MCA)
+School: Abhinav Education Society's Institute of Management and Research
+
+Degree: B.Sc. Computer Science
+School: Late Pandharinath Patil Institute of Management Studies, Aurangabad
+
+------------------------------------------------
+6. SKILLS (Indeed "Skills" section - add individually, Indeed limits visible tags so prioritize top ones first)
+------------------------------------------------
+Node.js
+Express.js
+React.js
+JavaScript
+TypeScript
+MongoDB
+MySQL
+PostgreSQL
+REST APIs
+Docker
+AWS (EC2, S3, Lambda)
+Redis
+RabbitMQ
+JWT Authentication
+Angular
+OpenAI API
+Python
+FastAPI
+Git/GitHub
+Nginx
+
+------------------------------------------------
+7. CERTIFICATIONS / PROJECTS (Indeed "Add section" - optional but recommended)
+------------------------------------------------
+
+Project: AI-Powered Policy PDF Parser
+Built AI-powered REST APIs to extract structured customer, policy, vehicle and coverage data from insurance PDFs using Node.js, OpenAI API, Python and FastAPI. Designed AI prompts and JSON schemas for consistent data extraction; used AWS S3 and Lambda for serverless document storage and processing.
+
+Project: Tech Job Listing Platform
+Built an automated job aggregation platform that scrapes technology job listings daily using Node.js, Express.js and React.js, with AWS Lambda for scheduled processing and Docker/Nginx for deployment.
+
+Project: E-Commerce REST API
+Developed Node.js/Express.js REST APIs for authentication, product, cart and order management with JWT auth, Redis caching, MySQL/PostgreSQL, and API testing via Jest and Supertest.
+
+------------------------------------------------
+8. CONTACT & PREFERENCES (for Indeed job alerts/profile settings)
+------------------------------------------------
+Location: Pune / Mumbai, Maharashtra
+Phone: +91 9146628679
+Email: itsgopalrajput321@gmail.com
+LinkedIn: linkedin.com/in/gopalrajput
+GitHub: github.com/gopalrajput
+Total Experience: 3 Years 7 Months
+Languages: English, Hindi, Marathi
+
+Job Preferences (set in Indeed "Job Preferences"):
+- Job Type: Full-time
+- Work setting: On-site / Hybrid / Remote (choose based on your preference)
+- Willing to relocate: Yes/No (your call)
+
+================================================
+NOTE ON INDEED VS NAUKRI DIFFERENCES:
+- Indeed's Summary field is shorter than Naukri's Profile
+  Summary - keep it to 4-5 lines, not a full paragraph.
+- Indeed relies more on bullet points in Work Experience
+  than Naukri, which allows longer paragraph descriptions.
+- Indeed's Skills section works best with individual
+  short tags rather than grouped skill lines.
+- Upload the same PDF resume to both platforms once it's
+  ready - keep headline/title consistent across all portals
+  so recruiters searching find you the same way everywhere.
+================================================
