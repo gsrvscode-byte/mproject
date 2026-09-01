@@ -1,0 +1,21 @@
+{
+  "name": "docker-stack-app",
+  "version": "1.0.0",
+  "description": "Node.js app demonstrating connections to Postgres, Redis, and RabbitMQ",
+  "main": "index.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node --watch index.js",
+    "worker": "node worker.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "pg": "^8.12.0",
+    "redis": "^4.7.0",
+    "amqplib": "^0.10.4",
+    "dotenv": "^16.4.5",
+    "bcryptjs": "^2.4.3",
+    "nodemailer": "^6.9.14"
+  }
+}

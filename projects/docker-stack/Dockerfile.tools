@@ -1,0 +1,12 @@
+FROM alpine:3.20
+
+# curl + common debugging/networking tools
+RUN apk add --no-cache \
+    curl \
+    bash \
+    postgresql-client \
+    redis \
+    netcat-openbsd \
+    jq
+
+WORKDIR /work
