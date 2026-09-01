@@ -6,17 +6,13 @@ module.exports = (req, res, next) => {
 
     try {
 
-        const authHeader =
-            req.headers.authorization;
+        const authHeader = req.headers.authorization;
 
-
-        if (!authHeader) {
-
-            return res.status(401).json({
+        if (!authHeader) {  
+                return res.status(401).json({
                 success: false,
                 message: "Authorization header required"
             });
-
         }
 
 
@@ -48,13 +44,9 @@ module.exports = (req, res, next) => {
 
 
     } catch (error) {
-
         return res.status(401).json({
-
             success: false,
-
             message: "Invalid or expired token"
-
         });
 
     }
