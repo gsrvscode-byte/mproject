@@ -1,0 +1,193 @@
+====================================================================
+GOPAL RAJPUT - NODE.JS FULL STACK DEVELOPER
+COMPLETE TOPIC-WISE PREPARATION LIST (BASED ON RESUME SKILLS)
+====================================================================
+Purpose: Cover EVERY skill/technology mentioned in the resume in depth
+so you can confidently answer interview questions or explain your work.
+====================================================================
+
+
+====================================================================
+1. BACKEND (Node.js, Express.js, JavaScript ES6+, TypeScript, REST APIs, Microservices)
+====================================================================
+- Node.js event loop, phases (timers, poll, check, close callbacks)
+- Callback queue vs microtask queue (process.nextTick, Promises)
+- Single-threaded model, libuv, thread pool
+- Blocking vs non-blocking I/O, async/await vs callbacks vs promises
+- Streams (Readable, Writable, Duplex, Transform) and buffering
+- Error handling: try/catch with async/await, error-first callbacks
+- Express.js middleware chain (app.use, next())
+- Error-handling middleware, centralized error handler
+- Routing, route params, query params, route grouping/versioning
+- Request lifecycle: parsing (body-parser/express.json), validation, controller, service, repository pattern
+- REST API design principles (statelessness, resource naming, HTTP verbs, status codes)
+- API versioning strategies (URI, header-based)
+- Pagination, filtering, sorting implementation
+- Rate limiting and throttling
+- JavaScript ES6+: let/const, arrow functions, destructuring, spread/rest, template literals, closures, hoisting, prototypal inheritance, this binding, event loop
+- TypeScript: interfaces vs types, generics, enums, type narrowing, decorators, tsconfig strict mode, migrating JS to TS
+- Microservices: service decomposition, inter-service communication (REST vs message queue), API gateway pattern, service discovery
+- Environment configuration (.env, config management)
+- Logging strategies (Winston/Morgan), structured logging
+- Clustering / PM2 cluster mode for multi-core utilization
+
+
+====================================================================
+2. FRONTEND (React.js, Hooks, Router, Redux, Angular, Vite, HTML5, CSS3, Bootstrap, Tailwind)
+====================================================================
+- React fundamentals: JSX, virtual DOM, reconciliation, keys
+- Hooks: useState, useEffect, useRef, useMemo, useCallback, useContext, custom hooks
+- Component lifecycle (class vs functional equivalent)
+- React Router: nested routes, dynamic routes, protected routes, navigation guards
+- Redux: store, actions, reducers, middleware (thunk), Redux Toolkit vs classic Redux
+- State management alternatives (Context API vs Redux vs Zustand)
+- Controlled vs uncontrolled components, form handling
+- Performance optimization: memoization, lazy loading, code splitting, React.lazy/Suspense
+- Angular basics: modules, components, services, dependency injection, RxJS observables, two-way binding
+- React vs Angular architecture differences
+- Vite: build tooling, HMR, difference from Webpack/CRA
+- HTML5 semantic elements, accessibility basics
+- CSS3: flexbox, grid, responsive design, media queries
+- Bootstrap vs Tailwind CSS: utility-first vs component-based approach
+- API integration on frontend (axios/fetch), handling loading/error states
+
+
+====================================================================
+3. DATABASE (MongoDB, Mongoose, MySQL, PostgreSQL, SQL, Aggregation, Indexing, Joins, Transactions)
+====================================================================
+- MongoDB: documents, collections, BSON, schema design (embedding vs referencing)
+- Mongoose: schemas, models, validation, middleware (pre/post hooks), population
+- Aggregation pipeline: $match, $group, $project, $lookup, $unwind, $sort
+- Indexing strategies in MongoDB (single field, compound, text, TTL indexes)
+- SQL fundamentals: DDL, DML, DCL, TCL
+- MySQL vs PostgreSQL differences (data types, performance, concurrency model - MVCC)
+- Joins: INNER, LEFT, RIGHT, FULL OUTER, self-join, cross join
+- Normalization (1NF, 2NF, 3NF) vs denormalization for performance
+- Indexing in SQL (B-tree, clustered vs non-clustered), query execution plans (EXPLAIN)
+- Transactions: ACID properties, isolation levels, deadlocks, locking (optimistic vs pessimistic)
+- Query optimization techniques, N+1 query problem and solutions
+- Connection pooling
+- Schema migrations and version control for databases
+- SQL vs NoSQL: when to choose which, use cases from your projects (why Mongo for one project, Postgres/MySQL for another)
+
+
+====================================================================
+4. DEVOPS & CLOUD (Docker, Jenkins, CI/CD, Nginx, Git, Linux, PM2, AWS, GCP, LocalStack)
+====================================================================
+- Docker: images vs containers, Dockerfile best practices, multi-stage builds
+- Docker Compose: service orchestration, networks, volumes
+- Docker Hub vs Sonatype Nexus Repository (private artifact/image registry usage)
+- Jenkins: pipeline as code (Jenkinsfile), stages, triggers, build automation
+- CI/CD concepts: continuous integration vs continuous delivery vs deployment, blue-green deployment, rollback strategies
+- Nginx: reverse proxy configuration, load balancing algorithms, SSL termination, caching
+- Git/GitHub: branching strategies (Git Flow, trunk-based), merge vs rebase, resolving conflicts, cherry-pick, git hooks
+- Linux: basic commands, process management, file permissions, systemd/services, shell scripting basics
+- PM2: process management, cluster mode, zero-downtime reloads, monitoring, ecosystem.config.js
+- AWS EC2: instance types, security groups, SSH access, deployment on EC2
+- AWS S3: buckets, storage classes, presigned URLs, lifecycle policies
+- AWS Lambda: serverless functions, triggers, cold starts, execution limits, event-driven architecture
+- GCP basics (comparison with AWS services you've used)
+- LocalStack: local AWS service emulation for testing/development
+- Infrastructure/deployment troubleshooting, log analysis (CloudWatch or server logs), production debugging steps
+
+
+====================================================================
+5. SECURITY (JWT, Sessions, Cookies, bcrypt, Auth Middleware, RBAC)
+====================================================================
+- JWT: structure (header, payload, signature), access token vs refresh token, token expiry and rotation
+- Sessions vs Tokens: stateful vs stateless auth, when to use which
+- Cookies: httpOnly, secure, sameSite flags, CSRF risks and mitigation
+- bcrypt: password hashing, salt rounds, why not plain encryption
+- Authentication middleware implementation in Express
+- Authorization: Role-Based Access Control (RBAC) design, permission checks
+- Protecting APIs: input validation/sanitization, preventing SQL injection & NoSQL injection
+- OWASP Top 10 awareness (XSS, CSRF, injection, broken auth)
+- Rate limiting/brute force protection on login endpoints
+- Secure storage of secrets (env variables, AWS Secrets Manager)
+
+
+====================================================================
+6. MESSAGING & TESTING (Redis, RabbitMQ, Jest, Supertest, Postman, cURL, Swagger/OpenAPI)
+====================================================================
+- Redis: use cases (caching, session store, rate limiting), data structures (strings, hashes, lists, sets, sorted sets), TTL/expiry, pub/sub
+- Cache invalidation strategies, cache-aside pattern
+- RabbitMQ: exchanges, queues, bindings, message acknowledgment, dead-letter queues, use cases for async processing/background jobs
+- Message queue vs direct API call - when and why
+- Jest: unit testing, mocking, test coverage, describe/it blocks, snapshot testing
+- Supertest: integration testing of Express APIs
+- Postman: collections, environments, pre-request scripts, automated test scripts
+- cURL: common flags, testing APIs from terminal
+- Swagger/OpenAPI: API documentation generation, defining schemas, request/response specs
+
+
+====================================================================
+7. INTEGRATION & AI (REST/XML/SOAP, Razorpay, OpenAI API, Python, FastAPI, JSON Processing, Prompt Engineering)
+====================================================================
+- REST vs SOAP vs XML integration differences, when third-party systems mandate SOAP/XML
+- Parsing and generating XML in Node.js, handling SOAP envelopes
+- Error handling and retries for third-party/insurer API integrations
+- Razorpay integration: order creation, payment verification (signature validation), webhooks, handling failures/refunds
+- OpenAI API: chat/completions usage, prompt design, temperature/token settings, function calling
+- AI prompt engineering: structuring prompts for consistent structured JSON output, few-shot examples, schema-guided extraction
+- Designing JSON schemas for validating AI-extracted data
+- Python + FastAPI: building lightweight microservices, async endpoints, Pydantic models
+- Node.js <-> Python/FastAPI service communication (REST calls between services)
+- Document/PDF text extraction pipeline design (upload -> extract -> AI process -> validate -> store)
+- Handling unstructured-to-structured data transformation reliably
+
+
+====================================================================
+8. DOMAIN KNOWLEDGE - INSURANCE (Policyboss Experience)
+====================================================================
+- Health, Travel, Motor insurance product basics
+- Quotation, proposal, KYC, payment, EMI, policy issuance workflow end-to-end
+- Insurer-specific business validation logic
+- Premium calculation logic, add-on covers, eligibility rules
+- EMI workflows: Monthly/Quarterly/Half-Yearly calculation, tracking, status management
+- Policy issuance status handling and failure/retry mechanisms
+- Insurer/ERP integration challenges (data mapping, format differences)
+
+
+====================================================================
+9. DOMAIN KNOWLEDGE - TRANSPORT ERP (Virtual SCM Experience)
+====================================================================
+- ERP module design: vehicle, driver, customer, transporter, trip, shipment
+- E-Way Bill generation: what it is, API integration, validation, tracking
+- CRUD, authentication/authorization for ERP modules
+- Reporting, search, filtering, pagination for large transaction datasets
+- PostgreSQL schema design for ERP relationships
+
+
+====================================================================
+10. KEY PROJECTS - DEEP DIVE PREPARATION
+====================================================================
+a) Tech Job Listing Platform
+   - Web scraping approach, scheduling with AWS Lambda, deduplication logic,
+     data normalization, storage in S3, containerized deployment with Nginx
+
+b) AI-Powered Policy PDF Parser
+   - Upload -> S3 storage -> Lambda/FastAPI processing -> OpenAI extraction ->
+     JSON schema validation -> structured storage
+   - Error handling for failed extractions, status tracking
+
+c) E-Commerce REST API
+   - Auth (JWT), product/inventory/cart/order modules, Redis caching,
+     Nginx load balancing, Docker Compose setup, Jest/Supertest test coverage
+
+
+====================================================================
+11. GENERAL / BEHAVIORAL / SYSTEM DESIGN (Recommended additional prep)
+====================================================================
+- Explain a challenging production bug you debugged and how you fixed it
+- How would you scale a Node.js API to handle 10x traffic?
+- Design a simple insurance policy issuance system (system design style)
+- Monolith vs Microservices trade-offs based on your experience
+- How do you ensure API backward compatibility during upgrades?
+- Explain caching strategy you implemented (Redis) and its impact
+- STAR-format answers for each major project/achievement
+
+
+====================================================================
+END OF LIST - Review each section, write short notes/answers for each
+bullet point in your own words for interview readiness.
+====================================================================
