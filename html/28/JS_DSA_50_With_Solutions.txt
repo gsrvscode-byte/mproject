@@ -1,0 +1,1013 @@
+JAVASCRIPT DSA - 50 QUESTIONS WITH FULL SOLUTIONS
+====================================================
+NOTE: This is a REFERENCE/ANSWER-KEY file. Use it to check your work
+after attempting each problem yourself - not before. The questions-only
+version of this file is meant for practice; this one is for verification.
+
+====================================================
+
+
+------------------------------------------------------------
+SECTION 1: TWO POINTERS
+------------------------------------------------------------
+
+Q1. Pair with Given Sum (sorted array)
+function hasPairWithSum(arr, target) {
+  var left = 0;
+  var right = arr.length - 1;
+  while (left < right) {
+    var sum = arr[left] + arr[right];
+    if (sum === target) {
+      return true;
+    } else if (sum < target) {
+      left++;
+    } else {
+      right--;
+    }
+  }
+  return false;
+}
+console.log(hasPairWithSum([1, 3, 5, 7, 9], 12)); // true
+
+
+Q2. Remove Duplicates from Sorted Array
+function removeDuplicates(arr) {
+  if (arr.length === 0) return 0;
+  var slow = 0;
+  for (var fast = 1; fast < arr.length; fast++) {
+    if (arr[fast] !== arr[slow]) {
+      slow++;
+      arr[slow] = arr[fast];
+    }
+  }
+  return slow + 1; // new length
+}
+var arr2 = [1, 1, 2, 2, 3];
+console.log(removeDuplicates(arr2)); // 3
+
+
+Q3. Reverse an Array Using Two Pointers
+function reverseArray(arr) {
+  var left = 0;
+  var right = arr.length - 1;
+  while (left < right) {
+    var temp = arr[left];
+    arr[left] = arr[right];
+    arr[right] = temp;
+    left++;
+    right--;
+  }
+  return arr;
+}
+console.log(reverseArray([1, 2, 3, 4, 5])); // [5, 4, 3, 2, 1]
+
+
+Q4. Move Zeroes to End (Two Pointer, in-place)
+function moveZeroes(arr) {
+  var insertPos = 0;
+  for (var i = 0; i < arr.length; i++) {
+    if (arr[i] !== 0) {
+      arr[insertPos] = arr[i];
+      insertPos++;
+    }
+  }
+  while (insertPos < arr.length) {
+    arr[insertPos] = 0;
+    insertPos++;
+  }
+  return arr;
+}
+console.log(moveZeroes([0, 1, 0, 3, 12])); // [1, 3, 12, 0, 0]
+
+
+Q5. Container With Most Water
+function maxArea(heights) {
+  var left = 0;
+  var right = heights.length - 1;
+  var maxWater = 0;
+  while (left < right) {
+    var width = right - left;
+    var minHeight = Math.min(heights[left], heights[right]);
+    var area = width * minHeight;
+    if (area > maxWater) {
+      maxWater = area;
+    }
+    if (heights[left] < heights[right]) {
+      left++;
+    } else {
+      right--;
+    }
+  }
+  return maxWater;
+}
+console.log(maxArea([1,8,6,2,5,4,8,3,7])); // 49
+
+
+------------------------------------------------------------
+SECTION 2: SLIDING WINDOW
+------------------------------------------------------------
+
+Q6. Maximum Sum Subarray of Size K
+function maxSumSubarray(arr, k) {
+  var windowSum = 0;
+  for (var i = 0; i < k; i++) {
+    windowSum += arr[i];
+  }
+  var maxSum = windowSum;
+  for (var i = k; i < arr.length; i++) {
+    windowSum = windowSum + arr[i] - arr[i - k];
+    if (windowSum > maxSum) {
+      maxSum = windowSum;
+    }
+  }
+  return maxSum;
+}
+console.log(maxSumSubarray([2, 1, 5, 1, 3, 2], 3)); // 9
+
+
+Q7. Smallest Subarray With Sum >= Target
+function smallestSubarray(arr, target) {
+  var minLength = Infinity;
+  var windowSum = 0;
+  var start = 0;
+  for (var end = 0; end < arr.length; end++) {
+    windowSum += arr[end];
+    while (windowSum >= target) {
+      var currentLength = end - start + 1;
+      if (currentLength < minLength) {
+        minLength = currentLength;
+      }
+      windowSum -= arr[start];
+      start++;
+    }
+  }
+  return minLength === Infinity ? 0 : minLength;
+}
+console.log(smallestSubarray([2, 1, 5, 2, 3, 2], 7)); // 2
+
+
+Q8. Longest Substring Without Repeating Characters
+function longestUniqueSubstring(str) {
+  var seen = {};
+  var start = 0;
+  var maxLength = 0;
+  for (var end = 0; end < str.length; end++) {
+    var ch = str[end];
+    if (seen[ch] !== undefined && seen[ch] >= start) {
+      start = seen[ch] + 1;
+    }
+    seen[ch] = end;
+    var currentLength = end - start + 1;
+    if (currentLength > maxLength) {
+      maxLength = currentLength;
+    }
+  }
+  return maxLength;
+}
+console.log(longestUniqueSubstring("abcabcbb")); // 3
+
+
+Q9. Longest Substring With At Most K Distinct Characters
+function longestKDistinct(str, k) {
+  var freq = {};
+  var start = 0;
+  var maxLength = 0;
+  for (var end = 0; end < str.length; end++) {
+    var ch = str[end];
+    freq[ch] = (freq[ch] || 0) + 1;
+    while (Object.keys(freq).length > k) {
+      var startCh = str[start];
+      freq[startCh]--;
+      if (freq[startCh] === 0) {
+        delete freq[startCh];
+      }
+      start++;
+    }
+    var currentLength = end - start + 1;
+    if (currentLength > maxLength) {
+      maxLength = currentLength;
+    }
+  }
+  return maxLength;
+}
+console.log(longestKDistinct("eceba", 2)); // 3
+
+
+Q10. Find All Anagram Start Indices
+function findAnagrams(str, pattern) {
+  var result = [];
+  var patternFreq = {};
+  for (var i = 0; i < pattern.length; i++) {
+    patternFreq[pattern[i]] = (patternFreq[pattern[i]] || 0) + 1;
+  }
+  var windowFreq = {};
+  var windowSize = pattern.length;
+  for (var end = 0; end < str.length; end++) {
+    var ch = str[end];
+    windowFreq[ch] = (windowFreq[ch] || 0) + 1;
+    if (end >= windowSize) {
+      var startCh = str[end - windowSize];
+      windowFreq[startCh]--;
+      if (windowFreq[startCh] === 0) {
+        delete windowFreq[startCh];
+      }
+    }
+    if (end >= windowSize - 1 && sameFreq(windowFreq, patternFreq)) {
+      result.push(end - windowSize + 1);
+    }
+  }
+  return result;
+}
+function sameFreq(a, b) {
+  var aKeys = Object.keys(a);
+  var bKeys = Object.keys(b);
+  if (aKeys.length !== bKeys.length) return false;
+  for (var i = 0; i < aKeys.length; i++) {
+    if (a[aKeys[i]] !== b[aKeys[i]]) return false;
+  }
+  return true;
+}
+console.log(findAnagrams("cbaebabacd", "abc")); // [0, 6]
+
+
+------------------------------------------------------------
+SECTION 3: HASH MAP
+------------------------------------------------------------
+
+Q11. Two Sum
+function twoSum(arr, target) {
+  var map = {};
+  for (var i = 0; i < arr.length; i++) {
+    var complement = target - arr[i];
+    if (map[complement] !== undefined) {
+      return [map[complement], i];
+    }
+    map[arr[i]] = i;
+  }
+  return [];
+}
+console.log(twoSum([2, 7, 11, 15], 9)); // [0, 1]
+
+
+Q12. Longest Consecutive Sequence
+function longestConsecutive(arr) {
+  var set = {};
+  for (var i = 0; i < arr.length; i++) {
+    set[arr[i]] = true;
+  }
+  var longest = 0;
+  for (var num in set) {
+    num = Number(num);
+    if (!set[num - 1]) { // start of a sequence
+      var length = 1;
+      var current = num;
+      while (set[current + 1]) {
+        current++;
+        length++;
+      }
+      if (length > longest) {
+        longest = length;
+      }
+    }
+  }
+  return longest;
+}
+console.log(longestConsecutive([100, 4, 200, 1, 3, 2])); // 4
+
+
+Q13. Subarray Sum Equals K
+function subarraySum(arr, k) {
+  var count = 0;
+  var sum = 0;
+  var map = { 0: 1 }; // sum:0 occurs once (empty prefix)
+  for (var i = 0; i < arr.length; i++) {
+    sum += arr[i];
+    if (map[sum - k]) {
+      count += map[sum - k];
+    }
+    map[sum] = (map[sum] || 0) + 1;
+  }
+  return count;
+}
+console.log(subarraySum([1, 1, 1], 2)); // 2
+
+
+Q14. First Non-Repeating Character (Hash Map)
+function firstNonRepeating(str) {
+  var freq = {};
+  for (var i = 0; i < str.length; i++) {
+    freq[str[i]] = (freq[str[i]] || 0) + 1;
+  }
+  for (var j = 0; j < str.length; j++) {
+    if (freq[str[j]] === 1) {
+      return str[j];
+    }
+  }
+  return null;
+}
+console.log(firstNonRepeating("swiss")); // "w"
+
+
+Q15. Check if Two Strings Are Anagrams (Frequency Map)
+function isAnagram(str1, str2) {
+  if (str1.length !== str2.length) return false;
+  var freq = {};
+  for (var i = 0; i < str1.length; i++) {
+    freq[str1[i]] = (freq[str1[i]] || 0) + 1;
+  }
+  for (var j = 0; j < str2.length; j++) {
+    if (!freq[str2[j]]) {
+      return false;
+    }
+    freq[str2[j]]--;
+  }
+  return true;
+}
+console.log(isAnagram("listen", "silent")); // true
+
+
+------------------------------------------------------------
+SECTION 4: STACK / QUEUE
+------------------------------------------------------------
+
+Q16. Valid Parentheses
+function isValidParentheses(str) {
+  var stack = [];
+  var pairs = { ")": "(", "}": "{", "]": "[" };
+  for (var i = 0; i < str.length; i++) {
+    var ch = str[i];
+    if (ch === "(" || ch === "{" || ch === "[") {
+      stack.push(ch);
+    } else {
+      var top = stack.pop();
+      if (top !== pairs[ch]) {
+        return false;
+      }
+    }
+  }
+  return stack.length === 0;
+}
+console.log(isValidParentheses("{[()]}")); // true
+console.log(isValidParentheses("{[(])}")); // false
+
+
+Q17. Next Greater Element
+function nextGreaterElement(arr) {
+  var result = new Array(arr.length).fill(-1);
+  var stack = []; // stores indices
+  for (var i = 0; i < arr.length; i++) {
+    while (stack.length > 0 && arr[i] > arr[stack[stack.length - 1]]) {
+      var idx = stack.pop();
+      result[idx] = arr[i];
+    }
+    stack.push(i);
+  }
+  return result;
+}
+console.log(nextGreaterElement([4, 5, 2, 10, 8])); // [5, 10, 10, -1, -1]
+
+
+Q18. Design a Min Stack
+function MinStack() {
+  this.stack = [];
+  this.minStack = [];
+}
+MinStack.prototype.push = function(val) {
+  this.stack.push(val);
+  if (this.minStack.length === 0 || val <= this.minStack[this.minStack.length - 1]) {
+    this.minStack.push(val);
+  } else {
+    this.minStack.push(this.minStack[this.minStack.length - 1]);
+  }
+};
+MinStack.prototype.pop = function() {
+  this.minStack.pop();
+  return this.stack.pop();
+};
+MinStack.prototype.top = function() {
+  return this.stack[this.stack.length - 1];
+};
+MinStack.prototype.getMin = function() {
+  return this.minStack[this.minStack.length - 1];
+};
+var ms = new MinStack();
+ms.push(3);
+ms.push(5);
+console.log(ms.getMin()); // 3
+ms.push(2);
+console.log(ms.getMin()); // 2
+ms.pop();
+console.log(ms.getMin()); // 3
+
+
+Q19. Implement a Queue Using Two Stacks
+function QueueUsingStacks() {
+  this.stack1 = []; // for enqueue
+  this.stack2 = []; // for dequeue
+}
+QueueUsingStacks.prototype.enqueue = function(val) {
+  this.stack1.push(val);
+};
+QueueUsingStacks.prototype.dequeue = function() {
+  if (this.stack2.length === 0) {
+    while (this.stack1.length > 0) {
+      this.stack2.push(this.stack1.pop());
+    }
+  }
+  return this.stack2.pop();
+};
+var q = new QueueUsingStacks();
+q.enqueue(1);
+q.enqueue(2);
+console.log(q.dequeue()); // 1
+q.enqueue(3);
+console.log(q.dequeue()); // 2
+
+
+Q20. Daily Temperatures
+function dailyTemperatures(temps) {
+  var result = new Array(temps.length).fill(0);
+  var stack = []; // stores indices
+  for (var i = 0; i < temps.length; i++) {
+    while (stack.length > 0 && temps[i] > temps[stack[stack.length - 1]]) {
+      var idx = stack.pop();
+      result[idx] = i - idx;
+    }
+    stack.push(i);
+  }
+  return result;
+}
+console.log(dailyTemperatures([73,74,75,71,69,72,76,73])); // [1,1,4,2,1,1,0,0]
+
+
+------------------------------------------------------------
+SECTION 5: BINARY SEARCH
+------------------------------------------------------------
+
+Q21. Classic Binary Search
+function binarySearch(arr, target) {
+  var low = 0;
+  var high = arr.length - 1;
+  while (low <= high) {
+    var mid = Math.floor((low + high) / 2);
+    if (arr[mid] === target) {
+      return mid;
+    } else if (arr[mid] < target) {
+      low = mid + 1;
+    } else {
+      high = mid - 1;
+    }
+  }
+  return -1;
+}
+console.log(binarySearch([1,3,5,7,9,11], 7)); // 3
+
+
+Q22. First and Last Occurrence of a Target
+function firstAndLast(arr, target) {
+  var first = findBound(arr, target, true);
+  var last = findBound(arr, target, false);
+  return [first, last];
+}
+function findBound(arr, target, findFirst) {
+  var low = 0, high = arr.length - 1, result = -1;
+  while (low <= high) {
+    var mid = Math.floor((low + high) / 2);
+    if (arr[mid] === target) {
+      result = mid;
+      if (findFirst) {
+        high = mid - 1; // keep searching left
+      } else {
+        low = mid + 1; // keep searching right
+      }
+    } else if (arr[mid] < target) {
+      low = mid + 1;
+    } else {
+      high = mid - 1;
+    }
+  }
+  return result;
+}
+console.log(firstAndLast([5,7,7,8,8,10], 8)); // [3, 4]
+
+
+Q23. Search in a Rotated Sorted Array
+function searchRotated(arr, target) {
+  var low = 0, high = arr.length - 1;
+  while (low <= high) {
+    var mid = Math.floor((low + high) / 2);
+    if (arr[mid] === target) return mid;
+    if (arr[low] <= arr[mid]) { // left half is sorted
+      if (target >= arr[low] && target < arr[mid]) {
+        high = mid - 1;
+      } else {
+        low = mid + 1;
+      }
+    } else { // right half is sorted
+      if (target > arr[mid] && target <= arr[high]) {
+        low = mid + 1;
+      } else {
+        high = mid - 1;
+      }
+    }
+  }
+  return -1;
+}
+console.log(searchRotated([4,5,6,7,0,1,2], 0)); // 4
+
+
+Q24. Square Root Using Binary Search
+function mySqrt(x) {
+  if (x < 2) return x;
+  var low = 1, high = x, result = 1;
+  while (low <= high) {
+    var mid = Math.floor((low + high) / 2);
+    if (mid * mid === x) {
+      return mid;
+    } else if (mid * mid < x) {
+      result = mid;
+      low = mid + 1;
+    } else {
+      high = mid - 1;
+    }
+  }
+  return result;
+}
+console.log(mySqrt(8)); // 2
+
+
+------------------------------------------------------------
+SECTION 6: RECURSION
+------------------------------------------------------------
+
+Q25. Nth Fibonacci Number (Recursive)
+function fibonacci(n) {
+  if (n <= 1) return n;
+  return fibonacci(n - 1) + fibonacci(n - 2);
+}
+console.log(fibonacci(6)); // 8
+
+
+Q26. Sum of Array Elements Using Recursion
+function sumArrayRecursive(arr, index) {
+  if (index === undefined) index = 0;
+  if (index === arr.length) return 0;
+  return arr[index] + sumArrayRecursive(arr, index + 1);
+}
+console.log(sumArrayRecursive([1, 2, 3, 4, 5])); // 15
+
+
+Q27. Power of a Number (x^n) Using Recursion
+function power(x, n) {
+  if (n === 0) return 1;
+  return x * power(x, n - 1);
+}
+console.log(power(2, 5)); // 32
+
+
+Q28. Generate All Subsets of an Array
+function generateSubsets(arr) {
+  var result = [];
+  function backtrack(start, current) {
+    result.push(current.slice()); // copy of current subset
+    for (var i = start; i < arr.length; i++) {
+      current.push(arr[i]);
+      backtrack(i + 1, current);
+      current.pop(); // undo choice
+    }
+  }
+  backtrack(0, []);
+  return result;
+}
+console.log(generateSubsets([1, 2])); // [[], [1], [1,2], [2]]
+
+
+Q29. Tower of Hanoi
+function towerOfHanoi(n, from, to, aux) {
+  if (n === 1) {
+    console.log("Move disk 1 from " + from + " to " + to);
+    return;
+  }
+  towerOfHanoi(n - 1, from, aux, to);
+  console.log("Move disk " + n + " from " + from + " to " + to);
+  towerOfHanoi(n - 1, aux, to, from);
+}
+towerOfHanoi(2, "A", "C", "B");
+// Move disk 1 from A to B
+// Move disk 2 from A to C
+// Move disk 1 from B to C
+
+
+------------------------------------------------------------
+SECTION 7: LINKED LIST
+------------------------------------------------------------
+
+// Basic Node structure used in all linked list problems below
+function Node(value) {
+  this.value = value;
+  this.next = null;
+}
+
+Q30. Reverse a Singly Linked List
+function reverseList(head) {
+  var prev = null;
+  var current = head;
+  while (current !== null) {
+    var nextNode = current.next;
+    current.next = prev;
+    prev = current;
+    current = nextNode;
+  }
+  return prev; // new head
+}
+
+
+Q31. Detect a Cycle in a Linked List
+function hasCycle(head) {
+  var slow = head;
+  var fast = head;
+  while (fast !== null && fast.next !== null) {
+    slow = slow.next;
+    fast = fast.next.next;
+    if (slow === fast) {
+      return true;
+    }
+  }
+  return false;
+}
+
+
+Q32. Find the Middle Node of a Linked List
+function findMiddle(head) {
+  var slow = head;
+  var fast = head;
+  while (fast !== null && fast.next !== null) {
+    slow = slow.next;
+    fast = fast.next.next;
+  }
+  return slow; // middle node
+}
+
+
+Q33. Merge Two Sorted Linked Lists
+function mergeSortedLists(l1, l2) {
+  var dummy = new Node(0);
+  var tail = dummy;
+  while (l1 !== null && l2 !== null) {
+    if (l1.value <= l2.value) {
+      tail.next = l1;
+      l1 = l1.next;
+    } else {
+      tail.next = l2;
+      l2 = l2.next;
+    }
+    tail = tail.next;
+  }
+  tail.next = (l1 !== null) ? l1 : l2;
+  return dummy.next;
+}
+
+
+Q34. Remove Nth Node From the End
+function removeNthFromEnd(head, n) {
+  var dummy = new Node(0);
+  dummy.next = head;
+  var fast = dummy;
+  var slow = dummy;
+  for (var i = 0; i < n; i++) {
+    fast = fast.next;
+  }
+  while (fast.next !== null) {
+    fast = fast.next;
+    slow = slow.next;
+  }
+  slow.next = slow.next.next; // skip the target node
+  return dummy.next;
+}
+
+
+------------------------------------------------------------
+SECTION 8: TREES
+------------------------------------------------------------
+
+// Basic tree node structure used below
+function TreeNode(value) {
+  this.value = value;
+  this.left = null;
+  this.right = null;
+}
+
+Q35. Inorder Traversal of a Binary Tree
+function inorderTraversal(root) {
+  var result = [];
+  function traverse(node) {
+    if (node === null) return;
+    traverse(node.left);
+    result.push(node.value);
+    traverse(node.right);
+  }
+  traverse(root);
+  return result;
+}
+
+
+Q36. Height of a Binary Tree
+function treeHeight(root) {
+  if (root === null) return 0;
+  var leftHeight = treeHeight(root.left);
+  var rightHeight = treeHeight(root.right);
+  return Math.max(leftHeight, rightHeight) + 1;
+}
+
+
+Q37. Level Order (BFS) Traversal
+function levelOrder(root) {
+  var result = [];
+  if (root === null) return result;
+  var queue = [root];
+  while (queue.length > 0) {
+    var levelSize = queue.length;
+    var currentLevel = [];
+    for (var i = 0; i < levelSize; i++) {
+      var node = queue.shift();
+      currentLevel.push(node.value);
+      if (node.left !== null) queue.push(node.left);
+      if (node.right !== null) queue.push(node.right);
+    }
+    result.push(currentLevel);
+  }
+  return result;
+}
+
+
+Q38. Check if a Binary Tree is Balanced
+function isBalanced(root) {
+  function checkHeight(node) {
+    if (node === null) return 0;
+    var leftHeight = checkHeight(node.left);
+    if (leftHeight === -1) return -1;
+    var rightHeight = checkHeight(node.right);
+    if (rightHeight === -1) return -1;
+    if (Math.abs(leftHeight - rightHeight) > 1) return -1;
+    return Math.max(leftHeight, rightHeight) + 1;
+  }
+  return checkHeight(root) !== -1;
+}
+
+
+Q39. Lowest Common Ancestor of Two Nodes
+function lowestCommonAncestor(root, p, q) {
+  if (root === null || root.value === p || root.value === q) {
+    return root;
+  }
+  var left = lowestCommonAncestor(root.left, p, q);
+  var right = lowestCommonAncestor(root.right, p, q);
+  if (left !== null && right !== null) {
+    return root; // p and q found in different subtrees
+  }
+  return (left !== null) ? left : right;
+}
+
+
+------------------------------------------------------------
+SECTION 9: GRAPHS
+------------------------------------------------------------
+
+Q40. BFS Traversal of a Graph
+function bfsTraversal(graph, start) {
+  var visited = {};
+  var queue = [start];
+  var result = [];
+  visited[start] = true;
+  while (queue.length > 0) {
+    var node = queue.shift();
+    result.push(node);
+    var neighbors = graph[node];
+    for (var i = 0; i < neighbors.length; i++) {
+      var neighbor = neighbors[i];
+      if (!visited[neighbor]) {
+        visited[neighbor] = true;
+        queue.push(neighbor);
+      }
+    }
+  }
+  return result;
+}
+var graph40 = {0:[1,2], 1:[2], 2:[0,3], 3:[3]};
+console.log(bfsTraversal(graph40, 2)); // [2, 0, 3, 1]
+
+
+Q41. DFS Traversal of a Graph
+function dfsTraversal(graph, start) {
+  var visited = {};
+  var result = [];
+  function dfs(node) {
+    visited[node] = true;
+    result.push(node);
+    var neighbors = graph[node];
+    for (var i = 0; i < neighbors.length; i++) {
+      if (!visited[neighbors[i]]) {
+        dfs(neighbors[i]);
+      }
+    }
+  }
+  dfs(start);
+  return result;
+}
+var graph41 = {0:[1,2], 1:[2], 2:[0,3], 3:[3]};
+console.log(dfsTraversal(graph41, 2)); // [2, 0, 1, 3]
+
+
+Q42. Detect a Cycle in an Undirected Graph
+function hasCycleUndirected(n, edges) {
+  var adjList = {};
+  for (var i = 0; i < n; i++) adjList[i] = [];
+  for (var i = 0; i < edges.length; i++) {
+    adjList[edges[i][0]].push(edges[i][1]);
+    adjList[edges[i][1]].push(edges[i][0]);
+  }
+  var visited = {};
+  function dfs(node, parent) {
+    visited[node] = true;
+    var neighbors = adjList[node];
+    for (var i = 0; i < neighbors.length; i++) {
+      var neighbor = neighbors[i];
+      if (!visited[neighbor]) {
+        if (dfs(neighbor, node)) return true;
+      } else if (neighbor !== parent) {
+        return true; // visited and not parent -> cycle
+      }
+    }
+    return false;
+  }
+  for (var node in adjList) {
+    if (!visited[node]) {
+      if (dfs(Number(node), -1)) return true;
+    }
+  }
+  return false;
+}
+console.log(hasCycleUndirected(3, [[0,1],[1,2],[2,0]])); // true
+
+
+Q43. Count Connected Components
+function countComponents(n, edges) {
+  var adjList = {};
+  for (var i = 0; i < n; i++) adjList[i] = [];
+  for (var i = 0; i < edges.length; i++) {
+    adjList[edges[i][0]].push(edges[i][1]);
+    adjList[edges[i][1]].push(edges[i][0]);
+  }
+  var visited = {};
+  function dfs(node) {
+    visited[node] = true;
+    var neighbors = adjList[node];
+    for (var i = 0; i < neighbors.length; i++) {
+      if (!visited[neighbors[i]]) {
+        dfs(neighbors[i]);
+      }
+    }
+  }
+  var count = 0;
+  for (var node = 0; node < n; node++) {
+    if (!visited[node]) {
+      dfs(node);
+      count++;
+    }
+  }
+  return count;
+}
+console.log(countComponents(5, [[0,1],[1,2],[3,4]])); // 2
+
+
+------------------------------------------------------------
+SECTION 10: SORTING & SEARCHING
+------------------------------------------------------------
+
+Q44. Bubble Sort
+function bubbleSort(arr) {
+  for (var i = 0; i < arr.length; i++) {
+    for (var j = 0; j < arr.length - i - 1; j++) {
+      if (arr[j] > arr[j + 1]) {
+        var temp = arr[j];
+        arr[j] = arr[j + 1];
+        arr[j + 1] = temp;
+      }
+    }
+  }
+  return arr;
+}
+console.log(bubbleSort([5, 2, 9, 1, 6])); // [1, 2, 5, 6, 9]
+
+
+Q45. Merge Sort
+function mergeSort(arr) {
+  if (arr.length <= 1) return arr;
+  var mid = Math.floor(arr.length / 2);
+  var left = mergeSort(arr.slice(0, mid));
+  var right = mergeSort(arr.slice(mid));
+  return merge(left, right);
+}
+function merge(left, right) {
+  var result = [];
+  var i = 0, j = 0;
+  while (i < left.length && j < right.length) {
+    if (left[i] <= right[j]) {
+      result.push(left[i]);
+      i++;
+    } else {
+      result.push(right[j]);
+      j++;
+    }
+  }
+  while (i < left.length) { result.push(left[i]); i++; }
+  while (j < right.length) { result.push(right[j]); j++; }
+  return result;
+}
+console.log(mergeSort([8, 3, 5, 1, 9, 2])); // [1, 2, 3, 5, 8, 9]
+
+
+Q46. Quick Sort
+function quickSort(arr) {
+  if (arr.length <= 1) return arr;
+  var pivot = arr[arr.length - 1];
+  var left = [];
+  var right = [];
+  for (var i = 0; i < arr.length - 1; i++) {
+    if (arr[i] < pivot) {
+      left.push(arr[i]);
+    } else {
+      right.push(arr[i]);
+    }
+  }
+  return quickSort(left).concat([pivot], quickSort(right));
+}
+console.log(quickSort([10, 7, 8, 9, 1, 5])); // [1, 5, 7, 8, 9, 10]
+
+
+Q47. Kth Largest Element (using sort for simplicity)
+function kthLargest(arr, k) {
+  var sorted = arr.slice().sort(function(a, b) { return b - a; });
+  return sorted[k - 1];
+}
+console.log(kthLargest([3, 2, 1, 5, 6, 4], 2)); // 5
+
+
+------------------------------------------------------------
+SECTION 11: DYNAMIC PROGRAMMING BASICS
+------------------------------------------------------------
+
+Q48. Climbing Stairs
+function climbStairs(n) {
+  if (n <= 2) return n;
+  var dp = [];
+  dp[1] = 1;
+  dp[2] = 2;
+  for (var i = 3; i <= n; i++) {
+    dp[i] = dp[i - 1] + dp[i - 2];
+  }
+  return dp[n];
+}
+console.log(climbStairs(4)); // 5
+
+
+Q49. House Robber
+function houseRobber(arr) {
+  if (arr.length === 0) return 0;
+  if (arr.length === 1) return arr[0];
+  var dp = [];
+  dp[0] = arr[0];
+  dp[1] = Math.max(arr[0], arr[1]);
+  for (var i = 2; i < arr.length; i++) {
+    dp[i] = Math.max(dp[i - 1], dp[i - 2] + arr[i]);
+  }
+  return dp[arr.length - 1];
+}
+console.log(houseRobber([1, 2, 3, 1])); // 4
+
+
+Q50. Longest Common Subsequence
+function longestCommonSubsequence(str1, str2) {
+  var m = str1.length;
+  var n = str2.length;
+  var dp = [];
+  for (var i = 0; i <= m; i++) {
+    dp.push(new Array(n + 1).fill(0));
+  }
+  for (var i = 1; i <= m; i++) {
+    for (var j = 1; j <= n; j++) {
+      if (str1[i - 1] === str2[j - 1]) {
+        dp[i][j] = dp[i - 1][j - 1] + 1;
+      } else {
+        dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - 1]);
+      }
+    }
+  }
+  return dp[m][n];
+}
+console.log(longestCommonSubsequence("abcde", "ace")); // 3
+
+
+====================================================
+END OF FILE - 50/50 DSA Solutions
+====================================================

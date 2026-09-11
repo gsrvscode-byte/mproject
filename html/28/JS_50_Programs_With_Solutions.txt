@@ -1,0 +1,844 @@
+JAVASCRIPT 50 PROGRAMS - FULL REFERENCE WITH SOLUTIONS
+========================================================
+NOTE: This is a REFERENCE file for after you attempt problems yourself.
+Peeking before trying defeats the purpose of interview prep — logic only
+sticks when you struggle with it first. Use this to check your work or
+when you're truly stuck.
+
+Simple syntax used throughout: var, for, if/else, arrays, objects,
+indexOf, includes, push, split, join, sort.
+
+
+---------------------------------------------------------------
+1. Print numbers 1 to 10
+---------------------------------------------------------------
+Output: 1 2 3 4 5 6 7 8 9 10 (each on new line)
+
+for (var i = 1; i <= 10; i++) {
+  console.log(i);
+}
+
+
+---------------------------------------------------------------
+2. Print numbers 10 to 1
+---------------------------------------------------------------
+Output: 10 9 8 7 6 5 4 3 2 1
+
+for (var i = 10; i >= 1; i--) {
+  console.log(i);
+}
+
+
+---------------------------------------------------------------
+3. Print even numbers (1 to 10)
+---------------------------------------------------------------
+Output: 2 4 6 8 10
+
+for (var i = 1; i <= 10; i++) {
+  if (i % 2 === 0) {
+    console.log(i);
+  }
+}
+
+
+---------------------------------------------------------------
+4. Print odd numbers (1 to 10)
+---------------------------------------------------------------
+Output: 1 3 5 7 9
+
+for (var i = 1; i <= 10; i++) {
+  if (i % 2 !== 0) {
+    console.log(i);
+  }
+}
+
+
+---------------------------------------------------------------
+5. Print numbers divisible by 5 (1 to 50)
+---------------------------------------------------------------
+Output: 5 10 15 20 25 30 35 40 45 50
+
+for (var i = 1; i <= 50; i++) {
+  if (i % 5 === 0) {
+    console.log(i);
+  }
+}
+
+
+---------------------------------------------------------------
+6. Sum numbers 1 to N
+---------------------------------------------------------------
+Input: N = 5   Output: 15
+
+var n = 5;
+var sum = 0;
+for (var i = 1; i <= n; i++) {
+  sum = sum + i;
+}
+console.log(sum); // 15
+
+
+---------------------------------------------------------------
+7. Product of numbers 1 to N
+---------------------------------------------------------------
+Input: N = 5   Output: 120
+
+var n = 5;
+var product = 1;
+for (var i = 1; i <= n; i++) {
+  product = product * i;
+}
+console.log(product); // 120
+
+
+---------------------------------------------------------------
+8. Factorial
+---------------------------------------------------------------
+Input: N = 5   Output: 120  (same logic as product 1 to N)
+
+var n = 5;
+var fact = 1;
+for (var i = 1; i <= n; i++) {
+  fact = fact * i;
+}
+console.log(fact); // 120
+
+
+---------------------------------------------------------------
+9. Multiplication table
+---------------------------------------------------------------
+Input: N = 5
+Output:
+5 x 1 = 5
+5 x 2 = 10
+...
+5 x 10 = 50
+
+var n = 5;
+for (var i = 1; i <= 10; i++) {
+  console.log(n + " x " + i + " = " + (n * i));
+}
+
+
+---------------------------------------------------------------
+10. Count numbers in a range
+---------------------------------------------------------------
+Input: start = 5, end = 15   Output: 11
+
+var start = 5;
+var end = 15;
+var count = 0;
+for (var i = start; i <= end; i++) {
+  count = count + 1;
+}
+console.log(count); // 11
+
+
+---------------------------------------------------------------
+11. Check even/odd
+---------------------------------------------------------------
+Input: 7   Output: "Odd"
+
+var num = 7;
+if (num % 2 === 0) {
+  console.log("Even");
+} else {
+  console.log("Odd");
+}
+
+
+---------------------------------------------------------------
+12. Check positive/negative
+---------------------------------------------------------------
+Input: -4   Output: "Negative"
+
+var num = -4;
+if (num > 0) {
+  console.log("Positive");
+} else if (num < 0) {
+  console.log("Negative");
+} else {
+  console.log("Zero");
+}
+
+
+---------------------------------------------------------------
+13. Largest of 2 numbers
+---------------------------------------------------------------
+Input: 8, 15   Output: 15
+
+var a = 8;
+var b = 15;
+if (a > b) {
+  console.log(a);
+} else {
+  console.log(b);
+}
+
+
+---------------------------------------------------------------
+14. Largest of 3 numbers
+---------------------------------------------------------------
+Input: 4, 9, 6   Output: 9
+
+var a = 4, b = 9, c = 6;
+var largest = a;
+if (b > largest) {
+  largest = b;
+}
+if (c > largest) {
+  largest = c;
+}
+console.log(largest); // 9
+
+
+---------------------------------------------------------------
+15. Smallest of 3 numbers
+---------------------------------------------------------------
+Input: 4, 9, 6   Output: 4
+
+var a = 4, b = 9, c = 6;
+var smallest = a;
+if (b < smallest) {
+  smallest = b;
+}
+if (c < smallest) {
+  smallest = c;
+}
+console.log(smallest); // 4
+
+
+---------------------------------------------------------------
+16. Reverse a number
+---------------------------------------------------------------
+Input: 1234   Output: 4321
+
+var num = 1234;
+var reversed = 0;
+while (num > 0) {
+  var digit = num % 10;
+  reversed = reversed * 10 + digit;
+  num = Math.floor(num / 10);
+}
+console.log(reversed); // 4321
+
+
+---------------------------------------------------------------
+17. Count digits
+---------------------------------------------------------------
+Input: 1234   Output: 4
+
+var num = 1234;
+var count = 0;
+while (num > 0) {
+  count = count + 1;
+  num = Math.floor(num / 10);
+}
+console.log(count); // 4
+
+
+---------------------------------------------------------------
+18. Sum of digits
+---------------------------------------------------------------
+Input: 1234   Output: 10
+
+var num = 1234;
+var sum = 0;
+while (num > 0) {
+  var digit = num % 10;
+  sum = sum + digit;
+  num = Math.floor(num / 10);
+}
+console.log(sum); // 10
+
+
+---------------------------------------------------------------
+19. Palindrome number
+---------------------------------------------------------------
+Input: 121   Output: true (palindrome)
+
+var num = 121;
+var original = num;
+var reversed = 0;
+while (num > 0) {
+  var digit = num % 10;
+  reversed = reversed * 10 + digit;
+  num = Math.floor(num / 10);
+}
+if (original === reversed) {
+  console.log("Palindrome");
+} else {
+  console.log("Not Palindrome");
+}
+
+
+---------------------------------------------------------------
+20. Prime number
+---------------------------------------------------------------
+Input: 7   Output: "Prime"
+
+var num = 7;
+var isPrime = true;
+if (num < 2) {
+  isPrime = false;
+}
+for (var i = 2; i < num; i++) {
+  if (num % i === 0) {
+    isPrime = false;
+  }
+}
+if (isPrime) {
+  console.log("Prime");
+} else {
+  console.log("Not Prime");
+}
+
+
+---------------------------------------------------------------
+21. Largest array element
+---------------------------------------------------------------
+Input: [3, 7, 2, 9, 4]   Output: 9
+
+var arr = [3, 7, 2, 9, 4];
+var largest = arr[0];
+for (var i = 1; i < arr.length; i++) {
+  if (arr[i] > largest) {
+    largest = arr[i];
+  }
+}
+console.log(largest); // 9
+
+
+---------------------------------------------------------------
+22. Smallest array element
+---------------------------------------------------------------
+Input: [3, 7, 2, 9, 4]   Output: 2
+
+var arr = [3, 7, 2, 9, 4];
+var smallest = arr[0];
+for (var i = 1; i < arr.length; i++) {
+  if (arr[i] < smallest) {
+    smallest = arr[i];
+  }
+}
+console.log(smallest); // 2
+
+
+---------------------------------------------------------------
+23. Sum of array
+---------------------------------------------------------------
+Input: [1, 2, 3, 4, 5]   Output: 15
+
+var arr = [1, 2, 3, 4, 5];
+var sum = 0;
+for (var i = 0; i < arr.length; i++) {
+  sum = sum + arr[i];
+}
+console.log(sum); // 15
+
+
+---------------------------------------------------------------
+24. Average of array
+---------------------------------------------------------------
+Input: [1, 2, 3, 4, 5]   Output: 3
+
+var arr = [1, 2, 3, 4, 5];
+var sum = 0;
+for (var i = 0; i < arr.length; i++) {
+  sum = sum + arr[i];
+}
+var average = sum / arr.length;
+console.log(average); // 3
+
+
+---------------------------------------------------------------
+25. Count even numbers in array
+---------------------------------------------------------------
+Input: [1, 2, 3, 4, 5, 6]   Output: 3
+
+var arr = [1, 2, 3, 4, 5, 6];
+var count = 0;
+for (var i = 0; i < arr.length; i++) {
+  if (arr[i] % 2 === 0) {
+    count = count + 1;
+  }
+}
+console.log(count); // 3
+
+
+---------------------------------------------------------------
+26. Count odd numbers in array
+---------------------------------------------------------------
+Input: [1, 2, 3, 4, 5, 6]   Output: 3
+
+var arr = [1, 2, 3, 4, 5, 6];
+var count = 0;
+for (var i = 0; i < arr.length; i++) {
+  if (arr[i] % 2 !== 0) {
+    count = count + 1;
+  }
+}
+console.log(count); // 3
+
+
+---------------------------------------------------------------
+27. Reverse an array
+---------------------------------------------------------------
+Input: [1, 2, 3, 4, 5]   Output: [5, 4, 3, 2, 1]
+
+var arr = [1, 2, 3, 4, 5];
+var reversed = [];
+for (var i = arr.length - 1; i >= 0; i--) {
+  reversed.push(arr[i]);
+}
+console.log(reversed); // [5, 4, 3, 2, 1]
+
+
+---------------------------------------------------------------
+28. Find duplicate elements
+---------------------------------------------------------------
+Input: [1, 2, 3, 2, 4, 5, 1]   Output: [2, 1]
+
+var arr = [1, 2, 3, 2, 4, 5, 1];
+var seen = [];
+var duplicates = [];
+for (var i = 0; i < arr.length; i++) {
+  if (seen.indexOf(arr[i]) === -1) {
+    seen.push(arr[i]);
+  } else if (duplicates.indexOf(arr[i]) === -1) {
+    duplicates.push(arr[i]);
+  }
+}
+console.log(duplicates); // [2, 1]
+
+
+---------------------------------------------------------------
+29. Remove duplicates
+---------------------------------------------------------------
+Input: [1, 2, 3, 2, 4, 5, 1]   Output: [1, 2, 3, 4, 5]
+
+var arr = [1, 2, 3, 2, 4, 5, 1];
+var unique = [];
+for (var i = 0; i < arr.length; i++) {
+  if (unique.indexOf(arr[i]) === -1) {
+    unique.push(arr[i]);
+  }
+}
+console.log(unique); // [1, 2, 3, 4, 5]
+
+
+---------------------------------------------------------------
+30. Find missing number
+---------------------------------------------------------------
+Input: [1, 2, 4, 5, 6] (from range 1 to 6)   Output: 3
+
+var arr = [1, 2, 4, 5, 6];
+var n = 6; // full range is 1 to n
+var expectedSum = (n * (n + 1)) / 2;
+var actualSum = 0;
+for (var i = 0; i < arr.length; i++) {
+  actualSum = actualSum + arr[i];
+}
+console.log(expectedSum - actualSum); // 3
+
+
+---------------------------------------------------------------
+31. Second largest
+---------------------------------------------------------------
+Input: [3, 7, 2, 9, 4]   Output: 7
+
+var arr = [3, 7, 2, 9, 4];
+var largest = -Infinity;
+var secondLargest = -Infinity;
+for (var i = 0; i < arr.length; i++) {
+  if (arr[i] > largest) {
+    secondLargest = largest;
+    largest = arr[i];
+  } else if (arr[i] > secondLargest && arr[i] < largest) {
+    secondLargest = arr[i];
+  }
+}
+console.log(secondLargest); // 7
+
+
+---------------------------------------------------------------
+32. Second smallest
+---------------------------------------------------------------
+Input: [3, 7, 2, 9, 4]   Output: 3
+
+var arr = [3, 7, 2, 9, 4];
+var smallest = Infinity;
+var secondSmallest = Infinity;
+for (var i = 0; i < arr.length; i++) {
+  if (arr[i] < smallest) {
+    secondSmallest = smallest;
+    smallest = arr[i];
+  } else if (arr[i] < secondSmallest && arr[i] > smallest) {
+    secondSmallest = arr[i];
+  }
+}
+console.log(secondSmallest); // 3
+
+
+---------------------------------------------------------------
+33. Common elements in two arrays
+---------------------------------------------------------------
+Input: [1,2,3,4], [3,4,5,6]   Output: [3, 4]
+
+var arr1 = [1, 2, 3, 4];
+var arr2 = [3, 4, 5, 6];
+var common = [];
+for (var i = 0; i < arr1.length; i++) {
+  if (arr2.indexOf(arr1[i]) !== -1) {
+    common.push(arr1[i]);
+  }
+}
+console.log(common); // [3, 4]
+
+
+---------------------------------------------------------------
+34. Unique elements (present in only one array, or use for one array's distinct values)
+---------------------------------------------------------------
+Input: [1, 2, 2, 3, 4, 4, 5]   Output: [1, 3, 5] (elements appearing exactly once)
+
+var arr = [1, 2, 2, 3, 4, 4, 5];
+var result = [];
+for (var i = 0; i < arr.length; i++) {
+  var count = 0;
+  for (var j = 0; j < arr.length; j++) {
+    if (arr[i] === arr[j]) {
+      count = count + 1;
+    }
+  }
+  if (count === 1) {
+    result.push(arr[i]);
+  }
+}
+console.log(result); // [1, 3, 5]
+
+
+---------------------------------------------------------------
+35. Intersection (unique common elements, no duplicates in result)
+---------------------------------------------------------------
+Input: [1,2,2,3], [2,2,3,4]   Output: [2, 3]
+
+var arr1 = [1, 2, 2, 3];
+var arr2 = [2, 2, 3, 4];
+var result = [];
+for (var i = 0; i < arr1.length; i++) {
+  if (arr2.indexOf(arr1[i]) !== -1 && result.indexOf(arr1[i]) === -1) {
+    result.push(arr1[i]);
+  }
+}
+console.log(result); // [2, 3]
+
+
+---------------------------------------------------------------
+36. Union (all unique elements from both arrays)
+---------------------------------------------------------------
+Input: [1,2,3], [3,4,5]   Output: [1, 2, 3, 4, 5]
+
+var arr1 = [1, 2, 3];
+var arr2 = [3, 4, 5];
+var result = [];
+for (var i = 0; i < arr1.length; i++) {
+  if (result.indexOf(arr1[i]) === -1) {
+    result.push(arr1[i]);
+  }
+}
+for (var j = 0; j < arr2.length; j++) {
+  if (result.indexOf(arr2[j]) === -1) {
+    result.push(arr2[j]);
+  }
+}
+console.log(result); // [1, 2, 3, 4, 5]
+
+
+---------------------------------------------------------------
+37. Move zeros to end
+---------------------------------------------------------------
+Input: [0, 1, 0, 3, 12]   Output: [1, 3, 12, 0, 0]
+
+var arr = [0, 1, 0, 3, 12];
+var result = [];
+var zeroCount = 0;
+for (var i = 0; i < arr.length; i++) {
+  if (arr[i] === 0) {
+    zeroCount = zeroCount + 1;
+  } else {
+    result.push(arr[i]);
+  }
+}
+for (var j = 0; j < zeroCount; j++) {
+  result.push(0);
+}
+console.log(result); // [1, 3, 12, 0, 0]
+
+
+---------------------------------------------------------------
+38. Separate even and odd
+---------------------------------------------------------------
+Input: [1, 2, 3, 4, 5, 6]
+Output: Even: [2, 4, 6]  Odd: [1, 3, 5]
+
+var arr = [1, 2, 3, 4, 5, 6];
+var evens = [];
+var odds = [];
+for (var i = 0; i < arr.length; i++) {
+  if (arr[i] % 2 === 0) {
+    evens.push(arr[i]);
+  } else {
+    odds.push(arr[i]);
+  }
+}
+console.log("Even:", evens); // [2, 4, 6]
+console.log("Odd:", odds);   // [1, 3, 5]
+
+
+---------------------------------------------------------------
+39. Sort array without sort() (Bubble Sort)
+---------------------------------------------------------------
+Input: [5, 2, 9, 1, 6]   Output: [1, 2, 5, 6, 9]
+
+var arr = [5, 2, 9, 1, 6];
+for (var i = 0; i < arr.length; i++) {
+  for (var j = 0; j < arr.length - i - 1; j++) {
+    if (arr[j] > arr[j + 1]) {
+      var temp = arr[j];
+      arr[j] = arr[j + 1];
+      arr[j + 1] = temp;
+    }
+  }
+}
+console.log(arr); // [1, 2, 5, 6, 9]
+
+
+---------------------------------------------------------------
+40. Rotate array (left rotate by k positions)
+---------------------------------------------------------------
+Input: [1, 2, 3, 4, 5], k = 2   Output: [3, 4, 5, 1, 2]
+
+var arr = [1, 2, 3, 4, 5];
+var k = 2;
+var result = [];
+for (var i = k; i < arr.length; i++) {
+  result.push(arr[i]);
+}
+for (var j = 0; j < k; j++) {
+  result.push(arr[j]);
+}
+console.log(result); // [3, 4, 5, 1, 2]
+
+
+---------------------------------------------------------------
+41. Reverse a string
+---------------------------------------------------------------
+Input: "hello"   Output: "olleh"
+
+var str = "hello";
+var reversed = "";
+for (var i = str.length - 1; i >= 0; i--) {
+  reversed = reversed + str[i];
+}
+console.log(reversed); // "olleh"
+
+
+---------------------------------------------------------------
+42. Palindrome string
+---------------------------------------------------------------
+Input: "madam"   Output: "Palindrome"
+
+var str = "madam";
+var reversed = "";
+for (var i = str.length - 1; i >= 0; i--) {
+  reversed = reversed + str[i];
+}
+if (str === reversed) {
+  console.log("Palindrome");
+} else {
+  console.log("Not Palindrome");
+}
+
+
+---------------------------------------------------------------
+43. Count vowels
+---------------------------------------------------------------
+Input: "hello world"   Output: 3
+
+var str = "hello world";
+var vowels = ["a", "e", "i", "o", "u"];
+var count = 0;
+for (var i = 0; i < str.length; i++) {
+  if (vowels.indexOf(str[i]) !== -1) {
+    count = count + 1;
+  }
+}
+console.log(count); // 3
+
+
+---------------------------------------------------------------
+44. Count characters (frequency of each character)
+---------------------------------------------------------------
+Input: "hello"
+Output: { h: 1, e: 1, l: 2, o: 1 }
+
+var str = "hello";
+var freq = {};
+for (var i = 0; i < str.length; i++) {
+  var ch = str[i];
+  if (freq[ch]) {
+    freq[ch] = freq[ch] + 1;
+  } else {
+    freq[ch] = 1;
+  }
+}
+console.log(freq); // { h: 1, e: 1, l: 2, o: 1 }
+
+
+---------------------------------------------------------------
+45. Duplicate characters
+---------------------------------------------------------------
+Input: "programming"   Output: ["r", "g", "m"]
+
+var str = "programming";
+var freq = {};
+var duplicates = [];
+for (var i = 0; i < str.length; i++) {
+  var ch = str[i];
+  if (freq[ch]) {
+    freq[ch] = freq[ch] + 1;
+  } else {
+    freq[ch] = 1;
+  }
+}
+for (var key in freq) {
+  if (freq[key] > 1) {
+    duplicates.push(key);
+  }
+}
+console.log(duplicates); // ["r", "g", "m"]
+
+
+---------------------------------------------------------------
+46. First non-repeating character
+---------------------------------------------------------------
+Input: "swiss"   Output: "w"
+
+var str = "swiss";
+var freq = {};
+for (var i = 0; i < str.length; i++) {
+  var ch = str[i];
+  if (freq[ch]) {
+    freq[ch] = freq[ch] + 1;
+  } else {
+    freq[ch] = 1;
+  }
+}
+var result = null;
+for (var j = 0; j < str.length; j++) {
+  if (freq[str[j]] === 1) {
+    result = str[j];
+    break;
+  }
+}
+console.log(result); // "w"
+
+
+---------------------------------------------------------------
+47. Check anagram
+---------------------------------------------------------------
+Input: "listen", "silent"   Output: "Anagram"
+
+var str1 = "listen";
+var str2 = "silent";
+var arr1 = str1.split("");
+var arr2 = str2.split("");
+arr1.sort();
+arr2.sort();
+var sorted1 = arr1.join("");
+var sorted2 = arr2.join("");
+if (sorted1 === sorted2) {
+  console.log("Anagram");
+} else {
+  console.log("Not Anagram");
+}
+
+
+---------------------------------------------------------------
+48. Group anagrams
+---------------------------------------------------------------
+Input: ["eat", "tea", "tan", "ate", "nat", "bat"]
+Output: [["eat","tea","ate"], ["tan","nat"], ["bat"]]
+
+var words = ["eat", "tea", "tan", "ate", "nat", "bat"];
+var groups = {};
+for (var i = 0; i < words.length; i++) {
+  var word = words[i];
+  var sortedArr = word.split("");
+  sortedArr.sort();
+  var key = sortedArr.join("");
+  if (groups[key]) {
+    groups[key].push(word);
+  } else {
+    groups[key] = [word];
+  }
+}
+var result = [];
+for (var k in groups) {
+  result.push(groups[k]);
+}
+console.log(result); // [["eat","tea","ate"], ["tan","nat"], ["bat"]]
+
+
+---------------------------------------------------------------
+49. Count word frequency
+---------------------------------------------------------------
+Input: "the quick fox the lazy the fox"
+Output: { the: 3, quick: 1, fox: 2, lazy: 1 }
+
+var sentence = "the quick fox the lazy the fox";
+var words = sentence.split(" ");
+var freq = {};
+for (var i = 0; i < words.length; i++) {
+  var word = words[i];
+  if (freq[word]) {
+    freq[word] = freq[word] + 1;
+  } else {
+    freq[word] = 1;
+  }
+}
+console.log(freq); // { the: 3, quick: 1, fox: 2, lazy: 1 }
+
+
+---------------------------------------------------------------
+50. Most frequent character/word
+---------------------------------------------------------------
+Input: "the quick fox the lazy the fox"   Output: "the" (appears 3 times)
+
+var sentence = "the quick fox the lazy the fox";
+var words = sentence.split(" ");
+var freq = {};
+for (var i = 0; i < words.length; i++) {
+  var word = words[i];
+  if (freq[word]) {
+    freq[word] = freq[word] + 1;
+  } else {
+    freq[word] = 1;
+  }
+}
+var maxCount = 0;
+var mostFrequent = "";
+for (var key in freq) {
+  if (freq[key] > maxCount) {
+    maxCount = freq[key];
+    mostFrequent = key;
+  }
+}
+console.log(mostFrequent); // "the"
+
+
+========================================================
+END OF FILE - 50/50 Solutions
+Remember: attempt each problem yourself in chat BEFORE checking here.
+That struggle is what makes the logic stick for interviews.
+========================================================

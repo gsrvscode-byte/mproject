@@ -1,0 +1,312 @@
+JAVASCRIPT DSA PRACTICE - 50 INTERMEDIATE TO ADVANCED QUESTIONS
+==================================================================
+QUESTIONS ONLY - NO SOLUTIONS INCLUDED
+
+Purpose: Give this file to Claude (or use it yourself) to work through
+one problem at a time. Attempt each problem before asking for hints
+or solutions - that's how the logic actually sticks for interviews.
+
+Topics covered:
+Two Pointers | Sliding Window | Hash Map | Stack/Queue | Binary Search
+Recursion | Linked List | Trees | Graphs | Sorting & Searching | DP Basics
+
+Progress: 0/50
+==================================================================
+
+
+------------------------------------------------------------
+SECTION 1: TWO POINTERS (Q1 - Q5)
+------------------------------------------------------------
+
+Q1. Pair with Given Sum
+Given a sorted array and a target sum, find if there exists a pair of
+elements that add up to the target. Return true/false (or the pair).
+Example: arr = [1, 3, 5, 7, 9], target = 12 -> true (5 + 7 or 3 + 9)
+
+Q2. Remove Duplicates from Sorted Array
+Given a sorted array, remove duplicates in-place so each element
+appears only once, using two pointers. Return the new length.
+Example: arr = [1, 1, 2, 2, 3] -> length 3, arr becomes [1, 2, 3, ...]
+
+Q3. Reverse an Array Using Two Pointers
+Reverse an array in-place using two pointers (start and end) instead
+of creating a new array.
+Example: [1, 2, 3, 4, 5] -> [5, 4, 3, 2, 1]
+
+Q4. Move Zeroes to End (Two Pointer Version)
+Move all zeroes in an array to the end while keeping the relative
+order of non-zero elements, using two pointers and in-place swaps.
+Example: [0, 1, 0, 3, 12] -> [1, 3, 12, 0, 0]
+
+Q5. Container With Most Water
+Given an array of heights, find two lines that together with the
+x-axis form a container that holds the most water. Return max area.
+Example: heights = [1,8,6,2,5,4,8,3,7] -> 49
+
+
+------------------------------------------------------------
+SECTION 2: SLIDING WINDOW (Q6 - Q10)
+------------------------------------------------------------
+
+Q6. Maximum Sum Subarray of Size K
+Find the maximum sum of any contiguous subarray of size K.
+Example: arr = [2, 1, 5, 1, 3, 2], k = 3 -> 9 (5+1+3)
+
+Q7. Smallest Subarray With Sum >= Target
+Find the length of the smallest contiguous subarray whose sum is
+greater than or equal to a given target.
+Example: arr = [2, 1, 5, 2, 3, 2], target = 7 -> 2 ([5,2])
+
+Q8. Longest Substring Without Repeating Characters
+Find the length of the longest substring without repeating characters.
+Example: "abcabcbb" -> 3 ("abc")
+
+Q9. Longest Substring With At Most K Distinct Characters
+Find the length of the longest substring that contains at most K
+distinct characters.
+Example: "eceba", k = 2 -> 3 ("ece")
+
+Q10. Find All Anagram Start Indices
+Given a string and a pattern, find all starting indices in the string
+where an anagram of the pattern begins.
+Example: s = "cbaebabacd", p = "abc" -> [0, 6]
+
+
+------------------------------------------------------------
+SECTION 3: HASH MAP (Q11 - Q15)
+------------------------------------------------------------
+
+Q11. Two Sum
+Given an array and a target, return the indices of two numbers that
+add up to the target, using a hash map for O(n) time.
+Example: arr = [2, 7, 11, 15], target = 9 -> [0, 1]
+
+Q12. Longest Consecutive Sequence
+Given an unsorted array, find the length of the longest sequence of
+consecutive integers (order doesn't matter in the array).
+Example: [100, 4, 200, 1, 3, 2] -> 4 (1,2,3,4)
+
+Q13. Subarray Sum Equals K
+Count the number of contiguous subarrays whose sum equals K.
+Example: arr = [1, 1, 1], k = 2 -> 2
+
+Q14. First Non-Repeating Character (Hash Map Version)
+Find the first character in a string that does not repeat, using a
+frequency hash map.
+Example: "swiss" -> "w"
+
+Q15. Check if Two Strings Are Anagrams (Frequency Map)
+Using a hash map (not sorting), determine if two strings are anagrams
+of each other.
+Example: "listen", "silent" -> true
+
+
+------------------------------------------------------------
+SECTION 4: STACK / QUEUE (Q16 - Q20)
+------------------------------------------------------------
+
+Q16. Valid Parentheses
+Given a string containing '(', ')', '{', '}', '[', ']', determine if
+the brackets are balanced and correctly nested, using a stack.
+Example: "{[()]}" -> true, "{[(])}" -> false
+
+Q17. Next Greater Element
+For each element in an array, find the next element to its right that
+is greater than it. If none exists, use -1. Use a stack for O(n).
+Example: [4, 5, 2, 10, 8] -> [5, 10, 10, -1, -1]
+
+Q18. Design a Min Stack
+Design a stack that supports push, pop, top, and retrieving the
+minimum element in O(1) time.
+Example: push(3), push(5), getMin() -> 3, push(2), getMin() -> 2, pop(), getMin() -> 3
+
+Q19. Implement a Queue Using Two Stacks
+Implement a queue (FIFO) data structure using only two stack instances.
+Example: enqueue(1), enqueue(2), dequeue() -> 1, enqueue(3), dequeue() -> 2
+
+Q20. Daily Temperatures
+Given an array of daily temperatures, return an array where each
+index tells how many days you'd have to wait for a warmer temperature.
+Example: [73,74,75,71,69,72,76,73] -> [1,1,4,2,1,1,0,0]
+
+
+------------------------------------------------------------
+SECTION 5: BINARY SEARCH (Q21 - Q24)
+------------------------------------------------------------
+
+Q21. Classic Binary Search
+Given a sorted array and a target, return the index of the target
+using binary search, or -1 if not found.
+Example: arr = [1,3,5,7,9,11], target = 7 -> 3
+
+Q22. First and Last Occurrence of a Target
+Given a sorted array with duplicate values, find the first and last
+index of a given target using binary search.
+Example: arr = [5,7,7,8,8,10], target = 8 -> [3, 4]
+
+Q23. Search in a Rotated Sorted Array
+Given a sorted array that has been rotated at some pivot, find the
+index of a target value in O(log n) time.
+Example: arr = [4,5,6,7,0,1,2], target = 0 -> 4
+
+Q24. Square Root of a Number Using Binary Search
+Find the integer square root of a non-negative number without using
+Math.sqrt(), using binary search.
+Example: 8 -> 2 (since 3*3=9 is too big)
+
+
+------------------------------------------------------------
+SECTION 6: RECURSION (Q25 - Q29)
+------------------------------------------------------------
+
+Q25. Nth Fibonacci Number (Recursive)
+Write a recursive function to find the Nth Fibonacci number.
+Example: n = 6 -> 8 (0,1,1,2,3,5,8)
+
+Q26. Sum of Array Elements Using Recursion
+Find the sum of all elements in an array using recursion (no loops).
+Example: [1, 2, 3, 4, 5] -> 15
+
+Q27. Power of a Number (x^n) Using Recursion
+Calculate x raised to the power n using recursion.
+Example: x = 2, n = 5 -> 32
+
+Q28. Generate All Subsets of an Array
+Using recursion/backtracking, generate all possible subsets (the
+power set) of a given array.
+Example: [1, 2] -> [[], [1], [2], [1,2]]
+
+Q29. Tower of Hanoi
+Print the sequence of moves required to solve the Tower of Hanoi
+puzzle for N disks using recursion.
+Example: n = 2 -> "Move disk 1 from A to B", "Move disk 2 from A to C", "Move disk 1 from B to C"
+
+
+------------------------------------------------------------
+SECTION 7: LINKED LIST (Q30 - Q34)
+------------------------------------------------------------
+
+Q30. Reverse a Singly Linked List
+Reverse a singly linked list in-place and return the new head.
+Example: 1 -> 2 -> 3 -> 4 -> null becomes 4 -> 3 -> 2 -> 1 -> null
+
+Q31. Detect a Cycle in a Linked List
+Determine if a linked list has a cycle, using Floyd's slow/fast
+pointer technique (no extra memory).
+Example: 1 -> 2 -> 3 -> 4 -> back to 2 -> true
+
+Q32. Find the Middle Node of a Linked List
+Find the middle node of a linked list in a single pass using the
+slow/fast pointer technique.
+Example: 1 -> 2 -> 3 -> 4 -> 5 -> null -> middle is 3
+
+Q33. Merge Two Sorted Linked Lists
+Merge two sorted linked lists into a single sorted linked list.
+Example: 1->3->5 and 2->4->6 -> 1->2->3->4->5->6
+
+Q34. Remove Nth Node From the End of a Linked List
+Remove the Nth node from the end of a linked list in one pass.
+Example: 1->2->3->4->5, n = 2 -> 1->2->3->5
+
+
+------------------------------------------------------------
+SECTION 8: TREES (Q35 - Q39)
+------------------------------------------------------------
+
+Q35. Inorder Traversal of a Binary Tree
+Print/return the inorder traversal (left, root, right) of a binary
+tree, without using built-in traversal methods.
+Example: tree [1, null, 2, 3] -> [1, 3, 2]
+
+Q36. Height (Depth) of a Binary Tree
+Find the height of a binary tree (longest path from root to a leaf).
+Example: tree with 3 levels -> height 3
+
+Q37. Level Order (BFS) Traversal of a Binary Tree
+Print the nodes of a binary tree level by level using a queue.
+Example: tree [3,9,20,null,null,15,7] -> [[3],[9,20],[15,7]]
+
+Q38. Check if a Binary Tree is Balanced
+Determine if a binary tree is height-balanced (difference in height
+of left and right subtrees is not more than 1, for every node).
+Example: [3,9,20,null,null,15,7] -> true
+
+Q39. Lowest Common Ancestor of Two Nodes
+Find the lowest common ancestor (LCA) of two given nodes in a
+binary tree.
+Example: tree with nodes 5 and 1 -> LCA is 3 (given a sample tree)
+
+
+------------------------------------------------------------
+SECTION 9: GRAPHS (Q40 - Q43)
+------------------------------------------------------------
+
+Q40. BFS Traversal of a Graph
+Given a graph as an adjacency list, perform a breadth-first traversal
+starting from a given node.
+Example: graph {0:[1,2], 1:[2], 2:[0,3], 3:[3]}, start = 2 -> [2, 0, 3, 1]
+
+Q41. DFS Traversal of a Graph
+Given a graph as an adjacency list, perform a depth-first traversal
+starting from a given node (iterative or recursive).
+Example: graph {0:[1,2], 1:[2], 2:[0,3], 3:[3]}, start = 2 -> [2, 0, 1, 3]
+
+Q42. Detect a Cycle in an Undirected Graph
+Given an undirected graph, determine whether it contains a cycle.
+Example: edges [[0,1],[1,2],[2,0]] -> true (cycle exists)
+
+Q43. Count Connected Components in a Graph
+Given an undirected graph, count how many separate connected
+components it has.
+Example: n = 5, edges [[0,1],[1,2],[3,4]] -> 2 components
+
+
+------------------------------------------------------------
+SECTION 10: SORTING & SEARCHING (Q44 - Q47)
+------------------------------------------------------------
+
+Q44. Implement Bubble Sort
+Sort an array in ascending order using the bubble sort algorithm
+(without using the built-in sort() method).
+Example: [5, 2, 9, 1, 6] -> [1, 2, 5, 6, 9]
+
+Q45. Implement Merge Sort
+Sort an array using the merge sort algorithm (divide and conquer).
+Example: [8, 3, 5, 1, 9, 2] -> [1, 2, 3, 5, 8, 9]
+
+Q46. Implement Quick Sort
+Sort an array using the quick sort algorithm (pivot-based partitioning).
+Example: [10, 7, 8, 9, 1, 5] -> [1, 5, 7, 8, 9, 10]
+
+Q47. Find the Kth Largest Element in an Array
+Find the Kth largest element in an unsorted array (without fully
+sorting if possible).
+Example: [3, 2, 1, 5, 6, 4], k = 2 -> 5
+
+
+------------------------------------------------------------
+SECTION 11: DYNAMIC PROGRAMMING BASICS (Q48 - Q50)
+------------------------------------------------------------
+
+Q48. Climbing Stairs
+You can climb 1 or 2 steps at a time. Find how many distinct ways
+you can climb to the top of N stairs.
+Example: n = 4 -> 5 ways
+
+Q49. House Robber
+Given an array of amounts of money in houses along a street, find
+the maximum amount you can rob without robbing two adjacent houses.
+Example: [1, 2, 3, 1] -> 4 (rob house 1 and house 3)
+
+Q50. Longest Common Subsequence
+Given two strings, find the length of their longest common
+subsequence (characters in same relative order, not necessarily
+contiguous).
+Example: "abcde", "ace" -> 3 ("ace")
+
+
+==================================================================
+END OF FILE - 50 DSA QUESTIONS (NO SOLUTIONS)
+Work through these one at a time: attempt -> hint -> solution ->
+dry run -> modified version -> next problem. Track progress as you go.
+==================================================================
