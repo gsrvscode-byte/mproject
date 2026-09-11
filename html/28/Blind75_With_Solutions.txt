@@ -1,0 +1,1442 @@
+BLIND 75 LEETCODE - FULL SOLUTIONS (JavaScript)
+====================================================
+REFERENCE / ANSWER-KEY FILE. Attempt each problem yourself using the
+questions-only file first. Check here only to verify or when stuck.
+====================================================
+
+
+------------------------------------------------------------
+ARRAYS & HASHING
+------------------------------------------------------------
+
+Q1. Two Sum
+function twoSum(nums, target) {
+  const map = new Map();
+  for (let i = 0; i < nums.length; i++) {
+    const complement = target - nums[i];
+    if (map.has(complement)) return [map.get(complement), i];
+    map.set(nums[i], i);
+  }
+  return [];
+}
+console.log(twoSum([2,7,11,15], 9)); // [0,1]
+
+
+Q2. Contains Duplicate
+function containsDuplicate(nums) {
+  const seen = new Set();
+  for (let i = 0; i < nums.length; i++) {
+    if (seen.has(nums[i])) return true;
+    seen.add(nums[i]);
+  }
+  return false;
+}
+console.log(containsDuplicate([1,2,3,1])); // true
+
+
+Q3. Valid Anagram
+function isAnagram(s, t) {
+  if (s.length !== t.length) return false;
+  const freq = {};
+  for (let ch of s) freq[ch] = (freq[ch] || 0) + 1;
+  for (let ch of t) {
+    if (!freq[ch]) return false;
+    freq[ch]--;
+  }
+  return true;
+}
+console.log(isAnagram("anagram", "nagaram")); // true
+
+
+Q4. Group Anagrams
+function groupAnagrams(strs) {
+  const map = new Map();
+  for (let word of strs) {
+    const key = word.split("").sort().join("");
+    if (!map.has(key)) map.set(key, []);
+    map.get(key).push(word);
+  }
+  return Array.from(map.values());
+}
+console.log(groupAnagrams(["eat","tea","tan","ate","nat","bat"]));
+// [["eat","tea","ate"],["tan","nat"],["bat"]]
+
+
+Q5. Top K Frequent Elements
+function topKFrequent(nums, k) {
+  const freq = new Map();
+  for (let n of nums) freq.set(n, (freq.get(n) || 0) + 1);
+  const sorted = Array.from(freq.entries()).sort((a, b) => b[1] - a[1]);
+  return sorted.slice(0, k).map(pair => pair[0]);
+}
+console.log(topKFrequent([1,1,1,2,2,3], 2)); // [1,2]
+
+
+Q6. Product of Array Except Self
+function productExceptSelf(nums) {
+  const n = nums.length;
+  const result = new Array(n).fill(1);
+  let prefix = 1;
+  for (let i = 0; i < n; i++) {
+    result[i] = prefix;
+    prefix *= nums[i];
+  }
+  let suffix = 1;
+  for (let i = n - 1; i >= 0; i--) {
+    result[i] *= suffix;
+    suffix *= nums[i];
+  }
+  return result;
+}
+console.log(productExceptSelf([1,2,3,4])); // [24,12,8,6]
+
+
+Q7. Valid Sudoku
+function isValidSudoku(board) {
+  const rows = Array.from({length: 9}, () => new Set());
+  const cols = Array.from({length: 9}, () => new Set());
+  const boxes = Array.from({length: 9}, () => new Set());
+  for (let r = 0; r < 9; r++) {
+    for (let c = 0; c < 9; c++) {
+      const val = board[r][c];
+      if (val === ".") continue;
+      const boxIndex = Math.floor(r / 3) * 3 + Math.floor(c / 3);
+      if (rows[r].has(val) || cols[c].has(val) || boxes[boxIndex].has(val)) {
+        return false;
+      }
+      rows[r].add(val);
+      cols[c].add(val);
+      boxes[boxIndex].add(val);
+    }
+  }
+  return true;
+}
+// call with a 9x9 board array of characters, e.g. isValidSudoku(board)
+
+
+Q8. Encode and Decode Strings
+function encode(strs) {
+  let result = "";
+  for (let s of strs) {
+    result += s.length + "#" + s;
+  }
+  return result;
+}
+function decode(str) {
+  const result = [];
+  let i = 0;
+  while (i < str.length) {
+    let j = i;
+    while (str[j] !== "#") j++;
+    const length = parseInt(str.slice(i, j));
+    const word = str.slice(j + 1, j + 1 + length);
+    result.push(word);
+    i = j + 1 + length;
+  }
+  return result;
+}
+const encoded = encode(["lint","code","love","you"]);
+console.log(decode(encoded)); // ["lint","code","love","you"]
+
+
+Q9. Longest Consecutive Sequence
+function longestConsecutive(nums) {
+  const set = new Set(nums);
+  let longest = 0;
+  for (let num of set) {
+    if (!set.has(num - 1)) {
+      let length = 1;
+      let current = num;
+      while (set.has(current + 1)) {
+        current++;
+        length++;
+      }
+      longest = Math.max(longest, length);
+    }
+  }
+  return longest;
+}
+console.log(longestConsecutive([100,4,200,1,3,2])); // 4
+
+
+------------------------------------------------------------
+TWO POINTERS
+------------------------------------------------------------
+
+Q10. Valid Palindrome
+function isPalindrome(s) {
+  const cleaned = s.toLowerCase().replace(/[^a-z0-9]/g, "");
+  let left = 0, right = cleaned.length - 1;
+  while (left < right) {
+    if (cleaned[left] !== cleaned[right]) return false;
+    left++;
+    right--;
+  }
+  return true;
+}
+console.log(isPalindrome("A man, a plan, a canal: Panama")); // true
+
+
+Q11. Two Sum II - Input Array Is Sorted
+function twoSumSorted(numbers, target) {
+  let left = 0, right = numbers.length - 1;
+  while (left < right) {
+    const sum = numbers[left] + numbers[right];
+    if (sum === target) return [left + 1, right + 1]; // 1-indexed
+    if (sum < target) left++;
+    else right--;
+  }
+  return [];
+}
+console.log(twoSumSorted([2,7,11,15], 9)); // [1,2]
+
+
+Q12. 3Sum
+function threeSum(nums) {
+  nums.sort((a, b) => a - b);
+  const result = [];
+  for (let i = 0; i < nums.length - 2; i++) {
+    if (i > 0 && nums[i] === nums[i - 1]) continue; // skip duplicates
+    let left = i + 1, right = nums.length - 1;
+    while (left < right) {
+      const sum = nums[i] + nums[left] + nums[right];
+      if (sum === 0) {
+        result.push([nums[i], nums[left], nums[right]]);
+        while (left < right && nums[left] === nums[left + 1]) left++;
+        while (left < right && nums[right] === nums[right - 1]) right--;
+        left++;
+        right--;
+      } else if (sum < 0) {
+        left++;
+      } else {
+        right--;
+      }
+    }
+  }
+  return result;
+}
+console.log(threeSum([-1,0,1,2,-1,-4])); // [[-1,-1,2],[-1,0,1]]
+
+
+Q13. Container With Most Water
+function maxArea(heights) {
+  let left = 0, right = heights.length - 1, maxWater = 0;
+  while (left < right) {
+    const area = (right - left) * Math.min(heights[left], heights[right]);
+    maxWater = Math.max(maxWater, area);
+    if (heights[left] < heights[right]) left++;
+    else right--;
+  }
+  return maxWater;
+}
+console.log(maxArea([1,8,6,2,5,4,8,3,7])); // 49
+
+
+Q14. Trapping Rain Water
+function trap(height) {
+  let left = 0, right = height.length - 1;
+  let leftMax = 0, rightMax = 0, water = 0;
+  while (left < right) {
+    if (height[left] < height[right]) {
+      leftMax = Math.max(leftMax, height[left]);
+      water += leftMax - height[left];
+      left++;
+    } else {
+      rightMax = Math.max(rightMax, height[right]);
+      water += rightMax - height[right];
+      right--;
+    }
+  }
+  return water;
+}
+console.log(trap([0,1,0,2,1,0,1,3,2,1,2,1])); // 6
+
+
+------------------------------------------------------------
+SLIDING WINDOW
+------------------------------------------------------------
+
+Q15. Best Time to Buy and Sell Stock
+function maxProfit(prices) {
+  let minPrice = Infinity, maxProfit = 0;
+  for (let price of prices) {
+    minPrice = Math.min(minPrice, price);
+    maxProfit = Math.max(maxProfit, price - minPrice);
+  }
+  return maxProfit;
+}
+console.log(maxProfit([7,1,5,3,6,4])); // 5
+
+
+Q16. Longest Substring Without Repeating Characters
+function lengthOfLongestSubstring(s) {
+  const seen = new Map();
+  let start = 0, maxLength = 0;
+  for (let end = 0; end < s.length; end++) {
+    const ch = s[end];
+    if (seen.has(ch) && seen.get(ch) >= start) {
+      start = seen.get(ch) + 1;
+    }
+    seen.set(ch, end);
+    maxLength = Math.max(maxLength, end - start + 1);
+  }
+  return maxLength;
+}
+console.log(lengthOfLongestSubstring("abcabcbb")); // 3
+
+
+Q17. Longest Repeating Character Replacement
+function characterReplacement(s, k) {
+  const freq = {};
+  let start = 0, maxFreq = 0, maxLength = 0;
+  for (let end = 0; end < s.length; end++) {
+    freq[s[end]] = (freq[s[end]] || 0) + 1;
+    maxFreq = Math.max(maxFreq, freq[s[end]]);
+    while ((end - start + 1) - maxFreq > k) {
+      freq[s[start]]--;
+      start++;
+    }
+    maxLength = Math.max(maxLength, end - start + 1);
+  }
+  return maxLength;
+}
+console.log(characterReplacement("ABAB", 2)); // 4
+
+
+Q18. Permutation in String
+function checkInclusion(s1, s2) {
+  if (s1.length > s2.length) return false;
+  const need = new Array(26).fill(0);
+  const window = new Array(26).fill(0);
+  const base = "a".charCodeAt(0);
+  for (let ch of s1) need[ch.charCodeAt(0) - base]++;
+  for (let i = 0; i < s2.length; i++) {
+    window[s2.charCodeAt(i) - base]++;
+    if (i >= s1.length) window[s2.charCodeAt(i - s1.length) - base]--;
+    if (i >= s1.length - 1 && arraysEqual(need, window)) return true;
+  }
+  return false;
+}
+function arraysEqual(a, b) {
+  for (let i = 0; i < a.length; i++) if (a[i] !== b[i]) return false;
+  return true;
+}
+console.log(checkInclusion("ab", "eidbaooo")); // true
+
+
+Q19. Minimum Window Substring
+function minWindow(s, t) {
+  if (t.length === 0) return "";
+  const need = {};
+  for (let ch of t) need[ch] = (need[ch] || 0) + 1;
+  let required = Object.keys(need).length;
+  let formed = 0;
+  const windowCounts = {};
+  let left = 0, minLen = Infinity, minStart = 0;
+  for (let right = 0; right < s.length; right++) {
+    const ch = s[right];
+    windowCounts[ch] = (windowCounts[ch] || 0) + 1;
+    if (need[ch] && windowCounts[ch] === need[ch]) formed++;
+    while (formed === required) {
+      if (right - left + 1 < minLen) {
+        minLen = right - left + 1;
+        minStart = left;
+      }
+      const leftCh = s[left];
+      windowCounts[leftCh]--;
+      if (need[leftCh] && windowCounts[leftCh] < need[leftCh]) formed--;
+      left++;
+    }
+  }
+  return minLen === Infinity ? "" : s.substr(minStart, minLen);
+}
+console.log(minWindow("ADOBECODEBANC", "ABC")); // "BANC"
+
+
+Q20. Sliding Window Maximum
+function maxSlidingWindow(nums, k) {
+  const result = [];
+  const deque = []; // stores indices, values decreasing
+  for (let i = 0; i < nums.length; i++) {
+    while (deque.length && deque[0] <= i - k) deque.shift();
+    while (deque.length && nums[deque[deque.length - 1]] < nums[i]) deque.pop();
+    deque.push(i);
+    if (i >= k - 1) result.push(nums[deque[0]]);
+  }
+  return result;
+}
+console.log(maxSlidingWindow([1,3,-1,-3,5,3,6,7], 3)); // [3,3,5,5,6,7]
+
+
+------------------------------------------------------------
+STACK
+------------------------------------------------------------
+
+Q21. Valid Parentheses
+function isValid(s) {
+  const stack = [];
+  const pairs = { ")": "(", "]": "[", "}": "{" };
+  for (let ch of s) {
+    if (ch === "(" || ch === "[" || ch === "{") {
+      stack.push(ch);
+    } else {
+      if (stack.pop() !== pairs[ch]) return false;
+    }
+  }
+  return stack.length === 0;
+}
+console.log(isValid("()[]{}")); // true
+
+
+Q22. Min Stack
+class MinStack {
+  constructor() {
+    this.stack = [];
+    this.minStack = [];
+  }
+  push(val) {
+    this.stack.push(val);
+    const currentMin = this.minStack.length ? this.minStack[this.minStack.length - 1] : Infinity;
+    this.minStack.push(Math.min(val, currentMin));
+  }
+  pop() {
+    this.minStack.pop();
+    return this.stack.pop();
+  }
+  top() {
+    return this.stack[this.stack.length - 1];
+  }
+  getMin() {
+    return this.minStack[this.minStack.length - 1];
+  }
+}
+const ms = new MinStack();
+ms.push(-2); ms.push(0); ms.push(-3);
+console.log(ms.getMin()); // -3
+ms.pop();
+console.log(ms.top());    // 0
+console.log(ms.getMin()); // -2
+
+
+Q23. Evaluate Reverse Polish Notation
+function evalRPN(tokens) {
+  const stack = [];
+  const ops = new Set(["+", "-", "*", "/"]);
+  for (let token of tokens) {
+    if (!ops.has(token)) {
+      stack.push(Number(token));
+    } else {
+      const b = stack.pop();
+      const a = stack.pop();
+      if (token === "+") stack.push(a + b);
+      else if (token === "-") stack.push(a - b);
+      else if (token === "*") stack.push(a * b);
+      else stack.push(Math.trunc(a / b));
+    }
+  }
+  return stack.pop();
+}
+console.log(evalRPN(["2","1","+","3","*"])); // 9
+
+
+Q24. Generate Parentheses
+function generateParenthesis(n) {
+  const result = [];
+  function backtrack(current, open, close) {
+    if (current.length === n * 2) {
+      result.push(current);
+      return;
+    }
+    if (open < n) backtrack(current + "(", open + 1, close);
+    if (close < open) backtrack(current + ")", open, close + 1);
+  }
+  backtrack("", 0, 0);
+  return result;
+}
+console.log(generateParenthesis(3));
+// ["((()))","(()())","(())()","()(())","()()()"]
+
+
+Q25. Daily Temperatures
+function dailyTemperatures(temperatures) {
+  const result = new Array(temperatures.length).fill(0);
+  const stack = []; // indices
+  for (let i = 0; i < temperatures.length; i++) {
+    while (stack.length && temperatures[i] > temperatures[stack[stack.length - 1]]) {
+      const idx = stack.pop();
+      result[idx] = i - idx;
+    }
+    stack.push(i);
+  }
+  return result;
+}
+console.log(dailyTemperatures([73,74,75,71,69,72,76,73])); // [1,1,4,2,1,1,0,0]
+
+
+Q26. Car Fleet
+function carFleet(target, position, speed) {
+  const cars = position.map((p, i) => [p, speed[i]]);
+  cars.sort((a, b) => b[0] - a[0]); // sort by position descending (closest to target first)
+  const stack = [];
+  for (let [pos, spd] of cars) {
+    const time = (target - pos) / spd;
+    if (stack.length === 0 || time > stack[stack.length - 1]) {
+      stack.push(time);
+    }
+  }
+  return stack.length;
+}
+console.log(carFleet(12, [10,8,0,5,3], [2,4,1,1,3])); // 3
+
+
+Q27. Largest Rectangle in Histogram
+function largestRectangleArea(heights) {
+  const stack = []; // stores indices
+  let maxArea = 0;
+  for (let i = 0; i <= heights.length; i++) {
+    const h = (i === heights.length) ? 0 : heights[i];
+    while (stack.length && heights[stack[stack.length - 1]] >= h) {
+      const height = heights[stack.pop()];
+      const width = stack.length ? i - stack[stack.length - 1] - 1 : i;
+      maxArea = Math.max(maxArea, height * width);
+    }
+    stack.push(i);
+  }
+  return maxArea;
+}
+console.log(largestRectangleArea([2,1,5,6,2,3])); // 10
+
+
+------------------------------------------------------------
+BINARY SEARCH
+------------------------------------------------------------
+
+Q28. Binary Search
+function search(nums, target) {
+  let low = 0, high = nums.length - 1;
+  while (low <= high) {
+    const mid = Math.floor((low + high) / 2);
+    if (nums[mid] === target) return mid;
+    if (nums[mid] < target) low = mid + 1;
+    else high = mid - 1;
+  }
+  return -1;
+}
+console.log(search([-1,0,3,5,9,12], 9)); // 4
+
+
+Q29. Search a 2D Matrix
+function searchMatrix(matrix, target) {
+  const rows = matrix.length, cols = matrix[0].length;
+  let low = 0, high = rows * cols - 1;
+  while (low <= high) {
+    const mid = Math.floor((low + high) / 2);
+    const val = matrix[Math.floor(mid / cols)][mid % cols];
+    if (val === target) return true;
+    if (val < target) low = mid + 1;
+    else high = mid - 1;
+  }
+  return false;
+}
+console.log(searchMatrix([[1,3,5,7],[10,11,16,20],[23,30,34,60]], 3)); // true
+
+
+Q30. Koko Eating Bananas
+function minEatingSpeed(piles, h) {
+  let low = 1, high = Math.max(...piles);
+  while (low < high) {
+    const mid = Math.floor((low + high) / 2);
+    let hours = 0;
+    for (let pile of piles) hours += Math.ceil(pile / mid);
+    if (hours <= h) high = mid;
+    else low = mid + 1;
+  }
+  return low;
+}
+console.log(minEatingSpeed([3,6,7,11], 8)); // 4
+
+
+Q31. Find Minimum in Rotated Sorted Array
+function findMin(nums) {
+  let low = 0, high = nums.length - 1;
+  while (low < high) {
+    const mid = Math.floor((low + high) / 2);
+    if (nums[mid] > nums[high]) low = mid + 1;
+    else high = mid;
+  }
+  return nums[low];
+}
+console.log(findMin([4,5,6,7,0,1,2])); // 0
+
+
+Q32. Search in Rotated Sorted Array
+function searchRotated(nums, target) {
+  let low = 0, high = nums.length - 1;
+  while (low <= high) {
+    const mid = Math.floor((low + high) / 2);
+    if (nums[mid] === target) return mid;
+    if (nums[low] <= nums[mid]) {
+      if (target >= nums[low] && target < nums[mid]) high = mid - 1;
+      else low = mid + 1;
+    } else {
+      if (target > nums[mid] && target <= nums[high]) low = mid + 1;
+      else high = mid - 1;
+    }
+  }
+  return -1;
+}
+console.log(searchRotated([4,5,6,7,0,1,2], 0)); // 4
+
+
+Q33. Time Based Key-Value Store
+class TimeMap {
+  constructor() {
+    this.store = new Map(); // key -> [[timestamp, value], ...]
+  }
+  set(key, value, timestamp) {
+    if (!this.store.has(key)) this.store.set(key, []);
+    this.store.get(key).push([timestamp, value]);
+  }
+  get(key, timestamp) {
+    const values = this.store.get(key);
+    if (!values) return "";
+    let low = 0, high = values.length - 1, result = "";
+    while (low <= high) {
+      const mid = Math.floor((low + high) / 2);
+      if (values[mid][0] <= timestamp) {
+        result = values[mid][1];
+        low = mid + 1;
+      } else {
+        high = mid - 1;
+      }
+    }
+    return result;
+  }
+}
+const tm = new TimeMap();
+tm.set("foo", "bar", 1);
+console.log(tm.get("foo", 1)); // "bar"
+console.log(tm.get("foo", 4)); // "bar"
+
+
+Q34. Median of Two Sorted Arrays
+function findMedianSortedArrays(nums1, nums2) {
+  if (nums1.length > nums2.length) [nums1, nums2] = [nums2, nums1];
+  const m = nums1.length, n = nums2.length;
+  let low = 0, high = m;
+  while (low <= high) {
+    const partition1 = Math.floor((low + high) / 2);
+    const partition2 = Math.floor((m + n + 1) / 2) - partition1;
+    const left1 = partition1 === 0 ? -Infinity : nums1[partition1 - 1];
+    const right1 = partition1 === m ? Infinity : nums1[partition1];
+    const left2 = partition2 === 0 ? -Infinity : nums2[partition2 - 1];
+    const right2 = partition2 === n ? Infinity : nums2[partition2];
+    if (left1 <= right2 && left2 <= right1) {
+      if ((m + n) % 2 === 0) {
+        return (Math.max(left1, left2) + Math.min(right1, right2)) / 2;
+      }
+      return Math.max(left1, left2);
+    } else if (left1 > right2) {
+      high = partition1 - 1;
+    } else {
+      low = partition1 + 1;
+    }
+  }
+}
+console.log(findMedianSortedArrays([1,3], [2])); // 2
+
+
+------------------------------------------------------------
+LINKED LIST
+------------------------------------------------------------
+
+// Basic node used throughout
+class ListNode {
+  constructor(val, next = null) {
+    this.val = val;
+    this.next = next;
+  }
+}
+
+Q35. Reverse Linked List
+function reverseList(head) {
+  let prev = null, current = head;
+  while (current) {
+    const next = current.next;
+    current.next = prev;
+    prev = current;
+    current = next;
+  }
+  return prev;
+}
+
+
+Q36. Merge Two Sorted Lists
+function mergeTwoLists(l1, l2) {
+  const dummy = new ListNode(0);
+  let tail = dummy;
+  while (l1 && l2) {
+    if (l1.val <= l2.val) { tail.next = l1; l1 = l1.next; }
+    else { tail.next = l2; l2 = l2.next; }
+    tail = tail.next;
+  }
+  tail.next = l1 || l2;
+  return dummy.next;
+}
+
+
+Q37. Reorder List
+function reorderList(head) {
+  if (!head) return;
+  // find middle
+  let slow = head, fast = head;
+  while (fast.next && fast.next.next) {
+    slow = slow.next;
+    fast = fast.next.next;
+  }
+  // reverse second half
+  let prev = null, current = slow.next;
+  slow.next = null;
+  while (current) {
+    const next = current.next;
+    current.next = prev;
+    prev = current;
+    current = next;
+  }
+  // merge two halves
+  let first = head, second = prev;
+  while (second) {
+    const tmp1 = first.next, tmp2 = second.next;
+    first.next = second;
+    second.next = tmp1;
+    first = tmp1;
+    second = tmp2;
+  }
+}
+
+
+Q38. Remove Nth Node From End of List
+function removeNthFromEnd(head, n) {
+  const dummy = new ListNode(0, head);
+  let fast = dummy, slow = dummy;
+  for (let i = 0; i < n; i++) fast = fast.next;
+  while (fast.next) {
+    fast = fast.next;
+    slow = slow.next;
+  }
+  slow.next = slow.next.next;
+  return dummy.next;
+}
+
+
+Q39. Copy List With Random Pointer
+function copyRandomList(head) {
+  if (!head) return null;
+  const map = new Map();
+  let current = head;
+  while (current) {
+    map.set(current, { val: current.val, next: null, random: null });
+    current = current.next;
+  }
+  current = head;
+  while (current) {
+    const copy = map.get(current);
+    copy.next = current.next ? map.get(current.next) : null;
+    copy.random = current.random ? map.get(current.random) : null;
+    current = current.next;
+  }
+  return map.get(head);
+}
+
+
+Q40. Add Two Numbers
+function addTwoNumbers(l1, l2) {
+  const dummy = new ListNode(0);
+  let tail = dummy, carry = 0;
+  while (l1 || l2 || carry) {
+    const sum = (l1 ? l1.val : 0) + (l2 ? l2.val : 0) + carry;
+    carry = Math.floor(sum / 10);
+    tail.next = new ListNode(sum % 10);
+    tail = tail.next;
+    if (l1) l1 = l1.next;
+    if (l2) l2 = l2.next;
+  }
+  return dummy.next;
+}
+
+
+Q41. Linked List Cycle
+function hasCycle(head) {
+  let slow = head, fast = head;
+  while (fast && fast.next) {
+    slow = slow.next;
+    fast = fast.next.next;
+    if (slow === fast) return true;
+  }
+  return false;
+}
+
+
+Q42. Find the Duplicate Number
+function findDuplicate(nums) {
+  let slow = nums[0], fast = nums[0];
+  do {
+    slow = nums[slow];
+    fast = nums[nums[fast]];
+  } while (slow !== fast);
+  slow = nums[0];
+  while (slow !== fast) {
+    slow = nums[slow];
+    fast = nums[fast];
+  }
+  return slow;
+}
+console.log(findDuplicate([1,3,4,2,2])); // 2
+
+
+Q43. LRU Cache
+class LRUCache {
+  constructor(capacity) {
+    this.capacity = capacity;
+    this.map = new Map(); // Maps preserve insertion order in JS
+  }
+  get(key) {
+    if (!this.map.has(key)) return -1;
+    const val = this.map.get(key);
+    this.map.delete(key);
+    this.map.set(key, val); // move to most-recently-used position
+    return val;
+  }
+  put(key, value) {
+    if (this.map.has(key)) this.map.delete(key);
+    else if (this.map.size === this.capacity) {
+      this.map.delete(this.map.keys().next().value); // evict least recently used
+    }
+    this.map.set(key, value);
+  }
+}
+const lru = new LRUCache(2);
+lru.put(1,1); lru.put(2,2);
+console.log(lru.get(1)); // 1
+lru.put(3,3); // evicts key 2
+console.log(lru.get(2)); // -1
+
+
+Q44. Merge K Sorted Lists
+function mergeKLists(lists) {
+  if (lists.length === 0) return null;
+  while (lists.length > 1) {
+    const merged = [];
+    for (let i = 0; i < lists.length; i += 2) {
+      const l1 = lists[i];
+      const l2 = (i + 1 < lists.length) ? lists[i + 1] : null;
+      merged.push(mergeTwoLists(l1, l2));
+    }
+    lists = merged;
+  }
+  return lists[0];
+}
+// uses mergeTwoLists from Q36
+
+
+Q45. Reverse Nodes in K-Group
+function reverseKGroup(head, k) {
+  let node = head, count = 0;
+  while (node && count < k) { node = node.next; count++; }
+  if (count < k) return head; // fewer than k nodes left, leave as is
+  let prev = reverseKGroup(node, k); // recursively handle rest of list
+  let current = head;
+  for (let i = 0; i < k; i++) {
+    const next = current.next;
+    current.next = prev;
+    prev = current;
+    current = next;
+  }
+  return prev;
+}
+
+
+------------------------------------------------------------
+TREES
+------------------------------------------------------------
+
+// Basic node used throughout
+class TreeNode {
+  constructor(val, left = null, right = null) {
+    this.val = val;
+    this.left = left;
+    this.right = right;
+  }
+}
+
+Q46. Invert Binary Tree
+function invertTree(root) {
+  if (!root) return null;
+  [root.left, root.right] = [invertTree(root.right), invertTree(root.left)];
+  return root;
+}
+
+
+Q47. Maximum Depth of Binary Tree
+function maxDepth(root) {
+  if (!root) return 0;
+  return 1 + Math.max(maxDepth(root.left), maxDepth(root.right));
+}
+
+
+Q48. Diameter of Binary Tree
+function diameterOfBinaryTree(root) {
+  let diameter = 0;
+  function depth(node) {
+    if (!node) return 0;
+    const left = depth(node.left);
+    const right = depth(node.right);
+    diameter = Math.max(diameter, left + right);
+    return 1 + Math.max(left, right);
+  }
+  depth(root);
+  return diameter;
+}
+
+
+Q49. Balanced Binary Tree
+function isBalanced(root) {
+  function check(node) {
+    if (!node) return 0;
+    const left = check(node.left);
+    if (left === -1) return -1;
+    const right = check(node.right);
+    if (right === -1) return -1;
+    if (Math.abs(left - right) > 1) return -1;
+    return 1 + Math.max(left, right);
+  }
+  return check(root) !== -1;
+}
+
+
+Q50. Same Tree
+function isSameTree(p, q) {
+  if (!p && !q) return true;
+  if (!p || !q || p.val !== q.val) return false;
+  return isSameTree(p.left, q.left) && isSameTree(p.right, q.right);
+}
+
+
+Q51. Subtree of Another Tree
+function isSubtree(root, subRoot) {
+  if (!root) return false;
+  if (isSameTree(root, subRoot)) return true;
+  return isSubtree(root.left, subRoot) || isSubtree(root.right, subRoot);
+}
+// uses isSameTree from Q50
+
+
+Q52. Lowest Common Ancestor of a Binary Search Tree
+function lowestCommonAncestor(root, p, q) {
+  let node = root;
+  while (node) {
+    if (p.val < node.val && q.val < node.val) node = node.left;
+    else if (p.val > node.val && q.val > node.val) node = node.right;
+    else return node;
+  }
+  return null;
+}
+
+
+Q53. Binary Tree Level Order Traversal
+function levelOrder(root) {
+  if (!root) return [];
+  const result = [];
+  const queue = [root];
+  while (queue.length) {
+    const levelSize = queue.length;
+    const level = [];
+    for (let i = 0; i < levelSize; i++) {
+      const node = queue.shift();
+      level.push(node.val);
+      if (node.left) queue.push(node.left);
+      if (node.right) queue.push(node.right);
+    }
+    result.push(level);
+  }
+  return result;
+}
+
+
+Q54. Binary Tree Right Side View
+function rightSideView(root) {
+  if (!root) return [];
+  const result = [];
+  const queue = [root];
+  while (queue.length) {
+    const levelSize = queue.length;
+    for (let i = 0; i < levelSize; i++) {
+      const node = queue.shift();
+      if (i === levelSize - 1) result.push(node.val);
+      if (node.left) queue.push(node.left);
+      if (node.right) queue.push(node.right);
+    }
+  }
+  return result;
+}
+
+
+Q55. Count Good Nodes in Binary Tree
+function goodNodes(root) {
+  function dfs(node, maxSoFar) {
+    if (!node) return 0;
+    let count = node.val >= maxSoFar ? 1 : 0;
+    const newMax = Math.max(maxSoFar, node.val);
+    count += dfs(node.left, newMax);
+    count += dfs(node.right, newMax);
+    return count;
+  }
+  return dfs(root, -Infinity);
+}
+
+
+Q56. Validate Binary Search Tree
+function isValidBST(root) {
+  function validate(node, min, max) {
+    if (!node) return true;
+    if (node.val <= min || node.val >= max) return false;
+    return validate(node.left, min, node.val) && validate(node.right, node.val, max);
+  }
+  return validate(root, -Infinity, Infinity);
+}
+
+
+Q57. Kth Smallest Element in a BST
+function kthSmallest(root, k) {
+  const stack = [];
+  let current = root;
+  while (true) {
+    while (current) {
+      stack.push(current);
+      current = current.left;
+    }
+    current = stack.pop();
+    k--;
+    if (k === 0) return current.val;
+    current = current.right;
+  }
+}
+
+
+Q58. Construct Binary Tree from Preorder and Inorder Traversal
+function buildTree(preorder, inorder) {
+  const inorderMap = new Map();
+  inorder.forEach((val, idx) => inorderMap.set(val, idx));
+  let preIndex = 0;
+  function build(left, right) {
+    if (left > right) return null;
+    const rootVal = preorder[preIndex++];
+    const root = new TreeNode(rootVal);
+    const mid = inorderMap.get(rootVal);
+    root.left = build(left, mid - 1);
+    root.right = build(mid + 1, right);
+    return root;
+  }
+  return build(0, inorder.length - 1);
+}
+
+
+Q59. Binary Tree Maximum Path Sum
+function maxPathSum(root) {
+  let maxSum = -Infinity;
+  function dfs(node) {
+    if (!node) return 0;
+    const left = Math.max(dfs(node.left), 0);
+    const right = Math.max(dfs(node.right), 0);
+    maxSum = Math.max(maxSum, node.val + left + right);
+    return node.val + Math.max(left, right);
+  }
+  dfs(root);
+  return maxSum;
+}
+
+
+Q60. Serialize and Deserialize Binary Tree
+function serialize(root) {
+  const result = [];
+  function dfs(node) {
+    if (!node) { result.push("null"); return; }
+    result.push(node.val);
+    dfs(node.left);
+    dfs(node.right);
+  }
+  dfs(root);
+  return result.join(",");
+}
+function deserialize(data) {
+  const values = data.split(",");
+  let index = 0;
+  function build() {
+    if (values[index] === "null") { index++; return null; }
+    const node = new TreeNode(Number(values[index]));
+    index++;
+    node.left = build();
+    node.right = build();
+    return node;
+  }
+  return build();
+}
+
+
+------------------------------------------------------------
+TRIES
+------------------------------------------------------------
+
+Q61. Implement Trie (Prefix Tree)
+class Trie {
+  constructor() {
+    this.children = {};
+    this.isEnd = false;
+  }
+  insert(word) {
+    let node = this;
+    for (let ch of word) {
+      if (!node.children[ch]) node.children[ch] = new Trie();
+      node = node.children[ch];
+    }
+    node.isEnd = true;
+  }
+  search(word) {
+    let node = this;
+    for (let ch of word) {
+      if (!node.children[ch]) return false;
+      node = node.children[ch];
+    }
+    return node.isEnd;
+  }
+  startsWith(prefix) {
+    let node = this;
+    for (let ch of prefix) {
+      if (!node.children[ch]) return false;
+      node = node.children[ch];
+    }
+    return true;
+  }
+}
+const trie = new Trie();
+trie.insert("apple");
+console.log(trie.search("apple"));    // true
+console.log(trie.search("app"));      // false
+console.log(trie.startsWith("app"));  // true
+
+
+Q62. Design Add and Search Words Data Structure
+class WordDictionary {
+  constructor() {
+    this.root = {};
+  }
+  addWord(word) {
+    let node = this.root;
+    for (let ch of word) {
+      if (!node[ch]) node[ch] = {};
+      node = node[ch];
+    }
+    node.isEnd = true;
+  }
+  search(word) {
+    function dfs(node, index) {
+      if (index === word.length) return !!node.isEnd;
+      const ch = word[index];
+      if (ch === ".") {
+        for (let key in node) {
+          if (key !== "isEnd" && dfs(node[key], index + 1)) return true;
+        }
+        return false;
+      } else {
+        if (!node[ch]) return false;
+        return dfs(node[ch], index + 1);
+      }
+    }
+    return dfs(this.root, 0);
+  }
+}
+const wd = new WordDictionary();
+wd.addWord("bad"); wd.addWord("dad"); wd.addWord("mad");
+console.log(wd.search("pad"));  // false
+console.log(wd.search(".ad"));  // true
+
+
+Q63. Word Search II
+function findWords(board, words) {
+  const root = {};
+  for (let word of words) {
+    let node = root;
+    for (let ch of word) {
+      if (!node[ch]) node[ch] = {};
+      node = node[ch];
+    }
+    node.word = word;
+  }
+  const rows = board.length, cols = board[0].length;
+  const result = [];
+  function dfs(r, c, node) {
+    if (r < 0 || r >= rows || c < 0 || c >= cols) return;
+    const ch = board[r][c];
+    if (ch === "#" || !node[ch]) return;
+    const next = node[ch];
+    if (next.word) {
+      result.push(next.word);
+      next.word = null; // avoid duplicates
+    }
+    board[r][c] = "#"; // mark visited
+    dfs(r + 1, c, next);
+    dfs(r - 1, c, next);
+    dfs(r, c + 1, next);
+    dfs(r, c - 1, next);
+    board[r][c] = ch; // restore
+  }
+  for (let r = 0; r < rows; r++) {
+    for (let c = 0; c < cols; c++) {
+      dfs(r, c, root);
+    }
+  }
+  return result;
+}
+
+
+------------------------------------------------------------
+HEAP / PRIORITY QUEUE
+------------------------------------------------------------
+NOTE: JavaScript has no built-in heap. These use simple array-based
+approaches (sort-based) for clarity; production code would use a real
+binary heap implementation for full efficiency.
+
+Q64. Kth Largest Element in a Stream
+class KthLargest {
+  constructor(k, nums) {
+    this.k = k;
+    this.nums = nums.sort((a, b) => a - b);
+    while (this.nums.length > k) this.nums.shift();
+  }
+  add(val) {
+    let inserted = false;
+    for (let i = 0; i < this.nums.length; i++) {
+      if (val < this.nums[i]) {
+        this.nums.splice(i, 0, val);
+        inserted = true;
+        break;
+      }
+    }
+    if (!inserted) this.nums.push(val);
+    if (this.nums.length > this.k) this.nums.shift();
+    return this.nums[0];
+  }
+}
+const kl = new KthLargest(3, [4,5,8,2]);
+console.log(kl.add(3));  // 4
+
+
+Q65. Last Stone Weight
+function lastStoneWeight(stones) {
+  while (stones.length > 1) {
+    stones.sort((a, b) => a - b);
+    const first = stones.pop();
+    const second = stones.pop();
+    if (first !== second) stones.push(first - second);
+  }
+  return stones.length ? stones[0] : 0;
+}
+console.log(lastStoneWeight([2,7,4,1,8,1])); // 1
+
+
+Q66. K Closest Points to Origin
+function kClosest(points, k) {
+  const sorted = points.slice().sort((a, b) => {
+    return (a[0]*a[0] + a[1]*a[1]) - (b[0]*b[0] + b[1]*b[1]);
+  });
+  return sorted.slice(0, k);
+}
+console.log(kClosest([[1,3],[-2,2]], 1)); // [[-2,2]]
+
+
+Q67. Kth Largest Element in an Array
+function findKthLargest(nums, k) {
+  const sorted = nums.slice().sort((a, b) => b - a);
+  return sorted[k - 1];
+}
+console.log(findKthLargest([3,2,1,5,6,4], 2)); // 5
+
+
+Q68. Task Scheduler
+function leastInterval(tasks, n) {
+  const freq = {};
+  for (let t of tasks) freq[t] = (freq[t] || 0) + 1;
+  const counts = Object.values(freq).sort((a, b) => b - a);
+  const maxCount = counts[0];
+  const maxCountTasks = counts.filter(c => c === maxCount).length;
+  const partCount = maxCount - 1;
+  const partLength = n - (maxCountTasks - 1);
+  const emptySlots = partCount * partLength;
+  const availableTasks = tasks.length - maxCount * maxCountTasks;
+  const idles = Math.max(0, emptySlots - availableTasks);
+  return tasks.length + idles;
+}
+console.log(leastInterval(["A","A","A","B","B","B"], 2)); // 8
+
+
+Q69. Find Median from Data Stream
+class MedianFinder {
+  constructor() {
+    this.nums = [];
+  }
+  addNum(num) {
+    let inserted = false;
+    for (let i = 0; i < this.nums.length; i++) {
+      if (num < this.nums[i]) {
+        this.nums.splice(i, 0, num);
+        inserted = true;
+        break;
+      }
+    }
+    if (!inserted) this.nums.push(num);
+  }
+  findMedian() {
+    const n = this.nums.length;
+    const mid = Math.floor(n / 2);
+    if (n % 2 === 0) return (this.nums[mid - 1] + this.nums[mid]) / 2;
+    return this.nums[mid];
+  }
+}
+const mf = new MedianFinder();
+mf.addNum(1); mf.addNum(2);
+console.log(mf.findMedian()); // 1.5
+mf.addNum(3);
+console.log(mf.findMedian()); // 2
+
+
+------------------------------------------------------------
+BACKTRACKING
+------------------------------------------------------------
+
+Q70. Subsets
+function subsets(nums) {
+  const result = [];
+  function backtrack(start, current) {
+    result.push(current.slice());
+    for (let i = start; i < nums.length; i++) {
+      current.push(nums[i]);
+      backtrack(i + 1, current);
+      current.pop();
+    }
+  }
+  backtrack(0, []);
+  return result;
+}
+console.log(subsets([1,2,3]));
+// [[],[1],[1,2],[1,2,3],[1,3],[2],[2,3],[3]]
+
+
+Q71. Combination Sum
+function combinationSum(candidates, target) {
+  const result = [];
+  function backtrack(start, current, remaining) {
+    if (remaining === 0) { result.push(current.slice()); return; }
+    if (remaining < 0) return;
+    for (let i = start; i < candidates.length; i++) {
+      current.push(candidates[i]);
+      backtrack(i, current, remaining - candidates[i]); // i, not i+1: reuse allowed
+      current.pop();
+    }
+  }
+  backtrack(0, [], target);
+  return result;
+}
+console.log(combinationSum([2,3,6,7], 7)); // [[2,2,3],[7]]
+
+
+Q72. Permutations
+function permute(nums) {
+  const result = [];
+  function backtrack(current, remaining) {
+    if (remaining.length === 0) { result.push(current.slice()); return; }
+    for (let i = 0; i < remaining.length; i++) {
+      current.push(remaining[i]);
+      const rest = remaining.slice(0, i).concat(remaining.slice(i + 1));
+      backtrack(current, rest);
+      current.pop();
+    }
+  }
+  backtrack([], nums);
+  return result;
+}
+console.log(permute([1,2,3]));
+// [[1,2,3],[1,3,2],[2,1,3],[2,3,1],[3,1,2],[3,2,1]]
+
+
+Q73. Subsets II
+function subsetsWithDup(nums) {
+  nums.sort((a, b) => a - b);
+  const result = [];
+  function backtrack(start, current) {
+    result.push(current.slice());
+    for (let i = start; i < nums.length; i++) {
+      if (i > start && nums[i] === nums[i - 1]) continue; // skip duplicates
+      current.push(nums[i]);
+      backtrack(i + 1, current);
+      current.pop();
+    }
+  }
+  backtrack(0, []);
+  return result;
+}
+console.log(subsetsWithDup([1,2,2]));
+// [[],[1],[1,2],[1,2,2],[2],[2,2]]
+
+
+Q74. Combination Sum II
+function combinationSum2(candidates, target) {
+  candidates.sort((a, b) => a - b);
+  const result = [];
+  function backtrack(start, current, remaining) {
+    if (remaining === 0) { result.push(current.slice()); return; }
+    for (let i = start; i < candidates.length; i++) {
+      if (i > start && candidates[i] === candidates[i - 1]) continue;
+      if (candidates[i] > remaining) break;
+      current.push(candidates[i]);
+      backtrack(i + 1, current, remaining - candidates[i]);
+      current.pop();
+    }
+  }
+  backtrack(0, [], target);
+  return result;
+}
+console.log(combinationSum2([10,1,2,7,6,1,5], 8));
+// [[1,1,6],[1,2,5],[1,7],[2,6]]
+
+
+Q75. Word Search
+function exist(board, word) {
+  const rows = board.length, cols = board[0].length;
+  function dfs(r, c, index) {
+    if (index === word.length) return true;
+    if (r < 0 || r >= rows || c < 0 || c >= cols || board[r][c] !== word[index]) {
+      return false;
+    }
+    const temp = board[r][c];
+    board[r][c] = "#"; // mark visited
+    const found = dfs(r+1,c,index+1) || dfs(r-1,c,index+1) ||
+                  dfs(r,c+1,index+1) || dfs(r,c-1,index+1);
+    board[r][c] = temp; // restore
+    return found;
+  }
+  for (let r = 0; r < rows; r++) {
+    for (let c = 0; c < cols; c++) {
+      if (dfs(r, c, 0)) return true;
+    }
+  }
+  return false;
+}
+console.log(exist(
+  [["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]],
+  "ABCCED"
+)); // true
+
+
+====================================================
+END OF FILE - 75/75 Blind 75 Solutions
+====================================================
