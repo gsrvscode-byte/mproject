@@ -1,0 +1,501 @@
+========================================================
+MID-LEVEL SERVERLESS DEVELOPER (Node.js/TypeScript)
+TOP 10 PRIORITY TOPICS - HINGLISH PREP NOTES
+========================================================
+(Priority 1 ke saare 5 topics + Priority 2 ke saare 5 topics)
+
+--------------------------------------------------------
+1. NODE.JS
+--------------------------------------------------------
+
+>> Event Loop
+- Node.js single-threaded hai but non-blocking I/O handle karta hai event loop ke through.
+- Phases hote hain: Timers -> Pending Callbacks -> Idle/Prepare -> Poll -> Check -> Close Callbacks.
+- Poll phase me I/O events process hote hain, Check phase me setImmediate() callbacks chalte hain.
+- Microtasks (Promises, process.nextTick) HAR phase ke baad turant execute hote hain, macrotasks (setTimeout, setImmediate) se pehle.
+- Interview tip: "process.nextTick > Promise microtask > setTimeout/setImmediate" priority order bolna.
+
+>> libuv
+- libuv ek C library hai jo Node.js ko async I/O deti hai (file system, networking, DNS).
+- Ye thread pool (default size 4) maintain karta hai heavy/blocking operations ke liye (jaise fs, crypto, dns.lookup).
+- Event loop khud libuv implement karta hai.
+- Thread pool size UV_THREADPOOL_SIZE env variable se badha sakte hain.
+
+>> Async/await & Promises
+- Promise 3 states me hoti hai: pending, fulfilled, rejected.
+- async/await Promise ke upar syntactic sugar hai - code synchronous jaisa dikhta hai but non-blocking rehta hai.
+- try/catch async/await ke saath error handling ke liye use hota hai.
+- Promise.all() - saari promises parallel me chalao, ek bhi fail hui to poora reject.
+- Promise.allSettled() - sab complete hone tak wait, fail/success dono ka result milta hai.
+- Promise.race() - jo pehle resolve/reject ho jaye.
+
+>> Callbacks
+- Traditional async pattern - function complete hone par ek callback function call hota hai.
+- "Callback Hell" problem - nested callbacks se code unreadable ho jata hai (pyramid of doom).
+- Error-first callback pattern Node.js convention hai: callback(err, result).
+- Promises/async-await callback hell solve karte hain.
+
+>> EventEmitter
+- Node.js ka core module (events) jo pub-sub pattern implement karta hai.
+- .on()/.addListener() - event listen karna, .emit() - event trigger karna, .once() - sirf ek baar sunna.
+- Streams, HTTP server jaise bohot saare Node core modules EventEmitter se inherit karte hain.
+- Memory leak ho sakta hai agar listeners properly remove na kiye jayein (removeListener/off use karo).
+
+>> Streams & Buffers
+- Buffer - raw binary data handle karne ke liye (fixed-size memory allocation, outside V8 heap).
+- Streams - large data ko chunks me process karna, poora memory me load kiye bina.
+- 4 types: Readable, Writable, Duplex (dono), Transform (modify karte hue pass karna).
+- .pipe() method streams ko chain karne ke liye use hota hai.
+- Real use-case: large file upload/download, video streaming, S3 se large object read karna.
+
+>> Error Handling
+- Sync errors: try/catch.
+- Async errors: try/catch with async/await, ya .catch() Promises me.
+- Uncaught exceptions: process.on('uncaughtException'), unhandled rejections: process.on('unhandledRejection').
+- Custom Error classes bana ke operational vs programmer errors differentiate karna best practice hai.
+- Lambda context me error handling important hai kyunki unhandled error se Lambda crash/retry trigger hota hai.
+
+>> Performance & Memory
+- Memory leaks common causes: global variables, closures holding references, un-cleared timers/listeners, caching without limits.
+- V8 heap - Old space & New space (garbage collection generations).
+- Tools: --inspect flag, Chrome DevTools, heap snapshots, clinic.js.
+- Event loop blocking avoid karo - heavy CPU tasks ko worker threads me offload karo.
+
+>> Cluster vs Worker Threads
+- Cluster module: multiple Node.js processes (each with own event loop & memory) fork karta hai, load balance karta hai multiple CPU cores par. Achha hai for scaling HTTP servers.
+- Worker Threads: same process ke andar multiple threads, memory share kar sakte hain (SharedArrayBuffer). Achha hai CPU-intensive tasks ke liye (image processing, calculations) bina event loop block kiye.
+- Lambda context: Lambda already isolated execution environment deta hai per invocation, so cluster module wahan directly relevant nahi hota, but worker threads CPU-heavy tasks ke liye use ho sakte hain.
+
+--------------------------------------------------------
+2. TYPESCRIPT
+--------------------------------------------------------
+
+>> Type vs Interface
+- Dono object shapes define karte hain.
+- Interface: extend ho sakta hai, declaration merging support karta hai (same naam se dobara declare karo to merge ho jayega).
+- Type: union, intersection, tuples, primitives define kar sakta hai jo interface nahi kar sakta.
+- Rule of thumb: public API/object shape ke liye interface, complex types (union/intersection) ke liye type.
+
+>> Any vs Unknown vs Never
+- any: type checking completely off kar deta hai - risky, avoid karna chahiye.
+- unknown: type-safe alternative to any - use karne se pehle type narrow karna padta hai (typeof/instanceof check).
+- never: value jo kabhi occur hi nahi hogi - function jo throw karta hai ya infinite loop, ya exhaustive switch case ka default.
+
+>> Union & Intersection
+- Union (|): value in se kisi ek type ka ho sakta hai. Example: string | number.
+- Intersection (&): saare types ke properties combine hote hain ek object me. Example: TypeA & TypeB.
+- Union discriminated types banane me useful hai (tagged unions).
+
+>> Generics
+- Reusable, type-safe components banane ke liye jo multiple types ke saath kaam karein.
+- Example: function identity<T>(arg: T): T { return arg; }
+- Generic constraints: <T extends SomeType> se type restrict kar sakte hain.
+- Utility types (Array<T>, Promise<T>) generics ka hi use karte hain.
+
+>> Enums
+- Named constants ka set define karta hai.
+- Numeric enum (default 0,1,2...) aur String enum dono possible.
+- const enum - compile time pe inline ho jata hai, extra JS code generate nahi hota.
+- Alternative: "as const" union types, jo modern TS me zyada preferred hai (tree-shakeable).
+
+>> Type Guards
+- Runtime check jo TypeScript ko batata hai ki variable kis specific type ka hai.
+- typeof guard - primitives ke liye.
+- instanceof guard - class instances ke liye.
+- in operator - object me property check karne ke liye.
+- Custom type guard: function isX(val): val is X { ... } - "is" keyword use karke.
+
+>> Utility Types
+- Partial<T> - saari properties optional bana deta hai.
+- Required<T> - saari properties mandatory bana deta hai.
+- Pick<T, K> - specific properties select karta hai.
+- Omit<T, K> - specific properties exclude karta hai.
+- Readonly<T> - saari properties readonly bana deta hai.
+- Record<K, V> - key-value map type banata hai.
+
+>> Optional/Readonly Properties
+- Optional (?): property present ho ya na ho - interface Foo { name?: string }.
+- Readonly: property ek baar assign hone ke baad change nahi ho sakti - readonly id: string.
+- Function parameters bhi optional ho sakte hain (param?: type).
+
+>> Classes, Abstract Classes, Interfaces
+- Class: blueprint hai object banane ka, properties + methods hote hain, constructor hota hai.
+- Access modifiers: public (default), private (sirf class ke andar), protected (class + subclasses).
+- Abstract class: instantiate nahi ho sakti directly, base class provide karti hai jisse other classes extend karti hain, abstract methods implement karna mandatory hota hai child class me.
+- Interface: sirf shape/contract define karta hai, implementation nahi deta - class "implements" interface.
+- Class ek interface implement kar sakti hai, sirf ek class extend kar sakti hai (multiple interfaces implement ho sakti hain).
+
+--------------------------------------------------------
+3. AWS LAMBDA
+--------------------------------------------------------
+
+>> Lambda Basics
+- Serverless compute service - server manage kiye bina code run karna, event trigger hone par.
+- Pay-per-use billing (request count + execution duration/memory).
+- Stateless - har invocation independent hoti hai (unless warm container reuse ho raha ho).
+
+>> Handler
+- Entry point function jo Lambda invoke karti hai: exports.handler = async (event, context) => {...}
+- "event" - trigger data (API Gateway request, S3 event, etc.)
+- "context" - runtime info (requestId, remaining time, memory limit, etc.)
+
+>> Runtime
+- Managed runtimes available: Node.js, Python, Java, Go, .NET, Ruby, custom runtime (bootstrap).
+- Node.js runtime versions upgrade karte rehna important hai (deprecated runtimes retire ho jate hain).
+
+>> Layers
+- Shared code/dependencies (node_modules, libraries) ko separate zip me package karke multiple functions me reuse karna.
+- Max 5 layers per function, unzipped size limit 250MB (layers + function code combined).
+- Common use: shared utility functions, heavy SDK dependencies.
+
+>> Environment Variables
+- Key-value pairs jo runtime pe function ko available hote hain (process.env.VAR_NAME).
+- Config values (DB endpoints, table names) ko hardcode karne ke bajaye env vars me rakhna best practice.
+- Sensitive data ke liye encrypted env vars (KMS) ya Secrets Manager/Parameter Store use karna better hai.
+
+>> Cold Start
+- Jab Lambda function pehli baar invoke hoti hai (ya baad me scale hone par new instance), naya execution environment initialize hota hai - isme extra latency lagti hai.
+- Factors: runtime, package size, VPC config (VPC cold starts zyada slow the, ab improved hain with Hyperplane ENI), language (Node.js/Python fast, Java/dotnet slower).
+- Mitigation: Provisioned Concurrency, smaller deployment package, avoid unnecessary VPC, keep dependencies minimal, SnapStart (Java).
+
+>> Timeout & Memory
+- Max timeout 15 minutes.
+- Memory 128MB se 10240MB (10GB) tak configurable - CPU power memory ke proportional allocate hoti hai.
+- Zyada memory = zyada CPU = kabhi kabhi faster execution + kam cost even though per-ms rate zyada hai.
+
+>> Concurrency
+- Concurrency = ek time pe kitne function instances simultaneously execute ho rahe hain.
+- Account-level default limit hota hai (soft limit, increase request kar sakte ho AWS se).
+- Unreserved concurrency saari functions share karti hain by default.
+
+>> Reserved/Provisioned Concurrency
+- Reserved Concurrency: specific function ke liye concurrency limit fix/guarantee karna (dusre functions ka concurrency pool isse reduce hota hai). Overuse se throttle hoga.
+- Provisioned Concurrency: pre-warmed instances ready rakhta hai taaki cold start na ho - predictable low-latency traffic ke liye use hota hai (extra cost lagta hai).
+
+>> IAM Permissions
+- Har Lambda function ka ek Execution Role hota hai jo define karta hai wo kaunse AWS resources access kar sakti hai.
+- Principle of least privilege follow karna chahiye - sirf jitni permission chahiye utni hi dena.
+- Resource-based policy bhi hoti hai jo define karti hai kaun Lambda ko invoke kar sakta hai (e.g., S3, API Gateway ko permission).
+
+>> Lambda Retries
+- Async invocations (S3, SNS, EventBridge): automatic retry hota hai (default 2 retries) with delays.
+- Sync invocations (API Gateway): retry client responsibility hoti hai, Lambda khud retry nahi karta.
+- Stream-based (Kinesis, DynamoDB Streams): success tak retry hota rehta hai (blocking) unless bypassBatchOnFunctionError configure ho.
+
+>> Dead-Letter Queues (DLQ)
+- Async invocation fail hone ke baad (saare retries exhaust hone ke baad) event ko SQS queue ya SNS topic me bhej dete hain for later inspection/reprocessing.
+- Newer alternative: "Lambda Destinations" jo success/failure dono cases handle kar sakta hai aur zyada flexible hai (SQS, SNS, Lambda, EventBridge target ho sakte hain).
+
+>> Lambda + S3
+- S3 event notification (ObjectCreated, ObjectRemoved etc.) Lambda ko trigger kar sakti hai.
+- Common pattern: file upload -> S3 trigger -> Lambda processes file (resize image, parse CSV, etc.)
+- Lambda ko S3 bucket access ke liye IAM role me s3:GetObject/PutObject permission chahiye.
+
+>> Lambda + API Gateway
+- API Gateway HTTP requests ko Lambda function tak route karta hai (Lambda Proxy Integration common pattern hai).
+- Proxy integration me poora request (headers, body, query params) Lambda ko "event" object ke through milta hai, aur Lambda ko specific format me response return karna padta hai (statusCode, headers, body).
+- Non-proxy integration me request/response mapping templates define karne padte hain (zyada control but complex).
+
+--------------------------------------------------------
+4. EVENT-DRIVEN ARCHITECTURE
+--------------------------------------------------------
+
+>> Events
+- Ek event = system me kuch hua iska record/notification (e.g., "OrderPlaced", "UserSignedUp").
+- Immutable fact hoti hai - past me kya hua uska data.
+
+>> Producers & Consumers
+- Producer: event generate/publish karta hai (e.g., order service).
+- Consumer: event ko subscribe karke react karta hai (e.g., inventory service, notification service).
+- Producer ko consumer ke baare me pata nahi hota (decoupling).
+
+>> Event Bus
+- Central hub jahan events publish hote hain aur interested consumers ko route/deliver hote hain.
+- AWS me EventBridge ya SNS is role me use hota hai.
+
+>> EventBridge
+- Fully managed serverless event bus service.
+- Multiple sources se events le sakta hai: AWS services, custom apps, SaaS partners.
+- Event pattern matching ke through rules define karke specific targets ko route karta hai.
+
+>> EventBridge Rules
+- Rule = condition + target(s). Jab bhi koi event pattern match kare, rule us event ko defined target(s) ko forward karta hai.
+- Schedule-based rules bhi bana sakte hain (cron/rate expression) - jaise scheduled Lambda triggers.
+
+>> Event Patterns
+- JSON structure jo define karta hai kaunse events match karenge (source, detail-type, detail fields pe filter).
+- Example: source: "aws.s3", detail-type: "Object Created" jaise pattern se specific events filter hote hain.
+
+>> Targets
+- Rule match hone ke baad event kahan jayega - Lambda, SQS, SNS, Step Functions, Kinesis, another event bus, API destination, etc.
+- Ek rule multiple targets tak event bhej sakta hai (fan-out pattern).
+
+>> Synchronous vs Asynchronous
+- Synchronous: caller wait karta hai response ke liye (e.g., API Gateway -> Lambda direct call).
+- Asynchronous: caller event fire karke aage badh jata hai, response ka wait nahi karta (e.g., EventBridge, SNS, SQS based flows).
+- Event-driven architecture mostly async communication use karti hai for loose coupling & scalability.
+
+>> Loose Coupling
+- Services ek dusre ko directly nahi jaante - sirf events ke through communicate karte hain.
+- Benefit: services independently develop/deploy/scale ho sakti hain, ek service fail hone se poora system down nahi hota.
+
+>> Idempotency
+- Same operation multiple baar perform karne par bhi result same rahe (side-effects duplicate na ho).
+- Important hai kyunki events duplicate deliver ho sakte hain (at-least-once delivery guarantee common hai).
+- Implementation: idempotency key check karna (e.g., DynamoDB me processed event IDs track karna) before processing.
+
+>> Retry & Failure Handling
+- Consumer failure pe event retry hota hai (based on service - SQS visibility timeout, Lambda async retries, etc.)
+- Exponential backoff strategy common hai retries ke beech.
+- Poison messages (jo baar baar fail hote hain) ko handle karne ke liye DLQ zaroori hai.
+
+>> Dead-Letter Queues
+- Failed events (jo saare retries ke baad bhi process nahi ho paye) ek separate queue me store hote hain for manual inspection/reprocessing.
+- SQS, SNS, Lambda, EventBridge sabme DLQ configure kar sakte hain.
+
+--------------------------------------------------------
+5. API GATEWAY
+--------------------------------------------------------
+
+>> REST API
+- Full-featured API Gateway type - request/response transformation, API keys, usage plans, caching support karta hai.
+- Zyada configuration options but thoda zyada cost & latency HTTP API se compare karke.
+
+>> HTTP API
+- Newer, lightweight, cheaper aur faster API Gateway type.
+- Limited features REST API ke comparison me (less transformation options) but most common use-cases ke liye sufficient hai.
+- Native OIDC/OAuth2 support built-in.
+
+>> API -> Lambda
+- Lambda Proxy Integration: full request API Gateway se Lambda ko event object me forward hota hai, Lambda specific JSON format me response return karta hai.
+- Lambda Non-Proxy: mapping templates (VTL) use karke request/response transform karte hain.
+
+>> Authentication
+- "Who are you" verify karna.
+- Options: Cognito User Pools authorizer, Lambda custom authorizer (token-based or request-based), IAM authentication.
+
+>> Authorization
+- "What are you allowed to do" - authenticated user ko specific resource/action ki permission hai ya nahi.
+- Lambda authorizer custom logic likh sakta hai (roles, scopes check karke).
+- IAM policies bhi resource-level authorization define kar sakti hain.
+
+>> Cognito (with API Gateway)
+- Cognito User Pool authorizer directly API Gateway me attach ho sakta hai.
+- Client JWT token (from Cognito) Authorization header me bhejta hai, API Gateway automatically validate karta hai before Lambda tak request pahunchne se.
+
+>> CORS
+- Cross-Origin Resource Sharing - browser security jo different-origin API calls ko block karta hai by default.
+- API Gateway me CORS enable karna padta hai (Access-Control-Allow-Origin headers, preflight OPTIONS request handle karna).
+- Common interview gotcha: proxy integration me CORS headers Lambda response se bhi return karne padte hain.
+
+>> Throttling
+- Rate limiting - kitne requests per second allow hain (steady-state rate + burst limit token bucket algorithm).
+- Account level, stage level, aur per-method/usage-plan level throttling configure ho sakti hai.
+- 429 "Too Many Requests" error throttle hone par aata hai.
+
+>> Validation
+- Request validation API Gateway level pe hi ho sakti hai (JSON schema based) - Lambda tak invalid request pahunche hi na.
+- Query params, headers, body sabko validate kar sakte hain - isse unnecessary Lambda invocations bachti hain (cost + performance benefit).
+
+>> Error Handling
+- Gateway responses customize kar sakte hain (4XX, 5XX errors ke liye custom messages/format).
+- Lambda se throw hone wale errors ko proper HTTP status codes me map karna important hai (mapping templates ya proxy integration me statusCode explicitly return karke).
+
+--------------------------------------------------------
+6. DYNAMODB
+--------------------------------------------------------
+
+>> Table / Item / Attribute
+- Table = collection of items (NoSQL, schema-less except keys).
+- Item = ek row jaisa (JSON-like document, unique primary key ke saath).
+- Attribute = item ke andar ek field/column.
+
+>> Partition Key
+- Primary key ka hash component - data distribute karne ke liye internally use hota hai partitions ke across.
+- Same partition key = same partition me data store hota hai. Good distribution zaroori hai "hot partition" avoid karne ke liye.
+
+>> Sort Key
+- Partition key ke saath combine hoke composite primary key banata hai.
+- Same partition key ke multiple items ko sort key se order/range query kar sakte hain (begins_with, between, etc.)
+
+>> Query vs Scan
+- Query: specific partition key (+ optional sort key condition) ke basis pe efficient lookup - fast & cost-effective.
+- Scan: poori table read karta hai phir filter apply karta hai - slow & expensive, large tables pe avoid karna chahiye.
+
+>> GSI (Global Secondary Index)
+- Different partition key/sort key combination define karta hai jo base table se alag ho, cross-partition queries allow karta hai.
+- Apna throughput capacity hota hai, eventually consistent reads only.
+
+>> LSI (Local Secondary Index)
+- Same partition key but different sort key base table ke.
+- Table creation time pe hi define karna padta hai (baad me add nahi kar sakte).
+- Strongly consistent reads support karta hai (GSI nahi karta).
+
+>> TTL (Time To Live)
+- Attribute define karke items ko automatically expire/delete karwa sakte hain specific timestamp ke baad.
+- Background process hai, thoda delay ho sakta hai actual deletion me - cost-free cleanup mechanism.
+
+>> Conditional Writes
+- Write operation tabhi succeed ho jab specific condition true ho (e.g., attribute_not_exists, value match).
+- Race conditions avoid karne ke liye use hota hai (optimistic locking pattern).
+
+>> Consistent vs Eventually Consistent Reads
+- Eventually consistent (default): fast, cheap, but abhi-abhi hue write ka latest data turant nahi mil sakta.
+- Strongly consistent: latest write guarantee milta hai but zyada latency/cost, aur GSI pe available nahi hai.
+
+>> Single-Table Design
+- DynamoDB best practice - multiple entity types (users, orders, products) ko ek hi table me store karna, overloaded partition/sort keys use karke.
+- Joins avoid karne ke liye aur access patterns ke basis pe pre-design karte hain (NoSQL me joins costly/impossible hote hain).
+
+>> Access-Pattern Design
+- DynamoDB design "access pattern first" approach follow karta hai - pehle decide karo queries kya honge, phir table/index design karo (SQL ke ulta, jaha normalize karke baad me query sochte hain).
+
+--------------------------------------------------------
+7. AWS S3
+--------------------------------------------------------
+
+>> Buckets & Objects
+- Bucket = top-level container (globally unique name).
+- Object = actual file/data stored with a key (path-like identifier) + metadata.
+
+>> Presigned URLs
+- Temporary URL jo limited time ke liye specific S3 object ko access (GET/PUT) karne ki permission deta hai bina AWS credentials share kiye.
+- Common use case: client directly S3 pe file upload kare (Lambda ke through proxy kiye bina) - bandwidth/cost efficient.
+
+>> Versioning
+- Enable karne par same key ke multiple versions store hote hain (overwrite/delete pe bhi purana version retrievable rehta hai).
+- Accidental deletion se protect karta hai (delete marker create hota hai, actual data rehta hai).
+
+>> Lifecycle
+- Rules define karke objects automatically transition (Standard -> IA -> Glacier) ya expire/delete kar sakte hain time ke basis pe - cost optimization ke liye.
+
+>> Encryption
+- At rest: SSE-S3 (S3-managed keys), SSE-KMS (customer-managed via KMS), SSE-C (customer-provided keys).
+- In transit: HTTPS/TLS.
+
+>> S3 -> Lambda Trigger
+- Object create/delete events par Lambda automatically invoke ho sakta hai (event notification configuration).
+- Async invocation hoti hai - retries applicable (as discussed above).
+
+>> S3 Permissions/IAM
+- Bucket policy (resource-based, bucket level access control) vs IAM policy (identity-based, user/role level).
+- ACLs bhi hote hain but modern practice me avoid kiya jata hai (bucket policy/IAM preferred).
+- Block Public Access settings by default enabled hone chahiye security ke liye.
+
+--------------------------------------------------------
+8. AWS COGNITO
+--------------------------------------------------------
+
+>> User Pool
+- User directory hai - sign-up, sign-in, user management (password reset, MFA, email verification) handle karta hai.
+- Successful login ke baad JWT tokens issue karta hai.
+
+>> Identity Pool
+- Temporary AWS credentials deta hai (via STS) authenticated/unauthenticated users ko taaki wo directly AWS resources access kar sakein (e.g., S3 se directly upload).
+- User Pool se authenticate hone ke baad Identity Pool credentials exchange karne ke liye use hota hai.
+
+>> Authentication vs Authorization
+- Authentication = identity verify karna (tum kaun ho - login/signup).
+- Authorization = permission verify karna (tumhe kya access hai - roles/scopes).
+
+>> JWT (JSON Web Token)
+- Self-contained token jisme header, payload (claims), signature hota hai - base64 encoded.
+- Server bina database lookup ke verify kar sakta hai (signature check karke) ki token valid hai.
+
+>> Access/ID/Refresh Tokens
+- ID Token: user ki identity info (claims like email, name) - "who is this user".
+- Access Token: API/resource access ke liye use hota hai, scopes/permissions carry karta hai.
+- Refresh Token: naye access/ID tokens generate karne ke liye jab existing expire ho jayein, bina dobara login kiye - long expiry hota hai.
+
+>> Cognito + API Gateway
+- Cognito User Pool ko API Gateway authorizer ke roop me directly attach kar sakte hain.
+- Client request me Authorization header me access token bhejta hai, API Gateway automatically validate karke Lambda ko forward karta hai (agar valid ho).
+
+--------------------------------------------------------
+9. TESTING
+--------------------------------------------------------
+
+>> Jest
+- Popular JavaScript/TypeScript testing framework - test runner, assertion library, mocking sab built-in.
+- ts-jest ya babel-jest use hota hai TypeScript support ke liye.
+
+>> Unit Testing
+- Individual function/module ko isolation me test karna, dependencies mock karke.
+- Fast execute hota hai, business logic verify karta hai.
+
+>> Integration Testing
+- Multiple components/modules ko saath me test karna (e.g., Lambda handler + DynamoDB interaction, using real or local test DB).
+- Real dependencies ya close-to-real (LocalStack, DynamoDB Local) use hote hain.
+
+>> E2E Testing
+- Poora system end-to-end flow test karna, jaise real user karta - API call se leke DB tak.
+- Slowest but sabse zyada confidence deta hai ki real-world scenario me sab kaam kar raha hai.
+
+>> Mocking
+- Real dependency (API call, DB, external service) ki jagah fake/controlled implementation use karna taaki tests fast, isolated aur predictable rahein.
+
+>> jest.fn()
+- Ek mock function create karta hai jise track kar sakte hain (kitni baar call hua, kya arguments diye gaye) aur jiska return value control kar sakte hain.
+
+>> jest.spyOn()
+- Existing object ke method ko "spy" karta hai - real implementation call hoti hai by default but tracking milti hai, ya mockImplementation() se override bhi kar sakte hain.
+
+>> mock()
+- jest.mock('module-path') - poore module ko automatically mock kar deta hai (e.g., AWS SDK ko mock karna taaki real API call na ho tests me).
+
+>> Test Coverage
+- Metric jo batata hai kitna code tests se cover hua hai (statements, branches, functions, lines %).
+- jest --coverage command se report milti hai. 100% coverage guarantee nahi karta ki bugs nahi hain, but useful indicator hai.
+
+>> Cypress Basics
+- E2E/UI testing framework, real browser me app ko test karta hai (user interactions simulate karke - click, type, navigate).
+- Serverless APIs testing ke liye bhi use ho sakta hai (API testing mode me).
+
+--------------------------------------------------------
+10. SERVERLESS ARCHITECTURE
+--------------------------------------------------------
+
+>> Serverless Advantages
+- No server management - infrastructure AWS manage karta hai.
+- Auto-scaling built-in, pay only for actual usage (no idle cost).
+- Faster time-to-market, kam operational overhead.
+
+>> Stateless Architecture
+- Har request/invocation independent hoti hai, function ke andar koi persistent state nahi rakhte.
+- State ko external stores me rakha jata hai (DynamoDB, S3, ElastiCache).
+- Isse horizontal scaling easy hota hai.
+
+>> Scalability
+- Serverless automatically scale karta hai demand ke basis pe (zero se hazaro concurrent executions tak) bina manual intervention ke.
+- Concurrency limits aur throttling ka dhyan rakhna padta hai downstream resources (DB connections) overload na ho.
+
+>> Cold Starts
+- (Already Lambda section me cover kiya) - serverless architecture ka ek trade-off hai, especially latency-sensitive apps ke liye consideration.
+
+>> Cost Optimization
+- Right-sizing memory allocation (memory/cost/performance balance).
+- Unused resources clean karna, provisioned concurrency sirf jaha zaroori ho wahi use karna.
+- S3 lifecycle policies, DynamoDB on-demand vs provisioned capacity choose karna based on traffic pattern.
+
+>> Security
+- Least privilege IAM roles har function ke liye.
+- Secrets ko env vars me plain text me na rakhna - Secrets Manager/Parameter Store use karna.
+- Input validation, encryption at rest & in transit.
+
+>> Monitoring
+- CloudWatch Metrics (invocations, errors, duration, throttles) sabhi services ke automatically track hote hain.
+- Custom metrics bhi publish kar sakte hain business-specific KPIs ke liye.
+
+>> Logging
+- CloudWatch Logs me automatically Lambda logs jaate hain (console.log output).
+- Structured logging (JSON format) best practice hai taaki logs easily searchable/parseable ho (CloudWatch Insights ke saath).
+
+>> Failure Handling
+- Retries, DLQs, circuit breakers, idempotency - sab combine karke resilient system banate hain jo partial failures gracefully handle kare.
+- Distributed system me failure "normal" maana jata hai - design karte waqt failure-first mindset rakhna chahiye.
+
+========================================================
+QUICK TIP: Interview me har topic ke liye ek chota real-world
+example ya "maine kaha use kiya" story ready rakhna - concept
++ practical experience dono cover karna best impression deta hai.
+========================================================
