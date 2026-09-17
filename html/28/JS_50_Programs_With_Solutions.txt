@@ -282,7 +282,7 @@ var isPrime = true;
 if (num < 2) {
   isPrime = false;
 }
-for (var i = 2; i < num; i++) {
+for (var i = 2; i <= num/2; i++) {
   if (num % i === 0) {
     isPrime = false;
   }
