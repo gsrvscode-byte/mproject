@@ -1,0 +1,33 @@
+Samajh gaya — interviewer poochta hai "tumne kaunse modules banaye hain" aur tumhe har module ko individually, thoda depth me explain karna hai. Chalo har module ka ek clear "what → how → tech" format banate hain jo tum bol sakte ho.
+
+## Module-wise Explanation (bolne ke liye ready)
+
+**1. Proposal Module**
+> "Is module me customer insurance ke liye proposal create karta hai. Maine iske liye APIs banayi jo customer ka data validate karte hain — jaise age eligibility check, relationship validation (self/spouse/child), aur medical declarations. Backend me Node.js aur Express.js use kiya, aur business rules ko middleware ki tarah implement kiya taaki different insurers ke different rules easily handle ho sakein."
+
+**2. KYC Module**
+> "KYC module customer ki identity verify karta hai policy issue karne se pehle. Maine document upload APIs banayi, validation logic likhi, aur status track karne ke liye database me states maintain kiye — jaise pending, verified, rejected."
+
+**3. Payment & EMI Module**
+> "Yeh module payment handle karta hai. Maine Razorpay integrate kiya — payment creation, verification, callback handling, aur failure/retry logic. EMI ke liye alag APIs banayi jo Monthly, Quarterly, aur Half-Yearly schedules calculate karti hain aur transaction status track karti hain."
+
+**4. Policy Issuance Module**
+> "Jab proposal approve ho jata hai aur payment complete ho jata hai, yeh module final policy generate karta hai. Maine insurer APIs ke saath integrate kiya taaki unka system automatically policy document bheje, aur humare system me store ho."
+
+**5. Third-Party Integration Module**
+> "Har insurance company ka apna alag API format hota hai — kuch REST use karte hain, kuch XML ya SOAP. Maine ek common integration layer banaya jo request ko transform karta hai insurer ke format me, response ko parse karta hai, aur errors ko properly handle karta hai — taaki main application ko pata na chale ki backend me kaun sa insurer hai."
+
+**6. AI PDF Parser Module**
+> "Yeh recent module hai jisme maine OpenAI API use kiya. Customer jab insurance PDF upload karta hai, yeh module automatically usse read karke structured data nikalta hai — jaise customer name, vehicle details, coverage amount. Maine Node.js se Python/FastAPI service ko call kiya jo AI processing karta hai, aur result JSON me wapas aata hai."
+
+## Bolne ka pattern (har module ke liye yahi follow karo):
+
+1. **"Yeh module kya karta hai"** — ek line me purpose
+2. **"Maine kya banaya"** — specific APIs/features
+3. **"Kaise banaya"** — tech stack + koi ek technical decision
+
+Is order me bologe to interviewer ko clear lagega ki tumhe apna kaam deeply pata hai, bas resume yaad nahi kiya.
+
+---
+
+Chaho to main in sab modules ka ek **printable/practice card (PDF ya doc)** bana doon jisme har module 3-4 lines me ho — taaki tum interview se pehle revise kar sako?
