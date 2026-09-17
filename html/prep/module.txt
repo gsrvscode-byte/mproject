@@ -31,3 +31,402 @@ Is order me bologe to interviewer ko clear lagega ki tumhe apna kaam deeply pata
 ---
 
 Chaho to main in sab modules ka ek **printable/practice card (PDF ya doc)** bana doon jisme har module 3-4 lines me ho — taaki tum interview se pehle revise kar sako?
+
+
+Absolutely. Below is a **practice-card style version for all your major PolicyBoss modules**, using the same **WHAT → WHAT I BUILT → HOW → CHALLENGE** structure. The wording is designed to be spoken naturally in an interview.
+
+## 1. Proposal Module
+
+### ✅ What — What does the module do?
+
+The Proposal module is used to create an insurance proposal after the customer selects a plan and completes the quotation process.
+
+### ✅ What I Built — What did I implement?
+
+I implemented APIs for customer details, member details, nominee details, medical declarations, KYC details, and proposal creation. I also handled validations before submitting the proposal to the insurer.
+
+### ✅ How — How did I implement it?
+
+I used **Node.js and Express.js** for backend APIs. I implemented business validations and transformed the application data into the format required by different insurers.
+
+### ✅ Challenge / Edge Cases
+
+Different insurers had different eligibility and validation rules, such as age, relationship, medical declarations, and mandatory fields. I handled these insurer-specific rules before sending the request.
+
+🎯 **Interview line:**
+
+> “My main responsibility was handling proposal creation, business validations, and insurer-specific request preparation.”
+
+---
+
+# 2. KYC Module
+
+### ✅ What — What does the module do?
+
+The KYC module verifies the customer's identity before the insurance proposal can proceed toward policy issuance.
+
+### ✅ What I Built — What did I implement?
+
+I integrated **KYC fetch and verification APIs** for different insurers. I handled customer information such as PAN, Aadhaar and insurer-specific KYC identifiers and maintained the KYC status.
+
+### ✅ How — How did I implement it?
+
+I used **Node.js, Express.js and Axios** for API integration. I created insurer-specific API flows and processed the responses before continuing the proposal journey.
+
+### ✅ Challenge / Edge Cases
+
+Different insurers returned different response structures and status values. I handled success, pending, failure and invalid-response scenarios and mapped them into our application's expected status.
+
+🎯 **Interview line:**
+
+> “The main challenge was handling different insurer-specific KYC APIs and normalizing their responses into a common application flow.”
+
+---
+
+# 3. Payment Module
+
+### ✅ What — What does the module do?
+
+The Payment module handles the customer's premium payment after the proposal process is completed.
+
+### ✅ What I Built — What did I implement?
+
+I worked on **Razorpay integration**, including order creation, payment verification, callback handling, payment failure and retry scenarios.
+
+### ✅ How — How did I implement it?
+
+I used **Node.js and Express.js** to communicate with Razorpay APIs. After creating the payment order, I verified the payment response and updated the transaction status in our system.
+
+### ✅ Challenge / Edge Cases
+
+I handled failed payments, duplicate callbacks, retry scenarios and cases where the payment gateway response and our internal transaction status were different.
+
+🎯 **Interview line:**
+
+> “I focused on secure payment verification, callback handling, retry scenarios and maintaining the correct transaction status.”
+
+---
+
+# 4. EMI Module
+
+### ✅ What — What does the module do?
+
+The EMI module allows customers to pay their insurance premium through different installment frequencies.
+
+### ✅ What I Built — What did I implement?
+
+I handled **Monthly, Quarterly and Half-Yearly EMI options** and integrated the EMI payment flow with the insurance proposal and payment process.
+
+### ✅ How — How did I implement it?
+
+I implemented the backend APIs using **Node.js and Express.js** and handled EMI-related payment and transaction information. I also worked with ERP-related status tracking.
+
+### ✅ Challenge / Edge Cases
+
+I handled different EMI frequencies, payment failures, retries and cases where payment status needed to be synchronized with the ERP system.
+
+🎯 **Interview line:**
+
+> “I handled different EMI frequencies and ensured that payment and ERP statuses were correctly tracked throughout the transaction flow.”
+
+---
+
+# 5. Policy Issuance Module
+
+### ✅ What — What does the module do?
+
+The Policy Issuance module generates the final insurance policy after proposal, KYC and payment are successfully completed.
+
+### ✅ What I Built — What did I implement?
+
+I integrated insurer APIs for policy issuance and handled proposal submission, policy generation responses and policy document information.
+
+### ✅ How — How did I implement it?
+
+I used **Node.js and Express.js** and integrated different insurer APIs using **REST, XML and SOAP** depending on the insurer.
+
+### ✅ Challenge / Edge Cases
+
+Some insurers returned different success and failure responses. I handled response parsing, status mapping, retry scenarios and failure cases before updating the policy status.
+
+🎯 **Interview line:**
+
+> “Once payment and required validations were completed, I handled the insurer integration for policy generation and processed the policy issuance response.”
+
+---
+
+# 6. Insurer / Third-Party Integration
+
+### ✅ What — What does the module do?
+
+This module connects our insurance platform with different insurance companies to exchange quotation, proposal, KYC, payment or policy information.
+
+### ✅ What I Built — What did I implement?
+
+I worked on multiple insurer integrations and implemented request preparation, API calls, response parsing and error handling.
+
+### ✅ How — How did I implement it?
+
+I worked with **REST, XML and SOAP APIs**. The common application flow prepares the data, then insurer-specific logic transforms it into the required format.
+
+```text
+Our Application
+       ↓
+Common Backend Flow
+       ↓
+Insurer-Specific Transformation
+       ↓
+REST / XML / SOAP
+       ↓
+Insurance Company
+       ↓
+Response
+       ↓
+Response Parsing
+       ↓
+Our Application
+```
+
+### ✅ Challenge / Edge Cases
+
+Every insurer had different request formats, authentication mechanisms, mandatory fields and response structures. I handled these differences while keeping the main application flow consistent.
+
+🎯 **Interview line:**
+
+> “The major challenge was supporting multiple insurers with different API formats while keeping our core business flow consistent.”
+
+---
+
+# 7. Travel Insurance Module
+
+### ✅ What — What does the module do?
+
+The Travel module allows customers to select travel insurance based on destination, travel dates, travellers and coverage requirements.
+
+### ✅ What I Built — What did I implement?
+
+I worked on travel quotation and proposal-related APIs, traveller details, destination/zone validation, age validation and insurer integrations.
+
+### ✅ How — How did I implement it?
+
+I used **Node.js and Express.js** and integrated travel insurers through their APIs. I handled request transformation and response processing based on insurer requirements.
+
+### ✅ Challenge / Edge Cases
+
+Travel insurance has different rules for international zones, Schengen destinations, travel duration, adult/child combinations and age eligibility. I handled these validations before sending requests to the insurer.
+
+🎯 **Interview line:**
+
+> “In Travel, I mainly worked on traveller validation, destination and zone rules, quotation flows and insurer API integrations.”
+
+---
+
+# 8. Health Insurance Module
+
+### ✅ What — What does the module do?
+
+The Health module allows customers to select health insurance plans based on their members, age, location and coverage requirements.
+
+### ✅ What I Built — What did I implement?
+
+I worked on member details, age and relationship validations, plan selection, premium-related flows, KYC and proposal integration.
+
+### ✅ How — How did I implement it?
+
+I used **Node.js and Express.js** for backend APIs and integrated health insurers using their respective APIs.
+
+### ✅ Challenge / Edge Cases
+
+Health insurers can have different rules for age, member combinations, plans, zones, medical conditions and add-ons. I handled these rules according to the insurer and product.
+
+🎯 **Interview line:**
+
+> “The main complexity in Health was handling insurer-specific eligibility, member combinations and product-level business rules.”
+
+---
+
+# 9. Motor / Car Insurance Module
+
+### ✅ What — What does the module do?
+
+The Motor module provides insurance quotations and policy-related services for vehicles such as cars and two-wheelers.
+
+### ✅ What I Built — What did I implement?
+
+I worked on vehicle-related data, quotation flows, customer information, KYC, payment and insurer integration.
+
+### ✅ How — How did I implement it?
+
+I used **Node.js and Express.js** and integrated different motor insurers through REST/XML/SOAP APIs depending on their requirements.
+
+### ✅ Challenge / Edge Cases
+
+Different insurers required different vehicle and customer information and had different API formats. I handled request transformation, response parsing and error scenarios.
+
+🎯 **Interview line:**
+
+> “For Motor, I worked mainly on quotation and policy flows, KYC, payment and integration with different insurers.”
+
+---
+
+# 10. ERP CS / Travel CS Module
+
+### ✅ What — What does the module do?
+
+The ERP CS module is used to send policy/customer information to the ERP system for customer service and operational processing.
+
+### ✅ What I Built — What did I implement?
+
+I worked on the **Travel CS API**, including request validation, POSP and non-POSP flows, XML request generation, ERP integration and response handling.
+
+### ✅ How — How did I implement it?
+
+I used **Node.js and Express.js** and generated insurer/ERP-specific XML requests. Depending on the flow, different ERP services were called and the response was processed.
+
+```text
+Client
+  ↓
+ERP CS Travel API
+  ↓
+Request Validation
+  ↓
+POSP / Non-POSP
+  ↓
+XML Request
+  ↓
+ERP Service
+  ↓
+Response
+  ↓
+Status Handling
+  ↓
+Client
+```
+
+### ✅ Challenge / Edge Cases
+
+I handled different flows for POSP and non-POSP users, mandatory-field validation, XML generation, ERP response statuses such as **SUCCESS, DUPLICATE, TRYAGAIN, VALIDATION and EXCEPTION**, and logging.
+
+🎯 **Interview line:**
+
+> “I implemented the Travel CS API with separate POSP and non-POSP flows, XML-based ERP integration, response handling and detailed logging.”
+
+---
+
+# 11. AI PDF Parser Module
+
+### ✅ What — What does the module do?
+
+The AI PDF Parser extracts required information from insurance-related PDF documents and converts unstructured document data into structured JSON.
+
+### ✅ What I Built — What did I implement?
+
+I worked on the backend flow for uploading and processing PDFs and integrating the AI processing service to extract required fields.
+
+### ✅ How — How did I implement it?
+
+The architecture was:
+
+```text
+PDF
+ ↓
+S3 / Storage
+ ↓
+Node.js Backend
+ ↓
+AI Processing Service
+ ↓
+OpenAI API
+ ↓
+Structured JSON
+ ↓
+Application / Database
+```
+
+I used **Node.js**, **OpenAI API**, S3 and an AI processing service.
+
+### ✅ Challenge / Edge Cases
+
+PDF documents can have different layouts and inconsistent data. The important challenge was getting reliable structured output from unstructured documents and handling missing or incorrectly extracted fields.
+
+🎯 **Interview line:**
+
+> “The main challenge was converting different PDF formats into reliable structured JSON while handling missing or inconsistent information.”
+
+---
+
+# 12. Admin / POSP Module
+
+### ✅ What — What does the module do?
+
+The Admin and POSP modules support operational users and Point of Sales Persons in managing customers, proposals, policies and related insurance activities.
+
+### ✅ What I Built — What did I implement?
+
+I worked on APIs and business flows related to customer information, proposal processing, policy information and operational activities.
+
+### ✅ How — How did I implement it?
+
+I used **Node.js, Express.js and database APIs** and integrated the module with the existing insurance workflows and insurer integrations.
+
+### ✅ Challenge / Edge Cases
+
+Different users have different responsibilities and access levels, so the system needs proper validation and role-based access to ensure that users can perform only permitted operations.
+
+🎯 **Interview line:**
+
+> “I worked on backend APIs supporting Admin and POSP operations and integrated them with the existing proposal and policy workflows.”
+
+---
+
+# ⭐ Final Interview Revision Card
+
+Remember this sequence:
+
+```text
+1. Proposal
+   → Customer details + validation + proposal creation
+
+2. KYC
+   → Identity verification + insurer KYC APIs
+
+3. Payment
+   → Razorpay + order + verification + callbacks + retry
+
+4. EMI
+   → Monthly + Quarterly + Half-Yearly + ERP status
+
+5. Policy Issuance
+   → Insurer API + policy generation + response handling
+
+6. Insurer Integration
+   → REST + XML + SOAP + transformation + parsing
+
+7. Travel
+   → Traveller + destination + zone + quotation + insurer API
+
+8. Health
+   → Members + age + plan + eligibility + insurer API
+
+9. Motor
+   → Vehicle + quotation + KYC + payment + insurer API
+
+10. ERP CS Travel
+    → POSP + XML + ERP + status + logging
+
+11. AI PDF Parser
+    → PDF + S3 + AI + OpenAI + JSON
+
+12. Admin / POSP
+    → Operations + APIs + roles + workflow
+```
+
+### 🧠 One formula for every module
+
+**WHAT → WHAT I BUILT → HOW → CHALLENGE**
+
+And when the interviewer asks a follow-up, go one level deeper:
+
+**Module → API → Request → Business Logic → Third-party API → Response → DB/Status → Error/Retry**
+
+That structure will make your answers sound like **actual backend implementation experience**, rather than just a list of technologies.
