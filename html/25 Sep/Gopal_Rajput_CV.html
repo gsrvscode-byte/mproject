@@ -164,6 +164,30 @@
     .col { display: block; width: 100%; padding: 0; }
     header { padding: 20px; }
   }
+  .print-button {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    padding: 10px 16px;
+    border: 0;
+    border-radius: 5px;
+    background: var(--maroon);
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.25);
+  }
+  .print-button:hover {
+    background: var(--maroon-dark);
+  }
+  @media print {
+    body { background: #fff; }
+    .page { box-shadow: none; margin: 0; max-width: 100%; }
+    .print-button { display: none; }
+    section { break-inside: avoid; page-break-inside: avoid; }
+    .exp-item, .proj-item { break-inside: avoid; page-break-inside: avoid; }
+  }
 </style>
 </head>
 <body>
@@ -338,5 +362,13 @@
     </div>
   </div>
 </div>
+
+<!-- PRINT BUTTON -->
+<button
+  class="print-button"
+  onclick="window.print()">
+  Print / Save as PDF
+</button>
+
 </body>
 </html>
