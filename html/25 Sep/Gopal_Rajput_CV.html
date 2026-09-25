@@ -27,24 +27,24 @@
   header {
     background: var(--maroon);
     color: #fff;
-    padding: 28px 40px;
+    padding: 24px 40px;
   }
   header h1 {
     margin: 0;
-    font-size: 2.4em;
+    font-size: 2.2em;
     letter-spacing: 2px;
     font-weight: 700;
   }
   header h2 {
-    margin: 4px 0 14px 0;
+    margin: 4px 0 12px 0;
     font-weight: 400;
-    font-size: 1.2em;
+    font-size: 1.1em;
   }
   .contact {
     display: flex;
     flex-wrap: wrap;
-    gap: 24px;
-    font-size: 0.95em;
+    gap: 18px;
+    font-size: 0.85em;
   }
   .contact span {
     display: flex;
@@ -59,99 +59,109 @@
     display: table;
     width: 100%;
     table-layout: fixed;
-    padding: 30px 40px 40px 40px;
+    padding: 24px 36px 32px 36px;
   }
   .col {
     display: table-cell;
     vertical-align: top;
     width: 50%;
   }
-  .col.left { padding-right: 15px; }
-  .col.right { padding-left: 15px; }
-  section { margin-bottom: 26px; }
+  .col.left { padding-right: 14px; }
+  .col.right { padding-left: 14px; }
+  section { margin-bottom: 18px; }
   h3 {
     color: var(--maroon);
-    font-size: 1.05em;
+    font-size: 0.98em;
     text-transform: uppercase;
     letter-spacing: 0.5px;
     margin: 0 0 4px 0;
     display: flex;
     align-items: center;
-    gap: 8px;
-  }
-  h3::after {
-    content: "";
-    display: block;
+    gap: 6px;
   }
   .underline {
-    width: 34px;
+    width: 30px;
     height: 3px;
     background: var(--maroon);
-    margin-bottom: 12px;
+    margin-bottom: 8px;
   }
   .profile-box {
     font-style: italic;
-    font-size: 0.95em;
-    line-height: 1.5;
+    font-size: 0.85em;
+    line-height: 1.45;
   }
   .exp-item, .edu-item, .proj-item {
-    margin-bottom: 14px;
+    margin-bottom: 10px;
   }
   .exp-item .role, .proj-item .title {
     font-weight: 700;
-    font-size: 0.98em;
+    font-size: 0.88em;
+    color: #000;
+  }
+  .exp-item .company {
+    font-style: italic;
+    font-size: 0.78em;
+    color: var(--maroon);
+    margin-bottom: 2px;
   }
   .exp-item .dates {
-    font-size: 0.85em;
+    font-size: 0.75em;
     color: #555;
-    margin-bottom: 2px;
+    margin-bottom: 3px;
   }
   .edu-item .degree {
     font-weight: 700;
   }
+  .edu-item { font-size: 0.85em; }
+  ul.bullets {
+    margin: 3px 0 0 0;
+    padding-left: 15px;
+    font-size: 0.78em;
+    line-height: 1.4;
+  }
+  ul.bullets li { margin-bottom: 3px; }
   ul.skills {
     list-style: none;
     padding: 0;
     margin: 0;
-    font-size: 0.95em;
+    font-size: 0.82em;
   }
   ul.skills li {
     margin-bottom: 6px;
+    line-height: 1.4;
   }
-  ul.skills li::before {
-    content: "* ";
+  ul.skills li strong {
+    color: var(--maroon);
+    display: block;
+    font-size: 0.95em;
   }
-  ul.lang-list, ul.plain {
+  ul.lang-list {
     list-style: none;
     padding: 0;
     margin: 0;
   }
   ul.lang-list li {
     margin-bottom: 4px;
-    font-size: 0.95em;
+    font-size: 0.85em;
   }
   .proj-item .tech {
     font-weight: 700;
-    font-size: 0.9em;
+    font-size: 0.76em;
+    color: #444;
   }
-  .proj-item p {
-    margin: 4px 0 0 0;
-    font-size: 0.92em;
-    line-height: 1.5;
-  }
-  .declaration p {
-    font-size: 0.92em;
-    line-height: 1.5;
-    margin: 0;
+  .proj-item ul.bullets {
+    margin-top: 3px;
   }
   .award-title {
     font-weight: 700;
+    font-size: 0.88em;
   }
   .award-desc {
-    font-size: 0.92em;
+    font-size: 0.82em;
   }
   @media (max-width: 640px) {
-    .content { flex-direction: column; padding: 20px; }
+    .content { display: block; padding: 20px; }
+    .col { display: block; width: 100%; padding: 0; }
     header { padding: 20px; }
   }
 </style>
@@ -160,36 +170,69 @@
 <div class="page">
   <header>
     <h1>GOPAL RAJPUT</h1>
-    <h2>Jr. Software Developer</h2>
+    <h2>Node.js Full Stack Developer | MERN | REST APIs | Backend Systems</h2>
     <div class="contact">
       <span>&#9993; <a href="mailto:itsgopalrajput321@gmail.com">itsgopalrajput321@gmail.com</a></span>
-      <span>&#128222; 9146628679</span>
-      <span>&#128205; Pune</span>
+      <span>&#128222; +91 9146628679</span>
+      <span>&#128205; Pune, Maharashtra</span>
+      <span>&#128279; linkedin.com/in/gopalrajput</span>
+      <span>&#128187; github.com/gopalrajput</span>
     </div>
   </header>
 
   <div class="content">
     <div class="col left">
+
       <section>
-        <h3>&#128100; PROFILE</h3>
+        <h3>&#128100; PROFESSIONAL SUMMARY</h3>
         <div class="underline"></div>
         <div class="profile-box">
-          " 2.11 year experience as Full Stack Developer, skilled in building robust and scalable web applications.
-          <br><br>
-          Sound knowledge of <strong>Restful web services</strong> calls for POST, PUT, DELETE and GET methods. Also developed user interface by using <strong>React JS</strong>."
+          Node.js Full Stack Developer with <strong>4+ years of professional experience</strong> building scalable web applications, REST APIs and backend systems using Node.js, Express.js, JavaScript, TypeScript, React.js, Angular, MongoDB, MySQL and PostgreSQL. Experienced in insurance platforms, Transport ERP systems, third-party REST/XML/SOAP integrations, KYC, payment and EMI workflows, authentication, database optimization and production debugging. Hands-on with Docker, Docker Hub, Nginx, PM2, AWS, Redis, RabbitMQ and Sonatype Nexus Repository. Experienced in developing AI-powered document processing services using OpenAI APIs and Node.js.
         </div>
       </section>
 
       <section>
         <h3>&#128188; PROFESSIONAL EXPERIENCE</h3>
         <div class="underline"></div>
+
         <div class="exp-item">
-          <div class="role">Policyboss</div>
-          <div class="dates">April 2022 – Present | Mumbai</div>
+          <div class="role">Node.js Full Stack Developer</div>
+          <div class="company">Policyboss (Landmark Insurance Brokers Pvt. Ltd.), Pune</div>
+          <div class="dates">May 2024 – Present</div>
+          <ul class="bullets">
+            <li>Developed Health, Travel and Motor Insurance applications using Node.js, Express.js, React.js and Angular.</li>
+            <li>Built end-to-end customer, quotation, proposal, KYC, payment, EMI and policy issuance workflows with insurer-specific business validations.</li>
+            <li>Integrated multiple insurers and ERP systems using REST, XML and SOAP APIs.</li>
+            <li>Implemented premium calculation, add-on covers, eligibility, medical, travel, vehicle and policy business rules.</li>
+            <li>Integrated Razorpay payment gateway for payment creation, verification, callbacks and failure handling.</li>
+            <li>Implemented Monthly, Quarterly and Half-Yearly EMI payment workflows.</li>
+            <li>Developed AI-powered policy PDF processing services using Node.js, OpenAI APIs, Python and FastAPI to extract structured data from insurance documents.</li>
+            <li>Implemented document storage and serverless PDF processing using AWS S3 and AWS Lambda.</li>
+            <li>Used Redis for caching and RabbitMQ for asynchronous processing and background jobs.</li>
+            <li>Worked with MongoDB and MySQL for schema design, aggregation, indexing and query optimization.</li>
+            <li>Used Docker, Docker Compose, Nginx and PM2 for containerization, reverse proxy and deployment.</li>
+            <li>Worked with AWS EC2 for deployment, server configuration and production troubleshooting.</li>
+            <li>Used Jenkins, Git/GitHub and Sonatype Nexus Repository for build and deployment workflows.</li>
+            <li>Performed production debugging, API troubleshooting, log analysis and performance improvements.</li>
+          </ul>
         </div>
+
         <div class="exp-item">
-          <div class="role">Virtual SCM PVT LTD Pune</div>
-          <div class="dates">March 2022 – April 2024 | Pune</div>
+          <div class="role">Jr. Software Developer</div>
+          <div class="company">Virtual SCM Pvt. Ltd., Pune</div>
+          <div class="dates">Aug 2022 – April 2024</div>
+          <ul class="bullets">
+            <li>Developed and maintained a Transport ERP web application using React.js, Node.js, Express.js, PostgreSQL, HTML5 and CSS3.</li>
+            <li>Developed modules for vehicle, driver, customer, transporter, trip and shipment management.</li>
+            <li>Built E-Way Bill generation and management workflows including API integration and tracking.</li>
+            <li>Developed scalable RESTful APIs for ERP modules and React.js frontend integration.</li>
+            <li>Implemented CRUD operations, request validation, authentication and business logic.</li>
+            <li>Designed and optimized PostgreSQL schemas, queries, joins and indexes.</li>
+            <li>Developed responsive React.js components with HTML5, CSS3 and Bootstrap.</li>
+            <li>Integrated third-party APIs for transportation and E-Way Bill processes.</li>
+            <li>Implemented search, filtering, pagination and reporting features.</li>
+            <li>Used Git/GitHub, AWS, DigitalOcean and Linux for development and deployment.</li>
+          </ul>
         </div>
       </section>
 
@@ -197,7 +240,7 @@
         <h3>&#127891; EDUCATION</h3>
         <div class="underline"></div>
         <div class="edu-item">
-          <span class="degree">MCA</span> – Abhinav education society's institute of management and research
+          <span class="degree">MCA</span> – Abhinav Education Society's Institute of Management and Research
         </div>
         <div class="edu-item">
           <span class="degree">BSC CS</span> - Late Pandharinath Patil Institute of Management Studies, Aurangabad
@@ -215,51 +258,83 @@
       </section>
 
       <section>
-        <h3>&#127942; AWARDS</h3>
+        <h3>&#127942; AWARDS &amp; ACHIEVEMENTS</h3>
         <div class="underline"></div>
         <div class="award-title">Sports</div>
-        <div class="award-desc">Participated in a state level Cricket championship held in Pune university (2022).</div>
+        <div class="award-desc">State-level Cricket Championship, Pune University (2022).</div>
+        <div class="award-title" style="margin-top:6px;">Achievement</div>
+        <div class="award-desc">Built and grew a tech-focused Instagram page to 30K+ followers, publishing content on programming, development and technology.</div>
       </section>
+
     </div>
 
     <div class="col right">
+
       <section>
-        <h3>&#9881; SKILLS</h3>
+        <h3>&#9881; CORE TECHNICAL SKILLS</h3>
         <div class="underline"></div>
         <ul class="skills">
-          <li>Node JS, Express JS</li>
-          <li>React Js</li>
-          <li>GIT / GITHUB</li>
-          <li>AWS, GCP, Digitalocean</li>
-          <li>Postgres Server Design and Development</li>
-          <li>MongoDB, MYSQL</li>
-          <li>HTML, CSS, Bootstrap</li>
-          <li>Core java, Javascript, PHP</li>
-          <li>Wordpress</li>
-          <li>Linux, shell</li>
+          <li><strong>Backend:</strong> Node.js, Express.js, JavaScript ES6+, TypeScript, REST APIs, Microservices</li>
+          <li><strong>Frontend:</strong> React.js, React Hooks, React Router, React Redux, Angular, Vite, HTML5, CSS3, Bootstrap, Tailwind CSS</li>
+          <li><strong>Database:</strong> MongoDB, Mongoose, MySQL, PostgreSQL, SQL, Aggregation, Indexing, Query Optimization</li>
+          <li><strong>DevOps &amp; Cloud:</strong> Docker, Docker Hub, Docker Compose, Jenkins, CI/CD, Nginx, Sonatype Nexus, Git, GitHub, Linux, PM2, AWS EC2, AWS S3, AWS Lambda</li>
+          <li><strong>Security:</strong> JWT, Sessions, Cookies, bcrypt, Auth Middleware, RBAC</li>
+          <li><strong>Messaging &amp; Testing:</strong> Redis, RabbitMQ, Jest, Supertest, Postman, cURL, Swagger/OpenAPI</li>
+          <li><strong>Integration &amp; AI:</strong> REST, XML, SOAP, Razorpay, OpenAI API, Claude, Python, FastAPI</li>
         </ul>
       </section>
 
       <section>
-        <h3>&#128193; PROJECTS</h3>
+        <h3>&#128193; KEY PROJECTS</h3>
         <div class="underline"></div>
+
         <div class="proj-item">
-          <div class="title">Transport ERP Web Application :-</div>
-          <div class="tech">Technologies Used – Node JS, Express JS, Web APIs, React JS, AWS.</div>
-          <p>Controlling and regulating the flow of material while simultaneously assessing variables like demand, price, availability, quality and delivery schedules.</p>
+          <div class="title">Tech Job Listing Platform</div>
+          <div class="tech">React.js · Node.js · Express.js · AWS Lambda · Amazon S3 · Docker · Nginx</div>
+          <ul class="bullets">
+            <li>Automated job aggregation site scraping listings from multiple sources daily.</li>
+            <li>Built scraping services and REST APIs for search, filtering and categorization.</li>
+            <li>Used AWS Lambda for scheduled processing and S3 for scalable storage.</li>
+          </ul>
         </div>
+
         <div class="proj-item">
-          <div class="title">Customer Relationship Management (CRM) System :-</div>
-          <div class="tech">Technologies Used – Node JS, Express JS, Framework, React JS, AWS.</div>
-          <p>Collaborated in the development of a CRM system to streamline customer interactions. Implemented backend logic for contact management, lead tracking, and automated communication workflows.</p>
+          <div class="title">AI-Powered Policy PDF Parser</div>
+          <div class="tech">Node.js · Express.js · OpenAI API · AWS S3 · AWS Lambda · Docker</div>
+          <ul class="bullets">
+            <li>Built AI-powered REST APIs to extract structured customer, policy and coverage data from PDFs.</li>
+            <li>Integrated OpenAI APIs to convert unstructured documents into structured JSON.</li>
+            <li>Developed serverless AWS Lambda microservices for document processing.</li>
+          </ul>
+        </div>
+
+        <div class="proj-item">
+          <div class="title">E-Commerce REST API</div>
+          <div class="tech">Node.js · Express.js · MySQL · PostgreSQL · Redis · JWT · Docker · Nginx</div>
+          <ul class="bullets">
+            <li>Built REST APIs for authentication, product, inventory, cart and order management.</li>
+            <li>Implemented JWT-based authentication and Redis caching.</li>
+            <li>Containerized services with Docker/Docker Compose and configured Nginx as reverse proxy.</li>
+          </ul>
+        </div>
+
+        <div class="proj-item">
+          <div class="title">Transport ERP Web Application</div>
+          <div class="tech">Node JS · Express JS · Web APIs · React JS · AWS</div>
+          <ul class="bullets">
+            <li>Controlled and regulated flow of material while assessing demand, price, availability, quality and delivery schedules.</li>
+          </ul>
+        </div>
+
+        <div class="proj-item">
+          <div class="title">Customer Relationship Management (CRM) System</div>
+          <div class="tech">Node JS · Express JS · React JS · AWS</div>
+          <ul class="bullets">
+            <li>Collaborated on a CRM system to streamline customer interactions, contact management, lead tracking and automated communication workflows.</li>
+          </ul>
         </div>
       </section>
 
-      <section class="declaration">
-        <h3>&#9998; DECLARATION</h3>
-        <div class="underline"></div>
-        <p>If you give me a chance to prove myself, I assure you that I will do my best to fulfill company's objectives.</p>
-      </section>
     </div>
   </div>
 </div>
