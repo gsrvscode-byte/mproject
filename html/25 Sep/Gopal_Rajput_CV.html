@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gopal Rajput - Resume</title>
+<style>
+  :root {
+    --maroon: #6b1f4a;
+    --maroon-dark: #5a1a3e;
+    --bg: #f5f4f1;
+    --text: #2b2b2b;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: 'Segoe UI', Arial, Helvetica, sans-serif;
+    margin: 0;
+    background: #e9e7e3;
+    color: var(--text);
+  }
+  .page {
+    max-width: 850px;
+    margin: 20px auto;
+    background: var(--bg);
+    box-shadow: 0 0 12px rgba(0,0,0,0.15);
+  }
+  header {
+    background: var(--maroon);
+    color: #fff;
+    padding: 28px 40px;
+  }
+  header h1 {
+    margin: 0;
+    font-size: 2.4em;
+    letter-spacing: 2px;
+    font-weight: 700;
+  }
+  header h2 {
+    margin: 4px 0 14px 0;
+    font-weight: 400;
+    font-size: 1.2em;
+  }
+  .contact {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    font-size: 0.95em;
+  }
+  .contact span {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .contact a {
+    color: #fff;
+    text-decoration: underline;
+  }
+  .content {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+    padding: 30px 40px 40px 40px;
+  }
+  .col {
+    display: table-cell;
+    vertical-align: top;
+    width: 50%;
+  }
+  .col.left { padding-right: 15px; }
+  .col.right { padding-left: 15px; }
+  section { margin-bottom: 26px; }
+  h3 {
+    color: var(--maroon);
+    font-size: 1.05em;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin: 0 0 4px 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  h3::after {
+    content: "";
+    display: block;
+  }
+  .underline {
+    width: 34px;
+    height: 3px;
+    background: var(--maroon);
+    margin-bottom: 12px;
+  }
+  .profile-box {
+    font-style: italic;
+    font-size: 0.95em;
+    line-height: 1.5;
+  }
+  .exp-item, .edu-item, .proj-item {
+    margin-bottom: 14px;
+  }
+  .exp-item .role, .proj-item .title {
+    font-weight: 700;
+    font-size: 0.98em;
+  }
+  .exp-item .dates {
+    font-size: 0.85em;
+    color: #555;
+    margin-bottom: 2px;
+  }
+  .edu-item .degree {
+    font-weight: 700;
+  }
+  ul.skills {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 0.95em;
+  }
+  ul.skills li {
+    margin-bottom: 6px;
+  }
+  ul.skills li::before {
+    content: "* ";
+  }
+  ul.lang-list, ul.plain {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  ul.lang-list li {
+    margin-bottom: 4px;
+    font-size: 0.95em;
+  }
+  .proj-item .tech {
+    font-weight: 700;
+    font-size: 0.9em;
+  }
+  .proj-item p {
+    margin: 4px 0 0 0;
+    font-size: 0.92em;
+    line-height: 1.5;
+  }
+  .declaration p {
+    font-size: 0.92em;
+    line-height: 1.5;
+    margin: 0;
+  }
+  .award-title {
+    font-weight: 700;
+  }
+  .award-desc {
+    font-size: 0.92em;
+  }
+  @media (max-width: 640px) {
+    .content { flex-direction: column; padding: 20px; }
+    header { padding: 20px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <header>
+    <h1>GOPAL RAJPUT</h1>
+    <h2>Jr. Software Developer</h2>
+    <div class="contact">
+      <span>&#9993; <a href="mailto:itsgopalrajput321@gmail.com">itsgopalrajput321@gmail.com</a></span>
+      <span>&#128222; 9146628679</span>
+      <span>&#128205; Pune</span>
+    </div>
+  </header>
+
+  <div class="content">
+    <div class="col left">
+      <section>
+        <h3>&#128100; PROFILE</h3>
+        <div class="underline"></div>
+        <div class="profile-box">
+          " 2.11 year experience as Full Stack Developer, skilled in building robust and scalable web applications.
+          <br><br>
+          Sound knowledge of <strong>Restful web services</strong> calls for POST, PUT, DELETE and GET methods. Also developed user interface by using <strong>React JS</strong>."
+        </div>
+      </section>
+
+      <section>
+        <h3>&#128188; PROFESSIONAL EXPERIENCE</h3>
+        <div class="underline"></div>
+        <div class="exp-item">
+          <div class="role">Policyboss</div>
+          <div class="dates">April 2022 – Present | Mumbai</div>
+        </div>
+        <div class="exp-item">
+          <div class="role">Virtual SCM PVT LTD Pune</div>
+          <div class="dates">March 2022 – April 2024 | Pune</div>
+        </div>
+      </section>
+
+      <section>
+        <h3>&#127891; EDUCATION</h3>
+        <div class="underline"></div>
+        <div class="edu-item">
+          <span class="degree">MCA</span> – Abhinav education society's institute of management and research
+        </div>
+        <div class="edu-item">
+          <span class="degree">BSC CS</span> - Late Pandharinath Patil Institute of Management Studies, Aurangabad
+        </div>
+      </section>
+
+      <section>
+        <h3>&#127760; LANGUAGES</h3>
+        <div class="underline"></div>
+        <ul class="lang-list">
+          <li>English</li>
+          <li>Hindi</li>
+          <li>Marathi</li>
+        </ul>
+      </section>
+
+      <section>
+        <h3>&#127942; AWARDS</h3>
+        <div class="underline"></div>
+        <div class="award-title">Sports</div>
+        <div class="award-desc">Participated in a state level Cricket championship held in Pune university (2022).</div>
+      </section>
+    </div>
+
+    <div class="col right">
+      <section>
+        <h3>&#9881; SKILLS</h3>
+        <div class="underline"></div>
+        <ul class="skills">
+          <li>Node JS, Express JS</li>
+          <li>React Js</li>
+          <li>GIT / GITHUB</li>
+          <li>AWS, GCP, Digitalocean</li>
+          <li>Postgres Server Design and Development</li>
+          <li>MongoDB, MYSQL</li>
+          <li>HTML, CSS, Bootstrap</li>
+          <li>Core java, Javascript, PHP</li>
+          <li>Wordpress</li>
+          <li>Linux, shell</li>
+        </ul>
+      </section>
+
+      <section>
+        <h3>&#128193; PROJECTS</h3>
+        <div class="underline"></div>
+        <div class="proj-item">
+          <div class="title">Transport ERP Web Application :-</div>
+          <div class="tech">Technologies Used – Node JS, Express JS, Web APIs, React JS, AWS.</div>
+          <p>Controlling and regulating the flow of material while simultaneously assessing variables like demand, price, availability, quality and delivery schedules.</p>
+        </div>
+        <div class="proj-item">
+          <div class="title">Customer Relationship Management (CRM) System :-</div>
+          <div class="tech">Technologies Used – Node JS, Express JS, Framework, React JS, AWS.</div>
+          <p>Collaborated in the development of a CRM system to streamline customer interactions. Implemented backend logic for contact management, lead tracking, and automated communication workflows.</p>
+        </div>
+      </section>
+
+      <section class="declaration">
+        <h3>&#9998; DECLARATION</h3>
+        <div class="underline"></div>
+        <p>If you give me a chance to prove myself, I assure you that I will do my best to fulfill company's objectives.</p>
+      </section>
+    </div>
+  </div>
+</div>
+</body>
+</html>
