@@ -56,22 +56,12 @@
     text-decoration: underline;
   }
   .content {
-    display: table;
-    width: 100%;
-    table-layout: fixed;
-    padding: 24px 36px 32px 36px;
+    padding: 26px 40px 36px 40px;
   }
-  .col {
-    display: table-cell;
-    vertical-align: top;
-    width: 50%;
-  }
-  .col.left { padding-right: 14px; }
-  .col.right { padding-left: 14px; }
-  section { margin-bottom: 18px; }
+  section { margin-bottom: 20px; }
   h3 {
     color: var(--maroon);
-    font-size: 0.98em;
+    font-size: 1em;
     text-transform: uppercase;
     letter-spacing: 0.5px;
     margin: 0 0 4px 0;
@@ -80,60 +70,65 @@
     gap: 6px;
   }
   .underline {
-    width: 30px;
+    width: 32px;
     height: 3px;
     background: var(--maroon);
-    margin-bottom: 8px;
+    margin-bottom: 10px;
   }
   .profile-box {
     font-style: italic;
-    font-size: 0.85em;
-    line-height: 1.45;
+    font-size: 0.9em;
+    line-height: 1.5;
   }
   .exp-item, .edu-item, .proj-item {
-    margin-bottom: 10px;
+    margin-bottom: 12px;
   }
   .exp-item .role, .proj-item .title {
     font-weight: 700;
-    font-size: 0.88em;
+    font-size: 0.95em;
     color: #000;
   }
   .exp-item .company {
     font-style: italic;
-    font-size: 0.78em;
+    font-size: 0.85em;
     color: var(--maroon);
     margin-bottom: 2px;
   }
   .exp-item .dates {
-    font-size: 0.75em;
+    font-size: 0.8em;
     color: #555;
-    margin-bottom: 3px;
+    margin-bottom: 4px;
   }
   .edu-item .degree {
     font-weight: 700;
   }
-  .edu-item { font-size: 0.85em; }
+  .edu-item { font-size: 0.9em; }
   ul.bullets {
-    margin: 3px 0 0 0;
-    padding-left: 15px;
-    font-size: 0.78em;
-    line-height: 1.4;
+    margin: 4px 0 0 0;
+    padding-left: 18px;
+    font-size: 0.85em;
+    line-height: 1.5;
   }
   ul.bullets li { margin-bottom: 3px; }
+  .skills-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px 24px;
+  }
   ul.skills {
     list-style: none;
     padding: 0;
     margin: 0;
-    font-size: 0.82em;
+    font-size: 0.88em;
   }
   ul.skills li {
-    margin-bottom: 6px;
-    line-height: 1.4;
+    margin-bottom: 8px;
+    line-height: 1.45;
   }
   ul.skills li strong {
     color: var(--maroon);
     display: block;
-    font-size: 0.95em;
+    font-size: 1em;
   }
   ul.lang-list {
     list-style: none;
@@ -141,28 +136,25 @@
     margin: 0;
   }
   ul.lang-list li {
-    margin-bottom: 4px;
-    font-size: 0.85em;
+    display: inline-block;
+    margin-right: 18px;
+    font-size: 0.9em;
   }
   .proj-item .tech {
     font-weight: 700;
-    font-size: 0.76em;
+    font-size: 0.82em;
     color: #444;
   }
   .proj-item ul.bullets {
-    margin-top: 3px;
+    margin-top: 4px;
   }
   .award-title {
     font-weight: 700;
-    font-size: 0.88em;
+    font-size: 0.95em;
   }
   .award-desc {
-    font-size: 0.82em;
-  }
-  @media (max-width: 640px) {
-    .content { display: block; padding: 20px; }
-    .col { display: block; width: 100%; padding: 0; }
-    header { padding: 20px; }
+    font-size: 0.88em;
+    margin-bottom: 8px;
   }
   .print-button {
     position: fixed;
@@ -185,8 +177,17 @@
     body { background: #fff; }
     .page { box-shadow: none; margin: 0; max-width: 100%; }
     .print-button { display: none; }
-    section { break-inside: avoid; page-break-inside: avoid; }
-    .exp-item, .proj-item { break-inside: avoid; page-break-inside: avoid; }
+    h3 { break-after: avoid; page-break-after: avoid; }
+    .exp-item .role, .exp-item .company, .exp-item .dates,
+    .proj-item .title, .proj-item .tech {
+      break-after: avoid; page-break-after: avoid;
+    }
+    li { break-inside: avoid; page-break-inside: avoid; }
+  }
+  @media (max-width: 640px) {
+    .content { padding: 20px; }
+    header { padding: 20px; }
+    .skills-grid { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -205,161 +206,159 @@
   </header>
 
   <div class="content">
-    <div class="col left">
 
-      <section>
-        <h3>&#128100; PROFESSIONAL SUMMARY</h3>
-        <div class="underline"></div>
-        <div class="profile-box">
-          Node.js Full Stack Developer with <strong>4+ years of professional experience</strong> building scalable web applications, REST APIs and backend systems using Node.js, Express.js, JavaScript, TypeScript, React.js, Angular, MongoDB, MySQL and PostgreSQL. Experienced in insurance platforms, Transport ERP systems, third-party REST/XML/SOAP integrations, KYC, payment and EMI workflows, authentication, database optimization and production debugging. Hands-on with Docker, Docker Hub, Nginx, PM2, AWS, Redis, RabbitMQ and Sonatype Nexus Repository. Experienced in developing AI-powered document processing services using OpenAI APIs and Node.js.
-        </div>
-      </section>
+    <section>
+      <h3>&#128100; PROFESSIONAL SUMMARY</h3>
+      <div class="underline"></div>
+      <div class="profile-box">
+        Node.js Full Stack Developer with <strong>4+ years of professional experience</strong> building scalable web applications, REST APIs and backend systems using Node.js, Express.js, JavaScript, TypeScript, React.js, Angular, MongoDB, MySQL and PostgreSQL. Experienced in insurance platforms, Transport ERP systems, third-party REST/XML/SOAP integrations, KYC, payment and EMI workflows, authentication, database optimization and production debugging. Hands-on with Docker, Docker Hub, Nginx, PM2, AWS, Redis, RabbitMQ and Sonatype Nexus Repository. Experienced in developing AI-powered document processing services using OpenAI APIs and Node.js.
+      </div>
+    </section>
 
-      <section>
-        <h3>&#128188; PROFESSIONAL EXPERIENCE</h3>
-        <div class="underline"></div>
-
-        <div class="exp-item">
-          <div class="role">Node.js Full Stack Developer</div>
-          <div class="company">Policyboss (Landmark Insurance Brokers Pvt. Ltd.), Pune</div>
-          <div class="dates">May 2024 – Present</div>
-          <ul class="bullets">
-            <li>Developed Health, Travel and Motor Insurance applications using Node.js, Express.js, React.js and Angular.</li>
-            <li>Built end-to-end customer, quotation, proposal, KYC, payment, EMI and policy issuance workflows with insurer-specific business validations.</li>
-            <li>Integrated multiple insurers and ERP systems using REST, XML and SOAP APIs.</li>
-            <li>Implemented premium calculation, add-on covers, eligibility, medical, travel, vehicle and policy business rules.</li>
-            <li>Integrated Razorpay payment gateway for payment creation, verification, callbacks and failure handling.</li>
-            <li>Implemented Monthly, Quarterly and Half-Yearly EMI payment workflows.</li>
-            <li>Developed AI-powered policy PDF processing services using Node.js, OpenAI APIs, Python and FastAPI to extract structured data from insurance documents.</li>
-            <li>Implemented document storage and serverless PDF processing using AWS S3 and AWS Lambda.</li>
-            <li>Used Redis for caching and RabbitMQ for asynchronous processing and background jobs.</li>
-            <li>Worked with MongoDB and MySQL for schema design, aggregation, indexing and query optimization.</li>
-            <li>Used Docker, Docker Compose, Nginx and PM2 for containerization, reverse proxy and deployment.</li>
-            <li>Worked with AWS EC2 for deployment, server configuration and production troubleshooting.</li>
-            <li>Used Jenkins, Git/GitHub and Sonatype Nexus Repository for build and deployment workflows.</li>
-            <li>Performed production debugging, API troubleshooting, log analysis and performance improvements.</li>
-          </ul>
-        </div>
-
-        <div class="exp-item">
-          <div class="role">Jr. Software Developer</div>
-          <div class="company">Virtual SCM Pvt. Ltd., Pune</div>
-          <div class="dates">Aug 2022 – April 2024</div>
-          <ul class="bullets">
-            <li>Developed and maintained a Transport ERP web application using React.js, Node.js, Express.js, PostgreSQL, HTML5 and CSS3.</li>
-            <li>Developed modules for vehicle, driver, customer, transporter, trip and shipment management.</li>
-            <li>Built E-Way Bill generation and management workflows including API integration and tracking.</li>
-            <li>Developed scalable RESTful APIs for ERP modules and React.js frontend integration.</li>
-            <li>Implemented CRUD operations, request validation, authentication and business logic.</li>
-            <li>Designed and optimized PostgreSQL schemas, queries, joins and indexes.</li>
-            <li>Developed responsive React.js components with HTML5, CSS3 and Bootstrap.</li>
-            <li>Integrated third-party APIs for transportation and E-Way Bill processes.</li>
-            <li>Implemented search, filtering, pagination and reporting features.</li>
-            <li>Used Git/GitHub, AWS, DigitalOcean and Linux for development and deployment.</li>
-          </ul>
-        </div>
-      </section>
-
-      <section>
-        <h3>&#127891; EDUCATION</h3>
-        <div class="underline"></div>
-        <div class="edu-item">
-          <span class="degree">MCA</span> – Abhinav Education Society's Institute of Management and Research
-        </div>
-        <div class="edu-item">
-          <span class="degree">BSC CS</span> - Late Pandharinath Patil Institute of Management Studies, Aurangabad
-        </div>
-      </section>
-
-      <section>
-        <h3>&#127760; LANGUAGES</h3>
-        <div class="underline"></div>
-        <ul class="lang-list">
-          <li>English</li>
-          <li>Hindi</li>
-          <li>Marathi</li>
-        </ul>
-      </section>
-
-      <section>
-        <h3>&#127942; AWARDS &amp; ACHIEVEMENTS</h3>
-        <div class="underline"></div>
-        <div class="award-title">Sports</div>
-        <div class="award-desc">State-level Cricket Championship, Pune University (2022).</div>
-        <div class="award-title" style="margin-top:6px;">Achievement</div>
-        <div class="award-desc">Built and grew a tech-focused Instagram page to 30K+ followers, publishing content on programming, development and technology.</div>
-      </section>
-
-    </div>
-
-    <div class="col right">
-
-      <section>
-        <h3>&#9881; CORE TECHNICAL SKILLS</h3>
-        <div class="underline"></div>
+    <section>
+      <h3>&#9881; CORE TECHNICAL SKILLS</h3>
+      <div class="underline"></div>
+      <div class="skills-grid">
         <ul class="skills">
           <li><strong>Backend:</strong> Node.js, Express.js, JavaScript ES6+, TypeScript, REST APIs, Microservices</li>
           <li><strong>Frontend:</strong> React.js, React Hooks, React Router, React Redux, Angular, Vite, HTML5, CSS3, Bootstrap, Tailwind CSS</li>
           <li><strong>Database:</strong> MongoDB, Mongoose, MySQL, PostgreSQL, SQL, Aggregation, Indexing, Query Optimization</li>
-          <li><strong>DevOps &amp; Cloud:</strong> Docker, Docker Hub, Docker Compose, Jenkins, CI/CD, Nginx, Sonatype Nexus, Git, GitHub, Linux, PM2, AWS EC2, AWS S3, AWS Lambda</li>
           <li><strong>Security:</strong> JWT, Sessions, Cookies, bcrypt, Auth Middleware, RBAC</li>
+        </ul>
+        <ul class="skills">
+          <li><strong>DevOps &amp; Cloud:</strong> Docker, Docker Hub, Docker Compose, Jenkins, CI/CD, Nginx, Sonatype Nexus, Git, GitHub, Linux, PM2, AWS EC2, AWS S3, AWS Lambda</li>
           <li><strong>Messaging &amp; Testing:</strong> Redis, RabbitMQ, Jest, Supertest, Postman, cURL, Swagger/OpenAPI</li>
           <li><strong>Integration &amp; AI:</strong> REST, XML, SOAP, Razorpay, OpenAI API, Claude, Python, FastAPI</li>
         </ul>
-      </section>
+      </div>
+    </section>
 
-      <section>
-        <h3>&#128193; KEY PROJECTS</h3>
-        <div class="underline"></div>
+    <section>
+      <h3>&#128188; PROFESSIONAL EXPERIENCE</h3>
+      <div class="underline"></div>
 
-        <div class="proj-item">
-          <div class="title">Tech Job Listing Platform</div>
-          <div class="tech">React.js · Node.js · Express.js · AWS Lambda · Amazon S3 · Docker · Nginx</div>
-          <ul class="bullets">
-            <li>Automated job aggregation site scraping listings from multiple sources daily.</li>
-            <li>Built scraping services and REST APIs for search, filtering and categorization.</li>
-            <li>Used AWS Lambda for scheduled processing and S3 for scalable storage.</li>
-          </ul>
-        </div>
+      <div class="exp-item">
+        <div class="role">Node.js Full Stack Developer</div>
+        <div class="company">Policyboss (Landmark Insurance Brokers Pvt. Ltd.), Pune</div>
+        <div class="dates">May 2024 – Present</div>
+        <ul class="bullets">
+          <li>Developed Health, Travel and Motor Insurance applications using Node.js, Express.js, React.js and Angular.</li>
+          <li>Built end-to-end customer, quotation, proposal, KYC, payment, EMI and policy issuance workflows with insurer-specific business validations.</li>
+          <li>Integrated multiple insurers and ERP systems using REST, XML and SOAP APIs.</li>
+          <li>Implemented premium calculation, add-on covers, eligibility, medical, travel, vehicle and policy business rules.</li>
+          <li>Integrated Razorpay payment gateway for payment creation, verification, callbacks and failure handling.</li>
+          <li>Implemented Monthly, Quarterly and Half-Yearly EMI payment workflows.</li>
+          <li>Developed AI-powered policy PDF processing services using Node.js, OpenAI APIs, Python and FastAPI to extract structured data from insurance documents.</li>
+          <li>Implemented document storage and serverless PDF processing using AWS S3 and AWS Lambda.</li>
+          <li>Used Redis for caching and RabbitMQ for asynchronous processing and background jobs.</li>
+          <li>Worked with MongoDB and MySQL for schema design, aggregation, indexing and query optimization.</li>
+          <li>Used Docker, Docker Compose, Nginx and PM2 for containerization, reverse proxy and deployment.</li>
+          <li>Worked with AWS EC2 for deployment, server configuration and production troubleshooting.</li>
+          <li>Used Jenkins, Git/GitHub and Sonatype Nexus Repository for build and deployment workflows.</li>
+          <li>Performed production debugging, API troubleshooting, log analysis and performance improvements.</li>
+        </ul>
+      </div>
 
-        <div class="proj-item">
-          <div class="title">AI-Powered Policy PDF Parser</div>
-          <div class="tech">Node.js · Express.js · OpenAI API · AWS S3 · AWS Lambda · Docker</div>
-          <ul class="bullets">
-            <li>Built AI-powered REST APIs to extract structured customer, policy and coverage data from PDFs.</li>
-            <li>Integrated OpenAI APIs to convert unstructured documents into structured JSON.</li>
-            <li>Developed serverless AWS Lambda microservices for document processing.</li>
-          </ul>
-        </div>
+      <div class="exp-item">
+        <div class="role">Jr. Software Developer</div>
+        <div class="company">Virtual SCM Pvt. Ltd., Pune</div>
+        <div class="dates">Aug 2022 – April 2024</div>
+        <ul class="bullets">
+          <li>Developed and maintained a Transport ERP web application using React.js, Node.js, Express.js, PostgreSQL, HTML5 and CSS3.</li>
+          <li>Developed modules for vehicle, driver, customer, transporter, trip and shipment management.</li>
+          <li>Built E-Way Bill generation and management workflows including API integration and tracking.</li>
+          <li>Developed scalable RESTful APIs for ERP modules and React.js frontend integration.</li>
+          <li>Implemented CRUD operations, request validation, authentication and business logic.</li>
+          <li>Designed and optimized PostgreSQL schemas, queries, joins and indexes.</li>
+          <li>Developed responsive React.js components with HTML5, CSS3 and Bootstrap.</li>
+          <li>Integrated third-party APIs for transportation and E-Way Bill processes.</li>
+          <li>Implemented search, filtering, pagination and reporting features.</li>
+          <li>Used Git/GitHub, AWS, DigitalOcean and Linux for development and deployment.</li>
+        </ul>
+      </div>
+    </section>
 
-        <div class="proj-item">
-          <div class="title">E-Commerce REST API</div>
-          <div class="tech">Node.js · Express.js · MySQL · PostgreSQL · Redis · JWT · Docker · Nginx</div>
-          <ul class="bullets">
-            <li>Built REST APIs for authentication, product, inventory, cart and order management.</li>
-            <li>Implemented JWT-based authentication and Redis caching.</li>
-            <li>Containerized services with Docker/Docker Compose and configured Nginx as reverse proxy.</li>
-          </ul>
-        </div>
+    <section>
+      <h3>&#128193; KEY PROJECTS</h3>
+      <div class="underline"></div>
 
-        <div class="proj-item">
-          <div class="title">Transport ERP Web Application</div>
-          <div class="tech">Node JS · Express JS · Web APIs · React JS · AWS</div>
-          <ul class="bullets">
-            <li>Controlled and regulated flow of material while assessing demand, price, availability, quality and delivery schedules.</li>
-          </ul>
-        </div>
+      <div class="proj-item">
+        <div class="title">Tech Job Listing Platform</div>
+        <div class="tech">React.js · Node.js · Express.js · AWS Lambda · Amazon S3 · Docker · Nginx</div>
+        <ul class="bullets">
+          <li>Automated job aggregation site scraping listings from multiple sources daily.</li>
+          <li>Built scraping services and REST APIs for search, filtering and categorization.</li>
+          <li>Used AWS Lambda for scheduled processing and S3 for scalable storage.</li>
+        </ul>
+      </div>
 
-        <div class="proj-item">
-          <div class="title">Customer Relationship Management (CRM) System</div>
-          <div class="tech">Node JS · Express JS · React JS · AWS</div>
-          <ul class="bullets">
-            <li>Collaborated on a CRM system to streamline customer interactions, contact management, lead tracking and automated communication workflows.</li>
-          </ul>
-        </div>
-      </section>
+      <div class="proj-item">
+        <div class="title">AI-Powered Policy PDF Parser</div>
+        <div class="tech">Node.js · Express.js · OpenAI API · AWS S3 · AWS Lambda · Docker</div>
+        <ul class="bullets">
+          <li>Built AI-powered REST APIs to extract structured customer, policy and coverage data from PDFs.</li>
+          <li>Integrated OpenAI APIs to convert unstructured documents into structured JSON.</li>
+          <li>Developed serverless AWS Lambda microservices for document processing.</li>
+        </ul>
+      </div>
 
-    </div>
+      <div class="proj-item">
+        <div class="title">E-Commerce REST API</div>
+        <div class="tech">Node.js · Express.js · MySQL · PostgreSQL · Redis · JWT · Docker · Nginx</div>
+        <ul class="bullets">
+          <li>Built REST APIs for authentication, product, inventory, cart and order management.</li>
+          <li>Implemented JWT-based authentication and Redis caching.</li>
+          <li>Containerized services with Docker/Docker Compose and configured Nginx as reverse proxy.</li>
+        </ul>
+      </div>
+
+      <div class="proj-item">
+        <div class="title">Transport ERP Web Application</div>
+        <div class="tech">Node JS · Express JS · Web APIs · React JS · AWS</div>
+        <ul class="bullets">
+          <li>Controlled and regulated flow of material while assessing demand, price, availability, quality and delivery schedules.</li>
+        </ul>
+      </div>
+
+      <div class="proj-item">
+        <div class="title">Customer Relationship Management (CRM) System</div>
+        <div class="tech">Node JS · Express JS · React JS · AWS</div>
+        <ul class="bullets">
+          <li>Collaborated on a CRM system to streamline customer interactions, contact management, lead tracking and automated communication workflows.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <h3>&#127891; EDUCATION</h3>
+      <div class="underline"></div>
+      <div class="edu-item">
+        <span class="degree">MCA</span> – Abhinav Education Society's Institute of Management and Research
+      </div>
+      <div class="edu-item">
+        <span class="degree">BSC CS</span> - Late Pandharinath Patil Institute of Management Studies, Aurangabad
+      </div>
+    </section>
+
+    <section>
+      <h3>&#127760; LANGUAGES</h3>
+      <div class="underline"></div>
+      <ul class="lang-list">
+        <li>English</li>
+        <li>Hindi</li>
+        <li>Marathi</li>
+      </ul>
+    </section>
+
+    <section>
+      <h3>&#127942; AWARDS &amp; ACHIEVEMENTS</h3>
+      <div class="underline"></div>
+      <div class="award-title">Sports</div>
+      <div class="award-desc">State-level Cricket Championship, Pune University (2022).</div>
+      <div class="award-title">Achievement</div>
+      <div class="award-desc">Built and grew a tech-focused Instagram page to 30K+ followers, publishing content on programming, development and technology.</div>
+    </section>
+
   </div>
 </div>
 
