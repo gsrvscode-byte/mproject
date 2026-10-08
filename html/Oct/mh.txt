@@ -73,3 +73,1270 @@ Your answers are fine. Add one line of experience: "I regularly raise PRs, do co
 3. Have two or three real stories ready: a performance fix, a production bug and an integration.
 
 Want me to run a mock interview, asking questions one at a time and giving feedback on your answers?
+
+
+=====================================================================
+ INTERVIEW QUESTIONS WITH ANSWERS (English + Hinglish) - COMPLETE
+ Part A (Q1-102): Node.js | TypeScript | REST API | Microservices | Docker
+   Kubernetes | Webpack/Vite/Babel | CI/CD | Agile | Problem Solving | Behavioral
+ Part B (P1-P23): Personalised, JD-specific answers (Gopal Rajput)
+   Node.js + REST + Microservices + Docker/K8s + Azure + DB + CI/CD (AS400 honest)
+=====================================================================
+ Format: Har question ke neeche EN (English) aur HI (Hinglish) answer hai.
+ Note: Behavioral questions (91-102) aur Part B ke answers SAMPLE hain -
+       [ ] wali jagah apni real details daaliye. Jo kiya nahi, woh claim mat karo.
+=====================================================================
+
+
+---------------------------------------------------------------------
+INTRODUCTION / ISS FILE KE BAARE MEIN
+---------------------------------------------------------------------
+
+EN: This file is a complete interview-prep guide for a Node.js backend role
+(Node.js, TypeScript, REST API, Microservices, Docker, Kubernetes, CI/CD,
+Agile). It has two parts:
+  - Part A: 102 common technical, problem-solving and behavioral questions
+    with clear answers.
+  - Part B: 23 short, personalised answers written for one specific JD
+    (including honest answers on AS400 and Azure gaps).
+Every answer is given in English (EN) and Hinglish (HI), so you can read
+whichever is easier and then speak it in your own words.
+
+HI: Ye file Node.js backend role ke liye ek complete interview-prep guide hai
+(Node.js, TypeScript, REST API, Microservices, Docker, Kubernetes, CI/CD,
+Agile). Isme do parts hain:
+  - Part A: 102 common technical, problem-solving aur behavioral questions,
+    clear answers ke saath.
+  - Part B: ek specific JD ke liye likhe gaye 23 chhote, personalised answers
+    (AS400 aur Azure ke gap par honest answers samet).
+Har answer English (EN) aur Hinglish (HI) dono mein hai, jo aasan lage woh
+padho aur phir apne words mein bolo.
+
+
+TABLE OF CONTENTS
+  Part A
+   1. Node.js ........................... Q1  - Q10
+   2. TypeScript ........................ Q11 - Q18
+   3. REST API .......................... Q19 - Q28
+   4. Microservices ..................... Q29 - Q38
+   5. Docker ............................ Q39 - Q47
+   6. Kubernetes ........................ Q48 - Q56
+   7. Webpack / Vite / Babel ............ Q57 - Q64
+   8. CI/CD & Deployment ................ Q65 - Q74
+   9. Agile ............................. Q75 - Q80
+  10. Problem Solving / Production ...... Q81 - Q90
+  11. Behavioral ........................ Q91 - Q102
+  Part B
+  12. Personalised JD answers ........... P1  - P23
+  13. Likely follow-ups
+  14. Interview tips
+
+
+HOW TO USE THIS FILE / ISE KAISE USE KAREIN
+  1. Pehle Part B (P1-P23) padho aur [ ] mein apni real details bharo.
+     (Read Part B first and fill the [ ] with your real details.)
+  2. Phir Part A ko section-wise padho; weak topics par zyada time do.
+     (Then study Part A section by section; spend more time on weak topics.)
+  3. Answers ratne ki jagah apne words aur apne project ke examples mein bolo.
+     (Don't memorise; say answers in your own words with project examples.)
+  4. "Tell me about yourself" ke liye P1 (aur Q91) dekho; project ke liye Q92.
+     (For your self-introduction see P1 and Q91; for your project see Q92.)
+  5. Jo kiya nahi hai woh claim mat karo; gap ho to honest raho aur batao
+     ki aap use kaise jaldi seekhoge.
+     (Never claim what you haven't done; be honest about gaps.)
+
+
+---------------------------------------------------------------------
+1. NODE.JS
+---------------------------------------------------------------------
+
+Q1. What is Node.js? / Node.js kya hai?
+EN: Node.js is an open-source, cross-platform JavaScript runtime built on Chrome's V8 engine. It lets you run JavaScript outside the browser, mainly for server-side apps. It is event-driven and uses non-blocking I/O, which makes it lightweight and efficient for I/O-heavy applications like APIs and real-time apps.
+HI: Node.js ek open-source, cross-platform JavaScript runtime hai jo Chrome ke V8 engine par bana hai. Isse hum JavaScript ko browser ke bahar (server par) run kar sakte hain. Ye event-driven aur non-blocking I/O use karta hai, isliye APIs aur real-time apps jaise I/O-heavy applications ke liye bahut efficient hai.
+
+
+Q2. How does the Node.js event loop work? / Node.js ka event loop kaise kaam karta hai?
+EN: Node.js runs JavaScript on a single thread. The event loop continuously checks for pending work and runs callbacks. Heavy I/O work (file, network, DB) is handed to libuv / the OS / a thread pool, and when it finishes, its callback is queued. The loop has phases: timers (setTimeout/setInterval) -> pending callbacks -> poll (I/O events) -> check (setImmediate) -> close callbacks. Between phases, process.nextTick and Promise microtasks run first.
+HI: Node.js JavaScript ko single thread par run karta hai. Event loop continuously check karta rehta hai ki koi pending kaam ya callback hai ya nahi. Heavy I/O kaam (file, network, DB) libuv / OS / thread pool ko de diya jata hai, aur kaam khatam hone par uska callback queue mein aa jata hai. Phases: timers -> pending callbacks -> poll (I/O) -> check (setImmediate) -> close callbacks. Har phase ke beech mein pehle process.nextTick aur Promise microtasks chalte hain.
+
+
+Q3. What is asynchronous programming in Node.js? / Node.js mein asynchronous programming kya hoti hai?
+EN: In asynchronous programming, a long-running task (like a DB query or HTTP call) does not block the rest of the code. Node starts the task, continues executing other code, and handles the result later via a callback, Promise, or async/await. This allows one thread to serve thousands of requests.
+HI: Asynchronous programming mein koi lamba chalne wala task (jaise DB query ya HTTP call) baaki code ko block nahi karta. Node task start karke aage ka code chalata rehta hai, aur result baad mein callback, Promise ya async/await se handle hota hai. Isse ek hi thread hazaron requests serve kar pata hai.
+
+
+Q4. Difference between callbacks, Promises, and async/await? / Callbacks, Promises aur async/await mein difference?
+EN:
+- Callback: a function passed to another function, called when work is done. Many nested callbacks cause "callback hell" and messy error handling.
+- Promise: an object representing a future result (pending/fulfilled/rejected). Supports chaining with .then() / .catch().
+- async/await: syntax sugar over Promises that makes async code look synchronous and lets you use try/catch. It is the cleanest and most readable approach.
+HI:
+- Callback: ek function jo dusre function ko pass hota hai aur kaam khatam hone par call hota hai. Zyada nesting se "callback hell" ban jata hai aur error handling mushkil hoti hai.
+- Promise: ek object jo future ke result ko represent karta hai (pending/fulfilled/rejected). .then() / .catch() se chaining hoti hai.
+- async/await: Promises ke upar syntax sugar hai jisse async code synchronous jaisa dikhta hai aur try/catch use kar sakte hain. Ye sabse clean aur readable tarika hai.
+
+
+Q5. What is middleware in Express.js? / Express.js mein middleware kya hota hai?
+EN: Middleware is a function with access to (req, res, next) that runs between the incoming request and the final route handler. It can modify req/res, end the request, or call next() to pass control on. Used for logging, authentication, body parsing, CORS, validation, and error handling. Error-handling middleware has 4 arguments: (err, req, res, next).
+HI: Middleware ek function hai jisko (req, res, next) milte hain aur ye request aur final route handler ke beech mein chalta hai. Ye req/res modify kar sakta hai, request ko end kar sakta hai, ya next() call karke aage bhej sakta hai. Logging, authentication, body parsing, CORS, validation aur error handling mein use hota hai. Error-handling middleware mein 4 arguments hote hain: (err, req, res, next).
+
+
+Q6. How do you handle errors in Node.js? / Node.js mein errors kaise handle karte ho?
+EN:
+- Use try/catch with async/await, and .catch() with Promises.
+- Error-first callbacks: callback(err, data).
+- In Express, use a centralized error-handling middleware.
+- Create custom error classes (e.g., AppError with statusCode).
+- Listen to process.on('unhandledRejection') and process.on('uncaughtException') for logging and graceful shutdown.
+- Log errors (Winston/Pino) and never expose stack traces in production.
+HI:
+- async/await ke saath try/catch, aur Promises ke saath .catch() use karte hain.
+- Error-first callbacks: callback(err, data).
+- Express mein ek centralized error-handling middleware banate hain.
+- Custom error classes banate hain (jaise AppError with statusCode).
+- process.on('unhandledRejection') aur process.on('uncaughtException') se logging aur graceful shutdown karte hain.
+- Errors ko log karte hain (Winston/Pino) aur production mein stack trace user ko nahi dikhate.
+
+
+Q7. How do you improve Node.js API performance? / Node.js API ki performance kaise improve karte ho?
+EN:
+- Avoid blocking the event loop; use async code.
+- Cache with Redis / in-memory.
+- Add DB indexes, optimize queries, use connection pooling, and use pagination.
+- Use clustering / PM2 / load balancer to use all CPU cores.
+- Enable gzip/brotli compression.
+- Use streams for large data.
+- Move heavy tasks to queues/workers.
+- Profile with clinic.js / APM tools and fix bottlenecks.
+HI:
+- Event loop ko block mat karo; async code use karo.
+- Redis / in-memory caching use karo.
+- DB indexes lagao, queries optimize karo, connection pooling aur pagination use karo.
+- Clustering / PM2 / load balancer se saare CPU cores use karo.
+- gzip/brotli compression enable karo.
+- Bade data ke liye streams use karo.
+- Heavy kaam queues/workers ko do.
+- clinic.js / APM tools se profiling karke bottlenecks fix karo.
+
+
+Q8. What is clustering in Node.js? / Node.js mein clustering kya hoti hai?
+EN: Node runs on a single thread/core by default. The built-in cluster module forks multiple worker processes (usually one per CPU core) that all share the same server port, and the master distributes incoming connections. This improves throughput and availability. PM2's cluster mode (pm2 start app.js -i max) does this easily.
+HI: Node by default ek hi thread/core par chalta hai. Built-in cluster module multiple worker processes (aam taur par har CPU core ke liye ek) fork karta hai jo same port share karte hain, aur master incoming connections ko distribute karta hai. Isse throughput aur availability badhti hai. PM2 ka cluster mode (pm2 start app.js -i max) ye aasani se kar deta hai.
+
+
+Q9. What are streams in Node.js? / Node.js mein streams kya hote hain?
+EN: Streams let you process data in small chunks instead of loading everything in memory. Four types: Readable, Writable, Duplex (both), and Transform (modify data while passing, e.g., gzip). You connect them with .pipe() or pipeline(). They handle backpressure and are ideal for large files, video, and network data.
+HI: Streams se hum data ko chhote-chhote chunks mein process karte hain, poora data memory mein load nahi karna padta. 4 types: Readable, Writable, Duplex (dono), aur Transform (data ko beech mein modify karna, jaise gzip). Inhe .pipe() ya pipeline() se jodte hain. Ye backpressure handle karte hain aur bade files, video aur network data ke liye best hain.
+
+
+Q10. How do you handle CPU-intensive tasks in Node.js? / CPU-intensive tasks kaise handle karte ho?
+EN: CPU-heavy code blocks the single thread. Solutions: (1) worker_threads for parallel computation, (2) child_process / cluster, (3) offload to a job queue (Bull/RabbitMQ) with separate workers, (4) move it to a separate microservice or a language better suited for it, (5) break the work into small chunks using setImmediate.
+HI: CPU-heavy code single thread ko block kar deta hai. Solutions: (1) parallel computation ke liye worker_threads, (2) child_process / cluster, (3) job queue (Bull/RabbitMQ) ke saath alag workers, (4) alag microservice ya kisi better language mein shift karna, (5) kaam ko setImmediate se chhote chunks mein todna.
+
+
+---------------------------------------------------------------------
+2. TYPESCRIPT
+---------------------------------------------------------------------
+
+Q11. What is TypeScript and why do we use it? / TypeScript kya hai aur kyun use karte hain?
+EN: TypeScript is a superset of JavaScript that adds static typing and compiles to plain JavaScript. We use it to catch bugs at compile time, get better IDE autocomplete and refactoring, make code self-documenting, and maintain large codebases more safely.
+HI: TypeScript JavaScript ka superset hai jo static typing add karta hai aur compile hokar plain JavaScript ban jata hai. Hum ise isliye use karte hain taaki bugs compile time par hi pakad lein, IDE mein better autocomplete aur refactoring mile, code self-documenting ho, aur bade codebase ko safely maintain kar sakein.
+
+
+Q12. Difference between interface and type? / Interface aur type mein difference?
+EN:
+- interface: mainly for object shapes/classes; can be extended (extends) and supports declaration merging (same name declared twice merges).
+- type: can alias anything - primitives, unions, tuples, mapped/conditional types; extended using intersection (&); no declaration merging.
+Rule of thumb: use interface for object contracts/public APIs, type for unions and complex types.
+HI:
+- interface: mainly object shapes/classes ke liye; extends se extend hota hai aur declaration merging support karta hai (same naam do baar likhne par merge ho jata hai).
+- type: kuch bhi alias kar sakta hai - primitives, unions, tuples, mapped/conditional types; intersection (&) se extend hota hai; declaration merging nahi hoti.
+Thumb rule: object contracts ke liye interface, unions aur complex types ke liye type.
+
+
+Q13. What are generics in TypeScript? / Generics kya hote hain?
+EN: Generics let you write reusable code that works with many types while staying type-safe, using type parameters like <T>.
+Example: function identity<T>(value: T): T { return value; }
+identity<string>("hi") returns a string; identity<number>(5) returns a number. Used in API response wrappers, arrays (Array<T>), Promise<T>, etc.
+HI: Generics se hum aisa reusable code likh sakte hain jo alag-alag types ke saath kaam kare aur type-safe bhi rahe, <T> jaise type parameters ke zariye.
+Example: function identity<T>(value: T): T { return value; }
+identity<string>("hi") string return karega; identity<number>(5) number. API response wrappers, Array<T>, Promise<T> waghera mein use hota hai.
+
+
+Q14. Difference between any, unknown, and never? / any, unknown aur never mein difference?
+EN:
+- any: turns off type checking; anything is allowed (unsafe).
+- unknown: type-safe version of any; you can assign anything but must narrow (typeof/instanceof) before using it.
+- never: a value that never occurs - function that always throws or has an infinite loop; also used for exhaustive checks in switch statements.
+HI:
+- any: type checking band kar deta hai; kuch bhi allowed hai (unsafe).
+- unknown: any ka type-safe version; kuch bhi assign kar sakte ho lekin use karne se pehle narrow (typeof/instanceof) karna padta hai.
+- never: aisi value jo kabhi aati hi nahi - jo function hamesha throw kare ya infinite loop ho; switch mein exhaustive check ke liye bhi use hota hai.
+
+
+Q15. What are union and intersection types? / Union aur intersection types kya hote hain?
+EN:
+- Union (A | B): value can be either type. Example: let id: string | number;
+- Intersection (A & B): value must satisfy both types combined. Example: type Admin = User & { permissions: string[] };
+HI:
+- Union (A | B): value dono mein se koi ek type ki ho sakti hai. Example: let id: string | number;
+- Intersection (A & B): value ko dono types ki saari properties satisfy karni hongi. Example: type Admin = User & { permissions: string[] };
+
+
+Q16. What is type narrowing? / Type narrowing kya hoti hai?
+EN: Narrowing is when TypeScript refines a broad type to a more specific one inside a code block. Techniques: typeof, instanceof, the "in" operator, equality checks, truthiness checks, discriminated unions (a common 'type' field), and custom type guards (function isDog(x): x is Dog).
+HI: Narrowing mein TypeScript kisi broad type ko code block ke andar specific type mein badal deta hai. Techniques: typeof, instanceof, "in" operator, equality checks, truthiness checks, discriminated unions (common 'type' field), aur custom type guards (function isDog(x): x is Dog).
+
+
+Q17. What are access modifiers in TypeScript? / Access modifiers kya hote hain?
+EN:
+- public (default): accessible everywhere.
+- private: accessible only inside the class.
+- protected: accessible inside the class and its subclasses.
+- readonly: can be set only once (at declaration or in constructor).
+HI:
+- public (default): har jagah accessible.
+- private: sirf class ke andar accessible.
+- protected: class aur uski subclasses ke andar accessible.
+- readonly: sirf ek baar set ho sakta hai (declaration ya constructor mein).
+
+
+Q18. How do you type an Express API request and response? / Express request aur response ko kaise type karte ho?
+EN: Import types from express and pass generics: Request<Params, ResBody, ReqBody, Query>.
+  import { Request, Response, NextFunction } from 'express';
+  interface CreateUserBody { name: string; email: string; }
+  app.post('/users', (req: Request<{}, {}, CreateUserBody>, res: Response, next: NextFunction) => {
+    const { name, email } = req.body; // typed
+    res.status(201).json({ name, email });
+  });
+Also install @types/express and @types/node, and use Zod/Joi for runtime validation since TypeScript types disappear at runtime.
+HI: express se types import karo aur generics pass karo: Request<Params, ResBody, ReqBody, Query>.
+  (upar wala code example dekhiye)
+@types/express aur @types/node install karo, aur runtime validation ke liye Zod/Joi use karo kyunki TypeScript types runtime par exist nahi karte.
+
+
+---------------------------------------------------------------------
+3. REST API
+---------------------------------------------------------------------
+
+Q19. What is REST API? / REST API kya hoti hai?
+EN: REST (Representational State Transfer) is an architectural style for building web services over HTTP. Resources are identified by URLs (e.g., /users/1) and manipulated using HTTP methods (GET, POST, PUT, PATCH, DELETE). Key principles: stateless, client-server, uniform interface, cacheable, layered system. Data is usually exchanged as JSON.
+HI: REST (Representational State Transfer) HTTP par web services banane ka ek architectural style hai. Resources URLs se identify hote hain (jaise /users/1) aur HTTP methods (GET, POST, PUT, PATCH, DELETE) se manipulate hote hain. Key principles: stateless, client-server, uniform interface, cacheable, layered system. Data aam taur par JSON mein exchange hota hai.
+
+
+Q20. Difference between PUT and PATCH? / PUT aur PATCH mein difference?
+EN:
+- PUT: replaces the entire resource; you send the full object. It is idempotent.
+- PATCH: partially updates only the fields you send. Usually idempotent but not guaranteed.
+Example: to change just a user's email, use PATCH /users/1 with { "email": "new@x.com" }.
+HI:
+- PUT: poore resource ko replace karta hai; full object bhejna padta hai. Ye idempotent hai.
+- PATCH: sirf bheje gaye fields ko partially update karta hai. Aam taur par idempotent hota hai par guarantee nahi.
+Example: sirf email badalna ho to PATCH /users/1 with { "email": "new@x.com" }.
+
+
+Q21. What are HTTP status codes? / HTTP status codes kya hote hain?
+EN: Three-digit codes the server returns to describe the result:
+- 1xx: informational
+- 2xx: success - 200 OK, 201 Created, 204 No Content
+- 3xx: redirection - 301 Moved Permanently, 304 Not Modified
+- 4xx: client error - 400 Bad Request, 401 Unauthorized, 403 Forbidden, 404 Not Found, 409 Conflict, 422 Unprocessable Entity, 429 Too Many Requests
+- 5xx: server error - 500 Internal Server Error, 502 Bad Gateway, 503 Service Unavailable, 504 Gateway Timeout
+HI: Server ye 3-digit codes return karta hai request ka result batane ke liye:
+- 1xx: informational
+- 2xx: success - 200 OK, 201 Created, 204 No Content
+- 3xx: redirection - 301 Moved Permanently, 304 Not Modified
+- 4xx: client error - 400 Bad Request, 401 Unauthorized, 403 Forbidden, 404 Not Found, 409 Conflict, 422 Unprocessable Entity, 429 Too Many Requests
+- 5xx: server error - 500 Internal Server Error, 502 Bad Gateway, 503 Service Unavailable, 504 Gateway Timeout
+
+
+Q22. How do you design a scalable REST API? / Scalable REST API kaise design karte ho?
+EN:
+- Keep it stateless so any instance can serve any request.
+- Use clear resource naming (nouns, plural) and API versioning (/v1/).
+- Add pagination, filtering, and sorting.
+- Cache responses (Redis, HTTP cache headers, CDN).
+- Add rate limiting and compression.
+- Optimize DB: indexes, read replicas, connection pooling.
+- Run behind a load balancer with horizontal scaling.
+- Use queues for slow/background work.
+- Add monitoring and logging.
+HI:
+- API ko stateless rakho taaki koi bhi instance koi bhi request serve kar sake.
+- Clear resource naming (nouns, plural) aur API versioning (/v1/) use karo.
+- Pagination, filtering aur sorting add karo.
+- Responses cache karo (Redis, HTTP cache headers, CDN).
+- Rate limiting aur compression lagao.
+- DB optimize karo: indexes, read replicas, connection pooling.
+- Load balancer ke peeche horizontal scaling karo.
+- Slow/background kaam ke liye queues use karo.
+- Monitoring aur logging add karo.
+
+
+Q23. How do you implement authentication and authorization? / Authentication aur authorization kaise implement karte ho?
+EN:
+- Authentication = who are you (login). Verify credentials (hash passwords with bcrypt), then issue a JWT/session. OAuth2/SSO for third-party login.
+- Authorization = what are you allowed to do. Implement RBAC/permissions via middleware that checks the user's role/claims before the route runs.
+Flow: login -> server verifies -> returns access token (+ refresh token) -> client sends "Authorization: Bearer <token>" -> auth middleware verifies token and attaches user to req -> role middleware checks permission.
+HI:
+- Authentication = aap kaun ho (login). Credentials verify karo (passwords bcrypt se hash karo), phir JWT/session issue karo. Third-party login ke liye OAuth2/SSO.
+- Authorization = aap kya kar sakte ho. RBAC/permissions middleware se implement karte hain jo route chalne se pehle user ka role/claims check karta hai.
+Flow: login -> server verify karta hai -> access token (+ refresh token) deta hai -> client "Authorization: Bearer <token>" bhejta hai -> auth middleware token verify karke user ko req mein attach karta hai -> role middleware permission check karta hai.
+
+
+Q24. What is JWT? / JWT kya hota hai?
+EN: JWT (JSON Web Token) is a compact, signed token used to securely transmit claims between client and server. It has 3 parts: header.payload.signature (base64url encoded). The server signs it with a secret/private key, so it can verify it without storing sessions (stateless). Best practices: short-lived access tokens + refresh tokens, HTTPS only, never put sensitive data in the payload (it is encoded, not encrypted).
+HI: JWT (JSON Web Token) ek compact, signed token hai jo client aur server ke beech claims securely bhejne ke liye use hota hai. Isme 3 parts hote hain: header.payload.signature (base64url encoded). Server ise secret/private key se sign karta hai, isliye bina session store kiye verify kar sakta hai (stateless). Best practices: short-lived access token + refresh token, sirf HTTPS, payload mein sensitive data kabhi mat daalo (ye encoded hota hai, encrypted nahi).
+
+
+Q25. How do you implement API validation? / API validation kaise implement karte ho?
+EN: Validate all incoming data (body, params, query, headers) before processing, using libraries like Joi, Zod, class-validator, or express-validator. Put validation in a middleware, return 400/422 with clear error messages, sanitize input to prevent injection, and validate on the server even if the frontend validates too.
+HI: Processing se pehle saara incoming data (body, params, query, headers) validate karo, Joi, Zod, class-validator ya express-validator jaisi libraries se. Validation ko middleware mein rakho, clear error messages ke saath 400/422 return karo, injection rokne ke liye input sanitize karo, aur frontend validation hone ke baad bhi server par validate zaroor karo.
+
+
+Q26. How do you handle API errors? / API errors kaise handle karte ho?
+EN: Use a centralized error-handling middleware, custom error classes, correct HTTP status codes, and a consistent response format such as { "success": false, "code": "USER_NOT_FOUND", "message": "User not found" }. Log the full error internally (with request ID), but hide stack traces and internal details from clients in production. Handle async errors with try/catch or a wrapper.
+HI: Centralized error-handling middleware, custom error classes, sahi HTTP status codes aur ek consistent response format use karo jaise { "success": false, "code": "USER_NOT_FOUND", "message": "User not found" }. Full error ko internally log karo (request ID ke saath), lekin production mein stack trace aur internal details client ko mat dikhao. Async errors ko try/catch ya wrapper se handle karo.
+
+
+Q27. How do you implement pagination? / Pagination kaise implement karte ho?
+EN:
+- Offset/limit: GET /users?page=2&limit=10 -> skip=(page-1)*limit. Simple but slow on huge tables.
+- Cursor-based: GET /users?cursor=<lastId>&limit=10 -> uses the last item's id/timestamp. Faster and stable for large/real-time data.
+Return metadata: total, page, limit, nextCursor/hasNext. Always set a max limit.
+HI:
+- Offset/limit: GET /users?page=2&limit=10 -> skip=(page-1)*limit. Simple hai par bade tables par slow.
+- Cursor-based: GET /users?cursor=<lastId>&limit=10 -> last item ka id/timestamp use hota hai. Bade/real-time data ke liye fast aur stable.
+Metadata return karo: total, page, limit, nextCursor/hasNext. Hamesha ek max limit set karo.
+
+
+Q28. How do you secure REST APIs? / REST APIs ko secure kaise karte ho?
+EN:
+- HTTPS/TLS everywhere
+- Strong authentication (JWT/OAuth2) and authorization (RBAC)
+- Input validation and sanitization (prevent SQL/NoSQL injection, XSS)
+- Parameterized queries / ORM
+- Rate limiting and throttling (prevent brute force/DDoS)
+- Helmet for secure headers, proper CORS config
+- Keep secrets in env variables / secret manager
+- Hash passwords (bcrypt/argon2)
+- Update dependencies (npm audit)
+- Logging and monitoring; do not leak sensitive info in errors
+HI:
+- Har jagah HTTPS/TLS
+- Strong authentication (JWT/OAuth2) aur authorization (RBAC)
+- Input validation aur sanitization (SQL/NoSQL injection, XSS se bachne ke liye)
+- Parameterized queries / ORM
+- Rate limiting aur throttling (brute force/DDoS rokne ke liye)
+- Secure headers ke liye Helmet, sahi CORS config
+- Secrets ko env variables / secret manager mein rakho
+- Passwords hash karo (bcrypt/argon2)
+- Dependencies update rakho (npm audit)
+- Logging aur monitoring; errors mein sensitive info leak mat karo
+
+
+---------------------------------------------------------------------
+4. MICROSERVICES
+---------------------------------------------------------------------
+
+Q29. What are microservices? / Microservices kya hoti hain?
+EN: Microservices is an architecture where an application is split into small, independent services, each handling one business capability (e.g., user, order, payment). Each service has its own codebase and usually its own database, is deployed independently, and communicates over APIs or messages.
+HI: Microservices ek architecture hai jisme application ko chhoti, independent services mein baanta jata hai, har service ek business capability handle karti hai (jaise user, order, payment). Har service ka apna codebase aur aam taur par apna database hota hai, independently deploy hoti hai, aur APIs ya messages se communicate karti hai.
+
+
+Q30. Monolithic vs microservices architecture? / Monolithic aur microservices mein difference?
+EN:
+- Monolith: one single codebase and deployable unit. Simple to build, test, and deploy initially, but hard to scale parts independently, and a small change needs full redeploy; one bug can bring everything down.
+- Microservices: many small services. Independent deploy/scale and fault isolation, but more complexity (networking, monitoring, data consistency).
+Start with a monolith for small apps; move to microservices when scale/team size demands it.
+HI:
+- Monolith: ek hi codebase aur ek hi deployable unit. Shuru mein build, test, deploy karna aasan, lekin parts ko alag scale nahi kar sakte, chhote change ke liye bhi poora redeploy, aur ek bug se sab down ho sakta hai.
+- Microservices: bahut saari chhoti services. Independent deploy/scale aur fault isolation, lekin complexity zyada (networking, monitoring, data consistency).
+Chhote apps ke liye monolith se start karo; scale/team size badhne par microservices mein jao.
+
+
+Q31. Advantages and disadvantages of microservices? / Microservices ke advantages aur disadvantages?
+EN:
+Advantages: independent deployment, scale only what is needed, technology flexibility, fault isolation, smaller codebases, faster team autonomy.
+Disadvantages: operational complexity, network latency and failures, distributed transactions and data consistency, harder debugging/testing, need for DevOps maturity (CI/CD, monitoring, tracing), higher infrastructure cost.
+HI:
+Advantages: independent deployment, sirf zaroori service ko scale karna, technology flexibility, fault isolation, chhote codebases, teams ki autonomy.
+Disadvantages: operational complexity, network latency aur failures, distributed transactions aur data consistency, debugging/testing mushkil, DevOps maturity chahiye (CI/CD, monitoring, tracing), infra cost zyada.
+
+
+Q32. How do microservices communicate with each other? / Microservices ek dusre se kaise communicate karti hain?
+EN:
+- Synchronous: REST over HTTP, gRPC, GraphQL (request-response, caller waits).
+- Asynchronous: message brokers/event streaming like RabbitMQ, Kafka, SQS (publish/subscribe or queues; services are loosely coupled).
+Often both are used: sync for queries, async for events/background tasks.
+HI:
+- Synchronous: HTTP par REST, gRPC, GraphQL (request-response, caller wait karta hai).
+- Asynchronous: RabbitMQ, Kafka, SQS jaise message brokers/event streaming (publish/subscribe ya queues; services loosely coupled rehti hain).
+Aksar dono use hote hain: queries ke liye sync, events/background tasks ke liye async.
+
+
+Q33. REST vs RabbitMQ for service communication? / Service communication ke liye REST vs RabbitMQ?
+EN:
+- REST: synchronous, simple, easy to debug, immediate response. But services are tightly coupled; if the target is down the call fails, and the caller waits.
+- RabbitMQ: asynchronous message broker. Loose coupling, messages are buffered/retried if a consumer is down, supports pub/sub and work queues, good for spikes and background jobs. But adds infrastructure, eventual consistency, and harder debugging.
+Use REST when you need an immediate answer; use RabbitMQ for events, long tasks, and decoupling.
+HI:
+- REST: synchronous, simple, debug karna aasan, turant response. Lekin services tightly coupled hoti hain; target down ho to call fail ho jaata hai aur caller wait karta hai.
+- RabbitMQ: asynchronous message broker. Loose coupling, consumer down ho to messages buffer/retry hote hain, pub/sub aur work queues support, spikes aur background jobs ke liye acha. Lekin infra badhta hai, eventual consistency aur debugging mushkil.
+Turant answer chahiye to REST; events, lambe tasks aur decoupling ke liye RabbitMQ.
+
+
+Q34. What is an API Gateway? / API Gateway kya hota hai?
+EN: An API Gateway is a single entry point for all client requests to the backend microservices. It handles routing, authentication, rate limiting, load balancing, request/response transformation, caching, SSL termination, and logging, and can aggregate responses from multiple services. Examples: Kong, AWS API Gateway, NGINX, Apigee.
+HI: API Gateway backend microservices tak jaane wali saari client requests ka ek single entry point hota hai. Ye routing, authentication, rate limiting, load balancing, request/response transformation, caching, SSL termination aur logging handle karta hai, aur multiple services ke responses ko combine bhi kar sakta hai. Examples: Kong, AWS API Gateway, NGINX, Apigee.
+
+
+Q35. How do you handle failures between microservices? / Microservices ke beech failures kaise handle karte ho?
+EN:
+- Timeouts so calls don't hang forever
+- Retries with exponential backoff (and jitter)
+- Circuit breaker (stop calling a failing service; e.g., opossum library)
+- Fallbacks / graceful degradation
+- Bulkhead pattern (isolate resources)
+- Idempotent operations so retries are safe
+- Message queues with dead-letter queues
+- Health checks, monitoring, alerts, distributed tracing
+HI:
+- Timeouts taaki calls hamesha hang na rahein
+- Exponential backoff (aur jitter) ke saath retries
+- Circuit breaker (fail ho rahi service ko call karna band kar do; jaise opossum library)
+- Fallbacks / graceful degradation
+- Bulkhead pattern (resources isolate karo)
+- Idempotent operations taaki retry safe ho
+- Dead-letter queues ke saath message queues
+- Health checks, monitoring, alerts, distributed tracing
+
+
+Q36. What is service discovery? / Service discovery kya hoti hai?
+EN: In dynamic environments, service instances start, stop, and change IPs constantly. Service discovery lets services find each other automatically using a registry. Client-side: the client queries a registry (Consul, Eureka) and picks an instance. Server-side: a load balancer/router does the lookup. In Kubernetes, built-in DNS and Services provide discovery (e.g., http://order-service).
+HI: Dynamic environments mein service instances start, stop hote rehte hain aur unke IP badalte rehte hain. Service discovery se services ek registry ke zariye ek dusre ko automatically dhoondh leti hain. Client-side: client registry (Consul, Eureka) se poochta hai aur instance chunta hai. Server-side: load balancer/router lookup karta hai. Kubernetes mein built-in DNS aur Services discovery dete hain (jaise http://order-service).
+
+
+Q37. How do you handle transactions across multiple microservices? / Multiple microservices ke across transactions kaise handle karte ho?
+EN: Traditional ACID/2-phase commit does not scale well across services. Use the Saga pattern: a sequence of local transactions, each publishing an event/triggering the next; if one step fails, compensating transactions undo previous steps. Two styles: choreography (services react to events) and orchestration (a central orchestrator coordinates). Also use the Outbox pattern for reliable event publishing, idempotent consumers, and accept eventual consistency.
+HI: Traditional ACID/2-phase commit services ke across achha scale nahi karta. Saga pattern use karte hain: local transactions ki sequence, har step event publish karta hai ya agla step trigger karta hai; koi step fail ho to compensating transactions pichhle steps ko undo kar deti hain. Do styles: choreography (services events par react karti hain) aur orchestration (ek central orchestrator coordinate karta hai). Saath mein reliable event publishing ke liye Outbox pattern, idempotent consumers, aur eventual consistency accept karna.
+
+
+Q38. How would you design a scalable microservices application? / Scalable microservices application kaise design karoge?
+EN:
+1. Split services by business domain (DDD): user, product, order, payment.
+2. Database per service.
+3. API Gateway as the single entry point (auth, rate limiting).
+4. Sync (REST/gRPC) for queries; async (RabbitMQ/Kafka) for events.
+5. Containerize with Docker; orchestrate with Kubernetes for auto-scaling and self-healing.
+6. Caching (Redis), CDN, DB replicas.
+7. Resilience: circuit breakers, retries, timeouts.
+8. Centralized logging, metrics, tracing (ELK, Prometheus, Grafana, Jaeger).
+9. CI/CD per service.
+10. Security: service-to-service auth, secrets management.
+HI:
+1. Business domain ke hisaab se services baanto (DDD): user, product, order, payment.
+2. Har service ka apna database.
+3. API Gateway single entry point (auth, rate limiting).
+4. Queries ke liye sync (REST/gRPC); events ke liye async (RabbitMQ/Kafka).
+5. Docker se containerize karo; auto-scaling aur self-healing ke liye Kubernetes.
+6. Caching (Redis), CDN, DB replicas.
+7. Resilience: circuit breakers, retries, timeouts.
+8. Centralized logging, metrics, tracing (ELK, Prometheus, Grafana, Jaeger).
+9. Har service ka alag CI/CD.
+10. Security: service-to-service auth, secrets management.
+
+
+---------------------------------------------------------------------
+5. DOCKER
+---------------------------------------------------------------------
+
+Q39. What is Docker? / Docker kya hai?
+EN: Docker is a containerization platform that packages an application with all its dependencies (runtime, libraries, config) into a lightweight, portable container. It runs the same way on any machine, solving the "works on my machine" problem. Containers share the host OS kernel, so they are lighter and faster than virtual machines.
+HI: Docker ek containerization platform hai jo application ko uski saari dependencies (runtime, libraries, config) ke saath ek lightweight, portable container mein package karta hai. Ye har machine par same tarah chalta hai, "mere machine par to chal raha tha" problem solve karta hai. Containers host OS ka kernel share karte hain, isliye virtual machines se halke aur fast hote hain.
+
+
+Q40. Docker image vs container? / Docker image aur container mein difference?
+EN:
+- Image: a read-only template/blueprint containing the app, dependencies, and instructions (built from a Dockerfile).
+- Container: a running instance of an image, with its own writable layer, process, and network.
+Analogy: image = class, container = object. One image can create many containers.
+HI:
+- Image: read-only template/blueprint jisme app, dependencies aur instructions hote hain (Dockerfile se banta hai).
+- Container: image ka running instance, jiska apna writable layer, process aur network hota hai.
+Analogy: image = class, container = object. Ek image se kai containers ban sakte hain.
+
+
+Q41. What is a Dockerfile? / Dockerfile kya hoti hai?
+EN: A Dockerfile is a text file with step-by-step instructions (FROM, WORKDIR, COPY, RUN, ENV, EXPOSE, CMD/ENTRYPOINT) that Docker uses to build an image. Each instruction creates a cached layer.
+HI: Dockerfile ek text file hai jisme step-by-step instructions (FROM, WORKDIR, COPY, RUN, ENV, EXPOSE, CMD/ENTRYPOINT) hote hain jinse Docker image build karta hai. Har instruction ek cached layer banata hai.
+
+
+Q42. Explain a typical Node.js Dockerfile. / Ek typical Node.js Dockerfile explain kijiye.
+EN:
+  FROM node:20-alpine          # small base image with Node
+  WORKDIR /app                 # working directory inside container
+  COPY package*.json ./        # copy only package files first (layer caching)
+  RUN npm ci --omit=dev        # install production dependencies
+  COPY . .                     # copy the rest of the source code
+  ENV NODE_ENV=production      # set environment variable
+  EXPOSE 3000                  # document the app port
+  CMD ["node", "dist/index.js"] # command to start the app
+Tips: copy package.json before source so dependency layer is cached; use a .dockerignore (node_modules, .git); use multi-stage build for TypeScript (build stage compiles, final stage has only dist + prod deps); run as non-root user.
+HI: Upar wali Dockerfile dekhiye. Step by step: node:20-alpine chhota base image hai; WORKDIR container ke andar working folder set karta hai; pehle sirf package.json copy karte hain taaki dependency layer cache ho jaye; npm ci --omit=dev se production dependencies install hoti hain; phir baaki source code copy hota hai; ENV se environment variable set; EXPOSE port document karta hai; CMD app start karne ki command hai.
+Tips: .dockerignore use karo (node_modules, .git); TypeScript ke liye multi-stage build (build stage compile kare, final stage mein sirf dist + prod deps ho); non-root user se run karo.
+
+
+Q43. What is Docker Compose? / Docker Compose kya hai?
+EN: Docker Compose is a tool to define and run multi-container applications using a single docker-compose.yml file (services, ports, volumes, networks, env vars). One command - docker compose up - starts everything, e.g., Node app + MongoDB + Redis. Great for local development and testing.
+HI: Docker Compose multi-container applications ko ek hi docker-compose.yml file se define aur run karne ka tool hai (services, ports, volumes, networks, env vars). Ek command - docker compose up - se sab kuch start ho jata hai, jaise Node app + MongoDB + Redis. Local development aur testing ke liye bahut useful.
+
+
+Q44. How do you pass environment variables to Docker? / Docker mein environment variables kaise pass karte ho?
+EN:
+- docker run -e KEY=value image
+- docker run --env-file .env image
+- ENV KEY=value in the Dockerfile (for non-secret defaults)
+- In Compose: "environment:" or "env_file:" sections
+- For sensitive values: Docker secrets, Kubernetes Secrets, or a cloud secret manager - never bake secrets into the image.
+HI:
+- docker run -e KEY=value image
+- docker run --env-file .env image
+- Dockerfile mein ENV KEY=value (non-secret defaults ke liye)
+- Compose mein "environment:" ya "env_file:" section
+- Sensitive values ke liye: Docker secrets, Kubernetes Secrets ya cloud secret manager - secrets ko kabhi image mein bake mat karo.
+
+
+Q45. How do you reduce Docker image size? / Docker image ka size kaise kam karte ho?
+EN:
+- Use small base images (alpine, slim, distroless)
+- Multi-stage builds (leave build tools behind)
+- Install only production dependencies (npm ci --omit=dev)
+- Use .dockerignore
+- Combine RUN commands and clean caches (npm cache clean --force)
+- Avoid copying unnecessary files
+HI:
+- Chhote base images use karo (alpine, slim, distroless)
+- Multi-stage builds (build tools peeche chhod do)
+- Sirf production dependencies install karo (npm ci --omit=dev)
+- .dockerignore use karo
+- RUN commands combine karo aur caches clean karo (npm cache clean --force)
+- Unnecessary files copy mat karo
+
+
+Q46. How do you debug a Docker container? / Docker container ko debug kaise karte ho?
+EN:
+- docker ps -a: check status and exit codes
+- docker logs -f <container>: view logs
+- docker exec -it <container> sh: open a shell inside
+- docker inspect <container>: config, env, network, mounts
+- docker stats: CPU/memory usage
+- docker events and checking resource limits/ports
+- Run the image interactively (docker run -it image sh) to reproduce startup issues
+- Expose the Node inspector port (--inspect) for attaching a debugger
+HI:
+- docker ps -a: status aur exit codes dekho
+- docker logs -f <container>: logs dekho
+- docker exec -it <container> sh: andar shell kholo
+- docker inspect <container>: config, env, network, mounts
+- docker stats: CPU/memory usage
+- docker events aur resource limits/ports check karo
+- Startup issues reproduce karne ke liye image ko interactively chalao (docker run -it image sh)
+- Debugger attach karne ke liye Node inspector port (--inspect) expose karo
+
+
+Q47. How do you deploy a Dockerized Node.js application? / Dockerized Node.js application kaise deploy karte ho?
+EN:
+1. Build the image: docker build -t myapp:1.0 .
+2. Test locally: docker run -p 3000:3000 myapp:1.0
+3. Push to a registry (Docker Hub / AWS ECR): docker push
+4. On the server, pull and run it (docker run -d --restart unless-stopped ...) behind Nginx/load balancer, or deploy via ECS, EKS/Kubernetes, or Docker Swarm.
+5. Automate with CI/CD (Jenkins/GitHub Actions): build -> test -> push -> deploy.
+6. Provide env vars/secrets at runtime and monitor logs/health.
+HI:
+1. Image build karo: docker build -t myapp:1.0 .
+2. Local test: docker run -p 3000:3000 myapp:1.0
+3. Registry (Docker Hub / AWS ECR) par push karo: docker push
+4. Server par pull karke run karo (docker run -d --restart unless-stopped ...) Nginx/load balancer ke peeche, ya ECS, EKS/Kubernetes, Docker Swarm se deploy karo.
+5. CI/CD (Jenkins/GitHub Actions) se automate karo: build -> test -> push -> deploy.
+6. Env vars/secrets runtime par do aur logs/health monitor karo.
+
+
+---------------------------------------------------------------------
+6. KUBERNETES
+---------------------------------------------------------------------
+
+Q48. What is Kubernetes? / Kubernetes kya hai?
+EN: Kubernetes (K8s) is an open-source container orchestration platform that automates deploying, scaling, load balancing, self-healing, and updating containerized applications across a cluster of machines.
+HI: Kubernetes (K8s) ek open-source container orchestration platform hai jo machines ke cluster par containerized applications ko deploy, scale, load balance, self-heal aur update karne ko automate karta hai.
+
+
+Q49. What is a Pod? / Pod kya hota hai?
+EN: A Pod is the smallest deployable unit in Kubernetes. It wraps one or more tightly coupled containers that share the same network (IP/ports) and storage volumes. Pods are ephemeral - if one dies, a new one is created with a different IP.
+HI: Pod Kubernetes ki sabse chhoti deployable unit hai. Ye ek ya zyada tightly coupled containers ko wrap karta hai jo same network (IP/ports) aur storage volumes share karte hain. Pods ephemeral hote hain - ek mar jaye to naya pod alag IP ke saath ban jata hai.
+
+
+Q50. What is a Deployment? / Deployment kya hota hai?
+EN: A Deployment is a Kubernetes object that declaratively manages a set of identical Pods through ReplicaSets. You specify the desired number of replicas and the image; it ensures that state, supports rolling updates with zero downtime, and rollbacks (kubectl rollout undo).
+HI: Deployment ek Kubernetes object hai jo ReplicaSets ke zariye identical Pods ke set ko declaratively manage karta hai. Aap replicas ki desired sankhya aur image batate ho; ye wahi state maintain karta hai, zero downtime rolling updates aur rollbacks (kubectl rollout undo) support karta hai.
+
+
+Q51. What is a Kubernetes Service? / Kubernetes Service kya hoti hai?
+EN: A Service gives a stable IP/DNS name and load balances traffic across a set of Pods (selected by labels), since Pod IPs keep changing. Types: ClusterIP (internal only, default), NodePort (exposes on each node's port), LoadBalancer (cloud load balancer), ExternalName. An Ingress is often used on top for HTTP routing.
+HI: Service ek stable IP/DNS naam deti hai aur labels se select kiye gaye Pods ke beech traffic load balance karti hai, kyunki Pod IPs badalte rehte hain. Types: ClusterIP (sirf internal, default), NodePort (har node ke port par expose), LoadBalancer (cloud load balancer), ExternalName. HTTP routing ke liye aksar upar Ingress use hota hai.
+
+
+Q52. What is ConfigMap? / ConfigMap kya hota hai?
+EN: A ConfigMap stores non-sensitive configuration as key-value pairs (e.g., API URLs, log level). Pods consume it as environment variables or mounted files, so configuration is separated from the container image and can change without rebuilding.
+HI: ConfigMap non-sensitive configuration ko key-value pairs mein store karta hai (jaise API URLs, log level). Pods ise environment variables ya mounted files ke roop mein use karte hain, isliye configuration image se alag rehta hai aur bina rebuild kiye badal sakta hai.
+
+
+Q53. What is Secret? / Secret kya hota hai?
+EN: A Secret stores sensitive data such as passwords, API keys, and tokens. Like ConfigMap it can be exposed as env vars or files. Note: values are only base64-encoded by default, not encrypted - so enable encryption at rest, restrict access with RBAC, or use external secret managers (Vault, AWS Secrets Manager).
+HI: Secret passwords, API keys, tokens jaisa sensitive data store karta hai. ConfigMap ki tarah ise env vars ya files ke roop mein de sakte hain. Dhyan rahe: values default mein sirf base64-encoded hoti hain, encrypted nahi - isliye encryption at rest enable karo, RBAC se access restrict karo, ya external secret managers (Vault, AWS Secrets Manager) use karo.
+
+
+Q54. How does Kubernetes scale an application? / Kubernetes application ko scale kaise karta hai?
+EN:
+- Manual: kubectl scale deployment myapp --replicas=5
+- Horizontal Pod Autoscaler (HPA): automatically adds/removes Pods based on CPU/memory or custom metrics
+- Vertical Pod Autoscaler (VPA): adjusts CPU/memory requests of Pods
+- Cluster Autoscaler: adds/removes worker nodes when Pods can't be scheduled
+Requires resource requests/limits to be defined.
+HI:
+- Manual: kubectl scale deployment myapp --replicas=5
+- Horizontal Pod Autoscaler (HPA): CPU/memory ya custom metrics ke basis par Pods automatically add/remove karta hai
+- Vertical Pod Autoscaler (VPA): Pods ki CPU/memory requests adjust karta hai
+- Cluster Autoscaler: Pods schedule na ho paane par worker nodes add/remove karta hai
+Iske liye resource requests/limits define hone chahiye.
+
+
+Q55. Difference between Deployment and Service? / Deployment aur Service mein difference?
+EN:
+- Deployment: manages the Pods' lifecycle - how many replicas, which image, rolling updates, rollbacks, self-healing.
+- Service: provides stable networking - a fixed IP/DNS and load balancing to those Pods.
+They work together: the Deployment runs the Pods; the Service exposes them.
+HI:
+- Deployment: Pods ka lifecycle manage karta hai - kitne replicas, kaunsi image, rolling updates, rollbacks, self-healing.
+- Service: stable networking deti hai - fixed IP/DNS aur un Pods tak load balancing.
+Dono saath kaam karte hain: Deployment Pods chalata hai; Service unhe expose karti hai.
+
+
+Q56. How would you deploy a Node.js application on Kubernetes? / Node.js application ko Kubernetes par kaise deploy karoge?
+EN:
+1. Dockerize the app and push the image to a registry (ECR/Docker Hub).
+2. Write deployment.yaml (replicas, image, port, env from ConfigMap/Secret, resource requests/limits, readiness and liveness probes).
+3. Write service.yaml (ClusterIP/LoadBalancer) and optionally an Ingress for domain/SSL.
+4. Apply: kubectl apply -f deployment.yaml -f service.yaml
+5. Verify: kubectl get pods,svc ; kubectl logs <pod>
+6. Add HPA for autoscaling; use rolling updates for new versions (kubectl set image / rollout status) and rollout undo if needed.
+7. Automate via CI/CD (or Helm / ArgoCD).
+HI:
+1. App ko Dockerize karo aur image registry (ECR/Docker Hub) par push karo.
+2. deployment.yaml likho (replicas, image, port, ConfigMap/Secret se env, resource requests/limits, readiness aur liveness probes).
+3. service.yaml likho (ClusterIP/LoadBalancer) aur domain/SSL ke liye optional Ingress.
+4. Apply karo: kubectl apply -f deployment.yaml -f service.yaml
+5. Verify karo: kubectl get pods,svc ; kubectl logs <pod>
+6. Autoscaling ke liye HPA lagao; naye versions ke liye rolling update (kubectl set image / rollout status) aur zaroorat par rollout undo.
+7. CI/CD (ya Helm / ArgoCD) se automate karo.
+
+
+---------------------------------------------------------------------
+7. WEBPACK / VITE / BABEL
+---------------------------------------------------------------------
+
+Q57. What is Webpack? / Webpack kya hai?
+EN: Webpack is a module bundler that takes your JavaScript modules (and assets like CSS, images) starting from an entry point, builds a dependency graph, and outputs optimized bundles. It uses loaders (transform files, e.g., babel-loader, ts-loader, css-loader) and plugins (extra tasks like minification, HTML generation) configured in webpack.config.js.
+HI: Webpack ek module bundler hai jo entry point se shuru karke aapke JavaScript modules (aur CSS, images jaise assets) ka dependency graph banata hai aur optimized bundles output karta hai. Ye loaders (files transform karte hain, jaise babel-loader, ts-loader, css-loader) aur plugins (minification, HTML generation jaise extra kaam) use karta hai, jo webpack.config.js mein configure hote hain.
+
+
+Q58. What is Vite? / Vite kya hai?
+EN: Vite is a modern, fast frontend build tool. In development it serves source code over native ES modules and pre-bundles dependencies with esbuild, so the dev server starts almost instantly with very fast Hot Module Replacement (HMR). For production it bundles with Rollup. It works out of the box with TypeScript, JSX, and CSS.
+HI: Vite ek modern, fast frontend build tool hai. Development mein ye source code ko native ES modules se serve karta hai aur dependencies ko esbuild se pre-bundle karta hai, isliye dev server lagbhag turant start hota hai aur HMR bahut fast hota hai. Production ke liye Rollup se bundle karta hai. TypeScript, JSX aur CSS ke saath out of the box kaam karta hai.
+
+
+Q59. Webpack vs Vite? / Webpack aur Vite mein difference?
+EN:
+- Dev startup: Webpack bundles everything before serving (slower on big apps); Vite serves via native ESM (very fast).
+- HMR: Vite is faster.
+- Config: Vite is simpler with good defaults; Webpack is more complex but highly configurable.
+- Production build: Webpack uses its own bundler; Vite uses Rollup.
+- Ecosystem: Webpack has a larger, older plugin ecosystem and handles complex legacy setups (e.g., module federation); Vite is the modern default for new projects.
+HI:
+- Dev startup: Webpack serve karne se pehle sab bundle karta hai (bade apps mein slow); Vite native ESM se serve karta hai (bahut fast).
+- HMR: Vite fast hai.
+- Config: Vite simple hai aur achhe defaults deta hai; Webpack complex lekin highly configurable.
+- Production build: Webpack apna bundler use karta hai; Vite Rollup use karta hai.
+- Ecosystem: Webpack ka plugin ecosystem bada aur purana hai aur complex legacy setups (jaise module federation) handle karta hai; Vite naye projects ke liye modern default hai.
+
+
+Q60. What is Babel? / Babel kya hai?
+EN: Babel is a JavaScript compiler/transpiler that converts modern JavaScript (ES6+, JSX, TypeScript via preset) into backward-compatible JavaScript that older browsers/Node versions can run. It works through presets (e.g., @babel/preset-env, preset-react) and plugins, and can add polyfills.
+HI: Babel ek JavaScript compiler/transpiler hai jo modern JavaScript (ES6+, JSX, preset ke zariye TypeScript) ko backward-compatible JavaScript mein convert karta hai jo purane browsers/Node versions chala sakein. Ye presets (jaise @babel/preset-env, preset-react) aur plugins se kaam karta hai aur polyfills bhi add kar sakta hai.
+
+
+Q61. Why do we need a bundler? / Bundler ki zaroorat kyun padti hai?
+EN: A bundler combines many modules into a few optimized files so the browser makes fewer requests; resolves imports/dependencies (including npm packages); transpiles modern syntax (Babel/TS); minifies and tree-shakes code; handles assets (CSS, images, fonts); enables code splitting, hashing for caching, and dev features like HMR.
+HI: Bundler kai modules ko kuch optimized files mein combine karta hai taaki browser kam requests kare; imports/dependencies (npm packages samet) resolve karta hai; modern syntax ko transpile karta hai (Babel/TS); code ko minify aur tree-shake karta hai; assets (CSS, images, fonts) handle karta hai; code splitting, caching ke liye hashing, aur HMR jaise dev features deta hai.
+
+
+Q62. What is tree shaking? / Tree shaking kya hoti hai?
+EN: Tree shaking is a build optimization that removes unused (dead) code from the final bundle. It relies on static ES module syntax (import/export), so the bundler can see which exports are never used. Tips: use ES modules, avoid side effects (set "sideEffects": false in package.json), and import only what you need (import { debounce } from 'lodash-es').
+HI: Tree shaking ek build optimization hai jo final bundle se unused (dead) code hata deti hai. Ye static ES module syntax (import/export) par depend karti hai, jisse bundler ko pata chal jata hai ki kaunse exports kabhi use nahi hue. Tips: ES modules use karo, side effects avoid karo (package.json mein "sideEffects": false), aur sirf zaroori cheez import karo (import { debounce } from 'lodash-es').
+
+
+Q63. What is code splitting? / Code splitting kya hoti hai?
+EN: Code splitting divides the bundle into smaller chunks that are loaded on demand instead of one huge file, improving initial load time. Done with dynamic import() (e.g., const Page = import('./Page')), React.lazy + Suspense for route-based splitting, and bundler config (vendor chunks, splitChunks in Webpack).
+HI: Code splitting bundle ko chhote chunks mein baant deti hai jo ek bade file ki jagah zaroorat padne par load hote hain, isse initial load time improve hota hai. Dynamic import() (jaise const Page = import('./Page')), route-based splitting ke liye React.lazy + Suspense, aur bundler config (vendor chunks, Webpack mein splitChunks) se hota hai.
+
+
+Q64. How do you optimize a frontend build? / Frontend build ko kaise optimize karte ho?
+EN:
+- Minify JS/CSS/HTML
+- Tree shaking and removing unused dependencies
+- Code splitting and lazy loading routes/components
+- Compress assets (gzip/brotli), optimize images (WebP, lazy load)
+- Content-hashed filenames for long-term caching; serve via CDN
+- Analyze bundle size (webpack-bundle-analyzer / rollup-plugin-visualizer)
+- Use production mode, source maps only as needed
+- Use persistent caching and faster tools (esbuild/SWC/Vite) to speed up the build itself
+HI:
+- JS/CSS/HTML minify karo
+- Tree shaking aur unused dependencies hatao
+- Code splitting aur routes/components ka lazy loading
+- Assets compress karo (gzip/brotli), images optimize karo (WebP, lazy load)
+- Long-term caching ke liye content-hashed filenames; CDN se serve karo
+- Bundle size analyze karo (webpack-bundle-analyzer / rollup-plugin-visualizer)
+- Production mode use karo, source maps sirf zaroorat par
+- Build ko tez karne ke liye persistent caching aur fast tools (esbuild/SWC/Vite) use karo
+
+
+---------------------------------------------------------------------
+8. CI/CD & DEPLOYMENT
+---------------------------------------------------------------------
+
+Q65. What is CI/CD? / CI/CD kya hota hai?
+EN:
+- CI (Continuous Integration): developers merge code frequently, and every commit automatically triggers build, lint, and tests to catch problems early.
+- CD (Continuous Delivery): every passing build is automatically prepared for release; production deploy needs a manual approval.
+- CD (Continuous Deployment): every passing build is deployed to production automatically.
+Benefits: faster releases, fewer bugs, repeatable deployments.
+HI:
+- CI (Continuous Integration): developers frequently code merge karte hain, aur har commit par build, lint aur tests automatically chalte hain taaki problems jaldi pakdi jayein.
+- CD (Continuous Delivery): har passing build automatically release ke liye ready hota hai; production deploy ke liye manual approval chahiye.
+- CD (Continuous Deployment): har passing build automatically production par deploy ho jata hai.
+Fayde: fast releases, kam bugs, repeatable deployments.
+
+
+Q66. Explain your deployment process. / Apna deployment process explain kijiye.
+EN (sample - adapt to your real project): Developer creates a feature branch -> raises a Pull Request -> code review + automated checks (lint, unit tests) -> merge to main -> CI pipeline builds the app and a Docker image, runs tests -> image is pushed to a registry (ECR) -> auto-deploy to staging -> QA/smoke tests -> approval -> deploy to production (rolling update on Kubernetes/ECS or PM2 + Nginx on EC2) -> post-deploy health checks and monitoring -> rollback if issues.
+HI (sample - apne real project ke hisaab se badlo): Developer feature branch banata hai -> Pull Request raise karta hai -> code review + automated checks (lint, unit tests) -> main mein merge -> CI pipeline app aur Docker image build karti hai, tests chalati hai -> image registry (ECR) par push -> staging par auto-deploy -> QA/smoke tests -> approval -> production par deploy (Kubernetes/ECS par rolling update ya EC2 par PM2 + Nginx) -> deploy ke baad health checks aur monitoring -> issue ho to rollback.
+
+
+Q67. How have you used Jenkins or GitHub Actions? / Aapne Jenkins ya GitHub Actions kaise use kiya hai?
+EN (sample):
+- GitHub Actions: workflow in .github/workflows/ci.yml triggered on push/PR: checkout -> setup-node -> npm ci -> lint -> test -> build -> docker build and push -> deploy via SSH/kubectl/AWS CLI. Secrets stored in GitHub Secrets; separate jobs for staging/production with environments and approvals.
+- Jenkins: a Jenkinsfile (declarative pipeline) with stages: Checkout, Install, Test, Build, Docker Build/Push, Deploy; triggered by Git webhooks; credentials stored in Jenkins Credentials; notifications on failure (Slack/email).
+HI (sample):
+- GitHub Actions: .github/workflows/ci.yml mein workflow jo push/PR par chalta hai: checkout -> setup-node -> npm ci -> lint -> test -> build -> docker build aur push -> SSH/kubectl/AWS CLI se deploy. Secrets GitHub Secrets mein; staging/production ke liye alag jobs, environments aur approvals.
+- Jenkins: Jenkinsfile (declarative pipeline) jisme stages: Checkout, Install, Test, Build, Docker Build/Push, Deploy; Git webhooks se trigger; credentials Jenkins Credentials mein; failure par notifications (Slack/email).
+(Tip: interview mein bas wahi bolo jo aapne actually kiya ho.)
+
+
+Q68. What happens after code is pushed to Git? / Code Git par push hone ke baad kya hota hai?
+EN: The push triggers a webhook to the CI server (GitHub Actions/Jenkins) -> the pipeline checks out the code -> installs dependencies -> runs lint and unit/integration tests -> builds the app -> builds a Docker image and tags it (commit SHA/version) -> pushes it to the registry -> deploys to the target environment (dev/staging, then prod) -> runs health checks -> sends notifications about success/failure.
+HI: Push se CI server (GitHub Actions/Jenkins) ko webhook trigger hota hai -> pipeline code checkout karti hai -> dependencies install -> lint aur unit/integration tests -> app build -> Docker image build karke tag (commit SHA/version) -> registry par push -> target environment (dev/staging, phir prod) par deploy -> health checks -> success/failure ka notification.
+
+
+Q69. How do you deploy a Node.js application on AWS? / Node.js application AWS par kaise deploy karte ho?
+EN: Common options:
+- EC2: launch instance, install Node, clone/build code, run with PM2, put Nginx as reverse proxy with SSL, attach an Application Load Balancer and Auto Scaling Group.
+- Elastic Beanstalk: upload code, AWS handles provisioning/scaling.
+- ECS (Fargate) or EKS: Dockerize, push to ECR, run as tasks/pods behind an ALB.
+- Lambda + API Gateway: serverless for small APIs.
+Supporting services: RDS/DynamoDB (DB), S3 (files), CloudWatch (logs/metrics), Secrets Manager/SSM (secrets), Route 53 (DNS), IAM (permissions). Automate with CodePipeline or GitHub Actions.
+HI: Common options:
+- EC2: instance launch karo, Node install, code clone/build, PM2 se run, Nginx reverse proxy + SSL, Application Load Balancer aur Auto Scaling Group attach karo.
+- Elastic Beanstalk: code upload karo, provisioning/scaling AWS sambhalta hai.
+- ECS (Fargate) ya EKS: Dockerize, ECR par push, ALB ke peeche tasks/pods ke roop mein run.
+- Lambda + API Gateway: chhoti APIs ke liye serverless.
+Supporting services: RDS/DynamoDB (DB), S3 (files), CloudWatch (logs/metrics), Secrets Manager/SSM (secrets), Route 53 (DNS), IAM (permissions). CodePipeline ya GitHub Actions se automate karo.
+
+
+Q70. What is Nginx? / Nginx kya hai?
+EN: Nginx is a high-performance web server that is widely used as a reverse proxy, load balancer, and HTTP cache. For Node.js it sits in front of the app: terminates SSL/HTTPS, serves static files, forwards requests to Node (proxy_pass), load balances across multiple instances, compresses responses, and applies rate limits.
+HI: Nginx ek high-performance web server hai jo reverse proxy, load balancer aur HTTP cache ke roop mein bahut use hota hai. Node.js ke saath ye app ke aage baithta hai: SSL/HTTPS terminate karta hai, static files serve karta hai, requests Node ko forward karta hai (proxy_pass), multiple instances par load balance karta hai, responses compress karta hai aur rate limits lagata hai.
+
+
+Q71. What is PM2? / PM2 kya hai?
+EN: PM2 is a production process manager for Node.js. It keeps the app alive (auto-restart on crash), runs it in cluster mode across CPU cores (pm2 start app.js -i max), provides log management, monitoring (pm2 monit), zero-downtime reload (pm2 reload), and startup scripts so the app restarts after a server reboot (pm2 startup, pm2 save). Config via ecosystem.config.js.
+HI: PM2 Node.js ke liye production process manager hai. Ye app ko alive rakhta hai (crash par auto-restart), CPU cores par cluster mode mein run karta hai (pm2 start app.js -i max), log management, monitoring (pm2 monit), zero-downtime reload (pm2 reload), aur startup scripts deta hai taaki server reboot ke baad app wapas chal jaye (pm2 startup, pm2 save). Config ecosystem.config.js se hoti hai.
+
+
+Q72. How do you handle environment-specific configurations? / Environment-specific configurations kaise handle karte ho?
+EN:
+- Follow the 12-factor app approach: config in environment variables, not in code.
+- Use .env files locally (dotenv) and add them to .gitignore.
+- Separate config per environment (dev/staging/prod) via NODE_ENV and config files or CI/CD variables.
+- Store secrets in a secret manager (AWS Secrets Manager/SSM, Vault, Kubernetes Secrets) - never commit them.
+- In Docker/Kubernetes, inject using env/ConfigMap/Secret.
+- Validate required config at startup (Joi/Zod) so the app fails fast.
+HI:
+- 12-factor app approach follow karo: config environment variables mein, code mein nahi.
+- Local mein .env files (dotenv) use karo aur .gitignore mein daalo.
+- NODE_ENV aur config files ya CI/CD variables se har environment (dev/staging/prod) ka alag config rakho.
+- Secrets ko secret manager mein rakho (AWS Secrets Manager/SSM, Vault, Kubernetes Secrets) - kabhi commit mat karo.
+- Docker/Kubernetes mein env/ConfigMap/Secret se inject karo.
+- Startup par required config validate karo (Joi/Zod) taaki app fail-fast kare.
+
+
+Q73. How do you rollback a failed deployment? / Failed deployment ko rollback kaise karte ho?
+EN:
+- Kubernetes: kubectl rollout undo deployment/myapp
+- Docker/ECS: redeploy the previous image tag (so always version images, never rely only on :latest)
+- PM2/EC2: redeploy the previous release/Git tag; keep previous releases on disk
+- Blue-green or canary deployments make rollback instant (switch traffic back)
+- Database: use backward-compatible migrations and have down-migrations or backups ready
+- Automate rollback on failed health checks; do a post-mortem afterward.
+HI:
+- Kubernetes: kubectl rollout undo deployment/myapp
+- Docker/ECS: pichhla image tag dobara deploy karo (isliye images ko hamesha version karo, sirf :latest par depend mat karo)
+- PM2/EC2: pichhla release/Git tag redeploy karo; previous releases disk par rakho
+- Blue-green ya canary deployments mein rollback instant hota hai (traffic wapas switch karo)
+- Database: backward-compatible migrations use karo aur down-migrations ya backups ready rakho
+- Failed health checks par rollback automate karo; baad mein post-mortem karo.
+
+
+Q74. How do you monitor a production application? / Production application ko monitor kaise karte ho?
+EN:
+- Logs: structured logging (Winston/Pino) shipped to ELK / CloudWatch / Datadog
+- Metrics: CPU, memory, latency, error rate, throughput via Prometheus + Grafana or CloudWatch
+- APM/tracing: New Relic, Datadog, Elastic APM, Jaeger/OpenTelemetry
+- Error tracking: Sentry
+- Health check endpoints (/health) and uptime monitoring
+- Alerts (Slack/PagerDuty/email) on thresholds, e.g., error rate or p95 latency
+- Dashboards and regular reviews.
+HI:
+- Logs: structured logging (Winston/Pino) jo ELK / CloudWatch / Datadog mein jaye
+- Metrics: CPU, memory, latency, error rate, throughput - Prometheus + Grafana ya CloudWatch se
+- APM/tracing: New Relic, Datadog, Elastic APM, Jaeger/OpenTelemetry
+- Error tracking: Sentry
+- Health check endpoints (/health) aur uptime monitoring
+- Thresholds par alerts (Slack/PagerDuty/email), jaise error rate ya p95 latency
+- Dashboards aur regular reviews.
+
+
+---------------------------------------------------------------------
+9. AGILE
+---------------------------------------------------------------------
+
+Q75. What is Agile methodology? / Agile methodology kya hoti hai?
+EN: Agile is an iterative and incremental approach to software development where work is delivered in small, frequent releases with continuous customer feedback and the ability to adapt to change. Core values (Agile Manifesto): individuals and interactions over processes and tools; working software over comprehensive documentation; customer collaboration over contract negotiation; responding to change over following a plan.
+HI: Agile software development ka iterative aur incremental approach hai jisme kaam chhote, frequent releases mein deliver hota hai, customer feedback continuously milta hai aur change ke saath adapt karne ki flexibility hoti hai. Core values (Agile Manifesto): processes aur tools se zyada individuals aur interactions; documentation se zyada working software; contract negotiation se zyada customer collaboration; plan follow karne se zyada change ko respond karna.
+
+
+Q76. What is Scrum? / Scrum kya hota hai?
+EN: Scrum is the most popular Agile framework. Roles: Product Owner (owns backlog/priorities), Scrum Master (facilitates, removes blockers), Development Team. Events: Sprint, Sprint Planning, Daily Scrum, Sprint Review, Sprint Retrospective. Artifacts: Product Backlog, Sprint Backlog, Increment.
+HI: Scrum sabse popular Agile framework hai. Roles: Product Owner (backlog/priorities ka owner), Scrum Master (facilitate karta hai, blockers hataata hai), Development Team. Events: Sprint, Sprint Planning, Daily Scrum, Sprint Review, Sprint Retrospective. Artifacts: Product Backlog, Sprint Backlog, Increment.
+
+
+Q77. What is a sprint? / Sprint kya hota hai?
+EN: A sprint is a fixed, time-boxed iteration (usually 1-4 weeks, commonly 2) in which the team commits to a set of backlog items and delivers a potentially shippable increment. It starts with Sprint Planning and ends with a Sprint Review and Retrospective.
+HI: Sprint ek fixed, time-boxed iteration hota hai (aam taur par 1-4 hafte, aksar 2) jisme team backlog items ka ek set commit karti hai aur ek potentially shippable increment deliver karti hai. Ye Sprint Planning se shuru hota hai aur Sprint Review aur Retrospective par khatam.
+
+
+Q78. What happens in daily stand-up? / Daily stand-up mein kya hota hai?
+EN: A short (about 15 minutes) daily meeting at the same time where each member shares: (1) what I did yesterday, (2) what I will do today, (3) any blockers. It is for synchronization and spotting blockers, not detailed problem solving or status reporting to managers - deep discussions are taken offline.
+HI: Roz same time par ek chhoti (lagbhag 15 minute) meeting jisme har member batata hai: (1) kal maine kya kiya, (2) aaj kya karunga, (3) koi blockers. Ye synchronization aur blockers pehchanne ke liye hai, detailed problem solving ya managers ko status report dene ke liye nahi - deep discussions baad mein alag se hoti hain.
+
+
+Q79. How do you estimate a task? / Task ka estimate kaise lagate ho?
+EN: Break the task into smaller sub-tasks; consider complexity, effort, risk/unknowns, dependencies, and testing; compare with similar past tasks. Common techniques: story points (Fibonacci 1,2,3,5,8), planning poker with the team, T-shirt sizing, and hours for small tasks. Add buffer for uncertainty and review against team velocity. Re-estimate when new information appears.
+HI: Task ko chhote sub-tasks mein todo; complexity, effort, risk/unknowns, dependencies aur testing consider karo; pichhle similar tasks se compare karo. Common techniques: story points (Fibonacci 1,2,3,5,8), team ke saath planning poker, T-shirt sizing, aur chhote tasks ke liye hours. Uncertainty ke liye buffer rakho aur team velocity se compare karo. Nayi information aane par re-estimate karo.
+
+
+Q80. How do you handle changing requirements during a sprint? / Sprint ke beech requirements change hon to kaise handle karte ho?
+EN: First understand the change and its urgency; discuss with the Product Owner and assess the impact on scope/timeline. If it is not urgent, add it to the backlog for the next sprint. If it is urgent, the PO and team agree to swap it with items of equal size so the sprint goal is protected (or, in rare cases, cancel the sprint). Communicate clearly to stakeholders and update tickets.
+HI: Pehle change aur uski urgency samjho; Product Owner se discuss karo aur scope/timeline par impact assess karo. Urgent nahi hai to next sprint ke liye backlog mein daalo. Urgent hai to PO aur team usse equal size ke items ke saath swap karne par agree karte hain taaki sprint goal safe rahe (ya rare cases mein sprint cancel). Stakeholders ko clearly batao aur tickets update karo.
+
+
+---------------------------------------------------------------------
+10. PROBLEM SOLVING / PRODUCTION
+---------------------------------------------------------------------
+
+Q81. How do you troubleshoot a slow API? / Slow API ko kaise troubleshoot karte ho?
+EN:
+1. Reproduce and measure: which endpoint, how slow, since when (p50/p95 latency).
+2. Check logs, APM traces, and recent deployments/changes.
+3. Find the bottleneck: DB queries (missing indexes, N+1, full scans), slow external API calls, blocking/CPU-heavy code in the event loop, memory pressure/GC, network, or insufficient resources.
+4. Fix: add indexes/optimize queries, cache (Redis), paginate, parallelize with Promise.all, move heavy work to queues/workers, add timeouts, scale horizontally.
+5. Re-measure and add monitoring/alerts.
+HI:
+1. Reproduce aur measure karo: kaunsa endpoint, kitna slow, kab se (p50/p95 latency).
+2. Logs, APM traces aur recent deployments/changes check karo.
+3. Bottleneck dhoondho: DB queries (missing indexes, N+1, full scans), slow external API calls, event loop mein blocking/CPU-heavy code, memory pressure/GC, network, ya kam resources.
+4. Fix: indexes lagao/queries optimize karo, cache (Redis), pagination, Promise.all se parallelize, heavy kaam queues/workers ko, timeouts lagao, horizontally scale karo.
+5. Dobara measure karo aur monitoring/alerts add karo.
+
+
+Q82. What will you check if an API suddenly starts returning 500 errors? / API achanak 500 errors de to kya check karoge?
+EN:
+1. Check application logs and error tracker (Sentry) for the exact exception/stack trace.
+2. Did a recent deployment or config change happen? If yes, roll back first to restore service.
+3. Check dependencies: database connectivity/connection pool exhaustion, Redis, third-party APIs, message broker.
+4. Check infrastructure: CPU, memory (OOM kills), disk space, container/pod restarts (kubectl describe pod).
+5. Check env variables/secrets/expired certificates or tokens.
+6. Check for unhandled rejections and bad input/data causing crashes.
+7. Fix the root cause, write a post-mortem, add tests and alerts.
+HI:
+1. Application logs aur error tracker (Sentry) mein exact exception/stack trace dekho.
+2. Kya haal hi mein koi deployment ya config change hua? Haan to pehle rollback karke service restore karo.
+3. Dependencies check karo: database connectivity/connection pool exhaustion, Redis, third-party APIs, message broker.
+4. Infrastructure check karo: CPU, memory (OOM kills), disk space, container/pod restarts (kubectl describe pod).
+5. Env variables/secrets/expired certificates ya tokens check karo.
+6. Unhandled rejections aur bad input/data jo crash kara raha ho, check karo.
+7. Root cause fix karo, post-mortem likho, tests aur alerts add karo.
+
+
+Q83. How do you investigate high CPU usage? / High CPU usage ki investigation kaise karte ho?
+EN: Confirm with top/htop/docker stats which process is using CPU. For Node.js, take a CPU profile (node --prof, node --inspect with Chrome DevTools, or clinic.js flamegraph/0x) to find hot functions. Common causes: synchronous loops, heavy JSON parse/stringify, regex backtracking, crypto/hashing on the main thread, large sorting, infinite loops, too many requests. Fixes: worker threads, caching, optimize algorithm, rate limiting, horizontal scaling.
+HI: top/htop/docker stats se confirm karo kaunsa process CPU use kar raha hai. Node.js ke liye CPU profile lo (node --prof, Chrome DevTools ke saath node --inspect, ya clinic.js flamegraph/0x) taaki hot functions mil jayein. Common causes: synchronous loops, heavy JSON parse/stringify, regex backtracking, main thread par crypto/hashing, bada sorting, infinite loops, bahut zyada requests. Fixes: worker threads, caching, algorithm optimize, rate limiting, horizontal scaling.
+
+
+Q84. How do you investigate high memory usage? / High memory usage ki investigation kaise karte ho?
+EN: Monitor process.memoryUsage() and metrics to see if memory grows steadily (leak) or spikes. Take heap snapshots (node --inspect + Chrome DevTools, heapdump) at different times and compare to find retained objects. Common leak causes: global variables/unbounded caches, event listeners not removed, timers/intervals not cleared, closures holding references, large buffers/streams not consumed. Fixes: bounded/LRU caches, clean up listeners/timers, use streams, set --max-old-space-size and container memory limits, fix leaks, and restart policies as a safety net.
+HI: process.memoryUsage() aur metrics se dekho ki memory dheere-dheere badh rahi hai (leak) ya achanak spike hua. Alag-alag time par heap snapshots lo (node --inspect + Chrome DevTools, heapdump) aur compare karke retained objects dhoondho. Common leak causes: global variables/unbounded caches, event listeners remove na karna, timers/intervals clear na karna, closures jo references pakde rahte hain, bade buffers/streams consume na hona. Fixes: bounded/LRU caches, listeners/timers cleanup, streams use karo, --max-old-space-size aur container memory limits set karo, leaks fix karo, aur safety net ke roop mein restart policies.
+
+
+Q85. How do you troubleshoot a database query taking too long? / Slow database query ko kaise troubleshoot karte ho?
+EN:
+1. Identify the slow query (slow query log, APM, pg_stat_statements).
+2. Run EXPLAIN / EXPLAIN ANALYZE to see the execution plan (full table scan? bad join?).
+3. Add or fix indexes (composite indexes matching WHERE/ORDER BY), avoid functions on indexed columns.
+4. Avoid SELECT *, N+1 queries; fetch only needed columns; add pagination/limits.
+5. Optimize joins/subqueries; update statistics.
+6. Check locks, connection pool, and server resources.
+7. Cache results (Redis), use read replicas, partitioning, or denormalization when appropriate.
+HI:
+1. Slow query pehchano (slow query log, APM, pg_stat_statements).
+2. EXPLAIN / EXPLAIN ANALYZE chalakar execution plan dekho (full table scan? kharab join?).
+3. Indexes add/fix karo (WHERE/ORDER BY se match karte composite indexes), indexed columns par functions avoid karo.
+4. SELECT *, N+1 queries avoid karo; sirf zaroori columns fetch karo; pagination/limits lagao.
+5. Joins/subqueries optimize karo; statistics update karo.
+6. Locks, connection pool aur server resources check karo.
+7. Zaroorat ho to results cache (Redis), read replicas, partitioning ya denormalization use karo.
+
+
+Q86. How do you handle a production issue? / Production issue ko kaise handle karte ho?
+EN:
+1. Stay calm; acknowledge and assess impact (who/what is affected, severity).
+2. Communicate early to the team/stakeholders and keep updating.
+3. Mitigate first: rollback, disable the feature flag, scale up, or apply a hotfix - restore service before finding the perfect fix.
+4. Investigate the root cause using logs, metrics, traces, and recent changes.
+5. Apply and verify the permanent fix.
+6. Write a blameless post-mortem (RCA): what happened, why, how it was fixed, and prevention steps (tests, alerts, monitoring, runbooks).
+HI:
+1. Calm raho; impact assess karo (kaun/kya affected hai, severity).
+2. Team/stakeholders ko jaldi inform karo aur updates dete raho.
+3. Pehle mitigate karo: rollback, feature flag band, scale up ya hotfix - perfect fix dhoondhne se pehle service restore karo.
+4. Logs, metrics, traces aur recent changes se root cause dhoondho.
+5. Permanent fix lagao aur verify karo.
+6. Blameless post-mortem (RCA) likho: kya hua, kyun hua, kaise fix hua, aur prevention steps (tests, alerts, monitoring, runbooks).
+
+
+Q87. Tell me about a difficult technical problem you solved. / Apne solve kiye hue mushkil technical problem ke baare mein bataiye.
+EN (sample using STAR - replace with your real story):
+Situation: Our order API's response time rose from 300 ms to 6+ seconds during peak hours.
+Task: I had to find and fix the cause quickly without downtime.
+Action: I checked APM traces and found one endpoint running an N+1 query pattern plus a missing index on a large table. I used EXPLAIN to confirm, rewrote the query with a join, added a composite index, added Redis caching for frequently-read data, and used pagination.
+Result: Response time dropped to ~250 ms, the CPU on the database fell by 60%, and I added alerts and a load test to catch regressions.
+HI (sample, STAR format - apni real story se badlo):
+Situation: Peak hours mein hamari order API ka response time 300 ms se badhkar 6+ seconds ho gaya.
+Task: Mujhe bina downtime ke jaldi cause dhoondhkar fix karna tha.
+Action: Maine APM traces dekhe aur ek endpoint mein N+1 query pattern aur ek bade table par missing index mila. EXPLAIN se confirm kiya, query ko join se rewrite kiya, composite index lagaya, frequently-read data ke liye Redis caching aur pagination add ki.
+Result: Response time ~250 ms ho gaya, database CPU 60% kam hua, aur maine regressions pakadne ke liye alerts aur load test add kiya.
+
+
+Q88. How do you ensure code quality? / Code quality kaise ensure karte ho?
+EN:
+- Code reviews via Pull Requests
+- ESLint + Prettier, TypeScript strict mode, pre-commit hooks (Husky/lint-staged)
+- Automated tests: unit, integration, and end-to-end, with a coverage target
+- CI pipeline that blocks merges on failing lint/tests
+- Static analysis (SonarQube) and dependency audits
+- Follow clean code principles (SOLID, DRY, meaningful names, small functions)
+- Good documentation (README, API docs/Swagger) and refactoring regularly.
+HI:
+- Pull Requests ke zariye code reviews
+- ESLint + Prettier, TypeScript strict mode, pre-commit hooks (Husky/lint-staged)
+- Automated tests: unit, integration aur end-to-end, coverage target ke saath
+- CI pipeline jo lint/tests fail hone par merge block kare
+- Static analysis (SonarQube) aur dependency audits
+- Clean code principles follow karo (SOLID, DRY, meaningful names, chhote functions)
+- Achhi documentation (README, API docs/Swagger) aur regular refactoring.
+
+
+Q89. How do you test your APIs? / Apni APIs ko kaise test karte ho?
+EN:
+- Manual/exploratory: Postman, Insomnia, curl.
+- Automated unit tests: Jest/Mocha for services and utilities, with mocks/stubs for DB and external calls.
+- Integration/API tests: Supertest with Jest against the Express app and a test database (or Testcontainers/in-memory DB).
+- Cover happy paths, validation errors, auth/permissions, edge cases, and correct status codes and response schemas.
+- Contract testing (Pact) for microservices.
+- Load/performance tests: k6, JMeter, Artillery.
+- Run all tests in CI on every PR.
+HI:
+- Manual/exploratory: Postman, Insomnia, curl.
+- Automated unit tests: services aur utilities ke liye Jest/Mocha, DB aur external calls ke liye mocks/stubs.
+- Integration/API tests: Express app aur test database (ya Testcontainers/in-memory DB) ke against Supertest + Jest.
+- Happy paths, validation errors, auth/permissions, edge cases, sahi status codes aur response schemas cover karo.
+- Microservices ke liye contract testing (Pact).
+- Load/performance tests: k6, JMeter, Artillery.
+- Har PR par CI mein saare tests chalao.
+
+
+Q90. How do you handle a situation when you don't know a technology required for a task? / Agar task ke liye zaroori technology nahi aati ho to kya karte ho?
+EN: I stay honest and treat it as a learning opportunity. I read the official documentation, follow a quick tutorial, and build a small proof of concept to understand the basics. I ask teammates/seniors for guidance and best practices, break the task into smaller parts, and give a realistic estimate that includes learning time. Example: when our project needed Kubernetes and I had only used Docker, I learned the core concepts in a few days, deployed a test service, and then delivered the task with a senior's review.
+HI: Main honest rehta hoon aur ise learning opportunity ki tarah leta hoon. Official documentation padhta hoon, ek quick tutorial follow karta hoon aur basics samajhne ke liye chhota proof of concept banata hoon. Teammates/seniors se guidance aur best practices poochta hoon, task ko chhote parts mein todta hoon, aur learning time ke saath realistic estimate deta hoon. Example: jab project ko Kubernetes chahiye tha aur maine sirf Docker use kiya tha, maine kuch dino mein core concepts seekhe, ek test service deploy ki, aur senior ke review ke saath task deliver kiya.
+
+
+---------------------------------------------------------------------
+11. BEHAVIORAL  (SAMPLE ANSWERS - [ ] mein apni details daaliye)
+---------------------------------------------------------------------
+
+Q91. Tell me about yourself. / Apne baare mein bataiye.
+EN (sample): I am [Name], a backend developer with [X] years of experience building REST APIs and microservices using Node.js, TypeScript, and Express. I have worked with MongoDB/PostgreSQL, Redis, and RabbitMQ, and deployed applications using Docker, Kubernetes, and CI/CD pipelines on AWS. In my current role at [Company], I [one key achievement, e.g., reduced API latency by 40%]. I enjoy solving performance and scalability problems, and I am looking for a role where I can grow in a larger-scale microservices environment.
+HI (sample): Main [Name] hoon, ek backend developer jiske paas [X] saal ka experience hai Node.js, TypeScript aur Express se REST APIs aur microservices banane ka. Maine MongoDB/PostgreSQL, Redis aur RabbitMQ ke saath kaam kiya hai, aur Docker, Kubernetes aur AWS par CI/CD pipelines ke saath applications deploy ki hain. Apne current role mein [Company] mein maine [ek key achievement, jaise API latency 40% kam ki]. Mujhe performance aur scalability ki problems solve karna pasand hai, aur main aisa role chahta hoon jahan bade scale ke microservices environment mein grow kar sakun.
+
+
+Q92. Explain your current project. / Apne current project ko explain kijiye.
+EN (template): Structure it as: (1) What the product does and who the users are. (2) Architecture and tech stack - e.g., "It is a [domain] platform built with Node.js + TypeScript microservices, communicating via REST and RabbitMQ, using MongoDB/PostgreSQL and Redis, deployed on Docker/Kubernetes on AWS." (3) Your role and modules you own. (4) Challenges and how you solved them. (5) Team size, Agile process, CI/CD. Keep it to 2-3 minutes and be ready for deep-dive questions on anything you mention.
+HI (template): Is structure mein batao: (1) Product kya karta hai aur users kaun hain. (2) Architecture aur tech stack - jaise "Ye ek [domain] platform hai jo Node.js + TypeScript microservices se bana hai, REST aur RabbitMQ se communicate karti hain, MongoDB/PostgreSQL aur Redis use hota hai, AWS par Docker/Kubernetes par deploy hai." (3) Aapka role aur aapke modules. (4) Challenges aur unhe kaise solve kiya. (5) Team size, Agile process, CI/CD. 2-3 minute mein khatam karo aur jo bhi mention karo uske deep-dive questions ke liye ready raho.
+
+
+Q93. What are your responsibilities? / Aapki responsibilities kya hain?
+EN (sample): I design and develop REST APIs and microservices in Node.js/TypeScript, write unit and integration tests, and participate in code reviews. I handle database design and query optimization, containerize services with Docker, and maintain CI/CD pipelines. I take part in sprint planning, estimation, and daily stand-ups, support production issues and monitoring, and mentor junior developers.
+HI (sample): Main Node.js/TypeScript mein REST APIs aur microservices design aur develop karta hoon, unit aur integration tests likhta hoon, aur code reviews mein participate karta hoon. Database design aur query optimization sambhalta hoon, services ko Docker se containerize karta hoon aur CI/CD pipelines maintain karta hoon. Sprint planning, estimation aur daily stand-ups mein hissa leta hoon, production issues aur monitoring support karta hoon, aur junior developers ko mentor karta hoon.
+
+
+Q94. Why are you looking for a change? / Aap job change kyun karna chahte ho?
+EN (sample): I have learned a lot in my current role, but I feel my growth has plateaued. I am looking for opportunities to work on larger-scale distributed systems, modern tooling like Kubernetes, and more ownership. This role matches my skills and my career goals. (Stay positive - never criticize your current employer.)
+HI (sample): Current role mein maine bahut seekha hai, lekin mujhe lagta hai meri growth ab slow ho gayi hai. Main bade scale ke distributed systems, Kubernetes jaise modern tooling aur zyada ownership par kaam karne ke mauke dhoondh raha hoon. Ye role mere skills aur career goals se match karta hai. (Positive raho - current employer ki burai kabhi mat karo.)
+
+
+Q95. Why should we hire you? / Hum aapko kyun hire karein?
+EN (sample): I match your core requirements - strong hands-on experience with Node.js, TypeScript, REST APIs, microservices, Docker, and CI/CD. I have a track record of delivering [achievement with numbers], I am comfortable debugging production issues, and I learn new tools quickly. I also work well in Agile teams and take ownership, so I can contribute from day one.
+HI (sample): Main aapki core requirements se match karta hoon - Node.js, TypeScript, REST APIs, microservices, Docker aur CI/CD mein strong hands-on experience. Mera track record hai [numbers ke saath achievement], production issues debug karne mein comfortable hoon, aur naye tools jaldi seekhta hoon. Agile teams mein achhe se kaam karta hoon aur ownership leta hoon, isliye pehle din se contribute kar sakta hoon.
+
+
+Q96. What are your strengths? / Aapki strengths kya hain?
+EN (sample): My main strengths are problem-solving and debugging, writing clean maintainable code, and learning quickly. For example, [short example: I traced a memory leak in production and fixed it]. I also communicate well with teammates and take ownership of tasks until they are completed. (Pick 2-3 strengths and support each with a real example.)
+HI (sample): Meri main strengths hain problem-solving aur debugging, clean maintainable code likhna, aur jaldi seekhna. Jaise [chhota example: maine production mein memory leak trace karke fix kiya]. Teammates ke saath achhe se communicate karta hoon aur tasks ki ownership complete hone tak leta hoon. (2-3 strengths chuno aur har ek ko real example se support karo.)
+
+
+Q97. What is your weakness? / Aapki weakness kya hai?
+EN (sample): Earlier I used to spend too much time perfecting code and found it hard to delegate. I realized it affected delivery speed, so now I time-box tasks, focus on delivering a working version first, then improve it, and I rely more on code reviews and teammates. (Choose a real but non-critical weakness, and always show how you are improving it.)
+HI (sample): Pehle main code ko perfect banane mein zyada time laga deta tha aur delegate karna mushkil lagta tha. Mujhe samajh aaya ki isse delivery speed par asar padta hai, ab main tasks ko time-box karta hoon, pehle working version deliver karta hoon phir improve karta hoon, aur code reviews aur teammates par zyada bharosa karta hoon. (Ek real lekin non-critical weakness chuno aur hamesha batao ki aap use kaise improve kar rahe ho.)
+
+
+Q98. How do you work independently? / Aap independently kaise kaam karte ho?
+EN (sample): I first make sure I fully understand the requirement and acceptance criteria. Then I break the work into small tasks with timelines, research solutions on my own through documentation and existing code, and make decisions within my scope. I give regular progress updates, and if I am blocked for more than a short time after trying on my own, I ask for help with specific questions rather than waiting silently.
+HI (sample): Sabse pehle main requirement aur acceptance criteria achhe se samajhta hoon. Phir kaam ko timelines ke saath chhote tasks mein todta hoon, documentation aur existing code se khud solutions research karta hoon, aur apne scope mein decisions leta hoon. Regular progress updates deta hoon, aur khud try karne ke baad thodi der se zyada blocked rahun to chup baithne ki jagah specific questions ke saath help maangta hoon.
+
+
+Q99. How do you handle disagreements with teammates? / Teammates ke saath disagreement hone par kaise handle karte ho?
+EN (sample): I listen to understand their viewpoint first, then explain mine using facts, data, or small proofs of concept rather than opinions. I focus on what is best for the project, not on who is right. If we still disagree, I involve the tech lead or team for a decision, and then I fully support it. I keep the discussion respectful and professional.
+HI (sample): Main pehle unka point of view samajhne ke liye sunta hoon, phir apna point opinions ki jagah facts, data ya chhote proof of concept ke saath samjhata hoon. Focus project ke liye kya best hai us par rakhta hoon, kaun sahi hai us par nahi. Phir bhi disagreement rahe to tech lead ya team ko decision ke liye involve karta hoon aur decision ko poori tarah support karta hoon. Discussion respectful aur professional rakhta hoon.
+
+
+Q100. How do you prioritize multiple tasks? / Multiple tasks ko prioritize kaise karte ho?
+EN (sample): I list all tasks and rank them by urgency, business impact, and dependencies (for example using the Eisenhower matrix: urgent/important). Production issues and blockers for others come first, then high-impact sprint items. I clarify priorities with the Product Owner or lead when they conflict, estimate effort, time-block my day, and communicate early if something may slip.
+HI (sample): Main saare tasks ki list banata hoon aur unhe urgency, business impact aur dependencies ke hisaab se rank karta hoon (jaise Eisenhower matrix: urgent/important). Production issues aur dusron ko block karne wale kaam pehle, phir high-impact sprint items. Priorities conflict karein to Product Owner ya lead se clarify karta hoon, effort estimate karta hoon, din ko time-block karta hoon, aur kuch slip hone wala ho to jaldi inform karta hoon.
+
+
+Q101. How do you take ownership of a task? / Task ki ownership kaise lete ho?
+EN (sample): Ownership means I am responsible for a task from start to finish, not just writing code. I clarify requirements, design the solution, write tests, handle deployment, and monitor it after release. I proactively flag risks and delays, follow up on dependencies, fix issues even after the ticket is closed, and make sure the outcome actually solves the user's problem.
+HI (sample): Ownership ka matlab hai ki main task ke start se end tak responsible hoon, sirf code likhne tak nahi. Requirements clarify karta hoon, solution design karta hoon, tests likhta hoon, deployment sambhalta hoon aur release ke baad monitor karta hoon. Risks aur delays ko proactively flag karta hoon, dependencies par follow up karta hoon, ticket close hone ke baad bhi issues fix karta hoon, aur ensure karta hoon ki outcome sach mein user ki problem solve kare.
+
+
+Q102. How do you keep yourself updated with new technologies? / Nayi technologies ke saath khud ko updated kaise rakhte ho?
+EN (sample): I follow official documentation and release notes (Node.js, TypeScript), tech blogs and newsletters (e.g., Node Weekly, dev.to), YouTube channels and conference talks, and take courses on Udemy/Coursera when needed. I build small side projects or proofs of concept to try new tools, participate in code reviews and tech discussions with my team, and contribute to or read open-source projects.
+HI (sample): Main official documentation aur release notes (Node.js, TypeScript), tech blogs aur newsletters (jaise Node Weekly, dev.to), YouTube channels aur conference talks follow karta hoon, aur zaroorat par Udemy/Coursera courses leta hoon. Naye tools try karne ke liye chhote side projects ya proofs of concept banata hoon, team ke saath code reviews aur tech discussions mein hissa leta hoon, aur open-source projects padhta/contribute karta hoon.
+
+
+#####################################################################
+#####################################################################
+ PART B - PERSONALISED ANSWERS FOR THIS JD (Gopal Rajput)
+ Focus: Node.js + REST API + Microservices + Docker/Kubernetes
+        + Azure + Database + CI/CD  (AS400 ke baare mein honest rehna)
+#####################################################################
+#####################################################################
+
+ Pattern yaad rakho: DEFINITION -> HOW YOU'VE USED IT -> SMALL EXAMPLE.
+ [ ] ke andar apni real project details daaliye; jo nahi kiya woh claim mat karo.
+ Har answer 30-60 seconds ka rakho, phir interviewer ko depth poochne do.
+
+
+---------------------------------------------------------------------
+12. CORE ANSWERS (P1 - P23)
+---------------------------------------------------------------------
+
+P1. Tell me about yourself / Apne baare mein bataiye
+EN: I'm Gopal Rajput, a software developer with 4+ years of experience, mostly on backend work with Node.js, Express and TypeScript, plus React and Next.js on the frontend. I work with MongoDB and PostgreSQL. In my current role I build REST APIs, payment workflows and third-party integrations, and I've worked with Docker, NGINX, Redis, RabbitMQ and CI/CD on AWS. Recently I [one achievement, e.g. reduced API response time by X% / built Y module]. I'm now looking for a role with larger-scale backend systems, which is why this position interests me.
+HI: Main Gopal Rajput hoon, ek software developer jiske paas 4+ saal ka experience hai, zyadatar backend par Node.js, Express aur TypeScript ke saath, aur frontend par React aur Next.js. Main MongoDB aur PostgreSQL ke saath kaam karta hoon. Current role mein main REST APIs, payment workflows aur third-party integrations banata hoon, aur AWS par Docker, NGINX, Redis, RabbitMQ aur CI/CD ke saath kaam kiya hai. Haal hi mein maine [ek achievement, jaise API response time X% kam kiya / Y module banaya]. Ab main bade scale ke backend systems par kaam karne wala role dhoondh raha hoon, isliye ye position mujhe interest karti hai.
+
+
+P2. Do you have AS400 experience? (be honest, then pivot) / Kya aapko AS400 ka experience hai?
+EN: I haven't worked on AS400 hands-on. My experience is in Node.js, APIs and databases. In my current project I've integrated with [legacy / third-party systems], so I'm comfortable connecting modern services to older systems. I learn new stacks quickly, and I'd be happy to pick up AS400 on the job.
+HI: Maine AS400 par hands-on kaam nahi kiya hai. Mera experience Node.js, APIs aur databases mein hai. Apne current project mein maine [legacy / third-party systems] ke saath integration kiya hai, isliye modern services ko purane systems se connect karne mein comfortable hoon. Main nayi stacks jaldi seekhta hoon, aur khushi se job par AS400 seekh lunga.
+(Tip: Jhooth mat bolo. Gap maano, phir turant batao ki aapke skills kaise transfer hote hain.)
+
+
+P3. What is REST API? / REST API kya hoti hai?
+EN: REST is an architectural style where resources are exposed through URLs and accessed with HTTP methods: GET reads, POST creates, PUT/PATCH update, DELETE removes. It's stateless, so each request carries everything needed, usually in JSON, and uses proper status codes (200, 201, 400, 401, 404, 500).
+HI: REST ek architectural style hai jisme resources URLs ke through expose hote hain aur HTTP methods se access hote hain: GET read karta hai, POST create, PUT/PATCH update, DELETE remove. Ye stateless hai, yaani har request mein zaroori saari information hoti hai, aam taur par JSON mein, aur sahi status codes use hote hain (200, 201, 400, 401, 404, 500).
+(Related: Q19-28 dekho.)
+
+
+P4. What is microservices architecture? / Microservices architecture kya hai?
+EN: The application is split into small services, each owning one business capability and often its own database. They deploy and scale independently and communicate via REST or message queues like RabbitMQ. The benefit is scalability and fault isolation. The trade-off is more complexity in monitoring, data consistency and deployment.
+HI: Application ko chhoti services mein baanta jata hai, har service ek business capability own karti hai aur aksar apna database. Ye independently deploy aur scale hoti hain aur REST ya RabbitMQ jaise message queues se communicate karti hain. Fayda: scalability aur fault isolation. Trade-off: monitoring, data consistency aur deployment mein zyada complexity.
+(Related: Q29-38 dekho.)
+
+
+P5. Why Node.js? / Node.js kyun?
+EN: Node runs on a single-threaded, event-driven, non-blocking I/O model, so it handles many concurrent connections efficiently. It's great for I/O-heavy work like APIs and integrations. For CPU-heavy tasks I'd use worker threads or a separate service.
+HI: Node single-threaded, event-driven, non-blocking I/O model par chalta hai, isliye bahut saare concurrent connections efficiently handle karta hai. APIs aur integrations jaise I/O-heavy kaam ke liye best hai. CPU-heavy tasks ke liye main worker threads ya alag service use karunga.
+(Related: Q1-3, Q10 dekho.)
+
+
+P6. Explain Express.js / Express.js explain kijiye
+EN: A minimal Node framework for routing, middleware and error handling. Middleware is the key idea: each request passes through functions like auth, validation and logging before reaching the controller.
+HI: Express ek minimal Node framework hai routing, middleware aur error handling ke liye. Middleware key idea hai: har request controller tak pahunchne se pehle auth, validation aur logging jaise functions se guzarti hai.
+(Related: Q5 dekho.)
+
+
+P7. What is async/await? / async/await kya hai?
+EN: It's syntax built on Promises that makes async code read like synchronous code. An async function returns a Promise, and await pauses execution inside that function until the Promise settles. I use try/catch for errors, and Promise.all when independent calls can run in parallel.
+HI: Ye Promises par bana syntax hai jisse async code synchronous jaisa padhne mein lagta hai. Async function Promise return karta hai, aur await us function ke andar execution ko tab tak rokta hai jab tak Promise resolve/reject na ho jaye. Errors ke liye try/catch use karta hoon, aur independent calls parallel chal sakti hon to Promise.all.
+(Related: Q4 dekho.)
+
+
+P8. How do you handle errors in Node.js? / Node.js mein errors kaise handle karte ho?
+EN: I use a centralized error middleware in Express, custom error classes with status codes, request validation (Joi/Zod), and a wrapper for async handlers. I also handle unhandled rejections, log with a tool like Winston, and never leak stack traces to clients.
+HI: Express mein centralized error middleware, status codes ke saath custom error classes, request validation (Joi/Zod), aur async handlers ke liye wrapper use karta hoon. Unhandled rejections bhi handle karta hoon, Winston jaise tool se log karta hoon, aur stack traces kabhi clients ko leak nahi karta.
+(Related: Q6, Q26 dekho.)
+
+
+P9. What is NGINX? / NGINX kya hai?
+EN: A reverse proxy and web server. I've used it for routing to backend services, load balancing, SSL termination and serving static files.
+HI: NGINX ek reverse proxy aur web server hai. Maine ise backend services tak routing, load balancing, SSL termination aur static files serve karne ke liye use kiya hai.
+(Related: Q70 dekho.)
+
+
+P10. What is npm? / npm kya hai?
+EN: npm is the package manager for Node.js. It installs and manages dependencies and scripts through package.json, and package-lock.json locks exact versions so installs are reproducible.
+HI: npm Node.js ka package manager hai. Ye package.json ke through dependencies aur scripts install/manage karta hai, aur package-lock.json exact versions lock karta hai taaki installs reproducible rahein.
+
+
+P11. npm vs nvm? / npm aur nvm mein difference?
+EN: npm manages Node.js packages and dependencies. nvm (Node Version Manager) installs and switches between different Node.js versions, which is useful when different projects need different versions.
+HI: npm Node.js packages aur dependencies manage karta hai. nvm (Node Version Manager) alag-alag Node.js versions install aur switch karta hai, jo tab useful hai jab alag projects ko alag versions chahiye hote hain.
+
+
+P12. What is Docker? / Docker kya hai?
+EN: Docker packages an app with its dependencies into a container so it runs the same everywhere - development, testing and production.
+HI: Docker app ko uski dependencies ke saath container mein package karta hai taaki wo har jagah - development, testing aur production - same chale.
+(Related: Q39-47 dekho.)
+
+
+P13. Docker vs Kubernetes? / Docker aur Kubernetes mein difference?
+EN: Docker builds and runs containers. Kubernetes orchestrates many containers at scale: deployment, auto-scaling, load balancing, service discovery, rolling updates and self-healing.
+HI: Docker containers build aur run karta hai. Kubernetes bahut saare containers ko scale par orchestrate karta hai: deployment, auto-scaling, load balancing, service discovery, rolling updates aur self-healing.
+(Related: Q48-56 dekho. Basics yaad rakho: Pod, Deployment, Service, Ingress.)
+
+
+P14. What is CI/CD? / CI/CD kya hai?
+EN: CI automatically builds and tests code on every push or PR. CD deploys it automatically. In my project I used [Jenkins/GitHub Actions]: on merge it runs tests, builds a Docker image and deploys to [server/AWS].
+HI: CI har push ya PR par code ko automatically build aur test karta hai. CD use automatically deploy karta hai. Mere project mein maine [Jenkins/GitHub Actions] use kiya: merge hone par tests chalte hain, Docker image build hoti hai aur [server/AWS] par deploy hoti hai.
+(Related: Q65-68 dekho.)
+
+
+P15. Have you worked with Azure? (be honest) / Kya aapne Azure par kaam kiya hai?
+EN: My hands-on experience is with AWS: EC2, S3 and Lambda. The concepts map directly to Azure: VMs for EC2, Blob Storage for S3, Azure Functions for Lambda, AKS for Kubernetes and Azure DevOps for CI/CD. I'm confident I can pick it up quickly.
+HI: Mera hands-on experience AWS ka hai: EC2, S3 aur Lambda. Concepts seedhe Azure se map hote hain: EC2 ke liye VMs, S3 ke liye Blob Storage, Lambda ke liye Azure Functions, Kubernetes ke liye AKS aur CI/CD ke liye Azure DevOps. Mujhe bharosa hai main ise jaldi seekh lunga.
+
+
+P16. Which databases have you used? / Aapne kaun se databases use kiye hain?
+EN: I have worked with MongoDB as a NoSQL database and PostgreSQL and MySQL as relational databases. I have experience with queries, indexes, relationships, transactions and performance optimization.
+HI: Maine MongoDB NoSQL database ke roop mein, aur PostgreSQL aur MySQL relational databases ke roop mein use kiye hain. Mujhe queries, indexes, relationships, transactions aur performance optimization ka experience hai.
+
+
+P17. MongoDB vs PostgreSQL? / MongoDB aur PostgreSQL mein difference?
+EN: MongoDB stores flexible JSON-like documents and suits fast-changing schemas. PostgreSQL stores structured relational data with joins and ACID transactions, so it suits things like payments. I choose based on data structure and consistency needs.
+HI: MongoDB flexible JSON-jaise documents store karta hai aur fast-changing schemas ke liye suit karta hai. PostgreSQL structured relational data joins aur ACID transactions ke saath store karta hai, isliye payments jaisi cheezon ke liye suit karta hai. Main data structure aur consistency needs ke hisaab se choose karta hoon.
+
+
+P18. How do you improve API performance? / API performance kaise improve karte ho?
+EN: I measure first, using logs and monitoring to find the bottleneck. Then I fix it: add DB indexes, optimize queries, use pagination, cache with Redis, avoid N+1 queries, run independent calls in parallel, and move heavy work to queues. Then I benchmark again to confirm the improvement.
+HI: Pehle measure karta hoon - logs aur monitoring se bottleneck dhoondhta hoon. Phir fix karta hoon: DB indexes lagana, queries optimize karna, pagination, Redis caching, N+1 queries avoid karna, independent calls parallel chalana, aur heavy kaam queues ko dena. Phir dobara benchmark karke improvement confirm karta hoon.
+(Related: Q7, Q81 dekho.)
+
+
+P19. How do you secure REST APIs? / REST APIs ko secure kaise karte ho?
+EN: JWT or session authentication, RBAC, bcrypt password hashing, input validation, HTTPS, Helmet for secure headers, rate limiting, CORS configuration and protection against injection. Secrets stay in environment variables, and sensitive data is never exposed in responses or logs.
+HI: JWT ya session authentication, RBAC, bcrypt password hashing, input validation, HTTPS, secure headers ke liye Helmet, rate limiting, CORS configuration aur injection se protection. Secrets environment variables mein rehte hain, aur sensitive data responses ya logs mein kabhi expose nahi hota.
+(Related: Q23-24, Q28 dekho.)
+
+
+P20. How do you integrate a third-party API? / Third-party API kaise integrate karte ho?
+EN: I read the docs and the auth method, then build a separate service layer with timeouts, retries, error mapping and logging. I verify webhook signatures where relevant and test both success and failure scenarios.
+HI: Pehle docs aur auth method padhta hoon, phir ek alag service layer banata hoon jisme timeouts, retries, error mapping aur logging hoti hai. Jahan zaroori ho wahan webhook signatures verify karta hoon, aur success aur failure dono scenarios test karta hoon.
+
+
+P21. What is Git? / Git kya hai?
+EN: Git is a distributed version control system. I use it for branching, commits, pull requests, merging, rebasing and resolving conflicts. I regularly raise PRs, do code reviews and resolve merge conflicts.
+HI: Git ek distributed version control system hai. Main ise branching, commits, pull requests, merging, rebasing aur conflicts resolve karne ke liye use karta hoon. Main regularly PRs raise karta hoon, code reviews karta hoon aur merge conflicts resolve karta hoon.
+
+
+P22. What is Agile/Scrum? / Agile/Scrum kya hai?
+EN: Scrum is an Agile methodology where development is divided into short sprints. The team does sprint planning, daily stand-ups, development, testing, review and retrospective. I take part in sprint planning, stand-ups and retros.
+HI: Scrum ek Agile methodology hai jisme development chhote sprints mein baanta jata hai. Team sprint planning, daily stand-ups, development, testing, review aur retrospective karti hai. Main sprint planning, stand-ups aur retros mein hissa leta hoon.
+(Related: Q75-80 dekho.)
+
+
+P23. Why should we hire you? / Hum aapko kyun hire karein?
+EN: My experience in Node.js, REST APIs, databases, Docker and CI/CD matches most of this role. I've handled production issues and performance tuning, and I learn quickly. The AS400 part is a gap, but I've picked up new technologies before, like [example], and I'll close this one fast.
+HI: Node.js, REST APIs, databases, Docker aur CI/CD mein mera experience is role ke zyadatar hisse se match karta hai. Maine production issues aur performance tuning handle ki hai, aur main jaldi seekhta hoon. AS400 ek gap hai, lekin maine pehle bhi nayi technologies seekhi hain, jaise [example], aur main ise jaldi cover kar lunga.
+
+
+---------------------------------------------------------------------
+13. LIKELY FOLLOW-UPS TO PREPARE (Part A mein answers dekho)
+---------------------------------------------------------------------
+
+- Event loop: phases, process.nextTick vs setImmediate -> Q2
+- Callbacks vs Promises vs async/await -> Q4
+- JWT flow: access vs refresh tokens -> Q23, Q24
+- Kubernetes basics: Pod, Deployment, Service, Ingress -> Q49-51
+- Microservice communication: sync (REST) vs async (RabbitMQ), failure handling -> Q32, Q33, Q35
+- Project walkthrough: architecture, your role, one hard bug you solved -> Q87, Q92
+
+
+---------------------------------------------------------------------
+14. INTERVIEW TIPS
+---------------------------------------------------------------------
+
+1. AS400 aur Azure ke baare mein upfront honest raho, phir turant batao ki aapke skills kaise transfer hote hain.
+   (Be upfront about AS400 and Azure, then show how your skills transfer.)
+2. Answers 30-60 seconds ke rakho, phir interviewer ko depth maangne do.
+   (Keep answers to 30-60 seconds, then let them ask for depth.)
+3. 2-3 real stories ready rakho: ek performance fix, ek production bug, ek integration.
+   (Have two or three real stories ready: a performance fix, a production bug and an integration.)
+
+
+=====================================================================
+ END - Part A (Q1-102) + Part B (P1-P23)
+ All the best for your interview!
+ Tip: Real projects ke examples ke saath answer do, sirf definitions
+ ratne se zyada impression padta hai.
+=====================================================================
