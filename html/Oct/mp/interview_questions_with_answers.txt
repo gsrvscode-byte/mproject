@@ -9,6 +9,20 @@
 =====================================================================
 
 
+
+Hi, I’m Gopal Rajput. I’m a Node.js Full Stack Developer with 4+ years of professional experience, mainly working with Node.js, Express.js, JavaScript, TypeScript, React.js, MongoDB, MySQL, and PostgreSQL.
+
+Currently, I’m working at PolicyBoss as a Node.js Full Stack Developer. I work on insurance applications for Health, Travel, Motor, and Term Life, where I’ve been involved in complete business flows such as customer details, premium calculation, insurer validation, KYC, proposal creation, EMI and payment processing, and policy issuance.
+
+On the backend side, I’ve developed and integrated REST APIs and worked with Redis for caching and RabbitMQ for asynchronous processing. I’ve also worked with Razorpay payment integration, Docker, Nginx, PM2, Jenkins, and AWS services such as EC2, S3, and Lambda.
+
+One of the interesting projects I worked on was an AI-based policy PDF parser, where I integrated OpenAI APIs to extract structured policy information from PDF documents. I’ve also worked on insurer integrations such as Tata AIG Travel and different health and motor insurance providers.
+
+Before PolicyBoss, I worked at Virtual SCM as a Junior Software Developer, where I worked on web applications and backend development.
+
+I enjoy solving backend problems, working on API integrations, payment systems, and scalable application architecture. Now, I’m looking for an opportunity where I can use my Node.js backend experience and grow further by working on larger-scale systems and microservices.
+
+
 ---------------------------------------------------------------------
 1. NODE.JS
 ---------------------------------------------------------------------
