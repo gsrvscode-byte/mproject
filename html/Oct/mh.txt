@@ -1,0 +1,75 @@
+Here's a sharper version of your answers to crack this interview. The answers in your document are correct but a bit textbook-like. Interviewers respond better to a **definition → how you've used it → a small example** pattern. Wherever I've written [brackets], fill in your real project details, and don't claim anything you haven't done.
+
+## Core answers
+
+**1. Tell me about yourself**
+"I'm Gopal Rajput, a software developer with 4+ years of experience, mostly on backend work with Node.js, Express and TypeScript, plus React and Next.js on the frontend. I work with MongoDB and PostgreSQL. In my current role I build REST APIs, payment workflows and third-party integrations, and I've worked with Docker, NGINX, Redis, RabbitMQ and CI/CD on AWS. Recently I [one achievement, e.g. reduced API response time by X% / built Y module]. I'm now looking for a role with larger-scale backend systems, which is why this position interests me."
+
+**2. AS400 experience?** (be honest, then pivot)
+"I haven't worked on AS400 hands-on. My experience is in Node.js, APIs and databases. In my current project I've integrated with [legacy / third-party systems], so I'm comfortable connecting modern services to older systems. I learn new stacks quickly, and I'd be happy to pick up AS400 on the job."
+
+**3. REST API**
+"REST is an architectural style where resources are exposed through URLs and accessed with HTTP methods: GET reads, POST creates, PUT/PATCH update, DELETE removes. It's stateless, so each request carries everything needed, usually in JSON, and uses proper status codes (200, 201, 400, 401, 404, 500)."
+
+**4. Microservices**
+"The application is split into small services, each owning one business capability and often its own database. They deploy and scale independently and communicate via REST or message queues like RabbitMQ. The benefit is scalability and fault isolation. The trade-off is more complexity in monitoring, data consistency and deployment."
+
+**5. Why Node.js**
+"Node runs on a single-threaded, event-driven, non-blocking I/O model, so it handles many concurrent connections efficiently. It's great for I/O-heavy work like APIs and integrations. For CPU-heavy tasks I'd use worker threads or a separate service."
+
+**6. Express.js**
+"A minimal Node framework for routing, middleware and error handling. Middleware is the key idea: each request passes through functions like auth, validation and logging before reaching the controller."
+
+**7. async/await**
+"It's syntax built on Promises that makes async code read like synchronous code. I use try/catch for errors, and `Promise.all` when independent calls can run in parallel."
+
+**8. Error handling**
+"I use a centralized error middleware in Express, custom error classes with status codes, request validation (Joi/Zod), and a wrapper for async handlers. I also handle unhandled rejections, log with a tool like Winston, and never leak stack traces to clients."
+
+**9. NGINX**
+"A reverse proxy and web server. I've used it for routing to backend services, load balancing, SSL termination and serving static files."
+
+**10–11. npm and nvm**
+"npm manages packages via package.json, and package-lock.json locks exact versions. nvm switches between Node versions, which is useful when projects need different ones."
+
+**12–13. Docker and Kubernetes**
+"Docker packages an app with its dependencies into a container so it runs the same everywhere. Kubernetes orchestrates many containers: deployment, auto-scaling, load balancing, rolling updates and self-healing. Docker builds and runs containers, and Kubernetes manages them at scale."
+
+**14. CI/CD**
+"CI automatically builds and tests code on every push or PR. CD deploys it automatically. In my project I used [Jenkins/GitHub Actions]: on merge it runs tests, builds a Docker image and deploys to [server/AWS]."
+
+**15. Azure** (honest)
+"My hands-on experience is with AWS: EC2, S3 and Lambda. The concepts map directly to Azure: VMs for EC2, Blob Storage for S3, Azure Functions for Lambda, AKS for Kubernetes and Azure DevOps for CI/CD. I'm confident I can pick it up quickly."
+
+**16–17. Databases, MongoDB vs PostgreSQL**
+"MongoDB stores flexible JSON-like documents and suits fast-changing schemas. PostgreSQL stores structured relational data with joins and ACID transactions, so it suits things like payments. I choose based on data structure and consistency needs."
+
+**18. API performance**
+"I measure first, using logs and monitoring to find the bottleneck. Then I fix it: add DB indexes, optimize queries, use pagination, cache with Redis, avoid N+1 queries, run independent calls in parallel, and move heavy work to queues. Then I benchmark again."
+
+**19. API security**
+"JWT or session authentication, RBAC, bcrypt password hashing, input validation, HTTPS, Helmet for secure headers, rate limiting, CORS configuration and protection against injection. Secrets stay in environment variables."
+
+**20. Third-party integration**
+"I read the docs and auth method, then build a separate service layer with timeouts, retries, error mapping and logging. I verify webhook signatures where relevant and test both success and failure scenarios."
+
+**21–22. Git and Agile**
+Your answers are fine. Add one line of experience: "I regularly raise PRs, do code reviews and resolve merge conflicts," and "I take part in sprint planning, stand-ups and retros."
+
+**23. Why hire you**
+"My experience in Node.js, REST APIs, databases, Docker and CI/CD matches most of this role. I've handled production issues and performance tuning, and I learn quickly. The AS400 part is a gap, but I've picked up new technologies before, like [example], and I'll close this one fast."
+
+## Likely follow-ups to prepare
+- **Event loop:** phases, and `process.nextTick` vs `setImmediate`
+- **Callbacks vs Promises vs async/await**
+- **JWT flow:** access vs refresh tokens
+- **Kubernetes basics:** pod, deployment, service, ingress
+- **Microservice communication:** sync (REST) vs async (RabbitMQ), and how you handle failures
+- **A project walkthrough:** architecture, your role and one hard bug you solved
+
+## Interview tips
+1. Be upfront about AS400 and Azure, then immediately show how your skills transfer.
+2. Keep answers to 30-60 seconds, then let them ask for depth.
+3. Have two or three real stories ready: a performance fix, a production bug and an integration.
+
+Want me to run a mock interview, asking questions one at a time and giving feedback on your answers?
