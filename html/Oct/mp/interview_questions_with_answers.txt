@@ -12,17 +12,19 @@
 
 Hi, I’m Gopal Rajput. I’m a Node.js Full Stack Developer with 4+ years of professional experience, mainly working with Node.js, Express.js, JavaScript, TypeScript, React.js, MongoDB, MySQL, and PostgreSQL.
 
-Currently, I’m working at PolicyBoss as a Node.js Full Stack Developer. I work on insurance applications for Health, Travel, Motor, and Term Life, where I’ve been involved in complete business flows such as customer details, premium calculation, insurer validation, KYC, proposal creation, EMI and payment processing, and policy issuance.
+Currently, I’m working at PolicyBoss as a Node.js Full Stack Developer. I work on Health, Travel, Motor, and Term Life insurance applications. I’ve worked on complete insurance workflows including customer details, quotation, premium calculation, insurer validation, KYC, proposal creation, payment, EMI processing, and policy issuance.
 
-On the backend side, I’ve developed and integrated REST APIs and worked with Redis for caching and RabbitMQ for asynchronous processing. I’ve also worked with Razorpay payment integration, Docker, Nginx, PM2, Jenkins, and AWS services such as EC2, S3, and Lambda.
+On the backend side, I develop and integrate REST APIs using a layered and modular architecture. I’ve implemented secure APIs using JWT-based authentication and authorization, middleware, protected routes, request validation, centralized error handling, and role-based access control.
 
-One of the interesting projects I worked on was an AI-based policy PDF parser, where I integrated OpenAI APIs to extract structured policy information from PDF documents. I’ve also worked on insurer integrations such as Tata AIG Travel and different health and motor insurance providers.
+I’ve also worked with Redis for caching and RabbitMQ for asynchronous processing and background jobs. For third-party integrations, I’ve worked with REST, XML, and SOAP APIs, as well as Razorpay for payment creation, verification, callbacks, retries, and transaction status tracking.
 
-Before PolicyBoss, I worked at Virtual SCM as a Junior Software Developer, where I worked on web applications and backend development.
+For deployment and infrastructure, I’ve worked with Docker, Docker Compose, Nginx, PM2, Jenkins, Git/GitHub, AWS EC2, S3, and Lambda.
 
-I enjoy solving backend problems, working on API integrations, payment systems, and scalable application architecture. Now, I’m looking for an opportunity where I can use my Node.js backend experience and grow further by working on larger-scale systems and microservices.
+One of my interesting projects was an AI-powered policy PDF parser, where I integrated OpenAI APIs with Node.js to extract structured customer, policy, vehicle, and coverage information from insurance documents. I also worked with AWS S3 and Lambda for document storage and serverless processing.
 
+Before PolicyBoss, I worked at Virtual SCM as a Junior Software Developer, where I developed a Transport ERP application using React.js, Node.js, Express.js, and PostgreSQL. I worked on modules such as vehicle, driver, customer, transporter, trip, shipment, and E-Way Bill management.
 
+Overall, I enjoy solving backend problems, building secure APIs, integrating third-party services, working on payment and asynchronous processing systems, and improving application performance. Now, I’m looking for an opportunity where I can apply my Node.js backend experience and grow further by working on larger-scale systems and microservices.
 ---------------------------------------------------------------------
 1. NODE.JS
 ---------------------------------------------------------------------
