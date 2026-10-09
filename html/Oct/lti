@@ -1,0 +1,1266 @@
+this job matches your experience in Node.js, Express.js, REST APIs, AWS, Microservices, and CI/CD. Prepare the following questions and answers for your interview. I have kept the English simple so you can easily understand and speak during the interview.
+
+Node.js Backend Developer Interview Preparation
+
+Experience Required: 3+ Years
+Main Skills: Node.js, Express.js, AWS
+Other Skills: REST APIs, Microservices, Unit Testing, Agile, CI/CD
+
+1. Self-Introduction (Most Important)
+
+Q1. Tell me about yourself.
+
+"Hi, my name is Gopal Rajput. I have over 4 years of experience in software development, mainly working with Node.js, Express.js, JavaScript, TypeScript, and REST APIs.
+
+I have experience in developing backend applications, creating APIs, integrating third-party services, working with databases, and implementing authentication and authorization using JWT.
+
+I have also worked with AWS services, Docker, Redis, and CI/CD pipelines. I focus on writing reusable, maintainable, and efficient code.
+
+I am looking for an opportunity where I can use my backend development skills and work on scalable applications and microservices."
+
+
+---
+
+2. Node.js Interview Questions
+
+Q2. What is Node.js?
+
+Node.js is a JavaScript runtime that allows us to execute JavaScript outside the browser.
+
+It is mainly used to build backend applications, REST APIs, and real-time applications.
+
+Node.js uses an event-driven, non-blocking I/O model, which helps it handle multiple requests efficiently.
+
+Q3. Why is Node.js single-threaded?
+
+Node.js executes JavaScript on a main thread using an event loop.
+
+For I/O operations, such as database queries and file operations, it can perform other tasks while waiting for the result.
+
+Some operations use the operating system or libuv thread pool.
+
+This makes Node.js efficient for I/O-intensive applications.
+
+Q4. What is the Event Loop?
+
+The event loop allows Node.js to handle asynchronous operations without blocking the main JavaScript thread.
+
+For example, when we make a database call, Node.js can continue handling other tasks while waiting for the database response.
+
+When the result is ready, the corresponding callback or promise continuation is processed.
+
+Q5. What is the difference between synchronous and asynchronous programming?
+
+Synchronous: Operations execute one after another. A slow operation can block further execution.
+
+Asynchronous: An operation can start, and the application can continue with other work while waiting for its result.
+
+Example:
+
+// Synchronous
+const fs = require("fs");
+
+const data = fs.readFileSync("file.txt", "utf8");
+
+// Asynchronous
+fs.readFile("file.txt", "utf8", (err, data) => {
+  if (err) {
+    console.error(err);
+    return;
+  }
+
+  console.log(data);
+});
+
+Q6. What is the difference between require and import?
+
+require is commonly used in CommonJS modules.
+
+import is used in ES modules.
+
+Both allow us to use code from other modules.
+
+ES modules support static imports and exports.
+
+
+Q7. What are Promises and async/await?
+
+A Promise represents the eventual success or failure of an asynchronous operation.
+
+async/await makes asynchronous code easier to read and maintain.
+
+Example:
+
+async function getUsers() {
+  try {
+    const users = await User.find();
+    return users;
+  } catch (error) {
+    throw error;
+  }
+}
+
+Q8. How do you handle errors in Node.js?
+
+I use try-catch for asynchronous operations with async/await.
+
+In Express, I use centralized error-handling middleware to handle errors consistently and return appropriate HTTP status codes.
+
+I also log errors for debugging and monitoring.
+
+Example:
+
+app.use((err, req, res, next) => {
+  console.error(err);
+
+  res.status(err.statusCode || 500).json({
+    success: false,
+    message: err.statusCode
+      ? err.message
+      : "Internal server error"
+  });
+});
+
+In Express 4, asynchronous errors need to be passed to next() or handled by an async wrapper. Express 5 automatically forwards rejected promises from route handlers to error-handling middleware.
+
+
+---
+
+3. Express.js Interview Questions
+
+Q9. What is Express.js?
+
+Express.js is a Node.js framework used to build web applications and REST APIs.
+
+It provides routing, middleware, request handling, and error handling, making backend development easier.
+
+Q10. What is middleware in Express.js?
+
+Middleware is a function that runs during the request-response cycle.
+
+It can access the request and response objects, execute logic, and pass control to the next middleware.
+
+Common uses include authentication, logging, validation, and error handling.
+
+Example:
+
+const authMiddleware = (req, res, next) => {
+  const token = req.headers.authorization;
+
+  if (!token) {
+    return res.status(401).json({
+      message: "Unauthorized"
+    });
+  }
+
+  next();
+};
+
+Q11. What types of middleware have you used?
+
+I have worked with:
+
+1. Application-level middleware.
+
+
+2. Router-level middleware.
+
+
+3. Authentication middleware.
+
+
+4. Validation middleware.
+
+
+5. Error-handling middleware.
+
+
+6. Third-party middleware, such as CORS and logging middleware.
+
+
+
+Q12. What is the difference between app.use() and app.get()?
+
+app.use() registers middleware and can apply to multiple HTTP methods.
+
+app.get() registers a route handler specifically for HTTP GET requests.
+
+
+Q13. How do you structure an Express.js project?
+
+I prefer separating the application into different layers.
+
+src/
+├── config/
+├── controllers/
+├── routes/
+├── services/
+├── models/
+├── middleware/
+├── utils/
+├── validators/
+└── app.js
+
+server.js
+
+Explanation:
+
+Routes define API endpoints.
+
+Controllers handle HTTP requests and responses.
+
+Services contain business logic.
+
+Models handle database operations.
+
+Middleware handles authentication, validation, and errors.
+
+Config contains environment-specific settings.
+
+
+This structure improves code reusability, testing, and maintainability.
+
+Q14. What is the difference between PUT and PATCH?
+
+PUT: Generally replaces the complete resource representation.
+
+PATCH: Updates specific fields of an existing resource.
+
+For example, updating a complete user record can use PUT, while updating only the user's email can use PATCH.
+
+Q15. How do you validate API requests?
+
+I validate incoming request data before processing it.
+
+I check required fields, data types, formats, and business rules using validation libraries such as Joi or Zod.
+
+If the input is invalid, I return HTTP 400 with a clear error message.
+
+Q16. What is the difference between 401 and 403?
+
+401 Unauthorized: Authentication is missing or invalid.
+
+403 Forbidden: The user is authenticated but does not have permission to access the resource.
+
+
+Q17. How do you implement pagination in an API?
+
+I use limit and offset for basic pagination.
+
+Example:
+
+const page = Math.max(1, Number(req.query.page) || 1);
+const limit = Math.min(
+  100,
+  Math.max(1, Number(req.query.limit) || 10)
+);
+
+const offset = (page - 1) * limit;
+
+const users = await User.find()
+  .skip(offset)
+  .limit(limit);
+
+For large datasets, cursor-based pagination can provide better performance.
+
+
+---
+
+4. REST API Development
+
+Q18. How do you design a REST API?
+
+I follow these practices:
+
+1. Use resource-based URLs.
+
+
+2. Use appropriate HTTP methods.
+
+
+3. Return correct HTTP status codes.
+
+
+4. Validate incoming requests.
+
+
+5. Implement authentication and authorization.
+
+
+6. Handle errors consistently.
+
+
+7. Add pagination and filtering where required.
+
+
+8. Document APIs using Swagger.
+
+
+9. Write unit and integration tests.
+
+
+
+Example:
+
+GET /api/users
+GET /api/users/:id
+POST /api/users
+PATCH /api/users/:id
+DELETE /api/users/:id
+
+Q19. How do you secure REST APIs?
+
+I use JWT or other suitable authentication mechanisms, implement role-based access control, validate input, and use HTTPS.
+
+I also configure CORS appropriately, apply rate limiting, protect sensitive information, and use parameterized database queries.
+
+Secrets and credentials are stored in environment variables or a secrets-management service rather than hardcoded in the application.
+
+Q20. How do you implement JWT authentication?
+
+The process is:
+
+1. The user sends login credentials.
+
+
+2. The server validates the credentials.
+
+
+3. The server generates a signed JWT.
+
+
+4. The client sends the token with subsequent requests.
+
+
+5. Authentication middleware verifies the token.
+
+
+6. Authorization checks whether the user has the required permissions.
+
+
+7. The request continues if access is allowed.
+
+
+
+Example:
+
+const jwt = require("jsonwebtoken");
+
+const token = jwt.sign(
+  {
+    userId: user.id,
+    role: user.role
+  },
+  process.env.JWT_SECRET,
+  {
+    expiresIn: "1h"
+  }
+);
+
+I would also use a strong secret, validate the token properly, and avoid putting sensitive information in its payload.
+
+Q21. How do you handle third-party API failures?
+
+I use try-catch, appropriate timeouts, and structured error handling.
+
+For temporary failures, I can implement retries with exponential backoff.
+
+For payment or other critical operations, I also consider idempotency to prevent duplicate processing.
+
+I log the failure and return a meaningful response without exposing internal details.
+
+
+---
+
+5. AWS Interview Questions — Very Important
+
+AWS is a mandatory skill in this JD, so prepare these questions carefully.
+
+Q22. Which AWS services have you worked with?
+
+Answer based on your actual hands-on experience:
+
+"I have worked with AWS services such as EC2, S3, Lambda, and CloudWatch.
+
+EC2 is used to run backend applications, S3 is used to store files, Lambda is used for serverless processing, and CloudWatch helps monitor application logs and metrics.
+
+I also understand how environment variables, IAM permissions, and security groups are used to configure and secure applications."
+
+Important: Only claim direct production experience with services you have actually used. If you have used LocalStack or practiced AWS locally, explain that honestly.
+
+Q23. What is Amazon EC2?
+
+Amazon EC2 provides virtual servers in the AWS cloud.
+
+We can deploy Node.js applications on EC2 and configure the required runtime, environment variables, web server, and process manager.
+
+For example, we can use Nginx as a reverse proxy and PM2 to manage the Node.js process.
+
+Q24. What is Amazon S3?
+
+Amazon S3 is an object storage service.
+
+It can be used to store documents, images, reports, backups, and generated files.
+
+In a Node.js application, we can use the AWS SDK to upload files to an S3 bucket.
+
+Q25. What is AWS Lambda?
+
+AWS Lambda is a serverless compute service that runs code in response to events without requiring us to manage servers.
+
+For example, when a document is uploaded to S3, a Lambda function can process the document and store the result.
+
+Q26. What is IAM in AWS?
+
+IAM stands for Identity and Access Management.
+
+It controls who can access AWS resources and what actions they can perform.
+
+I follow the principle of least privilege, giving applications and users only the permissions they need.
+
+Q27. How do you deploy a Node.js application on AWS EC2?
+
+My deployment process would be:
+
+1. Launch an EC2 instance.
+
+
+2. Configure the security group and access permissions.
+
+
+3. Install Node.js and the required dependencies.
+
+
+4. Deploy the application using Git or a CI/CD pipeline.
+
+
+5. Configure environment variables securely.
+
+
+6. Start the application using PM2.
+
+
+7. Configure Nginx as a reverse proxy.
+
+
+8. Enable HTTPS.
+
+
+9. Configure logs and monitoring using CloudWatch.
+
+
+10. Verify the application and API endpoints.
+
+
+
+Q28. How do you monitor a Node.js application on AWS?
+
+I use application logs and metrics to monitor errors, response times, CPU usage, and memory usage.
+
+On AWS, CloudWatch can collect logs and metrics and trigger alarms when defined thresholds are crossed.
+
+For production applications, I also monitor API failures and service availability.
+
+
+---
+
+6. Microservices Architecture
+
+Q29. What are microservices?
+
+Microservices are an architectural approach in which an application is divided into smaller, independently deployable services.
+
+Each service handles a specific business function and communicates with other services through APIs or messaging systems.
+
+For example, an e-commerce application may have separate user, order, payment, and notification services.
+
+Q30. What is the difference between monolithic and microservices architecture?
+
+Monolithic Microservices
+
+Application is developed as one unit. Application is divided into smaller services.
+Usually deployed as one unit. Services can be deployed independently.
+Simpler to start and manage. Requires more infrastructure and monitoring.
+Components are more tightly coupled. Services can be independently developed.
+Scaling often involves scaling the application. Individual services can be scaled independently.
+
+
+Q31. How do microservices communicate?
+
+Microservices commonly communicate through:
+
+Synchronous communication using REST APIs or gRPC.
+
+Asynchronous communication using message brokers such as RabbitMQ or Kafka.
+
+
+The choice depends on the business requirements, latency, reliability, and coupling between services.
+
+Q32. How do you handle failures between microservices?
+
+I use timeouts, controlled retries, and appropriate error handling.
+
+For repeated failures, a circuit breaker can prevent continuous calls to an unavailable service.
+
+For asynchronous processing, message queues can help handle temporary failures. Idempotency is also important when processing messages or retrying requests.
+
+Q33. What is idempotency?
+
+An operation is idempotent when repeating the same operation produces the same intended result as performing it once.
+
+For example, if a payment request is retried because of a network timeout, an idempotency key can help prevent the same payment from being processed twice.
+
+
+---
+
+7. Unit Testing and Code Quality
+
+The JD specifically mentions unit tests and automated testing, so do not skip this section.
+
+Q34. What is unit testing?
+
+Unit testing checks individual functions or components independently to verify that they work as expected.
+
+For Node.js, we can use Jest or Mocha for testing.
+
+Q35. What is the difference between unit testing and integration testing?
+
+Unit testing: Tests one function or component in isolation, often using mocks.
+
+Integration testing: Tests whether multiple components work together, such as an API route interacting with a database.
+
+Q36. How do you test an Express.js API?
+
+I use Jest for test execution and Supertest for HTTP-level testing.
+
+I test successful requests, invalid input, authentication failures, authorization failures, and unexpected errors.
+
+Example:
+
+const request = require("supertest");
+const app = require("../app");
+
+describe("GET /health", () => {
+  it("should return status 200", async () => {
+    const response = await request(app)
+      .get("/health");
+
+    expect(response.status).toBe(200);
+  });
+});
+
+Q37. What is mocking in unit testing?
+
+Mocking replaces an actual dependency with a controlled test implementation.
+
+For example, I can mock a database service or third-party API to test my business logic without calling the real service.
+
+Q38. What is code coverage?
+
+Code coverage measures how much of the application code is executed during testing.
+
+It can measure statement, branch, function, and line coverage.
+
+However, high coverage alone does not guarantee good tests. The tests must also verify meaningful behavior.
+
+
+---
+
+8. Performance Optimization
+
+Q39. How do you improve Node.js application performance?
+
+I follow these steps:
+
+1. Identify slow APIs using logs and monitoring.
+
+
+2. Optimize database queries and add suitable indexes.
+
+
+3. Use pagination for large datasets.
+
+
+4. Avoid blocking the event loop.
+
+
+5. Use caching with Redis where appropriate.
+
+
+6. Use connection pooling for database connections.
+
+
+7. Apply compression when beneficial.
+
+
+8. Use asynchronous processing for long-running tasks.
+
+
+9. Monitor CPU, memory, and response times.
+
+
+10. Run load tests to identify bottlenecks.
+
+
+
+Q40. What is Redis, and why do you use it?
+
+Redis is an in-memory data store.
+
+It can be used for caching, session management, rate limiting, and temporary data storage.
+
+For example, frequently requested data can be cached in Redis to reduce database queries and improve response times.
+
+Q41. How do you prevent memory leaks in Node.js?
+
+I monitor memory usage and investigate memory growth over time.
+
+I avoid unnecessary global variables, clear timers when they are no longer needed, remove event listeners when appropriate, and ensure resources are released.
+
+I also use Node.js profiling tools and heap snapshots to investigate memory leaks.
+
+Q42. How do you handle a slow API?
+
+First, I identify where the delay occurs.
+
+I check application logs, database query execution time, external API response time, and server metrics.
+
+Then I optimize the actual bottleneck, which may involve database indexes, caching, smaller responses, connection pooling, or timeouts.
+
+Finally, I compare performance before and after the changes.
+
+
+---
+
+9. CI/CD and Agile
+
+Q43. What is CI/CD?
+
+CI/CD stands for Continuous Integration and Continuous Delivery or Deployment.
+
+Continuous Integration automatically builds and tests code changes.
+
+Continuous Delivery prepares the application for release, while Continuous Deployment can automatically release changes after all required checks pass.
+
+Tools include Jenkins and GitHub Actions.
+
+Q44. Explain a typical CI/CD pipeline.
+
+A typical pipeline includes:
+
+1. Developer pushes code to Git.
+
+
+2. The pipeline installs dependencies.
+
+
+3. Linting and automated tests run.
+
+
+4. The application is built.
+
+
+5. A Docker image is created, if Docker is used.
+
+
+6. The image or application artifact is stored.
+
+
+7. The application is deployed to the target environment.
+
+
+8. Health checks verify the deployment.
+
+
+
+Q45. What is Agile methodology?
+
+Agile is an iterative software development approach.
+
+The team develops and delivers software in small increments, receives feedback, and improves the product continuously.
+
+Q46. What are Scrum ceremonies?
+
+The main Scrum events are:
+
+Sprint Planning.
+
+Daily Scrum.
+
+Sprint Review.
+
+Sprint Retrospective.
+
+
+The team uses these events to plan work, track progress, demonstrate completed work, and identify improvements.
+
+Q47. What do you do during code reviews?
+
+I check code readability, correctness, error handling, security, performance, test coverage, and coding standards.
+
+I also check whether the implementation meets the requirements and follows the existing architecture.
+
+
+---
+
+10. Scenario-Based Interview Questions
+
+These questions are especially important for a developer with 4+ years of experience.
+
+Q48. An API is taking 5 seconds to respond. How will you debug it?
+
+Answer:
+
+"First, I will check the application logs and identify which part of the API is slow.
+
+Then I will check database query time, external API calls, and server resource usage.
+
+If the database query is slow, I will check indexes and optimize the query. If a third-party API is slow, I will configure timeouts and handle failures properly.
+
+After optimization, I will test the API again and compare the response time."
+
+Q49. Your Node.js application crashes in production. What will you do?
+
+Answer:
+
+"First, I will check the application logs and monitoring alerts to identify the cause.
+
+I will check memory usage, CPU usage, recent code changes, and dependency failures.
+
+If required, I will restore service using the existing deployment or restart strategy. Then I will fix the root cause, test the solution, and deploy it safely.
+
+I will also add monitoring or tests to help prevent the same issue in the future."
+
+Q50. How will you handle 10,000 requests at the same time?
+
+Answer:
+
+"First, I will identify the expected traffic and test the application under load.
+
+I will optimize database queries, use caching where appropriate, and avoid blocking the event loop.
+
+I will also use load balancing and scale the application horizontally when required.
+
+
+
+interview bit qs
+
+
+I can help you prepare the complete Node.js interview study guide based on the topics covered by InterviewBit. I couldn't access the original page directly because it returned an access restriction, so I can't reliably reproduce every item from that page verbatim.&#x20;
+
+Internal Error
+
++1
+
+
+
+I can provide an original, comprehensive guide with questions, answers, and code examples covering the same core areas.
+
+# Node.js Interview Questions and Answers
+
+## 1. Node.js fundamentals
+
+Start here — essential questions for backend interviews.
+
+Q1. What is Node.js?
+
+Node.js is a JavaScript runtime built on Chrome's V8 engine. It allows us to execute JavaScript outside the browser and build backend APIs, servers, and real-time applications.
+
+Q2. Why is Node.js single-threaded?
+
+JavaScript typically executes on a single main thread with an event loop. Node.js handles I/O asynchronously, allowing it to work on other requests while waiting for database or network operations. Some operations use the OS or libuv thread pool.
+
+Q3. What is the event loop?
+
+The event loop coordinates the execution of callbacks and asynchronous operations. It helps Node.js handle many I/O operations without blocking the main JavaScript thread.
+
+Q4. What is non-blocking I/O?
+
+Non-blocking I/O lets the application continue doing other work while waiting for an operation to finish.
+
+```
+var fs = require("fs");
+
+fs.readFile("data.txt", "utf8", function(err, data) {
+    if (err) {
+        return console.log(err);
+    }
+    console.log(data);
+});
+
+console.log("Other work continues");
+```
+
+The last message can print before the file contents.
+
+Q5. What is the difference between synchronous and asynchronous code?
+
+- Synchronous: the next operation waits for the current operation to finish.
+- Asynchronous: the application can continue other work while waiting for a result.
+
+Q6. What is V8?
+
+V8 is Google's JavaScript engine that compiles and executes JavaScript. Node.js uses V8 to run JavaScript on the server.
+
+Q7. What is libuv?
+
+libuv is a library used by Node.js to support the event loop, asynchronous I/O, and a thread pool for certain operations.
+
+Q8. What is REPL?
+
+REPL stands for Read-Eval-Print Loop. It lets you execute JavaScript commands interactively from the terminal using `node`.
+
+Q9. What is npm?
+
+npm is the Node.js package manager. It helps install dependencies and manage project scripts and package versions.
+
+Q10. What is `package.json`?
+
+It stores project metadata, dependencies, scripts, and other configuration.
+
+```
+{
+  "name": "my-api",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "node server.js",
+    "test": "jest"
+  }
+}
+```
+
+## 2. Callbacks, Promises and asynchronous JavaScript
+
+Q11. What is a callback?
+
+A callback is a function passed to another function to be executed later.
+
+```
+function getData(callback) {
+    callback("Data received");
+}
+
+getData(function(result) {
+    console.log(result);
+});
+```
+
+Q12. What is callback hell?
+
+Callback hell happens when multiple nested callbacks make code difficult to read, debug, and maintain. Promises and `async/await` help improve readability.
+
+Q13. What is a Promise?
+
+A Promise represents the eventual result of an asynchronous operation. It can be `pending`, `fulfilled`, or `rejected`.
+
+```
+var promise = new Promise(function(resolve, reject) {
+    resolve("Success");
+});
+
+promise.then(function(result) {
+    console.log(result);
+}).catch(function(err) {
+    console.log(err);
+});
+```
+
+Q14. What is `async/await`?
+
+It provides a cleaner way to work with Promises.
+
+```
+async function getUser() {
+    try {
+        var user = await User.findOne({ id: 1 });
+        return user;
+    } catch (err) {
+        throw err;
+    }
+}
+```
+
+Q15. What is the difference between `Promise.all()` and `Promise.allSettled()`?
+
+- `Promise.all()` rejects when one of its input Promises rejects.
+- `Promise.allSettled()` waits for all input Promises to settle and returns each outcome.
+
+Q16. What is the difference between `setTimeout()` and `setImmediate()`?
+
+`setTimeout()` schedules a callback after a minimum delay. `setImmediate()` schedules a callback for the event loop's check phase. Their relative order can vary depending on where they are scheduled.
+
+Q17. What is `process.nextTick()`?
+
+It schedules a callback to run after the current operation completes, before the event loop continues to its next phase. Excessive recursive use can delay I/O.
+
+Q18. What is an EventEmitter?
+
+EventEmitter lets objects emit named events and register listeners for them.
+
+```
+var EventEmitter = require("events");
+var emitter = new EventEmitter();
+
+emitter.on("message", function(data) {
+    console.log(data);
+});
+
+emitter.emit("message", "Hello");
+```
+
+Q19. What is the difference between `require()` and `import`?
+
+- `require()` is commonly used with CommonJS modules.
+- `import` is used with ECMAScript modules.
+
+Q20. What is module caching?
+
+In CommonJS, a module is generally cached after it is first loaded. Subsequent `require()` calls usually reuse the cached exports rather than executing the module again.
+
+## 3. Core Node.js modules
+
+Q21. What is the `fs` module?
+
+It provides file-system operations such as reading, writing, renaming, and deleting files.
+
+Q22. What is the `path` module?
+
+It provides utilities for working with file and directory paths.
+
+Q23. What is the `http` module?
+
+It provides functionality for creating HTTP servers and making HTTP requests without needing Express.
+
+Q24. What is the `crypto` module?
+
+It provides cryptographic utilities, including hashing, random bytes, and encryption-related functionality.
+
+Q25. What is the `child_process` module?
+
+It allows Node.js to create subprocesses to execute external commands or separate programs.
+
+Q26. What is the difference between `spawn()` and `exec()`?
+
+- `spawn()` is useful for streaming a process's output.
+- `exec()` runs a command through a shell and buffers its output by default.
+
+Q27. What are Buffers?
+
+Buffers represent binary data in memory, such as file contents or network packets.
+
+Q28. What are Streams?
+
+Streams process data in chunks rather than requiring the entire dataset to be loaded into memory at once.
+
+Four common types:
+
+- Readable
+- Writable
+- Duplex
+- Transform
+
+Q29. What is stream piping?
+
+Piping sends data from a readable stream to a writable stream.
+
+```
+var fs = require("fs");
+
+fs.createReadStream("large.txt")
+  .pipe(fs.createWriteStream("copy.txt"));
+```
+
+Q30. What is backpressure?
+
+Backpressure occurs when a destination cannot consume data as quickly as the source produces it. Streams can regulate the flow to avoid overwhelming the destination.
+
+## 4. Express.js
+
+Q31. What is Express.js?
+
+Express is a Node.js framework that simplifies routing, middleware, HTTP request handling, and REST API development.
+
+Q32. What is middleware?
+
+Middleware is a function that can inspect or modify requests and responses, execute logic, or pass control to the next middleware.
+
+```
+app.use(function(req, res, next) {
+    console.log(req.method, req.url);
+    next();
+});
+```
+
+Q33. What is the difference between `app.use()` and `app.get()`?
+
+`app.use()` registers middleware, while `app.get()` registers a handler for GET requests.
+
+Q34. What is centralized error handling?
+
+It uses a common error-handling middleware to handle application errors consistently.
+
+```
+app.use(function(err, req, res, next) {
+    console.error(err);
+
+    res.status(err.statusCode || 500).json({
+        message: "Request failed"
+    });
+});
+```
+
+Q35. What is routing?
+
+Routing maps an HTTP method and URL to a handler.
+
+```
+app.get("/users", function(req, res) {
+    res.json({ message: "Users list" });
+});
+```
+
+Q36. What is the difference between route parameters and query parameters?
+
+- Route: `/users/10` — `req.params.id`
+- Query: `/users?page=2` — `req.query.page`
+
+Q37. What is the difference between PUT and PATCH?
+
+PUT generally replaces a resource representation; PATCH updates selected fields.
+
+Q38. What is CORS?
+
+Cross-Origin Resource Sharing is a browser security mechanism that controls which origins can access a resource.
+
+Q39. What is the difference between 401 and 403?
+
+- `401`: Authentication is missing or invalid.
+- `403`: The request is understood, but access is not permitted.
+
+Q40. How do you validate request data?
+
+Validate required fields, data types, formats, and business rules using a schema validation library such as Joi or Zod.
+
+## 5. Node.js advanced concepts
+
+Q41. How does Node.js handle multiple requests if JavaScript runs on one thread?
+
+The event loop coordinates asynchronous operations. While requests wait for network or database I/O, Node.js can process other ready work. CPU-intensive JavaScript, however, can block the main thread.
+
+Q42. What is the difference between Cluster and Worker Threads?
+
+| Cluster                                              | Worker Threads                                    |
+| ---------------------------------------------------- | ------------------------------------------------- |
+| Uses multiple Node.js processes                      | Uses multiple JavaScript threads                  |
+| Each worker has a separate process and memory space  | Workers can communicate and share suitable memory |
+| Useful for scaling server processes across CPU cores | Useful for CPU-intensive JavaScript tasks         |
+
+Q43. What is a memory leak?
+
+A memory leak occurs when memory that is no longer needed remains referenced and cannot be reclaimed. Common causes include unbounded caches, retained objects, and unmanaged event listeners.
+
+Q44. How do you debug a memory leak?
+
+Monitor memory over time, inspect heap snapshots, identify retained objects, and reproduce the issue under controlled load.
+
+Q45. How do you improve Node.js performance?
+
+- Optimize database queries and indexes.
+- Use Redis caching when appropriate.
+- Avoid blocking the event loop.
+- Stream large files.
+- Use pagination.
+- Profile CPU and memory.
+- Scale horizontally when required.
+
+Q46. What is garbage collection?
+
+Garbage collection reclaims memory occupied by objects that are no longer reachable. In Node.js, V8 manages JavaScript heap memory and garbage collection.
+
+Q47. What is the Reactor Pattern?
+
+It is an event-driven design pattern where a central event mechanism dispatches events to the appropriate handlers. It is closely related to Node.js's asynchronous I/O model.
+
+Q48. Why separate `app.js` and `server.js`?
+
+`app.js` can configure Express routes and middleware, while `server.js` starts listening on a port. This makes the application easier to test without automatically opening a network port.
+
+Q49. What are Node.js exit codes?
+
+Exit codes indicate how a process ended. Conventionally, `0` means success and a nonzero code indicates an error or abnormal termination.
+
+Q50. What is a stub in testing?
+
+A stub replaces a dependency with a controlled implementation that returns predetermined results. It is useful when testing code that depends on databases or external APIs.
+
+## 6. Database and caching
+
+Q51. What is connection pooling?
+
+A connection pool reuses database connections rather than creating a new connection for every request. It reduces connection overhead and limits resource usage.
+
+Q52. What is indexing?
+
+An index helps a database find matching records more efficiently. Indexes can improve reads but add storage and write overhead.
+
+Q53. What is Redis?
+
+Redis is an in-memory data store used for caching, sessions, rate limiting, and other low-latency data operations.
+
+Q54. What is cache invalidation?
+
+Cache invalidation removes or updates stale cached data when the underlying data changes. TTL, explicit deletion, and event-driven invalidation are common strategies.
+
+Q55. What is the difference between SQL and NoSQL databases?
+
+SQL databases typically use relational tables and structured queries. NoSQL databases include document, key-value, graph, and other data models.
+
+Q56. How do you prevent duplicate payment processing?
+
+Use an idempotency key, validate the payment status, enforce appropriate database constraints, and verify payment results with the payment provider. Retried requests should not create duplicate financial transactions.
+
+## 7. Security and authentication
+
+Q57. What is authentication versus authorization?
+
+- Authentication verifies who the user is.
+- Authorization determines what that user is allowed to do.
+
+Q58. What is JWT?
+
+JSON Web Token is a token format commonly used to convey signed claims between systems. The server verifies the signature and validates relevant claims, such as expiration.
+
+Q59. How do you secure a Node.js API?
+
+Use input validation, authentication, authorization, HTTPS, rate limiting, safe database queries, secure secret management, and appropriate security headers. Avoid exposing internal error details.
+
+Q60. What is password hashing?
+
+Password hashing stores a one-way derived representation of a password rather than the original password. Use a password-specific algorithm such as Argon2 or bcrypt with appropriate settings.
+
+Q61. What is rate limiting?
+
+Rate limiting restricts how many requests a client can make in a given period. Redis can maintain shared counters when the application runs across multiple server instances.
+
+Q62. What is SQL injection?
+
+SQL injection occurs when untrusted input changes the intended structure of a SQL query. Parameterized queries help prevent it.
+
+Q63. How do you handle third-party API failures?
+
+Set timeouts, handle errors consistently, retry only appropriate transient failures with backoff, and use idempotency for operations where retries could cause duplicate effects.
+
+## 8. Microservices and system design
+
+Q64. What are microservices?
+
+Microservices divide an application into independently deployable services, each responsible for a particular business capability.
+
+Q65. How do microservices communicate?
+
+- REST APIs or gRPC for synchronous communication.
+- RabbitMQ or Kafka for asynchronous messaging.
+
+Q66. What is an API Gateway?
+
+An API Gateway provides a common entry point for routing requests to backend services. It can also support authentication integration, rate limiting, and request monitoring.
+
+Q67. What is a circuit breaker?
+
+A circuit breaker temporarily stops calls to a repeatedly failing dependency. It helps prevent cascading failures and gives the dependency time to recover.
+
+Q68. What is the Saga pattern?
+
+Saga coordinates a business transaction across multiple services using a sequence of local transactions. If a later step fails, compensating actions may reverse earlier business effects.
+
+Q69. How would you separate PDF generation into a microservice?
+
+For your insurance application example:
+
+1. Keep customer, quote, proposal, and payment APIs in the main application.
+2. Move resource-intensive PDF generation into an independent Node.js service.
+3. Send the required document data to that service.
+4. Generate the PDF separately and return the file or its reference.
+5. Monitor processing time and resource usage, then scale the PDF service independently.
+
+If the workload is heavy, a message queue can be added to process PDF jobs asynchronously.
+
+Q70. What is Docker?
+
+Docker packages an application and its dependencies into a container, helping it run consistently across environments.
+
+Q71. What is CI/CD?
+
+Continuous Integration and Continuous Delivery/Deployment automate steps such as building, testing, packaging, and releasing application changes.
+
+Q72. How do you deploy Node.js on AWS EC2?
+
+A typical approach is to configure the EC2 instance, install Node.js, deploy the application, configure environment variables, run the service using PM2 or another process manager, configure Nginx and HTTPS, and monitor logs and metrics.
+
+Q73. What is AWS S3?
+
+S3 is object storage commonly used for documents, images, backups, and generated files.
+
+Q74. What is AWS Lambda?
+
+Lambda runs code in response to events without requiring you to manage the underlying application servers.
+
+## 9. Testing and production scenarios
+
+Q75. What is unit testing?
+
+Unit testing verifies a small piece of functionality in isolation, often with mocked dependencies.
+
+Q76. What is integration testing?
+
+Integration testing verifies that components work together, such as an Express API interacting with a database.
+
+Q77. What are Jest and Supertest?
+
+Jest is a JavaScript testing framework. Supertest helps test HTTP endpoints, including Express APIs.
+
+Q78. An API takes five seconds to respond. What will you do?
+
+Measure where the delay occurs, inspect database queries and external API calls, check application metrics, optimize the actual bottleneck, and compare performance after the change.
+
+Q79. Your application crashes in production. What will you do?
+
+Check logs and monitoring, identify the root cause, restore service safely, fix and test the issue, and add preventive monitoring or tests.
+
+Q80. How do you handle 10,000 simultaneous requests?
+
+Estimate traffic, perform load testing, optimize I/O and database access, apply caching where appropriate, use load balancing and horizontal scaling, and monitor bottlenecks. The exact solution depends on request duration and infrastructure capacity.
+
+## 10. What to prepare first for your 4+ years of experience
+
+Interview preparation checklist
+
+0/6
+
+Node.js internals
+
+Event loop, callbacks, Promises, streams, Worker Threads
+
+Express and APIs
+
+Middleware, error handling, validation, JWT, pagination
+
+Database and Redis
+
+Indexes, aggregation, caching, TTL, connection pooling
+
+Microservices
+
+REST, RabbitMQ, retries, idempotency, circuit breaker
+
+Production experience
+
+Your PDF service example, third-party APIs, payment integration
+
+Deployment and testing
+
+Docker, AWS, CI/CD, Jest and Supertest
+
+The best interview preparation is not memorizing all 80 answers. Be ready to explain the concept, write a small example, discuss failure cases, and connect it to something you actually worked on.
+
+For reference, the original page you shared is [InterviewBit — Node.js Interview Questions](https://www.interviewbit.com/node-js-interview-questions/). The guide above is an original study guide, not a verbatim copy of that page.
